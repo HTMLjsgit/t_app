@@ -1,0 +1,11 @@
+<div id="posts">
+  <%= render "post", collection: @posts %>
+</div>
+
+<% if current_user.avater.attached? %>
+  <input type="text" data-behavior="room_speaker" data-user="<%= current_user.id %>" data-room="<%= @room.id %>" data-img="<%= url_for(current_user.avater) %>">
+<% else %>
+  <input type="text" data-behavior="room_speaker" data-user="<%= current_user.id %>" data-room="<%= @room.id %>" data-img="">
+<% end %>
+
+<input type="hidden" id="my_id" value="<%= current_user.id %>">

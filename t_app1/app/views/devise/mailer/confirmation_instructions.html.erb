@@ -1,0 +1,5 @@
+<%= @email %>様、この度は「(アプリ名)」にご登録いただきありがとうございます。
+
+正式なご登録は以下のリンクをクリックしてください。:
+
+<%= link_to '正式アカウント登録（無料）はこちら', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>

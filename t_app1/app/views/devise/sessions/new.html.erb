@@ -1,0 +1,30 @@
+<div class="card col-sm-5 mx-auto mt-5">
+  <div class="card-body">
+    <h3 class="mt-1 mb-3">ログイン</h3>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-group">
+      <%= f.label :email, "メールアドレス", :class => "form-label" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password, "パスワード", :class => "form-label" %>
+      <%= link_to "パスワードを忘れた場合", new_user_password_path, :class => "float-right" %>
+      <%= f.password_field :password, :class => "form-control" %>
+    <% if devise_mapping.rememberable? %>
+    <div class="form-check">
+      <%= f.check_box :remember_me, :class => "form-check-input" %>
+      <%= f.label :remember_me, "ログインを記憶", :class => "form-check-label" %>
+    </div>
+    <% end %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "ログイン", :class => "btn btn-primary btn-block" %>
+    </div>
+    <% end %>
+
+    <div class="small text-muted text-center mt-4">新しいユーザですか?</div>
+    <%= link_to "アカウントを作成", new_user_registration_path, :class => "btn btn-light btn-block border mt-1" %>
+  </div>
+</div>
