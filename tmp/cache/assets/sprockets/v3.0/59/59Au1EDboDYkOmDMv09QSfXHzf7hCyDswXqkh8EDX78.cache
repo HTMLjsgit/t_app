@@ -1,0 +1,57 @@
+I"4	(function() {
+  App.room = App.cable.subscriptions.create("RoomChannel", {
+    connected: function() {},
+    disconnected: function() {},
+    received: function(data) {
+      var DateStr, Hour, Min, Month, Year, dt_arr, id, img, msg, now, time;
+      msg = '';
+      id = '';
+      img = '';
+      dt_arr = data["message"];
+      now = new Date();
+      Year = now.getFullYear();
+      Month = ('0' + String(now.getMonth() + 1)).slice(-2);
+      DateStr = ('0' + String(now.getDate())).slice(-2);
+      Hour = now.getHours();
+      Min = now.getMinutes();
+      time = Year + "-" + Month + "-" + DateStr + " " + Hour + ":" + Min;
+      if (dt_arr[0] !== void 0) {
+        msg = dt_arr[0];
+      }
+      if (dt_arr[1] !== void 0) {
+        id = dt_arr[1];
+      }
+      if (dt_arr[2] !== void 0) {
+        img = dt_arr[2];
+      }
+      if (id === $("#my_id").val()) {
+        if (img === '') {
+          return $('#posts').append('<div style="text-align: right;margin: 8px;"><span class="message my">' + msg + '</span><p class="chat_time my">' + time + '</p></div>');
+        } else {
+          return $('#posts').append('<div style="text-align: right;margin: 8px;"><span class="message my">' + msg + '</span><p class="chat_time my">' + time + '</p></div>');
+        }
+      } else {
+        if (img === '') {
+          return $('#posts').append('<div style="text-align: left;margin: 8px;"><a href="/users/' + id + '"><img class="room_avater_image" src="/blank-profile-picture-973460_640.png"></a><span class="message etc">' + msg + '</span><p class="chat_time">' + time + '</p></div>');
+        } else {
+          return $('#posts').append('<div style="text-align: left;margin: 8px;"><a href="/users/' + id + '"><img class="room_avater_image" src="' + img + '"></a><span class="message etc">' + msg + '</span><p class="chat_time">' + time + '</p></div>');
+        }
+      }
+    },
+    speak: function(message) {
+      return this.perform('speak', {
+        message: message
+      });
+    }
+  });
+
+  $(document).on('keypress', '[data-behavior~=room_speaker]', function(event) {
+    if (event.keyCode === 13) {
+      App.room.speak([event.target.value, $('[data-user]').attr('data-user'), $('[data-img]').attr('data-img'), $('[data-room]').attr('data-room')]);
+      event.target.value = '';
+      return event.preventDefault();
+    }
+  });
+
+}).call(this);
+:ET
