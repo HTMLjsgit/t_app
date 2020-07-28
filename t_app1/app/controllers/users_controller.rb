@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @search = User.ransa ck(params[:q])
+    @search = User.ransack(params[:q])
     @users = @search.result
   end
 

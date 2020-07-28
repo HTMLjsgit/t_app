@@ -1,0 +1,16 @@
+<div class="main posts-show">
+  <div class="container">
+    <div class="posts-show-item">
+      <p>
+        <%= @post.content %>
+      </p>
+      <div class="post-time">
+        <%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %>
+      </div>
+      <div class="post-menus">
+        <%= link_to("編集", edit_post_path(@post)) %>
+        <%= link_to("削除", post_path(@post), method: :delete) %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,9 +18,17 @@
         <%= link_to "マイページへ", user_path(current_user) %>
         <%= link_to 'アカウント編集', edit_user_registration_path %> |
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <%= link_to "投稿", new_post_path %>
+        <%= link_to "投稿一覧", posts_path %>
+        <div class="logo-center">
+        <%= image_tag "/ペンキなしピンク180×180_背景透過.png",size: "70x70"%>
+        </div>
       <% else %>
         <%= link_to "新規登録", new_user_registration_path %> |
         <%= link_to "ログイン", new_user_session_path %>
+        <div class="logo-center">
+        <%= image_tag "/ペンキなしピンク180×180_背景透過.png",size: "70x70"%>
+        </div>
       <% end %>
     </header>
     <p class="notice"><%= notice %></p>
