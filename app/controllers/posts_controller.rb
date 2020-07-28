@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+
   def index
     @posts = Post.all.order(created_at: :desc)
   end
@@ -11,7 +12,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(content: params[:content])
+    @post = Post.new(user_id: current_user.id,content: params[:content])
     @post.save
     redirect_to(posts_path)
   end
