@@ -3,9 +3,7 @@
     <% @posts.each do |post| %>
       <div class="posts-index-item">
 
-           <div class= "users_right">
-            <%= link_to "#{ post.user.username}",  user_path(user) %>
-            </div>
+          
         <%= link_to(post.content, "/posts/#{post.id}") %>
       </div>
     <% end %>

@@ -1,6 +1,15 @@
 <div class="main posts-show">
   <div class="container">
     <div class="posts-show-item">
+      <% if @user.avater.attached? %>
+        <div class="user">
+          <%= image_tag @user.avater %><%= @user.username %>
+        </div>
+      <% else %>
+      <div class="user">
+      <%= image_tag "/blank-profile-picture-973460_640.png" %><%= @user.username %>
+      </div>
+      <% end %>
       <p>
         <%= @post.content %>
       </p>
@@ -8,8 +17,9 @@
         <%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %>
       </div>
       <div class="post-menus">
-        <%= link_to("編集", edit_post_path(@post)) %>
-        <%= link_to("削除", post_path(@post), method: :delete) %>
+        <%= link_to(post_path(@post),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>
+        <i class="fas fa-trash-alt fa-2x"></i>
+        <% end %>
       </div>
     </div>
   </div>

@@ -6,6 +6,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find_by(id: params[:id])
+    @user = @post.user
   end
 
   def new
@@ -13,17 +14,6 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(user_id: current_user.id,content: params[:content])
-    @post.save
-    redirect_to(posts_path)
-  end
-
-  def edit
-    @post = Post.find_by(id: params[:id])
-  end
-
-  def update
-    @post = Post.find_by(id: params[:id])
-    @post.content = params[:content]
     @post.save
     redirect_to(posts_path)
   end
