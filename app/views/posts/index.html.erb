@@ -2,9 +2,16 @@
   <div class="container">
     <% @posts.each do |post| %>
       <div class="posts-index-item">
-
-          
-        <%= link_to(post.content, "/posts/#{post.id}") %>
+        <% if post.user.avater.attached? %>
+          <div class="post-users">
+            <%= image_tag post.user.avater %>  <%= link_to(post.user.username, "/posts/#{post.id}",class: "post-index-name") %>
+          </div>
+        <% else %>
+        <div class="post-users">
+        <%= image_tag "/blank-profile-picture-973460_640.png" %><%= link_to(post.user.username, "/posts/#{post.id}",class: "post-index-name") %>
+        </div>
+        <% end %>
+        <%= link_to(post.content, "/posts/#{post.id}",class: "post-index-content") %>
       </div>
     <% end %>
   </div>

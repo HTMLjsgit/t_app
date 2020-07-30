@@ -2,12 +2,12 @@
   <div class="container">
     <div class="posts-show-item">
       <% if @user.avater.attached? %>
-        <div class="user">
-          <%= image_tag @user.avater %><%= @user.username %>
+        <div class="post-user">
+          <%= image_tag @user.avater %> <%= link_to(@user.username, user_path(@user),class: "post-index-name") %>
         </div>
       <% else %>
-      <div class="user">
-      <%= image_tag "/blank-profile-picture-973460_640.png" %><%= @user.username %>
+      <div class="post-user">
+      <%= image_tag "/blank-profile-picture-973460_640.png" %> <%= link_to(@user.username, user_path(@user),class: "post-index-name") %>
       </div>
       <% end %>
       <p>

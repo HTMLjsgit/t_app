@@ -4,8 +4,8 @@
     <%= form_tag(posts_path(@post)) do %>
       <div class="form">
         <div class="form-body">
-          <textarea name="content"></textarea>
-          <input type="submit" value="投稿">
+          <textarea class="form-control" name="content"></textarea>
+          <input class="btn btn-primary input" type="submit" value="投稿">
         </div>
       </div>
     <% end %>
