@@ -1,11 +1,13 @@
+
 <div class="main posts-new">
   <div class="container">
     <h1 class="form-heading">コメント</h1>
-    <%= form_tag(comments_path(@post,@comment)) do %>
+    <%= form_for [@post,@comment] do |f| %>
       <div class="form">
         <div class="form-body">
-          <textarea class="form-control" name="content"></textarea>
-          <input class="btn btn-primary input" type="submit" value="コメント">
+          <%= f.text_field :content,class: "form-control" %>
+          <%= f.hidden_field :post_id, value: @post.id %>
+          <%= f.submit 'コメントする', class: "btn btn-primary input" %>
         </div>
       </div>
     <% end %>

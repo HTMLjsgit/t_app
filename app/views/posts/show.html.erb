@@ -28,3 +28,11 @@
     </div>
   </div>
 </div>
+
+<div class="comment-index">
+  <h2>コメント一覧</h2>
+</div>
+<% @comments.each do |comment| %>
+
+    <%= comment.content %>
+<% end %>
