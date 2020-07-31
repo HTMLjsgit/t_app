@@ -13,10 +13,14 @@
       <p>
         <%= @post.content %>
       </p>
-      <div class="post-time">
-        <%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %>
-      </div>
+
+
+      <%= link_to(new_comment_path(@comment))do %>
+        <i class="far fa-comment fa-2x comment-show"></i>
+      <% end %>
+
       <div class="post-menus">
+        <%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %>
         <%= link_to(post_path(@post),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>
         <i class="fas fa-trash-alt fa-2x"></i>
         <% end %>

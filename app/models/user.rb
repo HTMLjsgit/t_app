@@ -17,6 +17,7 @@ class User < ApplicationRecord
 
  has_many :posts # チャット投稿保存テーブル
  has_many :posts, dependent: :destroy # 投稿
+ has_many :comments　#コメント
 
  has_one_attached :avater
      # ユーザーをフォローする

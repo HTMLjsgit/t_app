@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :index]
   resources :posts, only: [:new, :create, :index, :show, :destroy]
+    resources :comments, only: [:new, :create]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'home#top'
   get  'users/:id/chat_index' => 'users#chat_index', as: 'chat_index'

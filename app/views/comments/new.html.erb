@@ -1,0 +1,13 @@
+<div class="main posts-new">
+  <div class="container">
+    <h1 class="form-heading">コメント</h1>
+    <%= form_tag(comments_path(@post,@comment)) do %>
+      <div class="form">
+        <div class="form-body">
+          <textarea class="form-control" name="content"></textarea>
+          <input class="btn btn-primary input" type="submit" value="コメント">
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
