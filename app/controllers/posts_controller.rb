@@ -9,6 +9,7 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     @user = @post.user
     @comments = Comment.all
+    @comments_count = Comment.where(post_id: @post.id).count
   end
 
   def new

@@ -30890,3 +30890,467 @@ Started GET "/cable/" [WebSocket] for ::1 at 2020-08-01 12:40:08 +0900
 Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
 RoomChannel is transmitting the subscription confirmation
 RoomChannel is streaming from room_channel
+Started GET "/cable" for ::1 at 2020-08-01 12:53:51 +0900
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/hitakatsukenichi/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+Started GET "/cable/" [WebSocket] for ::1 at 2020-08-01 12:53:51 +0900
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+RoomChannel is transmitting the subscription confirmation
+RoomChannel is streaming from room_channel
+Started GET "/comments/new" for ::1 at 2020-08-01 12:53:53 +0900
+Processing by CommentsController#new as HTML
+  Rendering comments/new.html.erb within layouts/application
+  Rendered comments/new.html.erb within layouts/application (3.2ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:16
+Completed 200 OK in 248ms (Views: 227.8ms | ActiveRecord: 1.8ms)
+
+
+Finished "/cable/" [WebSocket] for ::1 at 2020-08-01 12:53:53 +0900
+RoomChannel stopped streaming from room_channel
+Started GET "/cable" for ::1 at 2020-08-01 12:53:53 +0900
+Started GET "/cable/" [WebSocket] for ::1 at 2020-08-01 12:53:53 +0900
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+RoomChannel is transmitting the subscription confirmation
+RoomChannel is streaming from room_channel
+Started POST "/comments" for ::1 at 2020-08-01 12:53:58 +0900
+Processing by CommentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qrobhMzhhf3aEZQsi4L98hVevUSW/Jd+63IFda2ansgSuPFGlzJisQtXDF212U2kFNtsNqvtjxjCqnHUY8QQLw==", "comment"=>{"content"=>"aa", "post_id"=>""}, "commit"=>"コメントする"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:10
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:10
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/comment.rb:5
+  [1m[36mCACHE Post Load (0.0ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/comment.rb:5
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/comments_controller.rb:10
+Redirected to http://localhost:3000/comments/new
+Completed 302 Found in 52ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/comments/new" for ::1 at 2020-08-01 12:53:58 +0900
+Processing by CommentsController#new as HTML
+  Rendering comments/new.html.erb within layouts/application
+  Rendered comments/new.html.erb within layouts/application (1.1ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:16
+Completed 200 OK in 40ms (Views: 38.1ms | ActiveRecord: 0.1ms)
+
+
+Finished "/cable/" [WebSocket] for ::1 at 2020-08-01 12:53:58 +0900
+RoomChannel stopped streaming from room_channel
+Started GET "/cable" for ::1 at 2020-08-01 12:53:58 +0900
+Started GET "/cable/" [WebSocket] for ::1 at 2020-08-01 12:53:58 +0900
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+RoomChannel is transmitting the subscription confirmation
+RoomChannel is streaming from room_channel
+Started GET "/posts" for ::1 at 2020-08-01 12:54:00 +0900
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:3
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  Rendered posts/index.html.erb within layouts/application (56.9ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:16
+Completed 200 OK in 114ms (Views: 107.6ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a01bdc726252f91793c8834021a776d33770d75b/%E9%BB%84%E8%89%B2appstore1024%C3%971024_%E8%83%8C%E6%99%AF%E9%80%8F%E9%81%8E.png" for ::1 at 2020-08-01 12:54:01 +0900
+Processing by ActiveStorage::BlobsController#show as PNG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a01bdc726252f91793c8834021a776d33770d75b", "filename"=>"黄色appstore1024×1024_背景透過"}
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/hitakatsukenichi/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+[36m  Disk Storage (1.0ms) [0m[34mGenerated URL for file at key: u2CCmAEzYKjCEP7guLYoZukH (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRkVEpEUTIxQlJYcFpTMnBEUlZBM1ozVk1XVzlhZFd0SUJqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSUJuMmx1YkdsdVpUc2dabWxzWlc1aGJXVTlJaVV6UmlVelJtRndjSE4wYjNKbE1UQXlOSGd4TURJMFh5VXpSaVV6UmlVelJpVXpSaTV3Ym1jaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp5VkZPU1ZDUWlVNE5DVkZPQ1U0T1NWQ01tRndjSE4wYjNKbE1UQXlOQ1ZETXlVNU56RXdNalJmSlVVNEpUZ3pKVGhESlVVMkpUazVKVUZHSlVVNUpUZ3dKVGhHSlVVNUpUZ3hKVGhGTG5CdVp3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMDFUMDM6NTk6MDEuMTk1WiIsInB1ciI6ImJsb2Jfa2V5In19--e9724a44daff9efe57d5c581a31781613d82e2c4/%E9%BB%84%E8%89%B2appstore1024%C3%971024_%E8%83%8C%E6%99%AF%E9%80%8F%E9%81%8E.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22%253F%253Fappstore1024x1024_%253F%253F%253F%253F.png%22%3B+filename%2A%3DUTF-8%27%27%25E9%25BB%2584%25E8%2589%25B2appstore1024%25C3%25971024_%25E8%2583%258C%25E6%2599%25AF%25E9%2580%258F%25E9%2581%258E.png)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRkVEpEUTIxQlJYcFpTMnBEUlZBM1ozVk1XVzlhZFd0SUJqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSUJuMmx1YkdsdVpUc2dabWxzWlc1aGJXVTlJaVV6UmlVelJtRndjSE4wYjNKbE1UQXlOSGd4TURJMFh5VXpSaVV6UmlVelJpVXpSaTV3Ym1jaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp5VkZPU1ZDUWlVNE5DVkZPQ1U0T1NWQ01tRndjSE4wYjNKbE1UQXlOQ1ZETXlVNU56RXdNalJmSlVVNEpUZ3pKVGhESlVVMkpUazVKVUZHSlVVNUpUZ3dKVGhHSlVVNUpUZ3hKVGhGTG5CdVp3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMDFUMDM6NTk6MDEuMTk1WiIsInB1ciI6ImJsb2Jfa2V5In19--e9724a44daff9efe57d5c581a31781613d82e2c4/%E9%BB%84%E8%89%B2appstore1024%C3%971024_%E8%83%8C%E6%99%AF%E9%80%8F%E9%81%8E.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22%253F%253Fappstore1024x1024_%253F%253F%253F%253F.png%22%3B+filename%2A%3DUTF-8%27%27%25E9%25BB%2584%25E8%2589%25B2appstore1024%25C3%25971024_%25E8%2583%258C%25E6%2599%25AF%25E9%2580%258F%25E9%2581%258E.png
+Completed 302 Found in 4ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRkVEpEUTIxQlJYcFpTMnBEUlZBM1ozVk1XVzlhZFd0SUJqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSUJuMmx1YkdsdVpUc2dabWxzWlc1aGJXVTlJaVV6UmlVelJtRndjSE4wYjNKbE1UQXlOSGd4TURJMFh5VXpSaVV6UmlVelJpVXpSaTV3Ym1jaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp5VkZPU1ZDUWlVNE5DVkZPQ1U0T1NWQ01tRndjSE4wYjNKbE1UQXlOQ1ZETXlVNU56RXdNalJmSlVVNEpUZ3pKVGhESlVVMkpUazVKVUZHSlVVNUpUZ3dKVGhHSlVVNUpUZ3hKVGhGTG5CdVp3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMDFUMDM6NTk6MDEuMTk1WiIsInB1ciI6ImJsb2Jfa2V5In19--e9724a44daff9efe57d5c581a31781613d82e2c4/%E9%BB%84%E8%89%B2appstore1024%C3%971024_%E8%83%8C%E6%99%AF%E9%80%8F%E9%81%8E.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22%253F%253Fappstore1024x1024_%253F%253F%253F%253F.png%22%3B+filename%2A%3DUTF-8%27%27%25E9%25BB%2584%25E8%2589%25B2appstore1024%25C3%25971024_%25E8%2583%258C%25E6%2599%25AF%25E9%2580%258F%25E9%2581%258E.png" for ::1 at 2020-08-01 12:54:01 +0900
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"content_type"=>"image/png", "disposition"=>"inline; filename=\"%3F%3Fappstore1024x1024_%3F%3F%3F%3F.png\"; filename*=UTF-8''%E9%BB%84%E8%89%B2appstore1024%C3%971024_%E8%83%8C%E6%99%AF%E9%80%8F%E9%81%8E.png", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRkVEpEUTIxQlJYcFpTMnBEUlZBM1ozVk1XVzlhZFd0SUJqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSUJuMmx1YkdsdVpUc2dabWxzWlc1aGJXVTlJaVV6UmlVelJtRndjSE4wYjNKbE1UQXlOSGd4TURJMFh5VXpSaVV6UmlVelJpVXpSaTV3Ym1jaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp5VkZPU1ZDUWlVNE5DVkZPQ1U0T1NWQ01tRndjSE4wYjNKbE1UQXlOQ1ZETXlVNU56RXdNalJmSlVVNEpUZ3pKVGhESlVVMkpUazVKVUZHSlVVNUpUZ3dKVGhHSlVVNUpUZ3hKVGhGTG5CdVp3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMDFUMDM6NTk6MDEuMTk1WiIsInB1ciI6ImJsb2Jfa2V5In19--e9724a44daff9efe57d5c581a31781613d82e2c4", "filename"=>"黄色appstore1024×1024_背景透過"}
+Completed 200 OK in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/posts/19" for ::1 at 2020-08-01 12:54:02 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"19"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 19]]
+  ↳ app/controllers/posts_controller.rb:12
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:4
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:4
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/posts/show.html.erb:35
+  Rendered posts/show.html.erb within layouts/application (7.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:16
+Completed 200 OK in 63ms (Views: 55.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRkVEpEUTIxQlJYcFpTMnBEUlZBM1ozVk1XVzlhZFd0SUJqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSUJuMmx1YkdsdVpUc2dabWxzWlc1aGJXVTlJaVV6UmlVelJtRndjSE4wYjNKbE1UQXlOSGd4TURJMFh5VXpSaVV6UmlVelJpVXpSaTV3Ym1jaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp5VkZPU1ZDUWlVNE5DVkZPQ1U0T1NWQ01tRndjSE4wYjNKbE1UQXlOQ1ZETXlVNU56RXdNalJmSlVVNEpUZ3pKVGhESlVVMkpUazVKVUZHSlVVNUpUZ3dKVGhHSlVVNUpUZ3hKVGhGTG5CdVp3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMDFUMDM6NTk6MDEuMTk1WiIsInB1ciI6ImJsb2Jfa2V5In19--e9724a44daff9efe57d5c581a31781613d82e2c4/%E9%BB%84%E8%89%B2appstore1024%C3%971024_%E8%83%8C%E6%99%AF%E9%80%8F%E9%81%8E.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22%253F%253Fappstore1024x1024_%253F%253F%253F%253F.png%22%3B+filename%2A%3DUTF-8%27%27%25E9%25BB%2584%25E8%2589%25B2appstore1024%25C3%25971024_%25E8%2583%258C%25E6%2599%25AF%25E9%2580%258F%25E9%2581%258E.png" for ::1 at 2020-08-01 12:54:02 +0900
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"content_type"=>"image/png", "disposition"=>"inline; filename=\"%3F%3Fappstore1024x1024_%3F%3F%3F%3F.png\"; filename*=UTF-8''%E9%BB%84%E8%89%B2appstore1024%C3%971024_%E8%83%8C%E6%99%AF%E9%80%8F%E9%81%8E.png", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRkVEpEUTIxQlJYcFpTMnBEUlZBM1ozVk1XVzlhZFd0SUJqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSUJuMmx1YkdsdVpUc2dabWxzWlc1aGJXVTlJaVV6UmlVelJtRndjSE4wYjNKbE1UQXlOSGd4TURJMFh5VXpSaVV6UmlVelJpVXpSaTV3Ym1jaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp5VkZPU1ZDUWlVNE5DVkZPQ1U0T1NWQ01tRndjSE4wYjNKbE1UQXlOQ1ZETXlVNU56RXdNalJmSlVVNEpUZ3pKVGhESlVVMkpUazVKVUZHSlVVNUpUZ3dKVGhHSlVVNUpUZ3hKVGhGTG5CdVp3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMDFUMDM6NTk6MDEuMTk1WiIsInB1ciI6ImJsb2Jfa2V5In19--e9724a44daff9efe57d5c581a31781613d82e2c4", "filename"=>"黄色appstore1024×1024_背景透過"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/cable" for ::1 at 2020-08-01 12:55:35 +0900
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/hitakatsukenichi/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+Started GET "/cable/" [WebSocket] for ::1 at 2020-08-01 12:55:35 +0900
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+RoomChannel is transmitting the subscription confirmation
+RoomChannel is streaming from room_channel
+Started GET "/comments/new" for ::1 at 2020-08-01 12:55:37 +0900
+Processing by CommentsController#new as HTML
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRkVEpEUTIxQlJYcFpTMnBEUlZBM1ozVk1XVzlhZFd0SUJqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSUJuMmx1YkdsdVpUc2dabWxzWlc1aGJXVTlJaVV6UmlVelJtRndjSE4wYjNKbE1UQXlOSGd4TURJMFh5VXpSaVV6UmlVelJpVXpSaTV3Ym1jaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp5VkZPU1ZDUWlVNE5DVkZPQ1U0T1NWQ01tRndjSE4wYjNKbE1UQXlOQ1ZETXlVNU56RXdNalJmSlVVNEpUZ3pKVGhESlVVMkpUazVKVUZHSlVVNUpUZ3dKVGhHSlVVNUpUZ3hKVGhGTG5CdVp3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMDFUMDM6NTk6MDEuMTk1WiIsInB1ciI6ImJsb2Jfa2V5In19--e9724a44daff9efe57d5c581a31781613d82e2c4/%E9%BB%84%E8%89%B2appstore1024%C3%971024_%E8%83%8C%E6%99%AF%E9%80%8F%E9%81%8E.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22%253F%253Fappstore1024x1024_%253F%253F%253F%253F.png%22%3B+filename%2A%3DUTF-8%27%27%25E9%25BB%2584%25E8%2589%25B2appstore1024%25C3%25971024_%25E8%2583%258C%25E6%2599%25AF%25E9%2580%258F%25E9%2581%258E.png" for ::1 at 2020-08-01 12:55:37 +0900
+  Rendering comments/new.html.erb within layouts/application
+  Rendered comments/new.html.erb within layouts/application (5.3ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:16
+Completed 200 OK in 296ms (Views: 260.2ms | ActiveRecord: 2.3ms)
+
+
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"content_type"=>"image/png", "disposition"=>"inline; filename=\"%3F%3Fappstore1024x1024_%3F%3F%3F%3F.png\"; filename*=UTF-8''%E9%BB%84%E8%89%B2appstore1024%C3%971024_%E8%83%8C%E6%99%AF%E9%80%8F%E9%81%8E.png", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRkVEpEUTIxQlJYcFpTMnBEUlZBM1ozVk1XVzlhZFd0SUJqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSUJuMmx1YkdsdVpUc2dabWxzWlc1aGJXVTlJaVV6UmlVelJtRndjSE4wYjNKbE1UQXlOSGd4TURJMFh5VXpSaVV6UmlVelJpVXpSaTV3Ym1jaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp5VkZPU1ZDUWlVNE5DVkZPQ1U0T1NWQ01tRndjSE4wYjNKbE1UQXlOQ1ZETXlVNU56RXdNalJmSlVVNEpUZ3pKVGhESlVVMkpUazVKVUZHSlVVNUpUZ3dKVGhHSlVVNUpUZ3hKVGhGTG5CdVp3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMDFUMDM6NTk6MDEuMTk1WiIsInB1ciI6ImJsb2Jfa2V5In19--e9724a44daff9efe57d5c581a31781613d82e2c4", "filename"=>"黄色appstore1024×1024_背景透過"}
+Completed 200 OK in 24ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/comments" for ::1 at 2020-08-01 12:55:41 +0900
+Processing by CommentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mK70n4aiCdfRplQbwrJFCV3iRpKqMMxkHipwP/HstuiBeF1Nwu4QGAms5MQZ8GjzYCVmsthBeYZia0RAUCbTtQ==", "comment"=>{"content"=>"aaa", "post_id"=>""}, "commit"=>"コメントする"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:10
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:10
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/comment.rb:5
+  [1m[36mCACHE Post Load (0.0ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/comment.rb:5
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/comments_controller.rb:10
+Redirected to http://localhost:3000/comments/new
+Completed 302 Found in 62ms (ActiveRecord: 1.7ms)
+
+
+Started GET "/comments/new" for ::1 at 2020-08-01 12:55:41 +0900
+Processing by CommentsController#new as HTML
+  Rendering comments/new.html.erb within layouts/application
+  Rendered comments/new.html.erb within layouts/application (1.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:16
+Completed 200 OK in 47ms (Views: 44.6ms | ActiveRecord: 0.2ms)
+
+
+Finished "/cable/" [WebSocket] for ::1 at 2020-08-01 12:55:41 +0900
+RoomChannel stopped streaming from room_channel
+Started GET "/cable" for ::1 at 2020-08-01 12:55:41 +0900
+Started GET "/cable/" [WebSocket] for ::1 at 2020-08-01 12:55:41 +0900
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+RoomChannel is transmitting the subscription confirmation
+RoomChannel is streaming from room_channel
+Started POST "/comments" for ::1 at 2020-08-01 12:59:54 +0900
+Processing by CommentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bE6oORIezxQFgV++TqLSFEHP9AoSrIjBBMkjT5v6Y+DUTEL7Sc0oWNTHx89w+WJCQEoleC+9kKctEVfuVaTtBw==", "comment"=>{"content"=>"aaaa", "post_id"=>""}, "commit"=>"コメントする"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:10
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:10
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/comment.rb:5
+  [1m[36mCACHE Post Load (0.0ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/comment.rb:5
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/comments_controller.rb:10
+Redirected to http://localhost:3000/posts
+Completed 302 Found in 37ms (ActiveRecord: 2.2ms)
+
+
+Started GET "/posts" for ::1 at 2020-08-01 12:59:54 +0900
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:3
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE ActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:7
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  Rendered posts/index.html.erb within layouts/application (80.2ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:16
+Completed 200 OK in 138ms (Views: 131.8ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a01bdc726252f91793c8834021a776d33770d75b/%E9%BB%84%E8%89%B2appstore1024%C3%971024_%E8%83%8C%E6%99%AF%E9%80%8F%E9%81%8E.png" for ::1 at 2020-08-01 12:59:54 +0900
+Started GET "/cable" for ::1 at 2020-08-01 12:59:54 +0900
+Processing by ActiveStorage::BlobsController#show as PNG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a01bdc726252f91793c8834021a776d33770d75b", "filename"=>"黄色appstore1024×1024_背景透過"}
+Started GET "/cable/" [WebSocket] for ::1 at 2020-08-01 12:59:55 +0900
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/hitakatsukenichi/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+[36m  Disk Storage (1.3ms) [0m[34mGenerated URL for file at key: u2CCmAEzYKjCEP7guLYoZukH (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRkVEpEUTIxQlJYcFpTMnBEUlZBM1ozVk1XVzlhZFd0SUJqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSUJuMmx1YkdsdVpUc2dabWxzWlc1aGJXVTlJaVV6UmlVelJtRndjSE4wYjNKbE1UQXlOSGd4TURJMFh5VXpSaVV6UmlVelJpVXpSaTV3Ym1jaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp5VkZPU1ZDUWlVNE5DVkZPQ1U0T1NWQ01tRndjSE4wYjNKbE1UQXlOQ1ZETXlVNU56RXdNalJmSlVVNEpUZ3pKVGhESlVVMkpUazVKVUZHSlVVNUpUZ3dKVGhHSlVVNUpUZ3hKVGhGTG5CdVp3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMDFUMDQ6MDQ6NTUuMDI3WiIsInB1ciI6ImJsb2Jfa2V5In19--3729fae762ae04c011bec6ef7ddd0bea541777b9/%E9%BB%84%E8%89%B2appstore1024%C3%971024_%E8%83%8C%E6%99%AF%E9%80%8F%E9%81%8E.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22%253F%253Fappstore1024x1024_%253F%253F%253F%253F.png%22%3B+filename%2A%3DUTF-8%27%27%25E9%25BB%2584%25E8%2589%25B2appstore1024%25C3%25971024_%25E8%2583%258C%25E6%2599%25AF%25E9%2580%258F%25E9%2581%258E.png)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRkVEpEUTIxQlJYcFpTMnBEUlZBM1ozVk1XVzlhZFd0SUJqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSUJuMmx1YkdsdVpUc2dabWxzWlc1aGJXVTlJaVV6UmlVelJtRndjSE4wYjNKbE1UQXlOSGd4TURJMFh5VXpSaVV6UmlVelJpVXpSaTV3Ym1jaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp5VkZPU1ZDUWlVNE5DVkZPQ1U0T1NWQ01tRndjSE4wYjNKbE1UQXlOQ1ZETXlVNU56RXdNalJmSlVVNEpUZ3pKVGhESlVVMkpUazVKVUZHSlVVNUpUZ3dKVGhHSlVVNUpUZ3hKVGhGTG5CdVp3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMDFUMDQ6MDQ6NTUuMDI3WiIsInB1ciI6ImJsb2Jfa2V5In19--3729fae762ae04c011bec6ef7ddd0bea541777b9/%E9%BB%84%E8%89%B2appstore1024%C3%971024_%E8%83%8C%E6%99%AF%E9%80%8F%E9%81%8E.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22%253F%253Fappstore1024x1024_%253F%253F%253F%253F.png%22%3B+filename%2A%3DUTF-8%27%27%25E9%25BB%2584%25E8%2589%25B2appstore1024%25C3%25971024_%25E8%2583%258C%25E6%2599%25AF%25E9%2580%258F%25E9%2581%258E.png
+Completed 302 Found in 10ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRkVEpEUTIxQlJYcFpTMnBEUlZBM1ozVk1XVzlhZFd0SUJqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSUJuMmx1YkdsdVpUc2dabWxzWlc1aGJXVTlJaVV6UmlVelJtRndjSE4wYjNKbE1UQXlOSGd4TURJMFh5VXpSaVV6UmlVelJpVXpSaTV3Ym1jaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp5VkZPU1ZDUWlVNE5DVkZPQ1U0T1NWQ01tRndjSE4wYjNKbE1UQXlOQ1ZETXlVNU56RXdNalJmSlVVNEpUZ3pKVGhESlVVMkpUazVKVUZHSlVVNUpUZ3dKVGhHSlVVNUpUZ3hKVGhGTG5CdVp3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMDFUMDQ6MDQ6NTUuMDI3WiIsInB1ciI6ImJsb2Jfa2V5In19--3729fae762ae04c011bec6ef7ddd0bea541777b9/%E9%BB%84%E8%89%B2appstore1024%C3%971024_%E8%83%8C%E6%99%AF%E9%80%8F%E9%81%8E.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22%253F%253Fappstore1024x1024_%253F%253F%253F%253F.png%22%3B+filename%2A%3DUTF-8%27%27%25E9%25BB%2584%25E8%2589%25B2appstore1024%25C3%25971024_%25E8%2583%258C%25E6%2599%25AF%25E9%2580%258F%25E9%2581%258E.png" for ::1 at 2020-08-01 12:59:55 +0900
+RoomChannel is transmitting the subscription confirmation
+RoomChannel is streaming from room_channel
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"content_type"=>"image/png", "disposition"=>"inline; filename=\"%3F%3Fappstore1024x1024_%3F%3F%3F%3F.png\"; filename*=UTF-8''%E9%BB%84%E8%89%B2appstore1024%C3%971024_%E8%83%8C%E6%99%AF%E9%80%8F%E9%81%8E.png", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRkVEpEUTIxQlJYcFpTMnBEUlZBM1ozVk1XVzlhZFd0SUJqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSUJuMmx1YkdsdVpUc2dabWxzWlc1aGJXVTlJaVV6UmlVelJtRndjSE4wYjNKbE1UQXlOSGd4TURJMFh5VXpSaVV6UmlVelJpVXpSaTV3Ym1jaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp5VkZPU1ZDUWlVNE5DVkZPQ1U0T1NWQ01tRndjSE4wYjNKbE1UQXlOQ1ZETXlVNU56RXdNalJmSlVVNEpUZ3pKVGhESlVVMkpUazVKVUZHSlVVNUpUZ3dKVGhHSlVVNUpUZ3hKVGhGTG5CdVp3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMDFUMDQ6MDQ6NTUuMDI3WiIsInB1ciI6ImJsb2Jfa2V5In19--3729fae762ae04c011bec6ef7ddd0bea541777b9", "filename"=>"黄色appstore1024×1024_背景透過"}
+Completed 200 OK in 13ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/posts/19" for ::1 at 2020-08-01 12:59:57 +0900
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"19"}
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/post.rb:8
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 19]]
+  ↳ app/controllers/posts_controller.rb:12
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avater"], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:4
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:4
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/posts/show.html.erb:35
+  Rendered posts/show.html.erb within layouts/application (6.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:16
+Completed 200 OK in 70ms (Views: 60.9ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRkVEpEUTIxQlJYcFpTMnBEUlZBM1ozVk1XVzlhZFd0SUJqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSUJuMmx1YkdsdVpUc2dabWxzWlc1aGJXVTlJaVV6UmlVelJtRndjSE4wYjNKbE1UQXlOSGd4TURJMFh5VXpSaVV6UmlVelJpVXpSaTV3Ym1jaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp5VkZPU1ZDUWlVNE5DVkZPQ1U0T1NWQ01tRndjSE4wYjNKbE1UQXlOQ1ZETXlVNU56RXdNalJmSlVVNEpUZ3pKVGhESlVVMkpUazVKVUZHSlVVNUpUZ3dKVGhHSlVVNUpUZ3hKVGhGTG5CdVp3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMDFUMDQ6MDQ6NTUuMDI3WiIsInB1ciI6ImJsb2Jfa2V5In19--3729fae762ae04c011bec6ef7ddd0bea541777b9/%E9%BB%84%E8%89%B2appstore1024%C3%971024_%E8%83%8C%E6%99%AF%E9%80%8F%E9%81%8E.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22%253F%253Fappstore1024x1024_%253F%253F%253F%253F.png%22%3B+filename%2A%3DUTF-8%27%27%25E9%25BB%2584%25E8%2589%25B2appstore1024%25C3%25971024_%25E8%2583%258C%25E6%2599%25AF%25E9%2580%258F%25E9%2581%258E.png" for ::1 at 2020-08-01 12:59:57 +0900
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"content_type"=>"image/png", "disposition"=>"inline; filename=\"%3F%3Fappstore1024x1024_%3F%3F%3F%3F.png\"; filename*=UTF-8''%E9%BB%84%E8%89%B2appstore1024%C3%971024_%E8%83%8C%E6%99%AF%E9%80%8F%E9%81%8E.png", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRkVEpEUTIxQlJYcFpTMnBEUlZBM1ozVk1XVzlhZFd0SUJqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSUJuMmx1YkdsdVpUc2dabWxzWlc1aGJXVTlJaVV6UmlVelJtRndjSE4wYjNKbE1UQXlOSGd4TURJMFh5VXpSaVV6UmlVelJpVXpSaTV3Ym1jaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp5VkZPU1ZDUWlVNE5DVkZPQ1U0T1NWQ01tRndjSE4wYjNKbE1UQXlOQ1ZETXlVNU56RXdNalJmSlVVNEpUZ3pKVGhESlVVMkpUazVKVUZHSlVVNUpUZ3dKVGhHSlVVNUpUZ3hKVGhGTG5CdVp3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMDFUMDQ6MDQ6NTUuMDI3WiIsInB1ciI6ImJsb2Jfa2V5In19--3729fae762ae04c011bec6ef7ddd0bea541777b9", "filename"=>"黄色appstore1024×1024_背景透過"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/comments/new" for ::1 at 2020-08-01 13:02:27 +0900
+Processing by CommentsController#new as HTML
+  Rendering comments/new.html.erb within layouts/application
+  Rendered comments/new.html.erb within layouts/application (1.3ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:16
+Completed 200 OK in 96ms (Views: 77.8ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRkVEpEUTIxQlJYcFpTMnBEUlZBM1ozVk1XVzlhZFd0SUJqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSUJuMmx1YkdsdVpUc2dabWxzWlc1aGJXVTlJaVV6UmlVelJtRndjSE4wYjNKbE1UQXlOSGd4TURJMFh5VXpSaVV6UmlVelJpVXpSaTV3Ym1jaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp5VkZPU1ZDUWlVNE5DVkZPQ1U0T1NWQ01tRndjSE4wYjNKbE1UQXlOQ1ZETXlVNU56RXdNalJmSlVVNEpUZ3pKVGhESlVVMkpUazVKVUZHSlVVNUpUZ3dKVGhHSlVVNUpUZ3hKVGhGTG5CdVp3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMDFUMDQ6MDQ6NTUuMDI3WiIsInB1ciI6ImJsb2Jfa2V5In19--3729fae762ae04c011bec6ef7ddd0bea541777b9/%E9%BB%84%E8%89%B2appstore1024%C3%971024_%E8%83%8C%E6%99%AF%E9%80%8F%E9%81%8E.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22%253F%253Fappstore1024x1024_%253F%253F%253F%253F.png%22%3B+filename%2A%3DUTF-8%27%27%25E9%25BB%2584%25E8%2589%25B2appstore1024%25C3%25971024_%25E8%2583%258C%25E6%2599%25AF%25E9%2580%258F%25E9%2581%258E.png" for ::1 at 2020-08-01 13:02:28 +0900
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"content_type"=>"image/png", "disposition"=>"inline; filename=\"%3F%3Fappstore1024x1024_%3F%3F%3F%3F.png\"; filename*=UTF-8''%E9%BB%84%E8%89%B2appstore1024%C3%971024_%E8%83%8C%E6%99%AF%E9%80%8F%E9%81%8E.png", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRkVEpEUTIxQlJYcFpTMnBEUlZBM1ozVk1XVzlhZFd0SUJqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSUJuMmx1YkdsdVpUc2dabWxzWlc1aGJXVTlJaVV6UmlVelJtRndjSE4wYjNKbE1UQXlOSGd4TURJMFh5VXpSaVV6UmlVelJpVXpSaTV3Ym1jaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp5VkZPU1ZDUWlVNE5DVkZPQ1U0T1NWQ01tRndjSE4wYjNKbE1UQXlOQ1ZETXlVNU56RXdNalJmSlVVNEpUZ3pKVGhESlVVMkpUazVKVUZHSlVVNUpUZ3dKVGhHSlVVNUpUZ3hKVGhGTG5CdVp3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMDFUMDQ6MDQ6NTUuMDI3WiIsInB1ciI6ImJsb2Jfa2V5In19--3729fae762ae04c011bec6ef7ddd0bea541777b9", "filename"=>"黄色appstore1024×1024_背景透過"}
+Completed 200 OK in 11ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/comments" for ::1 at 2020-08-01 13:02:36 +0900
+Processing by CommentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"1EakvlFUN+peRf76oFD6QHQnXS+PMArQjAwtb6D684DNkA1sFRguJYZPTiV7Ete6SeB9D/1BvzLwTRkQATCW3Q==", "comment"=>{"content"=>"bbb", "post_id"=>""}, "commit"=>"コメントする"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:10
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:10
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/comment.rb:5
+  [1m[36mCACHE Post Load (0.1ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/comment.rb:5
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/comments_controller.rb:10
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 1.5ms)
+
+
+  
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"posts"}, missing required keys: [:id]):
+  
+app/controllers/comments_controller.rb:11:in `create'
+Started GET "/comments/new" for ::1 at 2020-08-01 13:04:10 +0900
+Processing by CommentsController#new as HTML
+  Rendering comments/new.html.erb within layouts/application
+  Rendered comments/new.html.erb within layouts/application (1.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:16
+Completed 200 OK in 85ms (Views: 65.5ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/cable" for ::1 at 2020-08-01 13:04:11 +0900
+Started GET "/cable/" [WebSocket] for ::1 at 2020-08-01 13:04:11 +0900
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+RoomChannel is transmitting the subscription confirmation
+RoomChannel is streaming from room_channel
+Started POST "/comments" for ::1 at 2020-08-01 13:04:14 +0900
+Processing by CommentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mxYKY2vRwfPBLtQYWpyhUCjDYBnZD3inEzWAHSPrXqWCwKOxL53YPBkkZMeB3oyqFQRAOat+zUVvdLRigiE7+A==", "comment"=>{"content"=>"bbb", "post_id"=>""}, "commit"=>"コメントする"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:10
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:10
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/comment.rb:5
+  [1m[36mCACHE Post Load (0.0ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/comment.rb:5
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/comments_controller.rb:10
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 1.2ms)
+
+
+  
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"posts"}, missing required keys: [:id]):
+  
+app/controllers/comments_controller.rb:11:in `create'
+Finished "/cable/" [WebSocket] for ::1 at 2020-08-01 13:04:14 +0900
+RoomChannel stopped streaming from room_channel
