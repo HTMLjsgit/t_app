@@ -2,7 +2,7 @@
 <div class="main posts-new">
   <div class="container">
     <h1 class="form-heading">コメント</h1>
-    <%= form_for [@post,@comment] do |f| %>
+    <%= form_for (@comment) do |f| %>
       <div class="form">
         <div class="form-body">
           <%= f.text_field :content,class: "form-control" %>
