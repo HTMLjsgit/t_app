@@ -28,7 +28,6 @@ header {
   left: 0;
   width: 100%;
   height: 70px;
-
 }
 .logo-center{
   text-align: center;
@@ -36,4 +35,19 @@ header {
 }
 .input {
   background-color: hotpink;
+}
+nav {
+  background-color: pink;
+}
+
+@media screen and (max-width:792px) { 
+  #navbarSupportedContent{
+    background-color: rgb(255, 231, 235);
+  }
+}
+
+@media screen and (min-width:793px) { 
+  #navbarSupportedContent{
+    background-color: pink;
+  }  
 }
