@@ -1,23 +1,21 @@
 <div class="main posts-show">
-  <div class="container">
     <div class="posts-show-item">
       <% if @user.avater.attached? %>
         <div class="post-user">
           <%= image_tag @user.avater %> <%= link_to(@user.username, user_path(@user),class: "post-index-name") %>
         </div>
       <% else %>
-      <div class="post-user">
-      <%= image_tag "/blank-profile-picture-973460_640.png" %> <%= link_to(@user.username, user_path(@user),class: "post-index-name") %>
-      </div>
+        <div class="post-user">
+          <%= image_tag "/blank-profile-picture-973460_640.png" %> <%= link_to(@user.username, user_path(@user),class: "post-index-name") %>
+        </div>
       <% end %>
       <p>
         <%= @post.content %>
       </p>
 
-
-      <%= link_to(new_comment_path(@comment))do %>
+      <a href="/comments/new?posts_id=<%= @post.id %>">
         <i class="far fa-comment fa-2x comment-show"></i>
-      <% end %>
+      </a>
 
       <div class="post-menus">
         <%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %>
@@ -26,13 +24,25 @@
         <% end %>
       </div>
     </div>
-  </div>
 </div>
 
-<div class="comment-index">
+<div class="comment-index my-4">
   <h2>コメント一覧</h2>
 </div>
-<% @comments.each do |comment| %>
 
-    <%= comment.content %>
+<% @comments.each do |comment| %>
+  <div class="posts-show-item">
+    <% if comment.user.avater.attached? %>
+      <div class="post-user">
+        <%= image_tag comment.user.avater %> <%= link_to(comment.user.username, user_path(comment.user),class: "post-index-name") %>
+      </div>
+    <% else %>
+      <div class="post-user">
+        <%= image_tag "/blank-profile-picture-973460_640.png" %> <%= link_to(comment.user.username, user_path(comment.user),class: "post-index-name") %>
+      </div>
+    <% end %>
+    <p>
+      <%= comment.content %>
+    </p>
+  </div>
 <% end %>
