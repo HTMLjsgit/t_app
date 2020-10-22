@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
   patch 'users/avater_update' => 'users#avater_update', as: 'avater_update'
-
+  patch 'users/bank_update' => 'users#bank_update', as: 'bank_update'  
   post 'rooms/:to_user_id' => 'rooms#create'
 
   resources :rooms, only: [:show] # チャットルームの表示
