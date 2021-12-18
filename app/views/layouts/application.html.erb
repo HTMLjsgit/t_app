@@ -16,7 +16,9 @@
 
     <nav class="navbar navbar-expand-lg navbar-light p-0">
       <a class="navbar-brand p-1" href="/">
-        <%= image_tag "/ペンキなしピンク180×180_背景透過.png",size: "50x50"%>
+        <div class="logo">
+        <%= image_tag "/ペンキなしピンク180×180_背景透過.png",size: "65x65"%>
+        </div>
       </a>
       <button class="navbar-toggler m-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -77,25 +79,7 @@
       </div>
     </nav>
 
-<!--    <header>
-      <% if user_signed_in? %>
-        <%= link_to "🔎", users_path %>
-        <%= link_to "マイページへ", user_path(current_user) %>
-        <%= link_to 'アカウント編集', edit_user_registration_path %> |
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        <%= link_to "投稿", new_post_path %>
-        <%= link_to "投稿一覧", posts_path %>
-        <div class="logo-center">
-        <%= image_tag "/ペンキなしピンク180×180_背景透過.png",size: "70x70"%>
-        </div>
-      <% else %>
-        <%= link_to "新規登録", new_user_registration_path %> |
-        <%= link_to "ログイン", new_user_session_path %>
-        <div class="logo-center">
-        <%= image_tag "/ペンキなしピンク180×180_背景透過.png",size: "70x70"%>
-        </div>
-      <% end %>
-    </header>-->
+
 
 
     <p class="notice"><%= notice %></p>

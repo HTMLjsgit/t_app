@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="concurrent_ruby">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/vendor/bundle/ruby/2.5.0/gems/concurrent-ruby-1.1.6/lib/concurrent-ruby/concurrent/concurrent_ruby.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

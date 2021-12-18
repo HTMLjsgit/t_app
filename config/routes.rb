@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :posts, only: [:new, :create, :index, :show, :destroy]
   resources :comments, only: [:new, :create, :show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'home#top'
+  root 'posts#index'
   get  'users/:id/chat_index' => 'users#chat_index', as: 'chat_index'
   get  'users/:id/show_following' => 'users#show_following', as: 'show_following'
   get  'users/:id/show_follower' => 'users#show_follower', as: 'show_follower'
