@@ -6,6 +6,7 @@
     </div>
   <% @user.following_user.where.not(id: current_user.id).each do |user| %>
     <p>
+    <div class="users-index-item">
       <% if @user.avater.attached? %>
         <div class="avater_image">
           <%= image_tag @user.avater %>
@@ -18,10 +19,10 @@
          <div class= "users_right">
           <%= link_to "#{ user.username}",  user_path(user) %>
           </div>
-        </div>
-      <% if current_user.id != user.id && current_user.following?(user) %>
-        <%= link_to 'フォロー中', unfollow_path(user.id), :class => "btn btn-primary btn-sm follow_btn",method: :POST, data: { confirm: 'フォローを解除' } %>
-      <% elsif  current_user.id != user.id && current_user.nofollow?(user) %>
-        <%= link_to 'フォローする', follow_path(user.id), :class => "btn btn-primary btn-sm follow_btn",method: :POST %>
+          <% if current_user.id != user.id && current_user.following?(user) %>
+            <%= link_to 'フォロー中', unfollow_path(user.id), :class => "btn btn-primary btn-sm follow_btn size",method: :POST, data: { confirm: 'フォローを解除' } %>
+          <% elsif  current_user.id != user.id && current_user.nofollow?(user) %>
+            <%= link_to 'フォローする', follow_path(user.id), :class => "btn btn-primary btn-sm follow_btn size",method: :POST %>
+          <% end %>
       <% end %>
-  <% end %>
+        </div>
