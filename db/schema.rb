@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_31_080121) do
+ActiveRecord::Schema.define(version: 2020_10_22_232149) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -105,6 +105,12 @@ ActiveRecord::Schema.define(version: 2020_07_31_080121) do
     t.datetime "updated_at", null: false
     t.string "username"
     t.string "icon"
+    t.string "access_token"
+    t.string "bank_name"
+    t.string "bank_branch_name"
+    t.string "bank_account_type"
+    t.string "bank_account_number"
+    t.string "bank_account_horseman_name_kana"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
