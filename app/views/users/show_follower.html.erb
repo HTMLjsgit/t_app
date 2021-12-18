@@ -14,12 +14,10 @@
      <div class= "users_right">
       <%= link_to "#{ user.username}",  user_path(user) %>
       </div>
+         <% if current_user.following?(user) %>
+           <%= link_to 'フォロー中', unfollow_path(user.id),:class => "btn btn-primary btn-sm follow_btn size",method: :POST, data: { confirm: 'フォローを解除' } %>
+         <% else %>
+           <%= link_to 'フォローする', follow_path(user.id), :class => "btn btn-primary btn-sm follow_btn size",method: :POST %>
+         <% end %>
     </div>
-    <p>
-      <% if current_user.following?(user) %>
-        <%= link_to 'フォロー中', unfollow_path(user.id),:class => "btn btn-primary btn-sm follow_btn", method: :POST, data: { confirm: 'フォローを解除' } %>
-      <% else %>
-        <%= link_to 'フォローする', follow_path(user.id), :class => "btn btn-primary btn-sm follow_btn",method: :POST %>
-      <% end %>
-    </p>
   <% end %>
