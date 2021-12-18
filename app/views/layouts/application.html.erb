@@ -15,17 +15,22 @@
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-light p-0">
+<<<<<<< HEAD
       <a class="navbar-brand p-1" href="/">
         <div class="logo">
         <%= image_tag "/ペンキなしピンク180×180_背景透過.png",size: "65x65"%>
         </div>
+=======
+      <a class="navbar-brand navbar-brand-center p-1" href="/">
+        <%= image_tag "/ペンキなしピンク180×180_背景透過.png",size: "50x50"%>
+>>>>>>> 4f6634b28f84d3c3d10be855ff9697957d49daf7
       </a>
       <button class="navbar-toggler m-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto p-3 h6" style="text-align: right;">
+        <ul class="navbar-nav ml-auto p-3 h6" style="text-align: left;">
           <% if user_signed_in? %>
             <li class="nav-item active">
               <%= link_to "🔎", users_path, {class: "nav-link"} %>
