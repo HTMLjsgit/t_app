@@ -1,4 +1,9 @@
-<h3>フォロー一覧</h3>
+    <div class="follow_line">
+      <ul>
+        <li><%= link_to "フォロー中", show_following_path(@user.id) %></li>
+        <li><%= link_to "フォロワー", show_follower_path(@user.id) %></li>
+      </ul>
+    </div>
   <% @user.following_user.where.not(id: current_user.id).each do |user| %>
     <p>
       <% if @user.avater.attached? %>

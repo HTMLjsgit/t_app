@@ -31,13 +31,17 @@
   <%= "フォロー数:  " %><%= link_to "#{@user.follower.count}", show_following_path(@user.id) %>
 
   <%= "フォロワー数:  " %><%= link_to "#{@user.followed.count}", show_follower_path(@user.id) %>
-
+<% if @user.id == current_user.id %>
+    <li class="nav-item ">
+      <%= link_to 'アカウント編集', edit_user_registration_path, {class: "nav-link"} %>
+    </li>
+<% end %>
 
 <% unless @user == current_user %>
   <% if current_user.following?(@user) %>
-    <%= link_to 'フォロー中', unfollow_path(@user.id),:class => "btn btn-primary btn-sm follow_btn", method: :POST, data: { confirm: 'フォローを解除' } %>
+    <%= link_to 'フォロー中', unfollow_path(@user.id),:class => "btn btn-primary btn-sm follow_btn size-2", method: :POST, data: { confirm: 'フォローを解除' } %>
   <% else %>
-    <%= link_to 'フォローする', follow_path(@user.id), :class => "btn btn-primary btn-sm follow_btn",method: :POST %>
+    <%= link_to 'フォローする', follow_path(@user.id), :class => "btn btn-primary btn-sm follow_btn size-2",method: :POST %>
   <% end %>
 <% end %>
 <p></p>
