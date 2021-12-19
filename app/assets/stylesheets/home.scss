@@ -29,7 +29,21 @@ header {
   width: 100%;
   height: 70px;
 }
+footer {
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 0;
+  width: 100%;
 
+  height: 60px;
+  background: gray;
+  color: white;
+}
+footer li {
+  display: inline;
+  margin-right: 140px;
+  padding-left: 90px;
+}
 .logo {
   margin-left: 20px;
 }
