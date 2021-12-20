@@ -27,15 +27,17 @@
         <ul class="navbar-nav ml-auto p-3 h6" style="text-align: left;">
           <% if user_signed_in? %>
             <li class="nav-item active">
-              <%= link_to "🔎", users_path, {class: "nav-link"} %>
-            </li>
-            <li class="nav-item ">
-              <%= link_to "マイページへ", user_path(current_user), {class: "nav-link"} %>
+              <%= link_to users_path, {class: "nav-link", method: :get} do  %>
+                  <i class="fas fa-search header_item"></i>
+              <% end %>
             </li>
             <li class="nav-item ">
               <%= link_to new_post_path, {class: "nav-link", method: :get} do %>
-              <i class="fas fa-pen"></i>
+              <i class="fas fa-pen header_item"></i>
              <% end %>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "マイページへ", user_path(current_user), {class: "nav-link"} %>
             </li>
             <li class="nav-item ">
               <%= link_to "ログアウト", destroy_user_session_path, {class: "nav-link", method: "delete"} %>

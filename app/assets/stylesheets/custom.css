@@ -104,5 +104,7 @@
     color: white;
     font-size: 3.0em;
   }
-
+  .header_item {
+    font-size: 1.7em;
+  }
 }
