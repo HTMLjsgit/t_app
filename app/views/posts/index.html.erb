@@ -9,8 +9,7 @@
         <% else %>
         <div class="post-users">
         <%= image_tag "/blank-profile-picture-973460_640.png" %><%= link_to(post.user.username, "/posts/#{post.id}",class: "post-index-name") %>
-        </div>
-        <%= link_to(post.content, "/posts/#{post.id}",class: "post-index-content") %>
+         </div>
         <% end %>
         <%= link_to(post.content, "/posts/#{post.id}",class: "post-index-content") %>
         <p>

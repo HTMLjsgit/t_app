@@ -33,8 +33,9 @@
               <%= link_to "マイページへ", user_path(current_user), {class: "nav-link"} %>
             </li>
             <li class="nav-item ">
-              <%= link_to "投稿", new_post_path, {class: "nav-link"} %>
-              <i class="bi bi-pencil"></i>
+              <%= link_to new_post_path, {class: "nav-link", method: :get} do %>
+              <i class="fas fa-pen"></i>
+             <% end %>
             </li>
             <li class="nav-item ">
               <%= link_to "ログアウト", destroy_user_session_path, {class: "nav-link", method: "delete"} %>
@@ -81,10 +82,10 @@
 
     <footer>
       <ul>
-        <li>ホーム</li>
-        <li>リアル</li>
+        <li>ホーム<i class="fas fa-home fa-lg"></i></li>
+        <li>リアル<i class="far fa-comments fa-lg"></i></li>
         <li>作品</li>
-        <li>メッセージ</li>
+        <li><i class="far fa-envelope footer_item"></i></li>
       </ul>
     </footer>
     <div class="container">

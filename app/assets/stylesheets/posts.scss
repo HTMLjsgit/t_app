@@ -36,6 +36,13 @@
   padding-left: 25px;
   text-align: left;
 }
+.post-index-name {
+  color: black;
+  font-size: 25px;
+  font-weight: 600;
+  padding-left: 18px;
+  vertical-align: 15px;
+}
 
 /* posts/show ================================ */
 .posts-show form {
@@ -119,7 +126,7 @@
   -webkit-appearance:none;
 }
 .post-users p {
-  
+
 }
 .post-index-content {
 margin-top: -30px;
@@ -127,4 +134,5 @@ margin-top: -30px;
 .post-index-content {
   font-size: 22px;
   margin-left: 50px;
+  color: gray;
 }
