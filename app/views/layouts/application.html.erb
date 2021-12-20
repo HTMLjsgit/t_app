@@ -37,7 +37,7 @@
              <% end %>
             </li>
             <li class="nav-item ">
-              <%= link_to "マイページへ", user_path(current_user), {class: "nav-link"} %>
+              <%= link_to "マイページ", user_path(current_user), {class: "nav-link"} %>
             </li>
             <li class="nav-item ">
               <%= link_to "ログアウト", destroy_user_session_path, {class: "nav-link", method: "delete"} %>
@@ -86,7 +86,7 @@
       <ul>
         <li>ホーム<i class="fas fa-home fa-lg"></i></li>
         <li>リアル<i class="far fa-comments fa-lg"></i></li>
-        <li>作品</li>
+        <li>作品<i class="fas fa-hammer fa-lg"></i></li>
         <li><i class="far fa-envelope footer_item"></i></li>
       </ul>
     </footer>
