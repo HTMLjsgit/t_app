@@ -1,5 +1,6 @@
 <div class="main posts-index">
   <div class="container">
+    <div style="width:100%;height:550px;overflow:auto;">
     <% @posts.each do |post| %>
       <div class="posts-index-item">
         <% if post.user.avater.attached? %>
@@ -17,5 +18,6 @@
         </p>
       </div>
     <% end %>
+    </div>
   </div>
 </div>
