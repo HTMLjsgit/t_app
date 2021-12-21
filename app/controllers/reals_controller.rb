@@ -15,4 +15,10 @@ class RealsController < ApplicationController
     @real.save
     redirect_to(reals_path)
   end
+
+  def destroy
+    @real = Real.find_by(id: params[:id])
+    @real.destroy
+    redirect_to(reals_path)
+  end
 end

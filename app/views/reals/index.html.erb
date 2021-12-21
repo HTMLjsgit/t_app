@@ -1,8 +1,15 @@
 <h1>Reals#index</h1>
 <%= link_to "投稿",new_real_path, {class: "nav-link"} %>
 
-<% @reals.each do |real| %>
+<div class="main posts-index">
+  <div class="container">
+    <div style="width:100%;height:550px;overflow:auto;">
+      <% @reals.each do |real| %>
+        <div class="posts-index-item">
 
-  <%= link_to(real.content,"reals/#{real.id}") %>
-
-<% end %>
+        <%= link_to(real.content,"reals/#{real.id}") %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
