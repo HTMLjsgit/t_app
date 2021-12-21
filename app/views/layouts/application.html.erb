@@ -42,9 +42,7 @@
             <li class="nav-item ">
               <%= link_to "ログアウト", destroy_user_session_path, {class: "nav-link", method: "delete"} %>
             </li>
-            <li class="nav-item ">
-              <%= link_to "リアル", reals_path, {class: "nav-link"} %>
-            </li>
+
           <% else %>
             <li class="nav-item ">
               <%= link_to "新規登録", new_user_registration_path, {class: "nav-link"} %>
@@ -88,7 +86,10 @@
     <footer>
       <ul>
         <li>ホーム<i class="fas fa-home fa-lg"></i></li>
-        <li>リアル<i class="far fa-comments fa-lg"></i><i class="fas fa-child"></i></li>
+        <li><%= link_to reals_path, method: :get do  %>
+            <i class="far fa-comments footer_item"></i><i class="fas fa-child footer_item"></i>
+            <% end %>
+        </li>
         <li>作品<i class="fas fa-hammer fa-lg"></i><i class="fas fa-gifts"></i><i class="fas fa-shopping-cart"></i><i class="fas fa-shopping-bag"></i></li>
         <li><i class="far fa-envelope footer_item"></i></li>
       </ul>
