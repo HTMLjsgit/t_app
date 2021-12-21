@@ -1,0 +1,17 @@
+<<h1>real</h1>
+
+<div class="main posts-new">
+  <div class="container">
+    <h1 class="form-heading">投稿する</h1>
+    <%= form_tag(reals_path(@real)) do %>
+      <div class="form">
+        <div class="form-body">
+          <textarea class="form-control" name="content"></textarea>
+         <div class="text-right">
+          <input class="btn btn-primary input" type="submit" value="投稿">
+        </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

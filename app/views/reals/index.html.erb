@@ -1,7 +1,8 @@
 <h1>Reals#index</h1>
+<%= link_to "投稿",new_real_path, {class: "nav-link"} %>
 
 <% @reals.each do |real| %>
 
-  <%= real.content %>
+  <%= link_to(real.content,"reals/#{real.id}") %>
 
 <% end %>
