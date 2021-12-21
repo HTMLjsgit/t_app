@@ -13,9 +13,9 @@
         <%= @post.content %>
       </p>
 
-      <a href="/comments/new/posts_id=<%= @post.id %>">
+      <%= link_to new_comment_path, method: :get do  %>
         <i class="far fa-comment fa-2x comment-show"></i>
-      </a>
+      <% end %>
 
       <div class="post-menus">
         <%= link_to(edit_post_path(@post), method: :get) do%>
@@ -42,10 +42,23 @@
     <% else %>
       <div class="post-user">
         <%= image_tag "/blank-profile-picture-973460_640.png" %> <%= link_to(comment.user.username, user_path(comment.user),class: "post-index-name") %>
-      </div>
     <% end %>
     <p>
       <%= comment.content %>
     </p>
   </div>
 <% end %>
+
+<div class="main posts-new">
+  <div class="container">
+    <%= form_for (@comment) do |f| %>
+      <div class="form">
+        <div class="form-body">
+          <%= f.text_field :content,class: "form-control" %>
+          <%= f.hidden_field :posts_id, value: @posts_id %>
+          <%= f.submit 'コメントする', class: "btn btn-primary input" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,5 +1,9 @@
 class CommentsController < ApplicationController
 
+  def index
+    @comments = Comment.all.order(created_at: :desc)
+  end
+
   def new
     # @post = Post.new
     @posts_id = params[:posts_id]
