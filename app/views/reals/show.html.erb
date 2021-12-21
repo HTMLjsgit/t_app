@@ -3,7 +3,13 @@
 
         <%= @real.content %>
         <div class="post-menus">
+          <%= link_to(edit_real_path(@real), method: :get) do%>
+          <i class="far fa-edit fa-2x"></i
+          <% end %>
+
           <%= @real.updated_at.strftime("%Y-%m-%d %H:%M") %>
+
+
           <%= link_to(real_path(@real),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>
           <i class="fas fa-trash-alt fa-2x"></i>
           <% end %>

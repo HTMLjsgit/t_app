@@ -16,6 +16,17 @@ class RealsController < ApplicationController
     redirect_to(reals_path)
   end
 
+  def edit
+    @real = Real.find_by(id: params[:id])
+  end
+
+  def update
+    @real = Real.find_by(id: params[:id])
+    @real.content = params[:content]
+    @real.save
+    redirect_to(reals_path)
+  end
+
   def destroy
     @real = Real.find_by(id: params[:id])
     @real.destroy
