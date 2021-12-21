@@ -1,2 +1,7 @@
 <h1>Reals#index</h1>
-<p>Find me in app/views/reals/index.html.erb</p>
+
+<% @reals.each do |real| %>
+
+  <%= real.content %>
+
+<% end %>
