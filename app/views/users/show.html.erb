@@ -19,11 +19,11 @@
 <% else %>
   <% if @create_room %>
     <%= link_to "/rooms/#{@create_room.room_id}", method: :get do%>
-        <i class="far fa-envelope"></i>
+        <i class="far fa-envelope relative"></i>
     <% end %>
   <% else %>
     <%= link_to "/rooms/#{@user.id}", method: :post do%>
-      <i class="far fa-envelope"></i>
+      <i class="far fa-envelope relative"></i>
     <% end %>
   <% end %>
 <% end %>

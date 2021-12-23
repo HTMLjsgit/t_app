@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'rooms/show'
   devise_for :users
 
+  resources :homes, only: [:show, :index]
   resources :users, only: [:show, :index]
   resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
   resources :comments, only: [:new, :create, :show]
