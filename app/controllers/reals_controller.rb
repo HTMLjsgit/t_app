@@ -5,13 +5,14 @@ class RealsController < ApplicationController
 
   def show
     @real = Real.find_by(id: params[:id])
+    @user = @real.user
   end
 
   def new
   end
 
   def create
-    @real = Real.new(content: params[:content])
+    @real = Real.new(user_id: current_user.id,content: params[:content])
     @real.save
     redirect_to(reals_path)
   end
