@@ -102,9 +102,15 @@
   }
   .footer_item {
     color: white;
-    font-size: 3.0em;
+    font-size: 2.5em;
+    padding-top: 10px;
   }
   .header_item {
     font-size: 1.7em;
+  }
+  .post_pen {
+    color: hotpink;
+    font-size: 1.5em;
+    padding-left: 500px;
   }
 }
