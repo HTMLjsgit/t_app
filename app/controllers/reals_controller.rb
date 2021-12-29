@@ -1,6 +1,6 @@
 class RealsController < ApplicationController
   def index
-    @reals = Real.all.order(create_at: :desc)
+    @reals = Real.all.order(created_at: :desc)
   end
 
   def show
