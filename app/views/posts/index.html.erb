@@ -1,8 +1,6 @@
 <div class="main posts-index">
   <div class="container">
-    <%= link_to new_post_path, {class: "post_pen", method: :get} do %>
-    <i class="fas fa-pen post_pen"></i>
-    <% end %>
+
     <div style="width:100%;height:500px;overflow:auto;">
     <% @posts.each do |post| %>
       <div class="posts-index-item">
@@ -24,3 +22,6 @@
     </div>
   </div>
 </div>
+<%= link_to new_post_path, {class: "post_pen", method: :get} do %>
+<i class="fas fa-pen post_pen"></i>
+<% end %>

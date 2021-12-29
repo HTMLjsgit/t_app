@@ -28,9 +28,16 @@
   <% end %>
 <% end %>
 </h2>
-  <%= "フォロー数:  " %><%= link_to "#{@user.follower.count}", show_following_path(@user.id) %>
-
-  <%= "フォロワー数:  " %><%= link_to "#{@user.followed.count}", show_follower_path(@user.id) %>
+<div class="user_count">
+  <ul>
+   <li>
+    <h1><%= link_to "#{@user.followed.count}", show_follower_path(@user.id) %></h1><%= "フォロワー" %>
+   </li>
+   <li>
+    <h1><%= link_to "#{@user.follower.count}", show_following_path(@user.id) %></h1><%= "フォロー" %>
+   </li>
+  </ul>
+</div>
 <% if @user.id == current_user.id %>
     <li class="nav-item ">
       <%= link_to 'アカウント編集', edit_user_registration_path, {class: "nav-link"} %>

@@ -79,29 +79,46 @@
     <footer>
       <ul>
         <% if user_signed_in? %>
-        <li><%= link_to user_path(current_user),method: :get do  %>
-          <i class="fas fa-home footer_item"></i>
+          <li><%= link_to user_path(current_user),method: :get do  %>
+            <i class="fas fa-home footer_item"></i>
+              <% end %>
+          </li>
+
+          <li>作品<%= link_to posts_path, method: :get do  %>
+            <i class="fas fa-hammer fa-lg"></i><i class="fas fa-gifts"></i><i class="fas fa-shopping-cart"></i><i class="fas fa-shopping-bag"></i>
             <% end %>
-        </li>
+          </li>
+
+          <li><%= link_to reals_path, method: :get do  %>
+              <i class="far fa-comments footer_item"></i><i class="fas fa-child footer_item"></i>
+              <% end %>
+          </li>
+
+          <li>
+              <i class="far fa-envelope footer_item"></i>
+              
+          </li>
+
+        </ul>
         <% else %>
-        <li><%= link_to posts_path,method: :get do  %>
-          <i class="fas fa-home footer_item"></i>
-            <% end %>
-        </li>
+            <li><%= link_to posts_path,method: :get do  %>
+              <i class="fas fa-home footer_item"></i>
+
+            </li>
+
+            <li>作品<%= link_to posts_path, method: :get do  %>
+              <i class="fas fa-hammer fa-lg"></i><i class="fas fa-gifts"></i><i class="fas fa-shopping-cart"></i><i class="fas fa-shopping-bag"></i>
+              <% end %>
+            </li>
+
+            <li><%= link_to reals_path, method: :get do  %>
+                <i class="far fa-comments footer_item"></i><i class="fas fa-child footer_item"></i>
+                <% end %>
+            </li>
+
+          <% end %>
         <% end %>
 
-        <li>作品<%= link_to posts_path, method: :get do  %>
-          <i class="fas fa-hammer fa-lg"></i><i class="fas fa-gifts"></i><i class="fas fa-shopping-cart"></i><i class="fas fa-shopping-bag"></i>
-          <% end %>
-        </li>
-
-        <li><%= link_to reals_path, method: :get do  %>
-            <i class="far fa-comments footer_item"></i><i class="fas fa-child footer_item"></i>
-            <% end %>
-        </li>
-
-        <li><i class="far fa-envelope footer_item"></i></li>
-      </ul>
     </footer>
     <div class="container">
      <%= yield %>
