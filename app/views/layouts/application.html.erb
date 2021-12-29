@@ -78,11 +78,18 @@
 
     <footer>
       <ul>
+        <% if user_signed_in? %>
         <li><%= link_to user_path(current_user),method: :get do  %>
           <i class="fas fa-home footer_item"></i>
             <% end %>
         </li>
-        
+        <% else %>
+        <li><%= link_to posts_path,method: :get do  %>
+          <i class="fas fa-home footer_item"></i>
+            <% end %>
+        </li>
+        <% end %>
+
         <li>作品<%= link_to posts_path, method: :get do  %>
           <i class="fas fa-hammer fa-lg"></i><i class="fas fa-gifts"></i><i class="fas fa-shopping-cart"></i><i class="fas fa-shopping-bag"></i>
           <% end %>
