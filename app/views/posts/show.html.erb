@@ -17,8 +17,8 @@
         <i class="far fa-comment fa-2x comment-show"></i>
 
       <% end %>
-      
 
+　　　<% unless @user == current_user %>
       <% if Like.find_by(user_id: current_user.id,post_id: @post.id) %>
 
         <%= link_to destroy_like_path(@post), class: "like-link", method: :DELETE, remote: true do %>
@@ -33,7 +33,7 @@
         <% end %>
         <%= @post.likes.count %>
       <% end %>
-
+　　　<% end %>
       <div class="post-menus">
         <%= link_to(edit_post_path(@post), method: :get) do%>
         <i class="far fa-edit fa-2x"></i>
