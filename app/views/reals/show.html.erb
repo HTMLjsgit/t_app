@@ -1,7 +1,22 @@
 <div class="main posts-show">
     <div class="posts-show-item">
-
+      <% if @user.avater.attached? %>
+        <div class="post-user">
+          <%= image_tag @user.avater %> <%= link_to(@user.username, user_path(@user),class: "post-index-name") %>
+        </div>
+      <% else %>
+        <div class="post-user">
+          <%= image_tag "/blank-profile-picture-973460_640.png" %> <%= link_to(@user.username, user_path(@user),class: "post-index-name") %>
+        </div>
+      <% end %>
+      <p>
         <%= @real.content %>
+      </p>
+
+      <%= link_to new_comment_path, method: :get do  %>
+        <i class="far fa-comment fa-2x comment-show"></i>
+      <% end %>
+
         <div class="post-menus">
           <%= link_to(edit_real_path(@real), method: :get) do%>
           <i class="far fa-edit fa-2x"></i
