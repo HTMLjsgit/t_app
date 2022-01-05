@@ -16,9 +16,11 @@
         <%= link_to(post.content, "/posts/#{post.id}",class: "post-index-content") %>
         <p>
         <i class="far fa-comment fa-lg comment-show"></i>
-        </p>
-        <i class="fa fa-heart like-btn"></i>
+
+        <i class="far fa-heart like-btn"></i>
         <%= post.likes.count %>
+        </p>
+
       </div>
     <% end %>
     </div>

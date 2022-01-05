@@ -117,4 +117,8 @@
     color: pink;
     font-size: 3.0em;
   }
+  .like-btn{
+    color: tomato;
+    font-size: 1.3em;
+  }
 }
