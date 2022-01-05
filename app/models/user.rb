@@ -19,6 +19,7 @@ class User < ApplicationRecord
  has_many :posts, dependent: :destroy # 投稿
  has_many :comments　#コメント
  has_many :reals #リアル
+ has_many :likes #いいね
 
  has_one_attached :avater
      # ユーザーをフォローする
@@ -40,4 +41,7 @@ class User < ApplicationRecord
       following_user.exclude?(user)
     end
 
+    def liked_by?(post_id)
+      likes.where(post_id: post_id).exists?
+    end
 end

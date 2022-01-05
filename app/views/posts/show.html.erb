@@ -15,11 +15,28 @@
 
       <%= link_to new_comment_path, method: :get do  %>
         <i class="far fa-comment fa-2x comment-show"></i>
+
+      <% end %>
+      
+
+      <% if Like.find_by(user_id: current_user.id,post_id: @post.id) %>
+
+        <%= link_to destroy_like_path(@post), class: "like-link", method: :DELETE, remote: true do %>
+          <i class="fa fa-heart unlike-btn"></i>
+        <% end %>
+        <%= @post.likes.count %>
+
+      <% else %>
+
+        <%= link_to create_like_path(@post), class: "like-link", method: :POST, remote: true do %>
+          <i class="fa fa-heart like-btn"></i>
+        <% end %>
+        <%= @post.likes.count %>
       <% end %>
 
       <div class="post-menus">
         <%= link_to(edit_post_path(@post), method: :get) do%>
-        <i class="far fa-edit fa-2x"></i
+        <i class="far fa-edit fa-2x"></i>
         <% end %>
         <%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %>
         <%= link_to(post_path(@post),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>

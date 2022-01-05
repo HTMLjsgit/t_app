@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
   resources :comments, only: [:new, :create, :show]
   resources :reals, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+    post 'like/:id' => 'likes#create', as: 'create_like'
+    delete 'like/:id' => 'likes#destroy', as: 'destroy_like'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'posts#index'
   get  'users/:id/chat_index' => 'users#chat_index', as: 'chat_index'
