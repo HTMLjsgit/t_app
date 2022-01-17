@@ -2,13 +2,14 @@ Rails.application.routes.draw do
 
 
 
+  resources :real_comments
   get 'rooms/show'
   devise_for :users
 
   resources :homes, only: [:show, :index]
   resources :users, only: [:show, :index]
   resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
-  resources :comments, only: [:new, :create, :show]
+  resources :comments, only: [:new, :create, :show, :destroy]
   resources :reals, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     post 'like/:id' => 'likes#create', as: 'create_like'
     delete 'like/:id' => 'likes#destroy', as: 'destroy_like'

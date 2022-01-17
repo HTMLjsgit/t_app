@@ -1,5 +1,5 @@
 class RealsController < ApplicationController
-  
+
   def index
     @reals = Real.all.order(created_at: :desc)
   end
@@ -7,6 +7,8 @@ class RealsController < ApplicationController
   def show
     @real = Real.find_by(id: params[:id])
     @user = @real.user
+    @real_comments = @real.real_comments.all.order(created_at: :desc)
+    @real_comment = RealComment.new
   end
 
   def new

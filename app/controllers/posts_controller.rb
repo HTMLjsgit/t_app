@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     @user = @post.user
     @posts_id = params[:posts_id]
     @comment = Comment.new
+    @comments = @post.comments.all.order(created_at: :desc)
     @comments = Comment.where(post_id: @post.id)
     @comments_count = Comment.where(post_id: @post.id).count
   end

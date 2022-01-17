@@ -8,11 +8,12 @@
 <%= image_tag "/blank-profile-picture-973460_640.png" %>
 </div>
 <% end %>
-<h2><%= "#{@user.username}" %><% if @user.id == current_user.id %>
+<h2><%= "#{@user.username}" %>
+<% if @user.id == current_user.id %>
   <%= link_to chat_index_path, method: :get do%>
     <i class="far fa-envelope relative">
       <% if @user_room_rels_count > 0 %>
-      
+
         <span class="non_count_total"><%= @user_room_rels_count %></span>
       <% end %>
     </i>

@@ -13,10 +13,10 @@
         <%= @post.content %>
       </p>
 
-      <%= link_to new_comment_path, method: :get do  %>
+
         <i class="far fa-comment fa-2x comment-show"></i>
 
-      <% end %>
+
 
 　　　<% unless @user == current_user %>
       <% if Like.find_by(user_id: current_user.id,post_id: @post.id) %>
@@ -76,7 +76,7 @@
       <div class="form">
         <div class="form-body">
           <%= f.text_field :content,class: "form-control" %>
-          <%= f.hidden_field :posts_id, value: @posts_id %>
+          <%= f.hidden_field :post_id, value: @post.id %>
           <%= f.submit 'コメントする', class: "btn btn-primary input" %>
         </div>
       </div>

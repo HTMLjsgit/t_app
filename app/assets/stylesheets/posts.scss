@@ -7,6 +7,7 @@
   background-color: white;
   overflow: hidden;
   box-shadow: 0 2px 6px #c1ced7;
+  word-break: break-all;
 }
 
 .post-left img {
@@ -54,6 +55,7 @@
   background-color: white;
   box-shadow: 0 2px 6px #c1ced7;
   overflow: hidden;
+  word-break: break-all;
 }
 
 .posts-show-item img {
@@ -95,6 +97,10 @@
   color: gray;
 }
 /* posts/new ================================ */
+.posts-new {
+  margin-top: 50px;
+  margin-bottom: 80px;
+}
 .posts-new textarea {
   font-size: 20px;
   padding: 10px;

@@ -28,7 +28,8 @@
           </div>
         <% end %>
         <div class= "users_right">
-          <%= link_to "#{ user.username}",  "/rooms/#{room.id}" %>
+          <%= link_to "#{ user.username}",  "/rooms/#{room.id}" %><br />
+          <%= room.chat_posts.order(:id).last.message %>
         </div>
       </div>
     <% end %>

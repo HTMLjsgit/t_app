@@ -6,15 +6,22 @@ class CommentsController < ApplicationController
 
   def new
     # @post = Post.new
-    @posts_id = params[:posts_id]
+    @post = Post.find(params[:post_id])
     @comment = Comment.new
   end
 
   def create
-    @comment = Comment.new(user_id: current_user.id, post_id: params[:comment][:posts_id], content: params[:comment][:content])
-    @comment.save
+    @post = Post.find(params[:comment][:post_id])
+    @comment = @post.comments.build(user_id: current_user.id, post_id: params[:comment][:posts_id], content: params[:comment][:content])
+    @comment.save!
 #    redirect_to(post_path)→redirect_to(posts_path)
-    redirect_to "/posts/"+params[:comment][:posts_id]
+    redirect_to post_path(@post)
+  end
+
+  def destroy
+    @comment = Comment.find_by(id: params[:id], post_id: params[:post_id])
+    @comment.destroy
+    redirect_to post_path(params[:post_id])
   end
 
   private

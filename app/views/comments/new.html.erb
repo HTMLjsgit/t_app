@@ -6,7 +6,7 @@
       <div class="form">
         <div class="form-body">
           <%= f.text_field :content,class: "form-control" %>
-          <%= f.hidden_field :posts_id, value: @posts_id %>
+          <%= f.hidden_field :post_id, value: @post.id %>
           <%= f.submit 'コメントする', class: "btn btn-primary input" %>
         </div>
       </div>

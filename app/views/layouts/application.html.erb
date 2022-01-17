@@ -94,7 +94,11 @@
               <% end %>
           </li>
 
-          <li><i class="far fa-envelope footer_item"></i></li>
+          <li>
+            <%= link_to chat_index_path(current_user), method: :get do %>
+              <i class="far fa-envelope footer_item"></i>
+            <% end %>
+          </li>
         </ul>
         <% else %>
             <li><%= link_to posts_path,method: :get do  %>

@@ -13,7 +13,7 @@
         <%= @real.content %>
       </p>
 
-      <%= link_to new_comment_path, method: :get do  %>
+      <%= link_to new_real_comment_path(id: @real.id), method: :get do  %>
         <i class="far fa-comment fa-2x comment-show"></i>
       <% end %>
 
@@ -29,5 +29,41 @@
           <i class="fas fa-trash-alt fa-2x"></i>
           <% end %>
         </div>
+    </div>
+
+    <div class="comment-index my-4">
+      <h2>コメント一覧</h2>
+    </div>
+
+    <% @real_comments.each do |comment| %>
+      <div class="posts-show-item">
+        <% if comment.user.avater.attached? %>
+          <div class="post-user">
+            <%= image_tag comment.user.avater %> <%= link_to(comment.user.username, user_path(comment.user),class: "post-index-name") %>
+          </div>
+        <% else %>
+          <div class="post-user">
+            <%= image_tag "/blank-profile-picture-973460_640.png" %> <%= link_to(comment.user.username, user_path(comment.user),class: "post-index-name") %>
+        <% end %>
+        <p>
+          <%= comment.comment %>
+        </p>
+      </div>
+      </div>
+    <% end %>
+
+    <div class="main posts-new">
+      <div class="container">
+        <%= form_for (@real_comment) do |f| %>
+          <div class="form">
+            <div class="form-body">
+              <%= f.text_field :comment,class: "form-control" %>
+              <%= f.hidden_field :real_id, value: @real.id %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.submit 'コメントする', class: "btn btn-primary input" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
 </div>
