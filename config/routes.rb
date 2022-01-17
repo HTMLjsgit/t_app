@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   resources :reals, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     post 'like/:id' => 'likes#create', as: 'create_like'
     delete 'like/:id' => 'likes#destroy', as: 'destroy_like'
-
+    post 'real_like/:id' => 'real_likes#create', as: 'create_real_like'
+    delete 'real_like/:id' => 'real_likes#destroy', as: 'destroy_real_like'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'posts#index'
   get  'users/:id/chat_index' => 'users#chat_index', as: 'chat_index'

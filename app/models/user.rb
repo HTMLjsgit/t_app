@@ -21,6 +21,7 @@ class User < ApplicationRecord
  has_many :real_comments　#コメント
  has_many :reals #リアル
  has_many :likes #いいね
+ has_many :real_likes
 
  has_one_attached :avater
      # ユーザーをフォローする

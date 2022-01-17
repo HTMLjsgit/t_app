@@ -21,6 +21,9 @@
       <p>
         <i class="far fa-comment fa-lg comment-show"></i>
         <%= real.real_comments.count %>
+
+        <i class="far fa-heart like-btn"></i>
+        <%= real.real_likes.count %>
       </p>
       </div>
 
@@ -32,6 +35,6 @@
 <%= link_to new_real_path, {class: "post_pen", method: :get} do %>
 <span class="fa-stack post_pen">
 <i class="fas fa-circle fa-stack-2x"style="color:pink"></i>
-<i class="fas fa-pen fa-stack-1x"style="color:white"></i>
+<i class="fas fa-plus fa-stack-1x"style="color:white"></i>
 </span>
 <% end %>

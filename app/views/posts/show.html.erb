@@ -14,7 +14,7 @@
       </p>
 
 
-        
+
 
 　　　<% unless @user == current_user %>
       <% if Like.find_by(user_id: current_user.id,post_id: @post.id) %>
@@ -35,6 +35,7 @@
       <i class="far fa-heart like-btn"></i>
       <%= @post.likes.count %>
 　　　<% end %>
+  <% if @user == current_user %>
       <div class="post-menus">
         <%= link_to(edit_post_path(@post), method: :get) do%>
         <i class="far fa-edit fa-2x"></i>
@@ -43,9 +44,11 @@
         <%= link_to(post_path(@post),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>
         <i class="fas fa-trash-alt fa-2x"></i>
         <% end %>
+        <% end %>
       </div>
     </div>
 </div>
+
 <!-- コメント機能
 <div class="comment-index my-4">
   <h2>コメント一覧</h2>

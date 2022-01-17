@@ -13,43 +13,36 @@
         <%= @real.content %>
       </p>
 
-      <%= link_to new_real_comment_path(id: @real.id), method: :get do  %>
-        <i class="far fa-comment fa-2x comment-show"></i>
-      <% end %>
+      <% unless @user == current_user %>
+            <% if RealLike.find_by(user_id: current_user.id,real_id: @real.id) %>
 
-        <div class="post-menus">
-          <%= link_to(edit_real_path(@real), method: :get) do%>
-          <i class="far fa-edit fa-2x"></i
-          <% end %>
+              <%= link_to destroy_real_like_path(@real), class: "like-btn", method: :DELETE, remote: true do %>
+                <i class="fa fa-heart like-btn"></i>
+              <% end %>
+              <%= @real.real_likes.count %>
 
-          <%= @real.updated_at.strftime("%Y-%m-%d %H:%M") %>
+              <% else %>
 
-
-          <%= link_to(real_path(@real),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>
-          <i class="fas fa-trash-alt fa-2x"></i>
-          <% end %>
-        </div>
-    </div>
-
-    <div class="comment-index my-4">
-      <h2>コメント一覧</h2>
-    </div>
-    <div class="main posts-new">
-      <div class="container">
-        <%= form_for (@real_comment) do |f| %>
-          <div class="form">
-            <div class="form-body">
-              <%= f.text_field :comment,class: "form-control" %>
-              <%= f.hidden_field :real_id, value: @real.id %>
-              <%= f.hidden_field :user_id, value: current_user.id %>
-              <%= f.submit 'コメントする', class: "btn btn-primary input" %>
+              <%= link_to create_real_like_path(@real), class: "like-btn", method: :POST, remote: true do %>
+                <i class="far fa-heart like-btn"></i>
+              <% end %>
+              <%= @real.real_likes.count %>
+              <% end %>
+            <% else %>
+            <i class="far fa-heart like-btn"></i>
+            <%= @real.real_likes.count %>
+      　　　<% end %>
+            <div class="post-menus">
+              <%= link_to(edit_real_path(@real), method: :get) do%>
+              <i class="far fa-edit fa-2x"></i>
+              <% end %>
+              <%= @real.updated_at.strftime("%Y-%m-%d %H:%M") %>
+              <%= link_to(real_path(@real),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>
+              <i class="fas fa-trash-alt fa-2x"></i>
+              <% end %>
             </div>
           </div>
-        <% end %>
       </div>
-    </div>
-</div>
-
 
    <div style="width:100%;height:500px;overflow:auto;">
     <% @real_comments.each do |comment| %>
