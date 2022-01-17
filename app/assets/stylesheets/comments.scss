@@ -4,3 +4,15 @@
 .comment-show h2{
   border-bottom: 1px solid gray;
 }
+.comment-index-item {
+  padding: 15px 30px;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+  word-break: break-all;
+}
+.comment-index-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: black;
+}

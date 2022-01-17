@@ -14,9 +14,7 @@
       </p>
 
 
-        <i class="far fa-comment fa-2x comment-show"></i>
-
-
+        
 
 　　　<% unless @user == current_user %>
       <% if Like.find_by(user_id: current_user.id,post_id: @post.id) %>
@@ -48,20 +46,20 @@
       </div>
     </div>
 </div>
-
+<!-- コメント機能
 <div class="comment-index my-4">
   <h2>コメント一覧</h2>
 </div>
 
 <% @comments.each do |comment| %>
-  <div class="posts-show-item">
+  <div class="comment-index-item">
     <% if comment.user.avater.attached? %>
-      <div class="post-user">
-        <%= image_tag comment.user.avater %> <%= link_to(comment.user.username, user_path(comment.user),class: "post-index-name") %>
+      <div class="post-users">
+        <%= image_tag comment.user.avater,class: "users" %> <%= link_to(comment.user.username, user_path(comment.user),class: "comment-index-name") %>
       </div>
     <% else %>
-      <div class="post-user">
-        <%= image_tag "/blank-profile-picture-973460_640.png" %> <%= link_to(comment.user.username, user_path(comment.user),class: "post-index-name") %>
+      <div class="post-users">
+        <%= image_tag "/blank-profile-picture-973460_640.png",class: "users" %> <%= link_to(comment.user.username, user_path(comment.user),class: "comment-index-name") %>
     <% end %>
     <p>
       <%= comment.content %>
@@ -70,7 +68,8 @@
   </div>
 <% end %>
 
-<div class="main posts-new">
+
+  <div class="main posts-new">
   <div class="container">
     <%= form_for (@comment) do |f| %>
       <div class="form">
@@ -83,3 +82,4 @@
     <% end %>
   </div>
 </div>
+-->

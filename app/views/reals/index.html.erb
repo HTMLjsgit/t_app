@@ -3,11 +3,10 @@
 
     <div style="width:100%;height:500px;overflow:auto;">
 
-    <h1>Reals</h1>
 
 
       <% @reals.each do |real| %>
-      <div class="posts-index-item">
+      <div class="reals-index-item">
         <% if real.user.avater.attached? %>
           <div class="post-users">
             <%= image_tag real.user.avater %>  <%= link_to(real.user.username, "/reals/#{real.id}",class: "post-index-name") %>
@@ -18,7 +17,14 @@
          </div>
         <% end %>
         <%= link_to(real.content,"reals/#{real.id}",class: "post-index-content") %>
+
+      <p>
+        <i class="far fa-comment fa-lg comment-show"></i>
+        <%= real.real_comments.count %>
+      </p>
       </div>
+
+
       <% end %>
   </div>
  </div>
