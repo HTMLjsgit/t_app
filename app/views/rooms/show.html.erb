@@ -1,7 +1,8 @@
+<div style="width:100%;height:500px;overflow:auto;">
 <div id="posts">
   <%= render "post", collection: @posts %>
 </div>
-
+</div>
 <% if current_user.avater.attached? %>
   <input type="text" data-behavior="room_speaker" data-user="<%= current_user.id %>" data-room="<%= @room.id %>" data-img="<%= url_for(current_user.avater) %>">
 <% else %>
