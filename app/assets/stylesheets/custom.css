@@ -104,6 +104,7 @@
     color: white;
     font-size: 2.5em;
     padding-top: 10px;
+    margin-left: 2%;
   }
   .header_item {
     font-size: 1.7em;
@@ -111,7 +112,7 @@
   .post_pen {
     color: white;
     font-size: 1.5em;
-    margin-left: 20%;
+    margin-left: 23%;
 
   }
   .circle{

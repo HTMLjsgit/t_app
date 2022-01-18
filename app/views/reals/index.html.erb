@@ -8,12 +8,12 @@
       <% @reals.each do |real| %>
       <div class="reals-index-item">
         <% if real.user.avater.attached? %>
-          <div class="post-users">
-            <%= image_tag real.user.avater %>  <%= link_to(real.user.username, "/reals/#{real.id}",class: "post-index-name") %>
+          <div class="real-users">
+            <%= image_tag real.user.avater %>  <%= link_to(real.user.username, "/reals/#{real.id}",class: "real-index-name") %>
           </div>
         <% else %>
-        <div class="post-users">
-        <%= image_tag "/blank-profile-picture-973460_640.png" %><%= link_to(real.user.username, "/reals/#{real.id}",class: "post-index-name") %>
+        <div class="real-users">
+        <%= image_tag "/blank-profile-picture-973460_640.png" %><%= link_to(real.user.username, "/reals/#{real.id}",class: "real-index-name") %>
          </div>
         <% end %>
         <%= link_to(real.content,"reals/#{real.id}",class: "real-index-content") %>

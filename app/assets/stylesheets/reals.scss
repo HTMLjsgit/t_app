@@ -7,6 +7,7 @@
   overflow: hidden;
   box-shadow: 0 2px 6px #c1ced7;
   word-break: break-all;
+  height: 30%;
 }
 .real-show-content{
   margin-top: -30px;
@@ -24,4 +25,19 @@
     width: 60%;
     color: gray;
     word-break: break-all;
+
+}
+.real-index-name {
+  color: black;
+  font-size: 15px;
+  font-weight: 600;
+  padding-left: 18px;
+  vertical-align: 15px;
+}
+.real-users img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  vertical-align: middle;
+  object-fit: cover;
 }
