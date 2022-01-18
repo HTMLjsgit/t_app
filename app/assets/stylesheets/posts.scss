@@ -23,7 +23,7 @@
 }
 
 .post-user-name a:hover {
-  color: #3ecdc6;
+  color: #333333;
 }
 
 .post-left {
@@ -99,7 +99,7 @@
 /* posts/new ================================ */
 .posts-new {
   margin-top: 50px;
-  margin-bottom: 80px;
+  margin-bottom: 30px;
 }
 .posts-new textarea {
   font-size: 20px;
@@ -141,4 +141,12 @@ margin-top: -30px;
   font-size: 22px;
   margin-left: 50px;
   color: gray;
+}
+.post-show-content{
+  margin-top: -30px;
+    font-size: 22px;
+    margin-left: 90px;
+    width: 80%;
+    color: #333333;
+    word-break: break-all;
 }

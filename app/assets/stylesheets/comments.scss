@@ -4,15 +4,30 @@
 .comment-show h2{
   border-bottom: 1px solid gray;
 }
+.comment-show{
+  font-size: 1.7rem;
+}
 .comment-index-item {
   padding: 15px 30px;
   background-color: white;
   overflow: hidden;
   box-shadow: 0 2px 6px #c1ced7;
   word-break: break-all;
+  padding-bottom: -10px;
 }
 .comment-index-name {
+  color: black;
   font-size: 15px;
   font-weight: 600;
+  padding-left: 18px;
+  vertical-align: 15px;
+
+}
+.comment-index-content {
+margin-top: -30px;
+}
+.comment-index-content {
+  font-size: 15px;
+  margin-left: 50px;
   color: black;
 }

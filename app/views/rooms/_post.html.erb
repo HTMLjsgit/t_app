@@ -1,5 +1,5 @@
 
-<div style="width:100%;height:400px;overflow:auto;">
+
 <% @posts.each do |post| %>
   <% if post.user.id == current_user.id %>
     <% if current_user.avater.attached? %>
@@ -29,4 +29,3 @@
     <% end %>
   <% end %>
 <% end %>
-<div>

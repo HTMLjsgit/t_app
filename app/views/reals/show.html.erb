@@ -9,10 +9,13 @@
           <%= image_tag "/blank-profile-picture-973460_640.png" %> <%= link_to(@user.username, user_path(@user),class: "post-index-name") %>
         </div>
       <% end %>
-      <p>
-        <%= @real.content %>
-      </p>
 
+        <div class="real-show-content">
+        <%= @real.content %>
+        </div>
+
+        <i class="far fa-comment comment-show"></i>
+        <%= @real.real_comments.count %>
       <% unless @user == current_user %>
             <% if RealLike.find_by(user_id: current_user.id,real_id: @real.id) %>
 
@@ -44,7 +47,22 @@
           </div>
       </div>
 
-   <div style="width:100%;height:500px;overflow:auto;">
+      <div class="main posts-new">
+        <div class="container">
+          <%= form_for (@real_comment) do |f| %>
+            <div class="form">
+              <div class="row form-body">
+                <%= f.text_field :comment,class: "form-control comment-f" %>
+                <%= f.hidden_field :real_id, value: @real.id %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.submit 'コメントする', class: "btn btn-primary input" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+   <div style="width:100%;height:200px;overflow:auto;">
     <% @real_comments.each do |comment| %>
       <div class="comment-index-item">
         <% if comment.user.avater.attached? %>
@@ -55,9 +73,9 @@
           <div class="post-users">
             <%= image_tag "/blank-profile-picture-973460_640.png" %> <%= link_to(comment.user.username, user_path(comment.user),class: "comment-index-name") %>
         <% end %>
-        <p>
+        <div class="comment-index-content">
           <%= comment.comment %>
-        </p>
+        </div>
       </div>
       </div>
     <% end %>
