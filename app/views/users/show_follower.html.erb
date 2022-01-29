@@ -1,27 +1,27 @@
-  <div class="follow_line">
-    <ul>
-      <li><%= link_to "フォロー中", show_following_path(@user.id) %></li>
-      <li><%= link_to "フォロワー", show_follower_path(@user.id) %></li>
-    </ul>
-  </div>
-  <% @user.follower_user.where.not(id: current_user.id).each do |user| %>
-  <div class="users-index-item">
-    <% if @user.avater.attached? %>
-      <div class="avater_image">
-        <%= image_tag @user.avater %>
-      </div>
-    <% else %>
+<div class="follow_line">
+  <ul>
+    <li><%= link_to "フォロー中", show_following_path(@user.id) %></li>
+    <li><%= link_to "フォロワー", show_follower_path(@user.id) %></li>
+  </ul>
+</div>
+<% @user.follower_user.each do |user| %>
+<div class="users-index-item">
+  <% if user.avater.attached? %>
     <div class="avater_image">
-    <%= image_tag "/blank-profile-picture-973460_640.png" %>
+      <%= image_tag user.avater %>
     </div>
-    <% end %>
-     <div class= "users_right">
-      <%= link_to "#{ user.username}",  user_path(user) %>
-      </div>
-         <% if current_user.following?(user) %>
-           <%= link_to 'フォロー中', unfollow_path(user.id),:class => "btn btn-primary btn-sm follow_btn size",method: :POST, data: { confirm: 'フォローを解除' } %>
-         <% else %>
-           <%= link_to 'フォローする', follow_path(user.id), :class => "btn btn-primary btn-sm follow_btn size",method: :POST %>
-         <% end %>
-    </div>
+  <% else %>
+  <div class="avater_image">
+  <%= image_tag "/blank-profile-picture-973460_640.png" %>
+  </div>
   <% end %>
+   <div class= "users_right">
+    <%= link_to "#{ user.username}",  user_path(user) %>
+    </div>
+       <% if current_user.following?(user) %>
+         <%= link_to 'フォロー中', unfollow_path(user.id),:class => "btn btn-primary btn-sm follow_btn size",method: :POST, data: { confirm: 'フォローを解除' } %>
+       <% else %>
+         <%= link_to 'フォローする', follow_path(user.id), :class => "btn btn-primary btn-sm follow_btn size",method: :POST %>
+       <% end %>
+  </div>
+<% end %>

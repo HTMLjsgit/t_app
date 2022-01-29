@@ -12,11 +12,12 @@ class RealsController < ApplicationController
   end
 
   def new
+    @real = Real.new
   end
 
   def create
-    @real = Real.new(user_id: current_user.id,content: params[:content])
-    @real.save
+    @real = Real.new(real_params)
+    @real.save!
     redirect_to(reals_path)
   end
 
@@ -27,6 +28,7 @@ class RealsController < ApplicationController
   def update
     @real = Real.find_by(id: params[:id])
     @real.content = params[:content]
+    @real.image = params[:image]
     @real.save
     redirect_to(reals_path)
   end
@@ -35,5 +37,10 @@ class RealsController < ApplicationController
     @real = Real.find_by(id: params[:id])
     @real.destroy
     redirect_to(reals_path)
+  end
+
+  private
+  def real_params
+    params.require(:real).permit(:content, :user_id, images: [])
   end
 end

@@ -16,8 +16,13 @@
         <%= image_tag "/blank-profile-picture-973460_640.png" %><%= link_to(real.user.username, "/reals/#{real.id}",class: "real-index-name") %>
          </div>
         <% end %>
-        <%= link_to(real.content,"reals/#{real.id}",class: "real-index-content") %>
 
+        <% if real.images.attached? %>
+          <% real.images.each do |image| %>
+            <%= image_tag image, style: "width: 100px; height: 100px; object-fit: cover;" %>
+          <% end %>
+        <% end %>
+        <%= link_to(real.content,"reals/#{real.id}",class: "real-index-content") %>
       <p>
         <i class="far fa-comment fa-lg comment-show"></i>
         <%= real.real_comments.count %>

@@ -11,7 +11,12 @@
       <% end %>
 
         <div class="real-show-content">
-        <%= @real.content %>
+          <% if @real.images.attached? %>
+            <% @real.images.each do |image| %>
+              <%= image_tag image %>
+            <% end %>
+          <% end %>
+          <%= @real.content %>
         </div>
 
         <i class="far fa-comment comment-show"></i>

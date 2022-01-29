@@ -4,6 +4,7 @@ class Real < ApplicationRecord
   belongs_to :user
   has_many :real_comments
   has_many :real_likes
+  has_many_attached :images
 
   def user
      return User.find_by(id: self.user_id)
