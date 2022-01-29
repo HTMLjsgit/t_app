@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jruby_internals">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/vendor/bundle/ruby/2.5.0/gems/bindex-0.8.1/lib/skiptrace/internal/jruby_internals.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,202 @@
+
+  <div class="card">
+    <h5 class="card-header" style="background-color: #ffeef3;font-size: 1.3rem;font-weight: bold;color: #8e8c8c;">アカウント編集</h5>
+
+    <div class="card-body" style="border-bottom: 1px solid rgba(0,0,0,.125);">
+      <h5>ログイン情報の変更</h5>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+      
+        <div class="form-group field row mt-5">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-3">
+            <%= f.label :email %>
+          </div>
+          <div class="col-md-7">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control " %>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
+          </div>
+          <div class="col-md-1">
+          </div>
+
+        </div>
+
+        <div class="form-group field row">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-3">
+            <%= f.label "新しいパスワード" %> <i></i>
+          </div>
+          <div class="col-md-7">
+            <%= f.password_field :password, autocomplete: "new-password" , :class => "form-control " %>
+            <% if @minimum_password_length %>
+              <em>*最低<%= @minimum_password_length %> 文字必要です</em>
+            <% end %>
+          </div>
+          <div class="col-md-1">
+          </div>
+        </div>
+
+        <div class="form-group field row">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-3">
+            <%= f.label :password_confirmation %>
+          </div>
+          <div class="col-md-7">
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", :class => "form-control "  %><!-- user_edit -->
+          </div>
+          <div class="col-md-1">
+          </div>
+        </div>
+
+        <div class="form-group field row mb-5">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-3">
+            <%= f.label :current_password %> <i></i>
+          </div>
+          <div class="col-md-7">
+            <%= f.password_field :current_password, autocomplete: "current-password", :class => "form-control "  %>
+          </div>
+          <div class="col-md-1">
+          </div>
+        </div>
+
+        <div class="actions text-center mb-3">
+          <%= f.submit "更新する",  :class => "btn  input", :style => "width: 40%;color: white;" %>
+        </div>
+      <% end %>
+  
+    </div>
+
+    <div class="card-body" style="border-bottom: 1px solid rgba(0,0,0,.125);">
+      <h5>アバター情報の変更</h5>
+
+      <%= form_with model: @user, local: true, url: "/users/avater_update"  do |form| %>
+        <% @user = User.find(current_user.id) %>
+
+        <div class="field row my-5">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-10">
+
+            <% if @user.avater.attached? %>
+              <div class="avater_image">
+                <%= image_tag @user.avater %>
+              </div>
+            <% end %>
+
+            <%= form.file_field :avater %>
+      
+          </div>
+          <div class="col-md-1">
+          </div>
+        </div>
+        <div class="text-center">
+          <%= form.submit "更新する", class: "btn input mb-3", :style => "width: 40%;color: white;" %>
+        </div>
+
+      <% end %>
+
+    </div>
+
+    <div class="card-body" style="border-bottom: 1px solid rgba(0,0,0,.125);">
+      <h5>口座情報の変更</h5>
+
+      <%= form_with model: @user, local: true, url: "/users/bank_update"  do |f| %>
+        <% @user = User.find(current_user.id) %>
+
+        <div class="form-group field row mt-5">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-3">
+            <%= f.label "金融機関名" %> <i></i>
+          </div>
+          <div class="col-md-7">
+            <%= f.text_field :bank_name, autofocus: true, autocomplete: "bank_name", :class => "form-control " %>
+          </div>
+          <div class="col-md-1">
+          </div>
+        </div>
+
+        <div class="form-group field row">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-3">
+            <%= f.label "支店名" %> <i></i>
+          </div>
+          <div class="col-md-7">
+            <%= f.text_field :bank_branch_name, autofocus: true, autocomplete: "bank_branch_name", :class => "form-control " %>
+          </div>
+          <div class="col-md-1">
+          </div>
+        </div>
+
+        <div class="form-group field row">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-3">
+            <%= f.label "口座種別" %> <i></i>
+          </div>
+          <div class="col-md-7">
+            <%= f.radio_button :bank_account_type, :usually %>
+            <%= f.label :bank_account_type, "普通", {value: :usually, style: "display: inline-block;margin-right: 10px;"} %>
+            <%= f.radio_button :bank_account_type, :current %>
+            <%= f.label :bank_account_type, "当座", {value: :current, style: "display: inline-block;"} %>
+          </div>
+          <div class="col-md-1">
+          </div>
+        </div>
+
+        <div class="form-group field row">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-3">
+            <%= f.label "口座番号" %> <i></i>
+          </div>
+          <div class="col-md-7">
+            <%= f.text_field :bank_account_number, autofocus: true, autocomplete: "bank_account_number", :class => "form-control " %>
+          </div>
+          <div class="col-md-1">
+          </div>
+        </div>
+
+        <div class="form-group field row mb-5">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-3">
+            <%= f.label "口座名義人名（カナ）" %> <i></i>
+          </div>
+          <div class="col-md-7">
+            <%= f.text_field :bank_account_horseman_name_kana, autofocus: true, autocomplete: "bank_account_horseman_name_kana", :class => "form-control " %>
+          </div>
+          <div class="col-md-1">
+          </div>
+        </div>
+
+        <div class="actions text-center mb-3">
+          <%= f.submit "更新する",  :class => "btn  input", :style => "width: 40%;color: white;" %>
+        </div>
+      <% end %>
+
+    </div>
+
+    <div class="card-body" style="border-bottom: 1px solid rgba(0,0,0,.125);">
+      <h5>アカウントの削除</h5>
+      <div class="my-3 text-center"> <%= button_to "アカウント削除", registration_path(resource_name), :class => "btn  input", :style => "width: 40%;color: white;" , data: { confirm: "アカウントを削除してもよろしいですか？" }, method: :delete %></div>
+    </div>
+
+    <!--<div class="card-footer"></div>-->
+  </div>
+
+
+
+
+
+
+<%= link_to "Back", :back %>

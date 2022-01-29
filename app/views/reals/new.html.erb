@@ -1,0 +1,19 @@
+
+
+<div class="main posts-new">
+  <div class="container">
+    <h1 class="form-heading">Real</h1>
+    <%= form_with model: @real, url: reals_path(@real) do |f| %>
+      <div class="form">
+        <div class="form-body">
+          <%= f.text_area :content, class: 'form-control' %>
+          <%= f.file_field :images, multiple: true %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+         <div class="text-right">
+          <%= f.submit "投稿", class: "btn btn-primary input" %>
+        </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

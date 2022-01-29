@@ -1,0 +1,37 @@
+
+<div><span id="total_count"></span></div>
+
+<% total_count = 0 %>
+
+<% if @rooms %>
+  <% @rooms.each do |room| %>
+    <% user = get_to_user(current_user.id, room.id) %>
+    <% if user %>
+      <div class="users-index-item">
+        <% if user.avater.attached? %>
+          <div class="users" style="position: relative;">
+            <%= image_tag user.avater %>
+            <% non_count = non_count(current_user.id, room.id) %>
+            <% if non_count > 0 %>
+              <% total_count += non_count %>
+              <span class="msg_count"><%= non_count %></span>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="users" style="position: relative;">
+            <%= image_tag "/blank-profile-picture-973460_640.png" %>
+            <% non_count = non_count(current_user.id, room.id) %>
+            <% if non_count > 0 %>
+              <% total_count += non_count %>
+              <span class="msg_count"><%= non_count %></span>
+            <% end %>
+          </div>
+        <% end %>
+        <div class= "users_right">
+          <%= link_to "#{ user.username}",  "/rooms/#{room.id}",class: "last-n" %><br />
+            <span class="last-m"><%= room.chat_posts.order(:id).last.message %></span>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

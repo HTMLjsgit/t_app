@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= include_gon %>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light p-0">
+      <a class="navbar-brand p-1" href="/">
+        <div class="logo">
+        <%= image_tag "/ペンキなしピンク180×180_背景透過.png",size: "65x65"%>
+        </div>
+      </a>
+      <button class="navbar-toggler m-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto p-3 h6" style="text-align: left;">
+          <% if user_signed_in? %>
+            <li class="nav-item active">
+              <%= link_to users_path, {class: "nav-link", method: :get} do  %>
+                  <i class="fas fa-search header_item"></i>
+              <% end %>
+            </li>
+
+            <li class="nav-item ">
+              <%= link_to "ログアウト", destroy_user_session_path, {class: "nav-link", method: "delete"} %>
+            </li>
+
+          <% else %>
+            <li class="nav-item ">
+              <%= link_to "新規登録", new_user_registration_path, {class: "nav-link"} %>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "ログイン", new_user_session_path, {class: "nav-link"} %>
+            </li>
+          <% end %>
+  <!-- 以下元々
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+  -->
+        </ul>
+      </div>
+    </nav>
+
+
+
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <footer>
+      <ul>
+        <% if user_signed_in? %>
+          <li><%= link_to user_path(current_user),method: :get do  %>
+            <i class="fas fa-home footer_item"></i>
+              <% end %>
+          </li>
+
+          <li><%= link_to posts_path, method: :get do  %>
+            <i class="fas fa-hammer footer_item"></i><i class="fas fa-shopping-cart footer_item"></i>
+            <% end %>
+          </li>
+
+          <li><%= link_to reals_path, method: :get do  %>
+              <i class="far fa-comments footer_item"></i><i class="fas fa-child footer_item"></i>
+              <% end %>
+
+          </li>
+
+          <li>
+            <%= link_to chat_index_path(current_user), method: :get do %>
+              <i class="far fa-envelope footer_item"></i>
+            <% end %>
+            <% if @user_room_rels_count > 0 %>
+              <i class="far fa-envelope relative">
+                <span class="non_count_total"><%= @user_room_rels_count %></span>
+              </i>
+            <% end %>
+          </li>
+        </ul>
+        <% else %>
+            <li><%= link_to posts_path,method: :get do  %>
+              <i class="fas fa-home footer_item"></i>
+
+            </li>
+
+            <li><%= link_to posts_path, method: :get do  %>
+              <i class="fas fa-hammer footer_item"></i><i class="fas fa-shopping-cart footer_item"></i>
+              <% end %>
+            </li>
+
+            <li><%= link_to reals_path, method: :get do  %>
+                <i class="far fa-comments footer_item"></i><i class="fas fa-child footer_item"></i>
+                <% end %>
+            </li>
+          <% end %>
+        <% end %>
+
+    </footer>
+    <div class="container">
+     <%= yield %>
+   </div>
+  </body>
+</html>

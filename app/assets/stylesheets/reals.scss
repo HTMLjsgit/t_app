@@ -1,0 +1,57 @@
+// Place all the styles related to the reals controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.reals-index-item {
+  padding: 20px 30px;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+  word-break: break-all;
+  height: 30%;
+}
+.real-show-content{
+  margin-top: -30px;
+    font-size: 22px;
+    margin-left: 90px;
+    width: 80%;
+    color: #4d4d4d;
+    word-break: break-all;
+}
+.real-index-content{
+
+    font-size: 22px;
+    margin-left: 60px;
+    margin-bottom: 40px;
+    width: 60%;
+    color: gray;
+    word-break: break-all;
+
+}
+.real-index-name {
+  color: black;
+  font-size: 15px;
+  font-weight: 600;
+  padding-left: 18px;
+  vertical-align: 15px;
+}
+.real-users img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  vertical-align: middle;
+  object-fit: cover;
+}
+.real-user img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  vertical-align: middle;
+  object-fit: cover;
+}
+.real-show-name {
+  color: black;
+  font-size: 25px;
+  font-weight: 600;
+  padding-left: 18px;
+  vertical-align: 15px;
+}

@@ -1,0 +1,31 @@
+
+
+<% @posts.each do |post| %>
+  <% if post.user.id == current_user.id %>
+    <% if current_user.avater.attached? %>
+      <div style="text-align: right;margin: 8px;">
+        <span class="message my"><%= post.message %></span>
+        <p class="chat_time my"><%= post.updated_at.strftime("%Y-%m-%d %H:%M")%></p>
+      </div>
+    <% else %>
+      <div style="text-align: right;margin: 8px;">
+        <span class="message my"><%= post.message %></span>
+        <p class="chat_time my"><%= post.updated_at.strftime("%Y-%m-%d %H:%M")%></p>
+      </div>
+    <% end %>
+  <% else %>
+    <% if post.user.avater.attached? %>
+      <div style="text-align: left;margin: 8px;">
+        <a href="/users/<%= post.user.id %>"><img class="room_avater_image" src="<%= url_for(post.user.avater) %>"></a>
+        <span class="message etc"><%= post.message %></span>
+        <p class="chat_time"><%= post.updated_at.strftime("%Y-%m-%d %H:%M")%></p>
+      </div>
+    <% else %>
+      <div style="text-align: left;margin: 8px;">
+        <a href="/users/<%= post.user.id %>"><%= image_tag "/blank-profile-picture-973460_640.png", class: "room_avater_image" %></a>
+        <span class="message etc"><%= post.message %></span>
+        <p class="chat_time"><%= post.updated_at.strftime("%Y-%m-%d %H:%M")%></p>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
