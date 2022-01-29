@@ -108,12 +108,11 @@
   </div>
 </div>
 -->
-<script src="https://js.stripe.com/v3/" async></script>
+<script src="https://js.stripe.com/v3/"></script>
 
 <!-- Stripeに関するJavascriptコード -->
 <script>
 
-document.addEventListener("turbolinks:load", function() {
   const key = gon.stripe_public_key;
   const stripe = Stripe(key);
   const elements = stripe.elements();
@@ -125,7 +124,7 @@ document.addEventListener("turbolinks:load", function() {
       fontSize: "16px"
     }
   }
-  
+
   // stripeが自動的にフォームを作ってくれる。
   const cardNumber = elements.create('cardNumber', {style: style});
   cardNumber.mount('#card-number');
@@ -142,8 +141,7 @@ document.addEventListener("turbolinks:load", function() {
       ErrorElement.textContent = "";
     }
   });
-  post_payment_box.classList.add("hide");
-  
+
 
   post_payment_open_link.addEventListener("click", function(event){
     event.preventDefault();
@@ -184,6 +182,5 @@ document.addEventListener("turbolinks:load", function() {
       form.submit();
     }
   });
-});
 
 </script>
