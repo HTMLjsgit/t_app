@@ -4,7 +4,7 @@ class Post < ApplicationRecord
    belongs_to:user
    has_many :comments
    has_many :likes
-
+   validates :amount, presence: true
 def user
    return User.find_by(id: self.user_id)
 end

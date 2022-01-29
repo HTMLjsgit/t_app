@@ -18,7 +18,7 @@ class PaymentsController < ApplicationController
   #    })
   #  end
     Stripe::Charge.create(
-      amount: 100,
+      amount: @post.amount,
       currency: "jpy",
       source: params[:stripeToken],
       description: "#{@post.content.truncate(10)}のご購入"

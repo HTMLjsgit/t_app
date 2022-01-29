@@ -18,7 +18,7 @@
 
       <!--  支払いのフォームボックス cssファイル assets/stylesheets/payments.scss !-->
       <div class="post-payment-box" id="post-payment-box">
-        <p class="text-center"><%= @post.content.truncate(5) %>を購入する。</p>
+        <p class="text-center"><%= @post.content.truncate(5) %>(<%= @post.amount %>円)を購入する。</p>
         <%= form_tag post_payment_post_payments_path(post_id: @post.id), id: "post_payment_form" do %>
           <h4 class="payment-form-label">カード番号</h4>
           <div>
