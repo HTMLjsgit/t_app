@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_30_062427) do
+ActiveRecord::Schema.define(version: 2022_01_30_075821) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2022_01_30_062427) do
     t.bigint "mine_commision"
     t.bigint "stripe_and_mine_subtract_commision_amount"
     t.time "payment_date"
+    t.bigint "commision_amount_result"
     t.index ["post_id"], name: "index_payments_on_post_id"
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
@@ -90,6 +91,7 @@ ActiveRecord::Schema.define(version: 2022_01_30_062427) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.bigint "amount"
+    t.bigint "commission"
   end
 
   create_table "real_comments", force: :cascade do |t|

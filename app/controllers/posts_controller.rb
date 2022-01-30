@@ -23,6 +23,11 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(user_id: current_user.id,content: params[:content], amount: params[:amount])
+
+    commission = @post.amount * 0.15 #手数料15%
+
+    @post.commission = commission
+
     @post.save
     redirect_to(posts_path)
   end
@@ -54,7 +59,7 @@ class PostsController < ApplicationController
       redirect_to root_path and return
     end
   end
-  
+
   def post_find
     @post = Post.find_by(id: params[:id])
   end

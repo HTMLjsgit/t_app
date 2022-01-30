@@ -14,9 +14,9 @@ class PaymentsController < ApplicationController
     #   #   source: params[:stripeToken]
     #   # })
     # end
-    mine_commision = 1
+    mine_commision = @post.commission
     charge = Stripe::Charge.create(
-      amount: @post.amount * mine_commision,
+      amount: @post.amount + mine_commision, #手数料を足してあげる
       currency: "jpy",
       source: params[:stripeToken],
       description: "#{@post.content.truncate(10)}のご購入"
@@ -27,11 +27,12 @@ class PaymentsController < ApplicationController
       post_id: @post.id,
       charge_id: charge.id,
       currency: "jpy",
-      stripe_commission: 0.36,
-      stripe_amount_after_subtract_commision: @post.amount * 0.36,
-      mine_subtract_commision_amount: @post.amount * mine_commision, 
-      mine_commision: mine_commision,
-      stripe_and_mine_subtract_commision_amount: @post.amount * (0.36 + mine_commision), # 記事の値段 × (このサービス上の手数料 + stripeの手数料)
+      stripe_commission: 0.036,
+      stripe_amount_after_subtract_commision: @post.amount * 0.036,
+      mine_subtract_commision_amount: mine_commision, 
+      mine_commision: mine_commision, #手数料
+      stripe_and_mine_subtract_commision_amount: @post.amount * (0.036 + 0.15), # 記事の値段 × (このサービス上の手数料 + stripeの手数料)
+      commision_amount_result: @post.amount + mine_commision, #手数料と記事の値段を合わせた結果
       amount: @post.amount
     )
     redirect_to @post

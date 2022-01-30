@@ -42,7 +42,8 @@
                   post_payment_open_link_<%= post.id %>.addEventListener("click", function(event){
                     console.log(event.target.dataset.postId);
                     target_form.action = `/posts/${event.target.dataset.postId}/payments/post_payment`;
-                    buy_text.textContent = "<%= post.content.truncate(5) %>(<%= post.amount %>円)を購入する。";
+
+                    buy_text.textContent = "<%= post.content.truncate(5) %>(<%= post.amount + (post.commission) %>円(手数料込み))を購入する。";
                     event.preventDefault();
                     payment_modal.classList.add("open");
                     post_payment_box.style.display = "block";
