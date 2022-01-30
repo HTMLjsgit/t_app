@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order(created_at: :desc)
-
+    gon.stripe_public_key = Rails.configuration.stripe[:public_key]
   end
 
   def show
@@ -14,7 +14,6 @@ class PostsController < ApplicationController
     @comments = Comment.where(post_id: @post.id)
     @comments_count = Comment.where(post_id: @post.id).count
 
-    gon.stripe_public_key = Rails.configuration.stripe[:public_key]
   end
 
   def new
