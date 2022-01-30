@@ -60,8 +60,6 @@ ActiveRecord::Schema.define(version: 2022_01_29_150826) do
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
-=======
   create_table "payments", force: :cascade do |t|
     t.text "description"
     t.string "currency", default: "jpy"
@@ -81,16 +79,12 @@ ActiveRecord::Schema.define(version: 2022_01_29_150826) do
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
->>>>>>> 7d8c732c8d38893e4b8194a678ffaa28e63153f0
   create_table "posts", force: :cascade do |t|
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-<<<<<<< HEAD
-=======
     t.bigint "amount"
->>>>>>> 7d8c732c8d38893e4b8194a678ffaa28e63153f0
   end
 
   create_table "real_comments", force: :cascade do |t|
