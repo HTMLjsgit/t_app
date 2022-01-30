@@ -6,14 +6,24 @@
         <div class="form-body">
           <textarea class="form-control" name="content"></textarea>
           <label>値段
-            <input class="form-control" name="amount" placeholder="例(1000)">
+            <input class="form-control" id="amount_input" name="amount" placeholder="例(1000)">
           </label>
-         <div class="text-right">
-          <input class="btn btn-primary input" type="submit" value="投稿">
-        </div>
-        
+          <p id="commision-form-text"></p>
+          <div class="text-right">
+            <input class="btn btn-primary input" type="submit" value="投稿">
+          </div>
+
         </div>
       </div>
     <% end %>
   </div>
 </div>
+
+
+<script>
+  let amount_input = document.getElementById("amount_input");
+  let commision_text = document.getElementById("commision-form-text");
+  amount_input.addEventListener("input", function(event){
+    commision_text.textContent = Math.round((Number(event.target.value) + (Number(event.target.value) * 0.15))) + "(手数料込み)"
+  });
+</script>
