@@ -1,18 +1,29 @@
 <div class="main posts-new">
   <div class="container">
     <h1 class="form-heading">投稿</h1>
-    <%= form_tag(posts_path(@post)) do %>
+    <%= form_tag posts_path(@post), multipart: true do %>
       <div class="form">
         <div class="form-body">
-          <textarea class="form-control" name="content"></textarea>
+          <input class="form-control" name="title" placeholder="記事のタイトル">
+
+          <textarea class="form-control" name="content" placeholder="記事の文章"></textarea>
+          <textarea class="form-control" name="description" placeholder="記事の説明文"></textarea>
+          <div>
+            <label>記事のポスター画像
+              <%# <input type="file" name="poster" class="form-control-file"> %>
+              <%= file_field_tag :poster %>
+            </label>
+          </div>
           <label>値段
             <input class="form-control" id="amount_input" name="amount" placeholder="例(1000)">
           </label>
+
           <p id="commision-form-text"></p>
+
+
           <div class="text-right">
             <input class="btn btn-primary input" type="submit" value="投稿">
           </div>
-
         </div>
       </div>
     <% end %>
