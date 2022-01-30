@@ -9,7 +9,7 @@ class CreatePayments < ActiveRecord::Migration[5.2]
       t.string :uuid
       t.string :charge_id
       t.bigint :stripe_commission
-      t.bigint :amount_after_subtract_commision
+      t.bigint :stripe_amount_after_subtract_commision
       t.string :receipt_url
       t.string :receive_id
       t.references :user, foreign_key: true
