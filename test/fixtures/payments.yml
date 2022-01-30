@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  currency: MyString
+  customer_id: MyString
+  payment_data: 2022-01-29 11:34:57
+  uuid: MyString
+  charge_id: MyString
+  stripe_commission: 
+  amount_after_subtract_commision: 
+  receipt_url: MyString
+  receive_id: MyString
+  user: one
+
+two:
+  description: MyText
+  currency: MyString
+  customer_id: MyString
+  payment_data: 2022-01-29 11:34:57
+  uuid: MyString
+  charge_id: MyString
+  stripe_commission: 
+  amount_after_subtract_commision: 
+  receipt_url: MyString
+  receive_id: MyString
+  user: two
