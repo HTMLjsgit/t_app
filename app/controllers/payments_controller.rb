@@ -33,7 +33,8 @@ class PaymentsController < ApplicationController
       mine_commision: mine_commision, #手数料
       stripe_and_mine_subtract_commision_amount: @post.amount * (0.036 + 0.15), # 記事の値段 × (このサービス上の手数料 + stripeの手数料)
       commision_amount_result: @post.amount + mine_commision, #手数料と記事の値段を合わせた結果
-      amount: @post.amount
+      amount: @post.amount,
+      payment_date: Time.now
     )
     redirect_to @post
 
