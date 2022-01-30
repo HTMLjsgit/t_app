@@ -17,6 +17,7 @@ class PaymentsController < ApplicationController
   #      source: params[:stripeToken]
   #    })
   #  end
+  
     Stripe::Charge.create(
       amount: @post.amount,
       currency: "jpy",
