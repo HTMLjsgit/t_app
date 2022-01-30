@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   resources :homes, only: [:show, :index]
   resources :users, only: [:show, :index]
   resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+    member do
+      # 記事の説明ページ
+      get :post_explanation
+    end
     #--------支払い履歴Routes--------------
 
     #postsの子として追加することで  /posts/:id/payments が実現可能になる。

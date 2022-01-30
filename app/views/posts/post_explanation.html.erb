@@ -1,0 +1,37 @@
+<h1>記事の説明</h1>
+<h2><%= @post.title %></h2>
+<% if @post.poster.attached?  %>
+  <%= image_tag @post.poster, class: "post_poster" %>
+<% end %>
+<div><%= simple_format @post.content.truncate(50) %></div>
+
+<div><%= simple_format @post.description %></div>
+
+<div>
+
+</div>
+<% if @payment_check %>
+  <%= link_to "記事を読む", post_path(@post) %>
+<% else %>
+  <%= button_tag "購入する", id: "post-payment-box-open-link" %>
+<% end %>
+
+<% if @posts.exists? %>
+  <% if user_signed_in? %>
+    <%= render partial: "payments/post_payment" %>
+  <% end %>
+<% end %>
+
+<script>
+  var post_payment_open_link = document.getElementById("post-payment-box-open-link");
+  var target_form = document.getElementById("post_payment_form");
+  var buy_text = document.getElementById("buy-text");
+  post_payment_open_link.addEventListener("click", function(event){
+    target_form.action = `/posts/<%= @post.id %>/payments/post_payment`;
+
+    buy_text.textContent = "<%= @post.title.truncate(10) %>(<%= @post.amount + (@post.commission) %>円(手数料込み))を購入する。";
+    event.preventDefault();
+    payment_modal.classList.add("open");
+    post_payment_box.style.display = "block";
+  });
+</script>

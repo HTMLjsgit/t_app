@@ -1,3 +1,4 @@
+<script src="https://js.stripe.com/v3/"></script>
 <div class="modal" id="payment-modal"></div>
 
 <!--  支払いのフォームボックス cssファイル assets/stylesheets/payments.scss !-->
@@ -17,7 +18,7 @@
       <div id="card-cvc" class="stripe-input"></div>
     </div>
     <div id="card-errors">
-
+      
     </div>
     <%= submit_tag "送信" %>
   <% end %>
@@ -30,7 +31,6 @@
   const key = gon.stripe_public_key;
   const stripe = Stripe(key);
   const elements = stripe.elements();
-  const post_payment_open_link = document.getElementById("post-payment-box-open-link");
   const post_payment_box = document.getElementById("post-payment-box");
   let payment_modal = document.getElementById("payment-modal");
   const style = {
@@ -38,7 +38,7 @@
       fontSize: "16px"
     }
   }
-
+  
   // stripeが自動的にフォームを作ってくれる。
   const cardNumber = elements.create('cardNumber', {style: style});
   cardNumber.mount('#card-number');
@@ -57,7 +57,7 @@
   });
 
 
-
+  
 
   payment_modal.addEventListener("click", function(event){
     payment_modal.classList.remove("open");
