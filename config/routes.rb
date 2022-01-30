@@ -6,9 +6,30 @@ Rails.application.routes.draw do
   get 'rooms/show'
   devise_for :users
 
+<<<<<<< HEAD
   resources :homes, only: [:show, :index]
   resources :users, only: [:show, :index]
   resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+=======
+
+  resources :homes, only: [:show, :index]
+  resources :users, only: [:show, :index]
+  resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+    #--------支払い履歴Routes--------------
+
+    #postsの子として追加することで  /posts/:id/payments が実現可能になる。
+    resources :payments, only: [:index] do
+      collection do
+
+        #posts(記事)を購入した場合のroutes
+        
+        post :post_payment
+      end
+    end
+
+    #---------------------
+  end
+>>>>>>> 7d8c732c8d38893e4b8194a678ffaa28e63153f0
   resources :comments, only: [:new, :create, :show, :destroy]
   resources :reals, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     post 'like/:id' => 'likes#create', as: 'create_like'

@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order(created_at: :desc)
-
+    gon.stripe_public_key = Rails.configuration.stripe[:public_key]
   end
 
   def show
@@ -19,7 +19,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(user_id: current_user.id,content: params[:content])
+    @post = Post.new(user_id: current_user.id,content: params[:content], amount: params[:amount])
     @post.save
     redirect_to(posts_path)
   end
