@@ -4,6 +4,7 @@ class Post < ApplicationRecord
    validates :title, presence: true
    validates :description, presence: true
    validates :amount, presence: true
+   validate :amount_min_check
 
    belongs_to :user
    has_many :comments
@@ -12,5 +13,11 @@ class Post < ApplicationRecord
    has_one_attached :poster
    def user
       return User.find_by(id: self.user_id)
+   end
+
+   def amount_min_check
+      if self.amount < 50
+         errors.add(:amount_min, "指定できる最低金額は50円です。")
+      end
    end
 end
