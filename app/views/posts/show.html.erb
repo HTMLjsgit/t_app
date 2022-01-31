@@ -12,9 +12,9 @@
       <div class="post-show-content">
         <h2><%= @post.title %></h2>
         <%= @post.content %>
-       </div>
-
-
+      </div>
+      
+      
 
 　　　<% unless @user == current_user %>
       <% if Like.find_by(user_id: current_user.id,post_id: @post.id) %>

@@ -27,7 +27,8 @@ class PostsController < ApplicationController
                      content: params[:content],
                      amount: params[:amount],
                      description: params[:description],
-                     title: params[:title])
+                     title: params[:title],
+                     thumbnails: params[:thumbnails])
     if @post.amount.present?
       commission = @post.amount * 0.15 #手数料15%
     end
