@@ -5,7 +5,9 @@
 <% end %>
 <div><%= simple_format @post.content.truncate(50) %></div>
 
-<div><%= simple_format @post.description %></div>
+<div>
+  <%= simple_format @post.description %>
+</div>
 
 <div>
 

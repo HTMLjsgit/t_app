@@ -33,7 +33,7 @@ class PostsController < ApplicationController
     end
     @post.commission = commission
 
-    @post.save
+    @post.save!
     if params[:poster]
       @post.poster.attach(params[:poster])
     end

@@ -23,11 +23,12 @@
             </div>
             <% end %>
             <%= link_to(post.title, post_explanation_post_path(id: post.id),class: "post-index-content") %>
+            <% if post.poster.attached? %>
+              <%= image_tag post.poster, class: "post_index_poster" %>
+            <% end %>
             <p>
-            
-
-            <i class="far fa-heart like-btn"></i>
-            <%= post.likes.count %>
+              <i class="far fa-heart like-btn"></i>
+              <%= post.likes.count %>
             </p>
             <!-- 購入していなかったら -->
             <% if user_signed_in? %>
@@ -41,7 +42,6 @@
                   post_payment_open_link_<%= post.id %>.addEventListener("click", function(event){
                     console.log(event.target.dataset.postId);
                     target_form.action = `/posts/<%= post.id %>/payments/post_payment`;
-                    
                     buy_text.textContent = "<%= post.content.truncate(5) %>(<%= post.amount + (post.commission) %>円(手数料込み))を購入する。";
                     event.preventDefault();
                     payment_modal.classList.add("open");
