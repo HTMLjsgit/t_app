@@ -33,7 +33,7 @@
             <!-- 購入していなかったら -->
             <% if user_signed_in? %>
               <% unless @post_payment_check.present? %>
-                <%= button_tag "購入する", id: "post-payment-box-open-link-#{post.id}", data: {post_id: post.id} %>
+                <%= button_tag "¥#{post.amount}", id: "post-payment-box-open-link-#{post.id}", data: {post_id: post.id} %>
 
                 <script>
                   var post_payment_open_link_<%= post.id %> = document.getElementById("post-payment-box-open-link-<%= post.id %>");
