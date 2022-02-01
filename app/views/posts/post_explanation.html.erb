@@ -9,13 +9,7 @@
   <%= simple_format @post.description %>
 </div>
 
-<div class="post_explanation_thumbnails">
-  <% if @post.thumbnails.attached? %>
-    <% @post.thumbnails.each do |thumbnail| %>
-        <%= image_tag thumbnail %>
-    <% end %>
-  <% end %>
-</div>
+
 
 <% if @payment_check %>
   <%= link_to "記事を読む", post_path(@post) %>

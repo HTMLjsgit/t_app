@@ -13,8 +13,7 @@
         <h2><%= @post.title %></h2>
         <%= @post.content %>
       </div>
-      
-      
+
 
 　　　<% unless @user == current_user %>
       <% if Like.find_by(user_id: current_user.id,post_id: @post.id) %>
@@ -48,6 +47,15 @@
       </div>
     </div>
 </div>
+
+<div class="post_explanation_thumbnails">
+  <% if @post.thumbnails.attached? %>
+    <% @post.thumbnails.each do |thumbnail| %>
+        <%= image_tag thumbnail,class: "post_explanation_thumbnails" %>
+    <% end %>
+  <% end %>
+</div>
+
 <!-- コメント機能
 <div class="comment-index my-4">
   <h2>コメント一覧</h2>
