@@ -15,7 +15,7 @@
 <% if @payment_check %>
   <%= link_to "記事を読む", post_path(@post) %>
 <% else %>
-  <%= button_tag "¥#{@post.amount}", id: "post-payment-box-open-link" %>
+  <%= button_tag "¥#{@post.amount}", id: "post-payment-box-open-link", data: {post_id: @post.id} %>
 <% end %>
 
 <% if @posts.exists? %>
