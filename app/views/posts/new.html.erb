@@ -14,6 +14,13 @@
               <%= file_field_tag :poster %>
             </label>
           </div>
+          <div>
+            <label>記事の画像集
+              <%# <input type="file" name="thumbnails[]" multiple="multiple" id="thumbnails-file-input"> %>
+                <%= file_field_tag "thumbnails[]", multiple: true %>
+            </label>
+  
+          </div>
           <label>値段
             <input class="form-control" id="amount_input" name="amount" placeholder="例(1000)">
           </label>
@@ -37,4 +44,7 @@
   amount_input.addEventListener("input", function(event){
     commision_text.textContent = Math.round((Number(event.target.value) + (Number(event.target.value) * 0.15))) + "(手数料込み)"
   });
+
+
+  
 </script>

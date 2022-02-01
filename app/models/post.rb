@@ -11,6 +11,7 @@ class Post < ApplicationRecord
    has_many :likes
    
    has_one_attached :poster
+   has_many_attached :thumbnails
    def user
       return User.find_by(id: self.user_id)
    end
