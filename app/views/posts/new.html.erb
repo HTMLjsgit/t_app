@@ -11,16 +11,49 @@
           <div>
             <label>記事のポスター画像
               <%# <input type="file" name="poster" class="form-control-file"> %>
-              <%= file_field_tag :poster %>
             </label>
           </div>
-          <div>
+          <div id="image-box-1" style="border: 1px solid #DDDDDD; border-radius: 3px; width: 20%; text-align: center; line-height: 100px; align-self: center; position: absolute; left: 40%;">
+              <div class="item-num" id="image-box__container1" style="">
+                  <div class="input-area">
+                      <%= file_field_tag :poster, local: true, type: 'file', value:"", style: "display:none;", id: "img-file-ind", onclick: "this.value=null;"%>
+                      <label for="img-file-ind" style="vertical-align: middle">
+                      <i class="fas fa-camera"></i>
+                    </label>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <br />
+          <br />
+          <br />
+
+         <!--
+            <div>
             <label>記事の画像集
-              <%# <input type="file" name="thumbnails[]" multiple="multiple" id="thumbnails-file-input"> %>
+               <%# <input type="file" name="thumbnails[]" multiple="multiple" id="thumbnails-file-input"> %>
                 <%= file_field_tag "thumbnails[]", multiple: true %>
+
             </label>
-  
           </div>
+          -->
+          <label>記事の画像集</label>
+          <br />
+
+          <div class="item-num-0">
+              <%= fields_for :image_posts do |i| %>
+                <div class="input-area">
+                    <%= i.file_field :image, type: 'file', name: "item[images_attributes][][image_url]", value:"", id: "img-file", multiple: true, onclick: "this.value=null;" %>
+                </div>
+              <% end %>
+          </div>
+
+          <div id="image-box-1" style="border: 1px solid #DDDDDD; width: 100%; height: 220px; text-align: center; line-height: 200px; border-radius: 3px;">
+            <div class="item-num-0" id="image-box__container"></div>
+          </div>
+          <br />
+
           <label>値段
             <input class="form-control" id="amount_input" name="amount" placeholder="例(1000)">
           </label>
@@ -46,5 +79,5 @@
   });
 
 
-  
+
 </script>

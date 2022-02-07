@@ -67,3 +67,10 @@ gem 'gon', '~> 6.0', '>= 6.0.1'
 gem 'pry-rails'
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
 gem 'simple_form'
+
+
+#---------------新たに追加させていただいたもの-swappp0630---------------------
+gem 'jquery-rails'
+gem 'letter_opener'
+gem "carrierwave"
+gem 'mini_magick'

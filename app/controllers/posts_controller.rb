@@ -3,6 +3,8 @@ class PostsController < ApplicationController
   before_action :post_find, only: [:show, :edit, :update, :destroy, :post_explanation]
   before_action :already_payment_check, only: [:show]
   before_action :payment_check_for_view, only: [:post_explanation]
+  before_action :post_images_find, only: [:show, :edit, :update, :destroy, :post_explanation]
+
   def index
     @posts = Post.all.order(created_at: :desc)
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
@@ -27,8 +29,8 @@ class PostsController < ApplicationController
                      content: params[:content],
                      amount: params[:amount],
                      description: params[:description],
-                     title: params[:title],
-                     thumbnails: params[:thumbnails])
+                     title: params[:title])
+
     if @post.amount.present?
       commission = @post.amount * 0.15 #手数料15%
     end
@@ -38,6 +40,19 @@ class PostsController < ApplicationController
     if params[:poster]
       @post.poster.attach(params[:poster])
     end
+
+    if params[:item][:images_attributes]
+      for i in 0..params[:item][:images_attributes].length - 1
+
+        @image = ImagePost.new(number: params[:item][:images_attributes].length,
+                          image_url: params[:item][:images_attributes][i][:image_url],
+                          picture: params[:item][:images_attributes][i][:image_url].read,
+                          post_id:  @post.id
+                          )
+        @image.save
+      end
+    end
+
     redirect_to(posts_path)
   end
 
@@ -64,7 +79,7 @@ class PostsController < ApplicationController
     redirect_to(posts_path)
   end
 
-  private 
+  private
 
   def already_payment_check
     # 支払いができていないのであれば
@@ -86,4 +101,9 @@ class PostsController < ApplicationController
   def post_find
     @post = Post.find_by(id: params[:id])
   end
+
+  def post_images_find
+    @images = ImagePost.where(post_id: params[:id])
+  end
+
 end
