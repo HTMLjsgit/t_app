@@ -10,6 +10,11 @@
 </div>
 
 
+<div>
+  <% @images.each do |image| %>
+    <%= image_tag("data:image/png;base64,#{Base64.encode64(image.picture).gsub("\n", "")}", :size => '150x150', class: "image")%>
+  <% end %>
+</div>
 
 <% if @payment_check %>
   <%= link_to "記事を読む", post_path(@post) %>

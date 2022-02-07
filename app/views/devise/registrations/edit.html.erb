@@ -7,7 +7,7 @@
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
-      
+
         <div class="form-group field row mt-5">
           <div class="col-md-1">
           </div>
@@ -71,7 +71,7 @@
           <%= f.submit "更新する",  :class => "btn  input", :style => "width: 40%;color: white;" %>
         </div>
       <% end %>
-  
+
     </div>
 
     <div class="card-body" style="border-bottom: 1px solid rgba(0,0,0,.125);">
@@ -91,8 +91,20 @@
               </div>
             <% end %>
 
-            <%= form.file_field :avater %>
-      
+            <!-- <%= form.file_field :avater %> -->
+
+          </div>
+
+          <div id="image-box-1" style="border: 1px solid #DDDDDD; border-radius: 3px; width: 20%; text-align: center; line-height: 108px; align-self: center; position: absolute; left: 40%;">
+              <div class="item-num-0" id="image-box__container1">
+                  <div class="input-area">
+                      <%= form.file_field :real_image, type: 'file', name: "item[images_attributes][][image_url]", value:"", style: "display:none;", id: "img-file-ind", onclick: "this.value=null;"%>
+                      <label for="img-file-ind" style="vertical-align: middle">
+                      <i class="fas fa-camera"></i>
+                    </label>
+                  </div>
+              </div>
+            </div>
           </div>
           <div class="col-md-1">
           </div>

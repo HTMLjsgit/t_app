@@ -70,9 +70,14 @@ class UsersController < ApplicationController
   end
 
   def avater_update
-    if params[:user] and avater = params[:user][:avater]
+    param_avater = params[:item][:images_attributes][0][:image_url]
+    # if params[:user] and avater = params[:user][:avater]
+    #   @user = User.find(current_user.id)
+    #   @user.avater.attach(avater)
+    # end
+    if param_avater
       @user = User.find(current_user.id)
-      @user.avater.attach(avater)
+      @user.avater.attach(param_avater)
     end
     redirect_to "/users/edit"
   end
