@@ -23,7 +23,7 @@ class User < ApplicationRecord
  has_many :reals #リアル
  has_many :likes #いいね
  has_many :real_likes
- mount_uploader :image_url, ImageUploader
+#  mount_uploader :image_url, ImageUploader
 
  has_one_attached :avater
      # ユーザーをフォローする
@@ -47,5 +47,9 @@ class User < ApplicationRecord
 
     def liked_by?(post_id)
       likes.where(post_id: post_id).exists?
+    end
+
+    def self.find_first_by_auth_conditions(warden_conditions)
+      to_adapter.find_first(warden_conditions)
     end
 end

@@ -2,7 +2,9 @@ class RoomsController < ApplicationController
   def show
     if @room = Room.find(params[:id])
       @posts = @room.chat_posts
-      ChatPost.where.not(:user_id => current_user.id).where(:room_id => params[:id]).update_all("see = 1")
+      @room_userid = UserRoom.where(:room_id => params[:id]).to_a
+      ChatPost.where.not(:user_id => @room_userid[0].user_id).where(:room_id => params[:id]).update_all("see = 1")
+      @this_user = User.find(@room_userid[0].user_id)
     end
   end
 

@@ -1,10 +1,12 @@
 class PaymentsController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :post_payment]
+  before_action :check_user_auth, only: [:index, :post_payment]
   before_action :post_find, only: [:post_payment]
   before_action :already_payment_check, only: [:post_payment]
+
   def index
     @payments = current_user.payments
   end
+
   def post_payment
     sender = nil
     # if user_signed_in?
@@ -29,7 +31,7 @@ class PaymentsController < ApplicationController
       currency: "jpy",
       stripe_commission: 0.036,
       stripe_amount_after_subtract_commision: @post.amount * 0.036,
-      mine_subtract_commision_amount: mine_commision, 
+      mine_subtract_commision_amount: mine_commision,
       mine_commision: mine_commision, #手数料
       stripe_and_mine_subtract_commision_amount: @post.amount * (0.036 + 0.15), # 記事の値段 × (このサービス上の手数料 + stripeの手数料)
       commision_amount_result: @post.amount + mine_commision, #手数料と記事の値段を合わせた結果
@@ -80,6 +82,16 @@ class PaymentsController < ApplicationController
     if current_user.payments.find_by(post_id: @post.id, user_id: current_user.id).present?
       # 強制的にトップに戻す。
       redirect_to @post and return
+    end
+  end
+
+  def check_user_auth
+    if current_user.present?
+      print true
+    elsif current_admin.present?
+      print true
+    else
+      new_user_session_path
     end
   end
 end

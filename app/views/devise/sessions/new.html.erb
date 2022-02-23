@@ -1,7 +1,7 @@
 <div class="card col-md-5 col-xs-12 mx-auto mt-5">
   <div class="card-body">
     <h3 class="mt-1 mb-3">ログイン</h3>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="form-group">
       <%= f.label :email, "メールアドレス", :class => "form-label" %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control" %>
@@ -23,5 +23,9 @@
     <% end %>
     <div class="small text-muted text-center mt-4">新しいユーザですか?</div>
     <%= link_to "アカウントを作成", new_user_registration_path, :class => "btn btn-light btn-block border mt-1" %>
+
+    <div class="actions">
+      <%= link_to "管理者ログイン画面", new_admin_session_path %>
+    </div>
   </div>
 </div>

@@ -33,7 +33,7 @@
             <!-- 購入していなかったら -->
             <% if user_signed_in? %>
               <% unless @post_payment_check.present? %>
-                <%= button_tag "¥#{post.amount}", id: "post-payment-box-open-link-#{post.id}", data: {post_id: post.id} %>
+                <%= button_tag "¥#{post.amount+post.commission}", id: "post-payment-box-open-link-#{post.id}", data: {post_id: post.id} %>
 
                 <script>
                   var post_payment_open_link_<%= post.id %> = document.getElementById("post-payment-box-open-link-<%= post.id %>");
@@ -57,9 +57,12 @@
     </div>
   </div>
 </div>
-<%= link_to new_post_path, {class: "post_pen", method: :get} do %>
-  <span class="fa-stack post_pen">
-    <i class="fas fa-circle fa-stack-2x"style="color:pink"></i>
-    <i class="fas fa-plus fa-stack-1x"style="color:white"></i>
-  </span>
+
+<% unless current_admin.present? %>
+  <%= link_to new_post_path, {class: "post_pen", method: :get} do %>
+    <span class="fa-stack post_pen">
+      <i class="fas fa-circle fa-stack-2x"style="color:pink"></i>
+      <i class="fas fa-plus fa-stack-1x"style="color:white"></i>
+    </span>
+  <% end %>
 <% end %>
