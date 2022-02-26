@@ -19,7 +19,33 @@
 <% if @payment_check %>
   <%= link_to "記事を読む", post_path(@post) %>
 <% else %>
-  <%= button_tag "¥#{@post.amount}", id: "post-payment-box-open-link", data: {post_id: @post.id} %>
+  <%= button_tag "¥#{@post.amount+@post.commission}", id: "post-payment-box-open-link", data: {post_id: @post.id} %>
+<% end %>
+
+ <% if @user == current_user %>
+      <div class="post-menus">
+        <%= link_to(edit_post_path(@post), method: :get) do%>
+          <i class="far fa-edit fa-2x"></i>
+        <% end %>
+
+        <%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %>
+        <%= link_to(post_path(@post),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>
+          <i class="fas fa-trash-alt fa-2x"></i>
+        <% end %>
+      </div>
+      <br />
+      <br />
+      <br />
+      <p>
+        購入数：<%= @purchase_num %>
+      </p>
+      <p>
+        <% if current_user.present? %>
+          <% if current_user.id == @post.user_id %>
+            閲覧数：<%= @post.impressionist_count %>
+          <% end %>
+        <% end %>
+      </p>
 <% end %>
 
 <% if @posts.exists? %>
@@ -27,6 +53,7 @@
     <%= render partial: "payments/post_payment" %>
   <% end %>
 <% end %>
+
 
 <script>
   var post_payment_open_link = document.getElementById("post-payment-box-open-link");

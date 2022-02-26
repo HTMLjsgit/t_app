@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :check_stopped, only: [:create], if: :devise_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :dm_count
 
@@ -11,6 +12,8 @@ class ApplicationController < ActionController::Base
       user_room_rels.find_each do | user_room_rel |
         @user_room_rels_count += ChatPost.where.not(:user_id => current_user.id).where(:see => 0).where(:room_id => user_room_rel.room_id).count
       end
+    elsif current_admin.present?
+      @user_room_rels_count = 0
     end
   end
 
@@ -20,7 +23,20 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
     devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
   end
-  def after_sign_in_path_for(resource)
-    user_path(resource)
+
+
+  def check_stopped
+    print "こんにちは"
+    if (user_signed_in?) then
+      print "enter"
+      print params
+      print "finish"
+      if (params.present?) then
+        if (User.find_by_email(params["user"]["email"]).isstopped == true) then
+          sign_out_and_redirect(current_user)
+        end
+      end
+    end
   end
+
 end

@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :create, :new, :edit, :update, :destroy]
+  before_action :check_user_auth, only: [:show, :create, :new, :edit, :update, :destroy]
   before_action :post_find, only: [:show, :edit, :update, :destroy, :post_explanation]
   before_action :already_payment_check, only: [:show]
   before_action :payment_check_for_view, only: [:post_explanation]
   before_action :post_images_find, only: [:show, :edit, :update, :destroy, :post_explanation]
+  impressionist :actions=> [:show]
 
   def index
     @posts = Post.all.order(created_at: :desc)
@@ -59,6 +60,10 @@ class PostsController < ApplicationController
   def post_explanation
     @posts = Post.all
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
+    @user = current_user
+    impressionist(@post)
+    @purchases = Payment.where(post_id: @post.id).to_a
+    @purchase_num = @purchases.length
   end
 
   def edit
@@ -83,16 +88,24 @@ class PostsController < ApplicationController
 
   def already_payment_check
     # 支払いができていないのであれば
-    unless current_user.payments.find_by(post_id: @post.id, user_id: current_user.id).present?
-      # 強制的にトップに戻す。
-      redirect_to root_path and return
+    if (current_user.present?)
+      unless current_user.payments.find_by(post_id: @post.id, user_id: current_user.id).present?
+        # 強制的にトップに戻す。
+        redirect_to root_path and return
+      end
     end
   end
 
   def payment_check_for_view
-    if current_user.payments.find_by(post_id: @post.id, user_id: current_user.id).present?
-      @payment_check = true
-    else
+    if current_user.present?
+      if current_user.payments.find_by(post_id: @post.id, user_id: current_user.id).present?
+        @payment_check = true
+      else
+        @payment_check = false
+      end
+    end
+
+    if current_admin.present?
       @payment_check = false
     end
   end
@@ -104,6 +117,17 @@ class PostsController < ApplicationController
 
   def post_images_find
     @images = ImagePost.where(post_id: params[:id])
+  end
+
+
+  def check_user_auth
+    if current_user.present?
+      print true
+    elsif current_admin.present?
+      print true
+    else
+      new_user_session_path
+    end
   end
 
 end

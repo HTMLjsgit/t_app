@@ -14,26 +14,27 @@
         <%= @post.content %>
       </div>
 
+     <% if current_user.present? %>
+  　　　<% unless @user == current_user %>
+        <% if Like.find_by(user_id: current_user.id,post_id: @post.id) %>
 
-　　　<% unless @user == current_user %>
-      <% if Like.find_by(user_id: current_user.id,post_id: @post.id) %>
+          <%= link_to destroy_like_path(@post), class: "like-btn", method: :DELETE, remote: true do %>
+            <i class="fa fa-heart like-btn"></i>
+          <% end %>
+          <%= @post.likes.count %>
 
-        <%= link_to destroy_like_path(@post), class: "like-btn", method: :DELETE, remote: true do %>
-          <i class="fa fa-heart like-btn"></i>
-        <% end %>
-        <%= @post.likes.count %>
+          <% else %>
 
+          <%= link_to create_like_path(@post), class: "like-btn", method: :POST, remote: true do %>
+            <i class="far fa-heart like-btn"></i>
+          <% end %>
+          <%= @post.likes.count %>
+          <% end %>
         <% else %>
-
-        <%= link_to create_like_path(@post), class: "like-btn", method: :POST, remote: true do %>
-          <i class="far fa-heart like-btn"></i>
-        <% end %>
+        <i class="far fa-heart like-btn"></i>
         <%= @post.likes.count %>
-        <% end %>
-      <% else %>
-      <i class="far fa-heart like-btn"></i>
-      <%= @post.likes.count %>
-　　　<% end %>
+  　　　<% end %>
+     <% end %>
   <% if @user == current_user %>
       <div class="post-menus">
         <%= link_to(edit_post_path(@post), method: :get) do%>

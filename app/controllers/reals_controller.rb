@@ -1,4 +1,5 @@
 class RealsController < ApplicationController
+  impressionist :actions=> [:show]
 
   def index
     @reals = Real.all.order(created_at: :desc)
@@ -9,6 +10,7 @@ class RealsController < ApplicationController
     @user = @real.user
     @real_comments = @real.real_comments.all.order(created_at: :desc)
     @real_comment = RealComment.new
+    impressionist(@real)
   end
 
   def new
@@ -41,7 +43,6 @@ class RealsController < ApplicationController
   def update
     @real = Real.find_by(id: params[:id])
     @real.content = params[:content]
-    @real.image = params[:image]
     @real.save
     redirect_to(reals_path)
   end

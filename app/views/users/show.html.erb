@@ -9,63 +9,65 @@
 </div>
 <% end %>
 <h2><%= "#{@user.username}" %>
-<% if @user.id == current_user.id %>
-<%= link_to chat_index_path, method: :get do%>
-   <i class="far fa-envelope relative">
-     <% if @user_room_rels_count > 0 %>
+<% if current_user.present? %>
+  <% if @user.id == current_user.id %>
+  <%= link_to chat_index_path, method: :get do%>
+    <i class="far fa-envelope relative">
+      <% if @user_room_rels_count > 0 %>
 
-       <span class="non_count_total"><%= @user_room_rels_count %></span>
-     <% end %>
-   </i>
- <% end %>
+        <span class="non_count_total"><%= @user_room_rels_count %></span>
+      <% end %>
+    </i>
+  <% end %>
 
-<% else %>
-  <% if @create_room %>
-    <%= link_to "/rooms/#{@create_room.room_id}", method: :get do%>
+  <% else %>
+    <% if @create_room %>
+      <%= link_to "/rooms/#{@create_room.room_id}", method: :get do%>
+          <i class="far fa-envelope relative"></i>
+      <% end %>
+    <% else %>
+      <%= link_to "/rooms/#{@user.id}", method: :post do%>
         <i class="far fa-envelope relative"></i>
-    <% end %>
-  <% else %>
-    <%= link_to "/rooms/#{@user.id}", method: :post do%>
-      <i class="far fa-envelope relative"></i>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
-</h2>
-<div class="user_count">
-  <ul>
-   <li>
-    <h1><%= link_to "#{@user.followed.count}", show_follower_path(@user.id) %></h1><%= "フォロワー" %>
-   </li>
-   <li>
-    <h1><%= link_to "#{@user.follower.count}", show_following_path(@user.id) %></h1><%= "フォロー" %>
-   </li>
-  </ul>
-</div>
-<% if @user.id == current_user.id %>
-    <li class="nav-item ">
-      <%= link_to 'アカウント編集', edit_user_registration_path, {class: "nav-link"} %>
+  </h2>
+  <div class="user_count">
+    <ul>
+    <li>
+      <h1><%= link_to "#{@user.followed.count}", show_follower_path(@user.id) %></h1><%= "フォロワー" %>
     </li>
-<% end %>
-
-<% unless @user == current_user %>
-  <% if current_user.following?(@user) %>
-    <%= link_to 'フォロー中', unfollow_path(@user.id),:class => "btn btn-primary btn-sm follow_btn size-2", method: :POST, data: { confirm: 'フォローを解除' } %>
-  <% else %>
-    <%= link_to 'フォローする', follow_path(@user.id), :class => "btn btn-primary btn-sm follow_btn size-2",method: :POST %>
+    <li>
+      <h1><%= link_to "#{@user.follower.count}", show_following_path(@user.id) %></h1><%= "フォロー" %>
+    </li>
+    </ul>
+  </div>
+  <% if @user.id == current_user.id %>
+      <li class="nav-item ">
+        <%= link_to 'アカウント編集', edit_user_registration_path, {class: "nav-link"} %>
+      </li>
   <% end %>
+
+  <% unless @user == current_user %>
+    <% if current_user.following?(@user) %>
+      <%= link_to 'フォロー中', unfollow_path(@user.id),:class => "btn btn-primary btn-sm follow_btn size-2", method: :POST, data: { confirm: 'フォローを解除' } %>
+    <% else %>
+      <%= link_to 'フォローする', follow_path(@user.id), :class => "btn btn-primary btn-sm follow_btn size-2",method: :POST %>
+    <% end %>
+  <% end %>
+  <p></p>
+
+  <!--<h3>トークルーム作成</h3>-->
+  <%#= form_with model: @room do |f| %>
+    <%#= f.label "部屋名" %>
+    <%#= f.text_field :name %>
+    <%#= f.submit "部屋を作成" %>
+  <%# end %>
+
+  <!--<h4>未参加トークルーム一覧</h4>-->
+  <%# @nonrooms.each do |room| %>
+    <%#<a class="room_tags" href="/rooms/<%= room.id %><%#= room.name %>
+  <%# end %>
+
+  <p></p>
 <% end %>
-<p></p>
-
-<!--<h3>トークルーム作成</h3>-->
-<%#= form_with model: @room do |f| %>
-  <%#= f.label "部屋名" %>
-  <%#= f.text_field :name %>
-  <%#= f.submit "部屋を作成" %>
-<%# end %>
-
-<!--<h4>未参加トークルーム一覧</h4>-->
-<%# @nonrooms.each do |room| %>
-  <%#<a class="room_tags" href="/rooms/<%= room.id %><%#= room.name %>
-<%# end %>
-
-<p></p>
