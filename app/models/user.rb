@@ -48,4 +48,8 @@ class User < ApplicationRecord
     def liked_by?(post_id)
       likes.where(post_id: post_id).exists?
     end
+
+    def self.find_first_by_auth_conditions(warden_conditions)
+      to_adapter.find_first(warden_conditions)
+    end
 end

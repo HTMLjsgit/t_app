@@ -7,6 +7,7 @@ class Real < ApplicationRecord
   has_many_attached :images
   has_many :image_reals, dependent: :destroy
   accepts_nested_attributes_for :image_reals, allow_destroy: true
+  is_impressionable
 
   def user
      return User.find_by(id: self.user_id)
