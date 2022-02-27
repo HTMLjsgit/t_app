@@ -61,7 +61,11 @@ class PostsController < ApplicationController
     @posts = Post.all
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
     @user = current_user
-    impressionist(@post)
+    if current_user.present? then
+      if (current_user.id != @post.user_id) then
+        impressionist(@post)
+      end
+    end
     @purchases = Payment.where(post_id: @post.id).to_a
     @purchase_num = @purchases.length
   end
