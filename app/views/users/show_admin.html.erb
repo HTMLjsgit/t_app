@@ -11,7 +11,7 @@
     <% @users.each do |user| %>
       <tr>
           <td><%= user.id %></td>
-          <td><%= user.username %></td>
+          <td><%= link_to(user.username , "/users/#{user.id}", method: :get)%></td>
           <td><%= user.email %></td>
           <td>
             <%=  link_to(admin_destroy_user_path(user), data: { confirm: "このアカウントを削除してもよろしいですか？" }, method: :delete) do%>
