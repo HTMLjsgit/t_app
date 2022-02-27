@@ -23,7 +23,7 @@ class User < ApplicationRecord
  has_many :reals #リアル
  has_many :likes #いいね
  has_many :real_likes
- mount_uploader :image_url, ImageUploader
+#  mount_uploader :image_url, ImageUploader
 
  has_one_attached :avater
      # ユーザーをフォローする
