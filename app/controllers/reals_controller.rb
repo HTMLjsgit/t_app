@@ -10,12 +10,8 @@ class RealsController < ApplicationController
     @user = @real.user
     @real_comments = @real.real_comments.all.order(created_at: :desc)
     @real_comment = RealComment.new
-    print current_user.id
-    print @user.id
-    print @real.user_id
     if current_user.present? then
       if (current_user.id != @real.user_id) then
-        print "nomore"
         impressionist(@real)
       end
     end
