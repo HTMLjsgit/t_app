@@ -11,7 +11,9 @@
       <% end %>
 
         <% @real.image_reals.each do |image| %>
-          <%= image_tag image.picture.url %>
+          <% if image.picture? %>
+            <%= image_tag image.picture.url %>
+          <% end %>
         <% end %>
         <div class="real-show-content">
 
