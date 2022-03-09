@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     ret = nil
     UserRoom.where(room_id: room_id).find_each do | user_room |
       create_user_id = user_room.user_id
-      if user_room.user_id == current_user.id
+      if user_room.user_id == @user.id
         ret = User.where(id: user_room.to_user_id).first
       else
         ret = User.where(id: user_room.user_id).first
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     end
 
     # 相手が部屋を作成した(user_rooms.user_id(部屋作成者)が相手) かつ メッセージが来ていない場合（chat_posts0件）はnilを返す（メッセージ一覧非表示）
-    if create_user_id != current_user.id and ChatPost.where(room_id: room_id).count == 0
+    if create_user_id != @user.id and ChatPost.where(room_id: room_id).count == 0
       return nil
     else
       return ret
@@ -104,8 +104,9 @@ class UsersController < ApplicationController
 
   def chat_index
     # @to_users = nil
+    @user = User.find(params[:id])
     room_ids = []
-    room_rels = UserRoom.where(user_id: current_user.id).or(UserRoom.where(to_user_id: current_user.id)).find_each do | room_rel |
+    room_rels = UserRoom.where(user_id: @user.id).or(UserRoom.where(to_user_id: @user.id)).find_each do | room_rel |
       unless room_ids.include?(room_rel.room_id)
         room_ids.push(room_rel.room_id)
       end
@@ -141,6 +142,7 @@ class UsersController < ApplicationController
     print @rooms.to_a.length
     print @users_admin.to_a[0].avater
     print @indexes
+    print  "yaerafaw"
   end
 
   def avater_update

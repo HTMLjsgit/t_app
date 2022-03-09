@@ -5,13 +5,13 @@
 
 <% if @rooms %>
   <% @rooms.each do |room| %>
-    <% user = get_to_user(current_user.id, room.id) %>
+    <% user = get_to_user(@user.id, room.id) %>
     <% if user %>
       <div class="users-index-item">
         <% if user.avater.attached? %>
           <div class="users" style="position: relative;">
             <%= image_tag user.avater %>
-            <% non_count = non_count(current_user.id, room.id) %>
+            <% non_count = non_count(@user.id, room.id) %>
             <% if non_count > 0 %>
               <% total_count += non_count %>
               <span class="msg_count"><%= non_count %></span>
@@ -20,7 +20,7 @@
         <% else %>
           <div class="users" style="position: relative;">
             <%= image_tag "/blank-profile-picture-973460_640.png" %>
-            <% non_count = non_count(current_user.id, room.id) %>
+            <% non_count = non_count(@user.id, room.id) %>
             <% if non_count > 0 %>
               <% total_count += non_count %>
               <span class="msg_count"><%= non_count %></span>
