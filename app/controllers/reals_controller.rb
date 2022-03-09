@@ -1,6 +1,6 @@
 class RealsController < ApplicationController
   impressionist :actions=> [:index]
-
+  before_action :authenticate_user!, only: [:show, :create, :update, :edit, :new, :destroy]
   def index
     @reals = Real.all.order(created_at: :desc)
   end
@@ -30,7 +30,7 @@ class RealsController < ApplicationController
                                               picture: image_post["picture"])
       end
     end
-    
+
     @real.save!
 
     redirect_to(reals_path)
