@@ -22,27 +22,14 @@ class RealsController < ApplicationController
   end
 
   def create
+
     @real = Real.new(real_params)
-    @real.save!
-    if params[:item].present?
-      if params[:item][:images_attributes]
-        for i in 0..params[:item][:images_attributes].length - 1
-          @image_real = ImageReal.new(number: params[:item][:images_attributes].length,
-                            image_url: params[:item][:images_attributes][i][:image_url],
-                            picture: params[:item][:images_attributes][i][:image_url].read,
-                            real_id:  @real.id
-                            )
-          @image_real.save
-        end
-      end
-    else
-      @image_real = ImageReal.new(number: 0,
-                            image_url: "",
-                            picture: "",
-                            real_id:  @real.id
-                            )
-      @image_real.save
+    params[:image_posts].each do |image_post|
+     @real.image_reals.build(number: params[:image_posts].length,
+                                             picture: image_post["picture"])
     end
+
+    @real.save!
 
     redirect_to(reals_path)
   end
@@ -66,6 +53,6 @@ class RealsController < ApplicationController
 
   private
   def real_params
-    params.require(:real).permit(:content, :user_id, images: [])
+    params.require(:real).permit(:content).merge(user_id: current_user.id)
   end
 end

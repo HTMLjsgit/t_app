@@ -10,13 +10,9 @@
         </div>
       <% end %>
 
-
-      <% if @real.images.attached? %>
-        <% @real.images.each do |image| %>
-          <%= image_tag image, class: "real-image"%>
+        <% @real.image_reals.each do |image| %>
+          <%= image_tag image.picture.url %>
         <% end %>
-      <% end %>
-
         <div class="real-show-content">
 
           <%= @real.content %>
