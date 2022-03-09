@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2022_02_21_111322) do
 
   create_table "image_reals", force: :cascade do |t|
     t.string "number"
-    t.binary "picture"
+    t.string "picture"
     t.integer "real_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

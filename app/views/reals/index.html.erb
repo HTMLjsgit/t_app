@@ -17,10 +17,9 @@
          </div>
         <% end %>
 
-        <% if real.images.attached? %>
-          <% real.images.each do |image| %>
-            <%= image_tag image, style: "width: 100px; height: 100px; object-fit: cover;" %>
-          <% end %>
+
+        <% real.image_reals.each do |image| %>
+            <%= image_tag image.picture.url, style: "width: 100px; height: 100px; object-fit: cover;" %>
         <% end %>
         <%= link_to(real.content,"reals/#{real.id}",class: "real-index-content") %>
       <p>

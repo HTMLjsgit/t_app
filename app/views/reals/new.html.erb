@@ -7,12 +7,11 @@
       <div class="form">
         <div class="form-body">
           <%= f.text_area :content, class: 'form-control' %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
 
           <div class="item-num-0" id="image-box__container1">
               <%= fields_for :image_posts do |i| %>
                 <div class="input-area">
-                    <%= i.file_field :image, type: 'file', name: "item[images_attributes][][image_url]", value:"", id: "img-file", multiple: true, onclick: "this.value=null;" %>
+                    <%= i.file_field :image, type: 'file', name: "[image_posts][][picture]", value:"", id: "img-file", multiple: true, onclick: "this.value=null;" %>
                 </div>
               <% end %>
           </div>
