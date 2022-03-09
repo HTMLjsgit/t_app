@@ -24,11 +24,13 @@ class RealsController < ApplicationController
   def create
 
     @real = Real.new(real_params)
-    params[:image_posts].each do |image_post|
-     @real.image_reals.build(number: params[:image_posts].length,
-                                             picture: image_post["picture"])
+    if params[:image_posts]
+      params[:image_posts].each do |image_post|
+      @real.image_reals.build(number: params[:image_posts].length,
+                                              picture: image_post["picture"])
+      end
     end
-
+    
     @real.save!
 
     redirect_to(reals_path)
