@@ -30,8 +30,6 @@ class RealsController < ApplicationController
     end
 
     @real.save!
-    binding.pry
-
 
     redirect_to(reals_path)
   end
