@@ -3,13 +3,12 @@ class PostsController < ApplicationController
   before_action :post_find, only: [:show, :edit, :update, :destroy, :post_explanation]
   before_action :already_payment_check, only: [:show]
   before_action :payment_check_for_view, only: [:post_explanation]
-  before_action :post_images_find, only: [:show, :edit, :update, :destroy, :post_explanation]
   impressionist :actions=> [:show]
 
   def index
     @posts = Post.all.order(created_at: :desc)
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
-
+    
   end
 
   def show
@@ -28,33 +27,28 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(user_id: current_user.id,
-                     content: params[:content],
-                     amount: params[:amount],
-                     description: params[:description],
-                     title: params[:title])
-
+    @post = Post.new(post_params)
     if @post.amount.present?
       commission = @post.amount * 0.15 #手数料15%
     end
     @post.commission = commission
 
     @post.save!
-    if params[:poster]
-      @post.poster.attach(params[:poster])
-    end
+    # if params[:poster]
+    #   @post.poster.attach(params[:poster])
+    # end
 
-    if params[:item][:images_attributes]
-      for i in 0..params[:item][:images_attributes].length - 1
+    # if params[:item][:images_attributes]
+    #   for i in 0..params[:item][:images_attributes].length - 1
 
-        @image = ImagePost.new(number: params[:item][:images_attributes].length,
-                          image_url: params[:item][:images_attributes][i][:image_url],
-                          picture: params[:item][:images_attributes][i][:image_url].read,
-                          post_id:  @post.id
-                          )
-        @image.save
-      end
-    end
+    #     @image = ImagePost.new(number: params[:item][:images_attributes].length,
+    #                       image_url: params[:item][:images_attributes][i][:image_url],
+    #                       picture: params[:item][:images_attributes][i][:image_url].read,
+    #                       post_id:  @post.id
+    #                       )
+    #     @image.save
+    #   end
+    # end
 
     redirect_to(posts_path)
   end
@@ -63,6 +57,7 @@ class PostsController < ApplicationController
     @posts = Post.all
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
     @user = current_user
+    @post = Post.find params[:id]
     if current_user.present? then
       if (current_user.id != @post.user_id) then
         impressionist(@post)
@@ -116,15 +111,12 @@ class PostsController < ApplicationController
     end
   end
 
+  def post_params
+    params.require(:post).permit(:content, :amount, :description, :title, :poster, image_posts_attributes: [:picture, :_id, :_destroy]).merge(user_id: current_user.id)
+  end
 
   def post_find
     @post = Post.find_by(id: params[:id])
   end
-
-  def post_images_find
-    @images = ImagePost.where(post_id: params[:id])
-  end
-
-
 
 end

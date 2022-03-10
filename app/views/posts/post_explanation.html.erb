@@ -11,8 +11,10 @@
 
 
 <div>
-  <% @images.each do |image| %>
-    <%= image_tag("data:image/png;base64,#{Base64.encode64(image.picture).gsub("\n", "")}", :size => '150x150', class: "image")%>
+  <% @post.image_posts.each do |image_post| %>
+    <% if image_post.picture? %>
+      <%= image_tag image_post.picture.url, class: "post_explanation_picture" %>
+    <% end %>
   <% end %>
 </div>
 
@@ -23,29 +25,25 @@
 <% end %>
 
  <% if @user == current_user %>
-      <div class="post-menus">
-        <%= link_to(edit_post_path(@post), method: :get) do%>
-          <i class="far fa-edit fa-2x"></i>
-        <% end %>
+  <div class="post-menus">
+    <%= link_to(edit_post_path(@post), method: :get) do%>
+      <i class="far fa-edit fa-2x"></i>
+    <% end %>
 
-        <%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %>
-        <%= link_to(post_path(@post),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>
-          <i class="fas fa-trash-alt fa-2x"></i>
-        <% end %>
-      </div>
-      <br />
-      <br />
-      <br />
-      <p>
-        購入数：<%= @purchase_num %>
-      </p>
-      <p>
-        <% if current_user.present? %>
-          <% if current_user.id == @post.user_id %>
-            閲覧数：<%= @post.impressionist_count %>
-          <% end %>
-        <% end %>
-      </p>
+    <%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %>
+    <%= link_to(post_path(@post),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>
+      <i class="fas fa-trash-alt fa-2x"></i>
+    <% end %>
+  </div>
+  <p>
+    購入数：<%= @purchase_num %>
+  </p>
+  
+  <% if user_signed_in? %>
+    <% if current_user.id == @post.user_id %>
+      <p>閲覧数：<%= @post.impressionist_count %></p>
+    <% end %>
+  <% end %>
 <% end %>
 
 <% if @posts.exists? %>

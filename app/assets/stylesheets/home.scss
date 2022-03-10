@@ -39,7 +39,7 @@ footer {
   height: 60px;
   background: gray;
   color: white;
-  color: red;
+  z-index: 10000;
 }
 footer li {
   display: inline;

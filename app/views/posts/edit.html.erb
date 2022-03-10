@@ -1,15 +1,1 @@
-<div class="main posts-new">
-  <div class="container">
-    <h1 class="form-heading">編集</h1>
-    <%= form_tag(post_path(@post), method: :patch) do %>
-      <div class="form">
-        <div class="form-body">
-          <textarea class="form-control" name="content"><%= @post.content %></textarea>
-         <div class="text-right">
-          <input class="btn btn-primary input" type="submit" value="投稿">
-        </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
+<%= render 'form' %>
