@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :check_user_auth, only: [:show, :create, :new, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:show, :create, :new, :edit, :update, :destroy]
   before_action :post_find, only: [:show, :edit, :update, :destroy, :post_explanation]
   before_action :already_payment_check, only: [:show]
   before_action :payment_check_for_view, only: [:post_explanation]
@@ -23,6 +23,8 @@ class PostsController < ApplicationController
   end
 
   def new
+    @post = Post.new
+    @image_post = @post.image_posts.build
   end
 
   def create
@@ -124,14 +126,5 @@ class PostsController < ApplicationController
   end
 
 
-  def check_user_auth
-    if current_user.present?
-      print true
-    elsif current_admin.present?
-      print true
-    else
-      new_user_session_path
-    end
-  end
 
 end

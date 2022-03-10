@@ -1,0 +1,56 @@
+.form-view-images{
+    border: 1px dashed rgb(112, 112, 112);
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+.form-view-images-range{
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    justify-content: center;
+}
+.delete-image-form-button{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    // opacity: 0.8;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    top: 0;
+    z-index: 100; 
+    background-color: #fff;
+    cursor: pointer;
+}
+.camera_icon{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+.form-view-image-item-box{
+    width: 25%;
+    min-height: 100px;
+    max-height: 100px;
+    background-color: rgb(80, 80, 80);
+    margin-right: 20px;
+    position: relative;
+    margin-top: 10px;
+    padding: 5px;
+}
+.form-view-item-image{
+    width: 100%;
+    height: 70%;
+    background-color: #fff;
+    object-fit: cover;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
