@@ -36,7 +36,12 @@ $(function(){
   });
   function addImageForm(resultURL){
     //カメラ画像非表示。
-    $(`.camera_icon`).css('display', 'none');
+    if(image_datas.length > 0){
+      $(`.camera_icon`).css('display', 'none');
+
+    }else{
+      $(`.camera_icon`).css('display', 'block');
+    }
 
     $('.form-view-images-range').append(`<div class="form-view-image-item-box" id="form-view-image-item-box-${image_datas.length}">
       <img src=${resultURL} class="form-view-item-image">

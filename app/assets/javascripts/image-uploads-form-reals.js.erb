@@ -1,0 +1,37 @@
+$(function(){
+  //Reals用の画像フォーム
+  let image_datas = [];
+  let image_form_now_index = 0;
+  let max_upload = 5;
+  $("#real-upload-icon").click(function(event){
+    $(`#real_image_reals_attributes_${image_datas.length}_picture`)[0].click();
+  });
+
+  $(document).on('input', '.real-image-input', function(event){
+    if(event.target.value != "" && $('.reals-image-view-box').length < 5){
+      var reader = new FileReader();
+      reader.onload = function(reader_event){
+        if(image_datas)
+          addImageFormToReals(reader_event.target.result, event.target.files[0].name);
+          image_datas.push({"file":event.target.files[0], "id":event.target.id});
+
+        // $("#poster-view-image").attr('src', event.target.result);
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+  });
+  $(document).on('click', '.delete-button-reals-image-form', function(event){
+    $(`#reals-image-view-box-${event.target.dataset.id}`).remove();
+    $(`#real_image_reals_attributes_${event.target.dataset.id}_picture`).remove();
+    
+  });
+
+  function addImageFormToReals(Base64, file_name){
+    $('.image-view-form.reals').append(`<div class='reals-image-view-box' id='reals-image-view-box-${image_datas.length + 1}'><img src='${Base64}' class='reals-image-view'><p class='reals-image-name'>${file_name}</p><i class='delete-button-reals-image-form fa fa-close' id='delete-button-reals-image-form-${image_datas.length + 1}' data-id='${image_datas.length + 1}'></i></div>`);
+    $('.image-reals-input-form').append(`<input type="file" 
+    name="real[image_reals_attributes][${image_datas.length + 1}][picture]"
+     id="real_image_reals_attributes_${image_datas.length + 1}_picture" class="real-image-input hide">`);
+
+  }
+});
