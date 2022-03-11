@@ -15,3 +15,6 @@
  *= require font-awesome
 */
 
+.hide{
+  display: none;
+}

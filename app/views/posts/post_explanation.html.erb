@@ -1,21 +1,12 @@
 <!--<h1>記事の説明</h1>-->
 <h2><%= @post.title %></h2>
-<% if @post.poster.attached?  %>
-  <%= image_tag @post.poster, class: "post_poster" %>
+<% if @post.poster?  %>
+  <%= image_tag @post.poster.url, class: "post_poster" %>
 <% end %>
 <!--<div><<%= simple_format @post.content.truncate(50) %></div>-->
 
 <div>
   <%= simple_format @post.description %>
-</div>
-
-
-<div>
-  <% @post.image_posts.each do |image_post| %>
-    <% if image_post.picture? %>
-      <%= image_tag image_post.picture.url, class: "post_explanation_picture" %>
-    <% end %>
-  <% end %>
 </div>
 
 <% if @payment_check %>
@@ -24,7 +15,7 @@
   <%= button_tag "¥#{@post.amount+@post.commission}", id: "post-payment-box-open-link", data: {post_id: @post.id} %>
 <% end %>
 
- <% if @user == current_user %>
+<% if @post.user_id == current_user.id %>
   <div class="post-menus">
     <%= link_to(edit_post_path(@post), method: :get) do%>
       <i class="far fa-edit fa-2x"></i>

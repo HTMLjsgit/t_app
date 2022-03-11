@@ -3,17 +3,26 @@ $(function(){
   let image_form_now_index = 0;
   console.log("hello");
   $("#form-view-image-event").click(function(event){
-    console.log("click;");
     $(`#input-post-image-${image_datas.length}`)[0].click();
   });
-
+  $('#form-file-poster').change(function(event){
+    var reader = new FileReader();
+    reader.onload = function(event){
+      $('.clip-icon.poster').css('display', 'none');
+      $('#poster-view-image').css('display', 'block');
+      $("#poster-view-image").attr('src', event.target.result);
+    }
+    reader.readAsDataURL(event.target.files[0]);
+  });
+  $('#click-event-poster-field').click(function(){
+    $('#form-file-poster')[0].click();
+  });
   $(document).on('input', '.form-input-image', function(event){
     if(event.target.value != ""){
       var reader = new FileReader();
       reader.onload = function(reader_event){
         addImageForm(reader_event.target.result);
 
-        console.log(reader_event.target.result);
         image_datas.push({"file":event.target.files[0], "id":event.target.id});
       }
       reader.readAsDataURL(event.target.files[0]);

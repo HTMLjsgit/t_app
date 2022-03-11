@@ -50,9 +50,10 @@
 </div>
 
 <div class="post_explanation_thumbnails">
-  <% if @post.thumbnails.attached? %>
-    <% @post.thumbnails.each do |thumbnail| %>
-        <%= image_tag thumbnail,class: "post_explanation_thumbnails" %>
+
+  <% @post.image_posts.each do |image_post| %>
+    <% if image_post.picture? %>
+      <%= image_tag image_post.picture.url,class: "post_explanation_thumbnails" %>
     <% end %>
   <% end %>
 </div>

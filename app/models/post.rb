@@ -10,12 +10,12 @@ class Post < ApplicationRecord
    has_many :comments
    has_many :likes
    
-   has_one_attached :poster
-   has_many_attached :thumbnails
+   
    has_many :image_posts, dependent: :destroy
    accepts_nested_attributes_for :image_posts, allow_destroy: true
    is_impressionable
 
+   mount_uploader :poster, ImageUploader
    def user
       return User.find_by(id: self.user_id)
    end
