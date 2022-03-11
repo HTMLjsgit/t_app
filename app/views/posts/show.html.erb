@@ -1,59 +1,8 @@
-<div class="main posts-show">
-    <div class="posts-show-item">
-      <% if @user.avater.attached? %>
-        <div class="post-user">
-          <%= image_tag @user.avater %> <%= link_to(@user.username, user_path(@user),class: "post-index-name") %>
-        </div>
-      <% else %>
-        <div class="post-user">
-          <%= image_tag "/blank-profile-picture-973460_640.png" %> <%= link_to(@user.username, user_path(@user),class: "post-index-name") %>
-        </div>
-      <% end %>
-      <div class="post-show-content">
-        <h2><%= @post.title %></h2>
-        <%= @post.content %>
-      </div>
 
-     <% if current_user.present? %>
-  　　　<% unless @user == current_user %>
-        <% if Like.find_by(user_id: current_user.id,post_id: @post.id) %>
 
-          <%= link_to destroy_like_path(@post), class: "like-btn", method: :DELETE, remote: true do %>
-            <i class="fa fa-heart like-btn"></i>
-          <% end %>
-          <%= @post.likes.count %>
-
-          <% else %>
-
-          <%= link_to create_like_path(@post), class: "like-btn", method: :POST, remote: true do %>
-            <i class="far fa-heart like-btn"></i>
-          <% end %>
-          <%= @post.likes.count %>
-          <% end %>
-        <% else %>
-        <i class="far fa-heart like-btn"></i>
-        <%= @post.likes.count %>
-  　　　<% end %>
-     <% end %>
-  <% if @user == current_user %>
-      <div class="post-menus">
-        <%= link_to(edit_post_path(@post), method: :get) do%>
-        <i class="far fa-edit fa-2x"></i>
-        <% end %>
-        <%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %>
-        <%= link_to(post_path(@post),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>
-        <i class="fas fa-trash-alt fa-2x"></i>
-        <% end %>
-        <% end %>
-      </div>
-    </div>
-</div>
-
-<div class="post_explanation_thumbnails">
-  <% if @post.thumbnails.attached? %>
-    <% @post.thumbnails.each do |thumbnail| %>
-        <%= image_tag thumbnail,class: "post_explanation_thumbnails" %>
-    <% end %>
+<div>
+  <% @images.each do |image| %>
+    <%= image_tag("data:image/png;base64,#{Base64.encode64(image.picture).gsub("\n", "")}", :size => '150x150', class: "image")%>
   <% end %>
 </div>
 
