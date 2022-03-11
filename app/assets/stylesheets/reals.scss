@@ -10,12 +10,37 @@
   height: 30%;
 }
 .real-show-content{
-  margin-top: -30px;
+    margin-top: -30px;
     font-size: 22px;
     margin-left: 90px;
     width: 80%;
     color: #4d4d4d;
     word-break: break-all;
+}
+.real-image-upload-icon{
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-image: asset-url("clip-icon.png");
+  background-size: cover;
+}
+#submit-real{
+  margin: 0 0 0 auto;
+}
+.submit-form.reals{
+  display: flex;
+  margin-top: 10px;
+}
+.real-textarea{
+  border: none;
+  resize: none;
+  min-height: 140px;
+
+}
+
+.real-textarea:focus{
+  outline: none;
+  box-shadow: none;
 }
 .real-index-content{
 

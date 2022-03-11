@@ -23,8 +23,8 @@
             </div>
             <% end %>
             <%= link_to(post.title, post_explanation_post_path(id: post.id),class: "post-index-content") %>
-            <% if post.poster.attached? %>
-              <%= image_tag post.poster, class: "post_index_poster" %>
+            <% if post.poster? %>
+              <%= image_tag post.poster.url, class: "post_index_poster" %>
             <% end %>
             <p>
               <i class="far fa-heart like-btn"></i>

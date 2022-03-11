@@ -1,0 +1,28 @@
+
+
+<div class="main">
+  <div class="container">
+    <h1 class="form-heading">Real</h1>
+    <%= form_with model: @real, multipart: true, local: true,  url: reals_path(@real) do |f| %>
+      <div class="form">
+        <div class="form-body">
+          <%= f.text_area :content, class: 'form-control real-textarea', placeholder: "メッセージを入力" %>
+          <div class="image-view-form reals">
+
+          </div>
+          <div class="submit-form reals">
+            <div class="form-contents reals">
+              <div class="real-image-upload-icon" id="real-upload-icon"></div>
+            </div>
+            <%= f.submit "投稿", class: "btn btn-primary input", id: "submit-real" %>
+          </div>
+        </div>
+      </div>
+      <div class="image-reals-input-form" id="image-reals-input-form">
+        <%= f.fields_for :image_reals, @images_real do |f_image_post| %>
+          <%= f_image_post.file_field :picture, class: "real-image-input hide" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

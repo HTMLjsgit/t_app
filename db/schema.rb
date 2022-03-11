@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_21_111322) do
+ActiveRecord::Schema.define(version: 2022_03_11_054049) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -68,8 +68,7 @@ ActiveRecord::Schema.define(version: 2022_02_21_111322) do
 
   create_table "image_posts", force: :cascade do |t|
     t.string "number"
-    t.string "image_url"
-    t.binary "picture"
+    t.string "picture"
     t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -152,6 +151,7 @@ ActiveRecord::Schema.define(version: 2022_02_21_111322) do
     t.bigint "commission"
     t.string "title"
     t.text "description"
+    t.string "poster"
   end
 
   create_table "real_comments", force: :cascade do |t|
