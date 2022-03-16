@@ -2,7 +2,8 @@ class RealsController < ApplicationController
   impressionist :actions=> [:index]
   before_action :authenticate_user!, only: [:show, :create, :update, :edit, :new, :destroy]
   def index
-    @reals = Real.all.order(created_at: :desc)
+    @reals = Real.all.order(created_at: :desc).includes(:image_reals)
+    
   end
 
   def show

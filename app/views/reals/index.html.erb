@@ -1,40 +1,17 @@
-<div class="main posts-index">
-  <div class="container">
-
-    <div style="width:100%;height:500px;overflow:auto;">
-
-
-
-      <% @reals.each do |real| %>
-      <div class="reals-index-item">
-        <% if real.user.avater.attached? %>
-          <div class="real-users">
-            <%= image_tag real.user.avater %>  <%= link_to(real.user.username, "/reals/#{real.id}",class: "real-index-name") %>
-          </div>
-        <% else %>
-        <div class="real-users">
-        <%= image_tag "/blank-profile-picture-973460_640.png" %><%= link_to(real.user.username, "/reals/#{real.id}",class: "real-index-name") %>
-         </div>
-        <% end %>
-
-
-        <% real.image_reals.each do |image| %>
-            <%= image_tag image.picture.url, style: "width: 100px; height: 100px; object-fit: cover;" %>
-        <% end %>
-        <%= link_to(real.content,"reals/#{real.id}",class: "real-index-content") %>
-      <p>
-        <i class="far fa-comment fa-lg comment-show"></i>
-        <%= real.real_comments.count %>
-
-        <i class="far fa-heart like-btn"></i>
-        <%= real.real_likes.count %>
-      </p>
-      </div>
-
-
+<div class="main reals-index">
+  <% @reals.each do |real| %>
+    <div class="real-image-item-box">
+      <%= link_to real_path(real), class: "real-index-link" do %>
+        <div class="real-image-index-box">
+          <% if real.image_reals.exists? %>
+            <% if real.image_reals.first.picture? %>
+              <%= image_tag real.image_reals.first.picture.url, class: "real-image-index" %>
+            <% end %>
+          <% end %>
+        </div>
       <% end %>
-  </div>
- </div>
+    </div>
+  <% end %>
 </div>
 <% unless current_admin.present? %>
   <%= link_to new_real_path, {class: "post_pen", method: :get} do %>
