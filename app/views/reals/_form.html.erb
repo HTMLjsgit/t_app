@@ -6,6 +6,12 @@
     <%= form_with model: @real, multipart: true, local: true,  url: reals_path(@real) do |f| %>
       <div class="form">
         <div class="form-body">
+          <%= link_to reals_path(mode: "camera") do %>
+            
+          <% end %>
+          <%= link_to reals_path(mode: "camera") do %>
+            
+          <% end %>
           <%= f.text_area :content, class: 'form-control real-textarea', placeholder: "メッセージを入力" %>
           <div class="image-view-form reals">
 
