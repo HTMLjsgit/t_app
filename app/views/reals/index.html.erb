@@ -25,7 +25,8 @@
     <% @reals.each do |real| %>
       <div class="real-image-item-box ink">
         <%= link_to real_path(real), class: "real-index-link" do %>
-          <div class="real-image-index-box ink ink-1">
+          <% ink_random = rand(1..10) %>
+          <div class="real-image-index-box ink ink-<%= ink_random %>">
             <div class="on-ink-only-text"><%= simple_format real.content %></div>
           </div>
         <% end %>
