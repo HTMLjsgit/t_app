@@ -26,7 +26,8 @@
       <div class="real-image-item-box ink">
         <%= link_to real_path(real), class: "real-index-link" do %>
           <% ink_random = rand(1..10) %>
-          <div class="real-image-index-box ink ink-<%= ink_random %>">
+          <div class="real-image-index-box ink">
+            <%= image_tag "item/ink/ink-#{ink_random}.png", class: "ink-image" %>
             <div class="on-ink-only-text"><%= simple_format real.content %></div>
           </div>
         <% end %>

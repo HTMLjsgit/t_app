@@ -1,39 +1,52 @@
-<div class="main posts-show">
+<div class="main reals-show">
   <%= render partial: "users/user_profile", locals: {user: @user} %>
-  <div class="real-show-images" id="real-show-images">
-    <% @real.image_reals.each_with_index do |image, index| %>
-      <% if image.picture? %>
-        <div class="image-slide-real-box" data-index="<%= index %>">
-          <%= image_tag image.picture.url %>
-        </div>
+  <% if @real.image_reals.exists? %>
+    <div class="real-show-images" id="real-show-images">
+      <% @real.image_reals.each_with_index do |image, index| %>
+        <% if image.picture? %>
+          <div class="image-slide-real-box" data-index="<%= index %>">
+            <%= image_tag image.picture.url %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="real-show-contents">
+    <div class="user-action-box">
+      <div class="user-real-action">
+        <i class="far fa-comment comment-show"></i>
+        <%= @real.real_comments.count %>
+      </div>
+      <div class="user-real-action">
+        <% unless @user == current_user || current_admin.present? %>
+          <% if @real_like.present? %>
+            <%= link_to destroy_real_like_path(@real), class: "like-btn", method: :delete, remote: true do %>
+              <i class="fa fa-heart like-btn"></i>
+            <% end %>
+            <%= @real.real_likes.count %>
+          <% else %>
+            <%= link_to create_real_like_path(@real), class: "like-btn", method: :post, remote: true do %>
+              <i class="far fa-heart like-btn"></i>
+            <% end %>
+            <%= @real.real_likes.count %>
+          <% end %>
+        <% else %>
+          <i class="far fa-heart like-btn"></i>
+          <%= @real.real_likes.count %>
+      　<% end %>
+      </div>
+    </div>
+    <% if current_user.present? %>
+      <% if current_user.id == @real.user_id %>
+        <p class="reals-views-count-text">閲覧数：<%= @real.impressionist_count %></p>
       <% end %>
     <% end %>
+
   </div>
   <div class="real-show-content">
     <%= @real.content %>
   </div>
 
-  <i class="far fa-comment comment-show"></i>
-  <%= @real.real_comments.count %>
-  <% unless @user == current_user || current_admin.present? %>
-    <% if RealLike.find_by(user_id: current_user.id,real_id: @real.id) %>
-
-      <%= link_to destroy_real_like_path(@real), class: "like-btn", method: :DELETE, remote: true do %>
-        <i class="fa fa-heart like-btn"></i>
-      <% end %>
-      <%= @real.real_likes.count %>
-
-      <% else %>
-
-      <%= link_to create_real_like_path(@real), class: "like-btn", method: :POST, remote: true do %>
-        <i class="far fa-heart like-btn"></i>
-      <% end %>
-      <%= @real.real_likes.count %>
-    <% end %>
-  <% else %>
-      <i class="far fa-heart like-btn"></i>
-      <%= @real.real_likes.count %>
-　　 <% end %>
   <div class="post-menus">
     <%= link_to(edit_real_path(@real), method: :get) do%>
       <i class="far fa-edit fa-2x"></i>
@@ -58,36 +71,22 @@
       <% end %>
     </div>
   </div>
-   <div style="width:100%;height:200px;overflow:auto;">
-    <% @real_comments.each do |comment| %>
-      <div class="comment-index-item">
-        <% if comment.user.avater.attached? %>
-          <div class="post-users">
-            <%= image_tag comment.user.avater %> <%= link_to(comment.user.username, user_path(comment.user),class: "comment-index-name") %>
-          </div>
-        <% else %>
-          <div class="post-users">
-            <%= image_tag "/blank-profile-picture-973460_640.png" %> <%= link_to(comment.user.username, user_path(comment.user),class: "comment-index-name") %>
-        <% end %>
-        <div class="comment-index-content">
-          <%= comment.comment %>
-        </div>
+  <% @real_comments.each do |comment| %>
+    <div class="comment-index-item">
+
+      <%= render partial: "users/user_profile", locals: {user: comment.user} %>
+      <div class="comment-index-content">
+        <%= comment.comment %>
       </div>
-      </div>
-    <% end %>
-   </div>
-   <p>
-    <% if current_user.present? %>
-      <% if current_user.id == @real.user_id %>
-        閲覧数：<%= @real.impressionist_count %>
-      <% end %>
-    <% end %>
-   </p>
-</div>
+    </div>
+    </div>
+  <% end %>
+  </div>
+
 
 <div class="image-real-zoom-area modal-contents hide" id="image-real-zoom-modal-contents">
   <i class="zoom-hide-button fa fa-times-circle modal-hide-button"></i>
-  <div class="image-reals-zoom">
+  <div class="image-reals-zoom <%= @real.image_reals.count > 1 ? "slick" : "" %>">
     <% @real.image_reals.each_with_index do |image, index| %>
       <% if image.picture? %>
         <div class="image-real-zoom-box" data-index="<%= index %>">
@@ -111,7 +110,7 @@
     centerMode: true,
     swipe: false
   });
-  $('.image-reals-zoom').slick({
+  $('.image-reals-zoom.slick').slick({
     dots: false,
     speed: 300,
     slidesToShow: 1,
