@@ -2,15 +2,16 @@ class RealsController < ApplicationController
   impressionist :actions=> [:index]
   before_action :authenticate_user!, only: [:show, :create, :update, :edit, :new, :destroy]
   def index
-    
+    reals_id = ImageReal.pluck(:real_id)
     if params[:mode] == "camera"
-      reals_id = ImageReal.pluck(:real_id)
       @reals = Real.all.where(id: reals_id).includes(:image_reals).distinct
+      @mode = "camera"
     elsif params[:mode] == "char"
-      reals_id = ImageReal.pluck(:real_id)
       @reals = Real.all.where.not(id: reals_id).includes(:image_reals).distinct
+      @mode = "char"
     else
-      @reals = Real.all.order(created_at: :desc).includes(:image_reals)
+      @reals = Real.all.where(id: reals_id).includes(:image_reals).distinct
+      @mode = "camera"
     end
   end
 

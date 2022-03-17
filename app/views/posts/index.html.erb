@@ -13,15 +13,8 @@
             <% @post_payment_check = current_user.payments.find_by(post_id: post.id, user_id: current_user.id) %>
           <% end %>
           <div class="posts-index-item">
-            <% if post.user.avater.attached? %>
-              <div class="post-users">
-                <%= image_tag post.user.avater %>  <%= link_to(post.user.username, "/posts/#{post.id}",class: "post-index-name") %>
-              </div>
-            <% else %>
-            <div class="post-users">
-              <%= image_tag "/blank-profile-picture-973460_640.png" %><%= link_to(post.user.username, "/posts/#{post.id}",class: "post-index-name") %>
-            </div>
-            <% end %>
+
+            <%= render partial: "users/user_profile", locals: {user: post.user} %>
             <%= link_to(post.title, post_explanation_post_path(id: post.id),class: "post-index-content") %>
             <% if post.poster? %>
               <%= image_tag post.poster.url, class: "post_index_poster" %>

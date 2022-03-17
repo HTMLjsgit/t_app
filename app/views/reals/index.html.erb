@@ -1,18 +1,39 @@
-<div class="main reals-index">
-  <% @reals.each do |real| %>
-    <div class="real-image-item-box">
-      <%= link_to real_path(real), class: "real-index-link" do %>
-        <div class="real-image-index-box">
-          <% if real.image_reals.exists? %>
-            <% if real.image_reals.first.picture? %>
-              <%= image_tag real.image_reals.first.picture.url, class: "real-image-index" %>
-            <% end %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
+<div class="real-change-buttons-box">
+  <%= link_to reals_path(mode: "camera"), class: "underline-none hover" do %>
+    <%= image_tag "camera_icon_2.png", class: "real-change-button-image" %>
+  <% end %>
+  <%= link_to reals_path(mode: "char"), class: "underline-none hover" do %>
+    <%= image_tag "item/message.png", class: "real-change-button-image" %>
   <% end %>
 </div>
+<div class="main reals-index">
+  <% if @mode == "camera" %>
+    <% @reals.each do |real| %>
+      <div class="real-image-item-box">
+        <%= link_to real_path(real), class: "real-index-link" do %>
+          <div class="real-image-index-box">
+            <% if real.image_reals.exists? %>
+              <% if real.image_reals.first.picture? %>
+                <%= image_tag real.image_reals.first.picture.url, class: "real-image-index" %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% elsif @mode == "char" %>
+    <% @reals.each do |real| %>
+      <div class="real-image-item-box ink">
+        <%= link_to real_path(real), class: "real-index-link" do %>
+          <div class="real-image-index-box ink ink-1">
+            <div class="on-ink-only-text"><%= simple_format real.content %></div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
 <% unless current_admin.present? %>
   <%= link_to new_real_path, {class: "post_pen", method: :get} do %>
     <span class="fa-stack post_pen">
