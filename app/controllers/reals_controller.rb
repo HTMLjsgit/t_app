@@ -19,17 +19,12 @@ class RealsController < ApplicationController
 
   def new
     @real = Real.new
+    @images_real = @real.image_reals.build()
   end
 
   def create
 
     @real = Real.new(real_params)
-    if params[:image_posts]
-      params[:image_posts].each do |image_post|
-      @real.image_reals.build(number: params[:image_posts].length,
-                                              picture: image_post["picture"])
-      end
-    end
 
     @real.save!
 
@@ -55,6 +50,6 @@ class RealsController < ApplicationController
 
   private
   def real_params
-    params.require(:real).permit(:content).merge(user_id: current_user.id)
+    params.require(:real).permit(:content, image_reals_attributes: [:id, :_destroy, :picture]).merge(user_id: current_user.id)
   end
 end

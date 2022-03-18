@@ -1,0 +1,59 @@
+$(function(){
+  let image_datas = [];
+  let image_form_now_index = 0;
+  console.log("hello");
+  $("#form-view-image-event").click(function(event){
+    $(`#input-post-image-${image_datas.length}`)[0].click();
+  });
+  $('#form-file-poster').change(function(event){
+    var reader = new FileReader();
+    reader.onload = function(event){
+      $('.clip-icon.poster').css('display', 'none');
+      $('#poster-view-image').css('display', 'block');
+      $("#poster-view-image").attr('src', event.target.result);
+    }
+    reader.readAsDataURL(event.target.files[0]);
+  });
+  $('#click-event-poster-field').click(function(){
+    $('#form-file-poster')[0].click();
+  });
+  $(document).on('input', '.form-input-image', function(event){
+    if(event.target.value != ""){
+      var reader = new FileReader();
+      reader.onload = function(reader_event){
+        addImageForm(reader_event.target.result);
+
+        image_datas.push({"file":event.target.files[0], "id":event.target.id});
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+  });
+  $(document).on('click', '.delete-image-form-button', function(event){
+    //削除ボタンを押したら
+    deleteImageForm(event.target);
+    //関数を実行
+  });
+  function addImageForm(resultURL){
+    //カメラ画像非表示。
+    if(image_datas.length > 0){
+      $(`.camera_icon`).css('display', 'none');
+
+    }else{
+      $(`.camera_icon`).css('display', 'block');
+    }
+
+    $('.form-view-images-range').append(`<div class="form-view-image-item-box" id="form-view-image-item-box-${image_datas.length}">
+      <img src=${resultURL} class="form-view-item-image">
+      <%= image_tag 'delete_icon.png', class: "delete-image-form-button", data: {id: '${image_datas.length}'} , id: 'delete-image-form-button-${image_datas.length}' %></div>`);
+    $(`.input-images-area`).append(`<input id="input-post-image-${image_datas.length + 1}" class="form-input-image" type="file" name="post[image_posts_attributes][${image_datas.length + 1}][picture]">`);
+  }
+  function deleteImageForm(targetElement){
+    var id = targetElement.dataset.id;
+    //追加していたフォームを削除する。
+    $(`#form-view-image-item-box-${id}`).remove();
+
+    $(`#input-post-image-${id}`).remove();
+  }
+
+});
