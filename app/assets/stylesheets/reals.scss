@@ -14,17 +14,35 @@
   margin: 0 auto;
   padding: 10px; 
 }
+.reals-comments-box{
+  padding-top: 50px;
+}
+.count-text-contents{
+  padding-left: 5px;
+  padding-top: 3px;
+  margin: 0;
+}
 .user-action-box{
   display: flex;
+
+}
+.reals-views-count-text{
+  padding-top: 5px;
 }
 .user-real-action{
   display: flex;
   font-size: 18px;
 }
+.user-real-action img{
+  width: 30px;
+  height: 30px;
+}
 .real-show-contents{
   display: flex;
   max-width: 80%;
   margin: 0 auto;
+  padding-top: 10px;
+  padding-bottom: 10px; 
 }
 .reals-views-count-text{
   margin: 0 0 0 auto;
@@ -39,6 +57,7 @@
     width: 80%;
     color: #4d4d4d;
     word-break: break-all;
+    min-height: 50px;
 }
 .real-image-item-box{
   margin-right: 2px;
@@ -63,14 +82,12 @@
   font-size: 16px;
   text-align: center;
   overflow: hidden;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
   display: -webkit-box;
   word-break: break-all;
   width: 110%;
   height: 110%;
   position: relative;
-
+  left: 10px;
 }
 .on-ink-only-text p{
   top: 50%;
@@ -79,6 +96,8 @@
   color: #fff;
   max-width: 50%;
   position: absolute;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
 .image-reals-zoom{
   display: flex;
