@@ -95,7 +95,8 @@
 }
 
 .post-menus {
-  float: right;
+  margin: 0 0 0 auto;
+  max-width: 200px;
 }
 
 .post-menus a, .post-menus input {

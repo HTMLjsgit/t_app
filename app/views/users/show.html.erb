@@ -4,9 +4,9 @@
     <%= image_tag @user.avater %>
   </div>
 <% else %>
-<div class="avater_image">
-<%= image_tag "/blank-profile-picture-973460_640.png" %>
-</div>
+  <div class="avater_image">
+    <%= image_tag "blank-profile-picture-973460_640.png" %>
+  </div>
 <% end %>
 <h2><%= "#{@user.username}" %>
 <% if current_user.present? %>

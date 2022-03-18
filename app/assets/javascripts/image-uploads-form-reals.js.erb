@@ -13,7 +13,7 @@ $(function(){
       reader.onload = function(reader_event){
         if(image_datas)
           addImageFormToReals(reader_event.target.result, event.target.files[0].name);
-          image_datas.push({"file":event.target.files[0], "id":event.target.id});
+          image_datas.push({"file":event.target.files[0], "id": event.target.id});
 
         // $("#poster-view-image").attr('src', event.target.result);
       }
@@ -24,7 +24,7 @@ $(function(){
   $(document).on('click', '.delete-button-reals-image-form', function(event){
     $(`#reals-image-view-box-${event.target.dataset.id}`).remove();
     $(`#real_image_reals_attributes_${event.target.dataset.id}_picture`).remove();
-    
+    arrayDelete(`real_image_reals_attributes_${event.target.dataset.id - 1}_picture`);
   });
 
   function addImageFormToReals(Base64, file_name){
@@ -33,5 +33,12 @@ $(function(){
     name="real[image_reals_attributes][${image_datas.length + 1}][picture]"
      id="real_image_reals_attributes_${image_datas.length + 1}_picture" class="real-image-input hide">`);
 
+  }
+  function arrayDelete(_id){
+    for(let i = 0; i < image_datas.length; i++){
+      if(image_datas[i].id == _id){
+        image_datas.splice(i, 1);
+      }
+    }
   }
 });
