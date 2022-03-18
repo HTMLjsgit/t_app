@@ -4,7 +4,7 @@
     <div class="real-show-images" id="real-show-images">
       <% @real.image_reals.each_with_index do |image, index| %>
         <% if image.picture? %>
-          <div class="image-slide-real-box" data-index="<%= index %>">
+          <div class="image-slide-real-box <%= @real.image_reals.count > 1 ? "slick-two" : "" %>" data-index="<%= index %>">
             <%= image_tag image.picture.url %>
           </div>
         <% end %>

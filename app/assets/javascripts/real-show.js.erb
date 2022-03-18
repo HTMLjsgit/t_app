@@ -7,6 +7,8 @@ $(function(){
 
   $(`.image-slide-real-box`).click(function(event){
       modal_display(false, "image-real-zoom-modal-contents", "image-real-zoom-modal-background");
-      $(".image-reals-zoom").slick("slickGoTo", event.currentTarget.dataset.index, true);
+      if(event.currentTarget.className.indexOf("slick-two") >= 0){
+        $(".image-reals-zoom").slick("slickGoTo", event.currentTarget.dataset.index, true);
+      }
   });
 });
