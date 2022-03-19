@@ -1,17 +1,40 @@
 <!--<h1>記事の説明</h1>-->
 <h2><%= @post.title %></h2>
-
-  <% if @post.poster?  %>
-    <%= image_tag @post.poster.url, class: "post_poster" %>
-  <% end %>
-  <% if @post.post_thumbnails.exists? %>
-    <% @post.post_thumbnails.each do |post_thumbnail| %>
-      <% if post_thumbnail.picture? %>
-        <%= image_tag post_thumbnail.picture.url %>
+<div class="post-explanation-slide-box">
+  <div class="post-slide-images-box">
+    <% if @post.poster?  %>
+      <div class="post-slide-image-one-box">
+        <%= image_tag @post.poster.url, class: "post_poster post-slide-image" %>
+      </div>
+    <% end %>
+    <% if @post.post_thumbnails.exists? %>
+      <% @post.post_thumbnails.each do |post_thumbnail| %>
+        <% if post_thumbnail.picture? %>
+          <div class="post-slide-image-one-box">
+            <%= image_tag post_thumbnail.picture.url, class: " post-slide-image" %>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
+  </div>
 
+  <div class="post-slide-control-images-box slick_thumb">
+    <% if @post.poster?  %>
+      <div class="post-slide-control-one-image-box">
+        <%= image_tag @post.poster.url, class: "post_poster post-slide-image" %>
+      </div>
+    <% end %>
+    <% if @post.post_thumbnails.exists? %>
+      <% @post.post_thumbnails.each do |post_thumbnail| %>
+        <% if post_thumbnail.picture? %>
+          <div class="post-slide-control-one-image-box">
+            <%= image_tag post_thumbnail.picture.url, class: " post-slide-image" %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 <div>
   <%= simple_format @post.description %>
 </div>
@@ -49,7 +72,12 @@
     <%= render partial: "payments/post_payment" %>
   <% end %>
 <% end %>
-
+<style>
+  .container{
+    max-width: 1300px;
+    margin: auto;
+  }
+</style>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <script>
@@ -65,5 +93,16 @@
     post_payment_box.style.display = "block";
   });
 
-  
+  $('.post-slide-images-box').slick({
+    arrows: false,
+    asNavFor:'.post-slide-control-images-box',
+    slidesToScroll: 1
+  });
+  $('.post-slide-control-images-box').slick({
+    arrows: false,
+    asNavFor:'.post-slide-images-box',
+    focusOnSelect: true,
+    slidesToShow: 4,
+    slidesToScroll:1
+  });
 </script>

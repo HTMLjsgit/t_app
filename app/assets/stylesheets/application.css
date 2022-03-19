@@ -24,3 +24,6 @@
 .underline-none.hover:hover{
   text-decoration: none;
 }
+.slick_thumb .slick-track {
+  transform:unset !important;
+}
