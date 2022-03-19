@@ -67,15 +67,17 @@
         </div>
       <% end %>
     </div>
-    <% @real_comments.each do |comment| %>
-      <div class="comment-index-item">
+    <div class="comments-all-box">
+      <% @real_comments.each do |comment| %>
+        <div class="comment-index-item">
 
-        <%= render partial: "users/user_profile", locals: {user: comment.user} %>
-        <div class="comment-index-content">
-          <%= simple_format comment.comment %>
+          <%= render partial: "users/user_profile", locals: {user: comment.user} %>
+          <div class="comment-index-content">
+            <%= simple_format comment.comment %>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
 

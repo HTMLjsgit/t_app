@@ -13,6 +13,7 @@
           <div class="form-field">
             <%= f.text_area :description, class: "form-control", placeholder: "記事の説明文" %>
           </div>
+
           <div class="form-field poster">
             <label>記事のポスター画像</label>
             <%= f.file_field :poster, class: "form-control-file hide", id: "form-file-poster" %>
@@ -27,7 +28,19 @@
               <% end %>
             </div>    
           </div>
-          
+
+          <div class="form-field poster">
+            <label>記事のサムネイル</label>
+            
+            <div class="input-images-area">
+              <%= f.fields_for :post_thumbnails, @post_thumbnail do |f_post_thumbnail| %>
+                <%= f_post_thumbnail.file_field :picture, id: "input-post-thumbnail-0",class: "form-input-image" %>
+              <% end %>
+            </div>
+
+            <%= render partial: "layouts/image_form" %>
+          </div>
+
           <div class="form-field poster">
             <label>記事の画像集</label>
             
@@ -39,6 +52,7 @@
 
             <%= render partial: "layouts/image_form" %>
           </div>
+
           <div class="form-field poster">
             <label>値段
               <%= f.text_field :amount, class: "form-control", id: "amount_input",placeholder: "例(1000)"  %>

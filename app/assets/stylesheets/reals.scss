@@ -21,6 +21,10 @@
 .reals-comments-box{
   padding-top: 80px;
 }
+.comments-all-box{
+  overflow-y: auto;
+  max-height: 400px;
+}
 .count-text-contents{
   padding-left: 5px;
   padding-top: 3px;

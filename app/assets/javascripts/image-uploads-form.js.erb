@@ -54,6 +54,17 @@ $(function(){
     $(`#form-view-image-item-box-${id}`).remove();
 
     $(`#input-post-image-${id}`).remove();
-  }
+    // arrayDelete(`input-post-image-${id - 1}`);
 
+    if(image_datas.length == 0){
+      $(`.camera_icon`).css('display', 'block');
+    }
+  }
+  // function arrayDelete(_id){
+  //   for(let i = 0; i < image_datas.length; i++){
+  //     if(image_datas[i].id == _id){
+  //       image_datas.splice(i, 1);
+  //     }
+  //   }
+  // }
 });

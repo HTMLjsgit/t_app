@@ -15,6 +15,7 @@ class PostsController < ApplicationController
     # @post = Post.find_by(id: params[:id])　のコードは private以下に記述していてbefore_action で渡しています。
     @user = @post.user
     @posts_id = params[:posts_id]
+    @post_thumbnail = @post.post_thumbnails.build
     @comment = Comment.new
     @comments = @post.comments.all.order(created_at: :desc)
     @comments = Comment.where(post_id: @post.id)
