@@ -20,12 +20,22 @@
   padding-right: 20%;
 }
 .user-profile-box{
-  display: flex;
+  display: inline-block;
   color: #000;
+}
+.user-name-link{
+  margin-left: 5px;
+}
+.user-profile-box a{
+  color: #000;
+}
+.user-profile-into-box{
+  display: flex;
 }
 .user-name-text{
   padding-top: 10px;
   padding-left: 5px;
+  font-weight: bold;
 }
 .user-avater-box{
   width: 50px;

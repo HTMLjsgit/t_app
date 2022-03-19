@@ -44,39 +44,35 @@
 
   </div>
   <div class="real-show-content">
-    <%= @real.content %>
+    <%= simple_format @real.content %>
   </div>
-  <div class="reals-comments-box comments-box">
-    <div class="post-menus">
-      <%= link_to(edit_real_path(@real), method: :get) do%>
-        <i class="far fa-edit fa-2x"></i>
-      <% end %>
-      <%= @real.updated_at.strftime("%Y-%m-%d %H:%M") %>
-        <%= link_to(real_path(@real),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>
-      <i class="fas fa-trash-alt fa-2x"></i>
-      <% end %>
-    </div>
+  <div class="post-menus">
+    <%= link_to(edit_real_path(@real), method: :get) do%>
+      <i class="far fa-edit fa-2x"></i>
+    <% end %>
+    <%= @real.updated_at.strftime("%Y-%m-%d %H:%M") %>
+      <%= link_to(real_path(@real),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>
+    <i class="fas fa-trash-alt fa-2x"></i>
+    <% end %>
+  </div>
 
-    <div class="main posts-new">
-      <div class="container">
-        <%= form_for (@real_comment) do |f| %>
-          <div class="form">
-            <div class="row form-body">
-              <%= f.text_field :comment,class: "form-control comment-f" %>
-              <%= f.hidden_field :real_id, value: @real.id %>
-              <%= f.hidden_field :user_id, value: @user.id %>
-              <%= f.submit 'コメントする', class: "btn btn-primary input" %>
-            </div>
-          </div>
-        <% end %>
-      </div>
+  <div class="reals-comments-box comments-box">
+
+    <div class="main comments-new">
+      <%= form_for (@real_comment) do |f| %>
+        <div class="comment-form">
+          <%= f.text_area :comment,placeholder: "コメントを追加",class: "comment-field" %>
+          <%= f.hidden_field :real_id, value: @real.id %>
+          <%= f.submit 'コメントする', class: "comment-form-submit" %>
+        </div>
+      <% end %>
     </div>
     <% @real_comments.each do |comment| %>
       <div class="comment-index-item">
 
         <%= render partial: "users/user_profile", locals: {user: comment.user} %>
         <div class="comment-index-content">
-          <%= comment.comment %>
+          <%= simple_format comment.comment %>
         </div>
       </div>
     <% end %>

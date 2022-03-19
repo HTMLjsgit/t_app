@@ -19,7 +19,7 @@
   padding-left: 30px;
 }
 .reals-comments-box{
-  padding-top: 50px;
+  padding-top: 80px;
 }
 .count-text-contents{
   padding-left: 5px;
@@ -45,8 +45,7 @@
   display: flex;
   max-width: 80%;
   margin: 0 auto;
-  padding-top: 10px;
-  padding-bottom: 10px; 
+  padding-top: 30px;
 }
 .reals-views-count-text{
   margin: 0 0 0 auto;
@@ -56,12 +55,11 @@
 }
 .real-show-content{
     margin-top: 30px;
-    font-size: 22px;
-    margin-left: 90px;
-    width: 80%;
+    font-size: 20px;
+    padding-left: 80px;
     color: #4d4d4d;
     word-break: break-all;
-    min-height: 50px;
+    min-height: 100px;
 }
 .real-image-item-box{
   margin-right: 2px;
@@ -256,6 +254,7 @@
   width: 80px;
   height:90px;
 }
+
 
 @media screen and (max-width: 700px){
   .reals-index-item{
