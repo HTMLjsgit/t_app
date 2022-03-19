@@ -15,7 +15,6 @@ class PostsController < ApplicationController
     # @post = Post.find_by(id: params[:id])　のコードは private以下に記述していてbefore_action で渡しています。
     @user = @post.user
     @posts_id = params[:posts_id]
-    @post_thumbnail = @post.post_thumbnails.build
     @comment = Comment.new
     @comments = @post.comments.all.order(created_at: :desc)
     @comments = Comment.where(post_id: @post.id)
@@ -25,6 +24,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @image_post = @post.image_posts.build
+    @post_thumbnail = @post.post_thumbnails.build
   end
 
   def create
@@ -113,7 +113,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:content, :amount, :description, :title, :poster, image_posts_attributes: [:picture, :_id, :_destroy]).merge(user_id: current_user.id)
+    params.require(:post).permit(:content, :amount, :description, :title, :poster, image_posts_attributes: [:picture, :_id, :_destroy], post_thumbnails_attributes: [:picture, :_id, :_destroy]).merge(user_id: current_user.id)
   end
 
   def post_find

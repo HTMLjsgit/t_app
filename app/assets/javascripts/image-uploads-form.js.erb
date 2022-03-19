@@ -1,10 +1,19 @@
 $(function(){
-  let image_datas = [];
+  let image_datas = {
+    post_thumbnails: [
+
+    ],
+    image_posts: [
+
+    ]
+  };
   let image_form_now_index = 0;
-  console.log("hello");
-  $("#form-view-image-event").click(function(event){
-    $(`#input-post-image-${image_datas.length}`)[0].click();
-  });
+  let base_id_name = "";
+  let base_attributes_name = "";
+  let base_column_name = "";
+  let base_table_name = "post";
+  let base_area_name = "";
+
   $('#form-file-poster').change(function(event){
     var reader = new FileReader();
     reader.onload = function(event){
@@ -17,13 +26,23 @@ $(function(){
   $('#click-event-poster-field').click(function(){
     $('#form-file-poster')[0].click();
   });
+
+  //  ↡ 複数画像フォームのJavascript
+  $(".form-view-image-event-range").click(function(event){
+    base_id_name = event.target.dataset.base_id_name;
+    base_column_name = event.target.dataset.base_column_name;
+    base_table_name = event.target.dataset.base_table_name;
+    base_attributes_name = event.target.dataset.base_attributes_name;
+    base_area_name = event.target.dataset.base_area_name;
+    $(`#${base_id_name}-${image_datas[base_area_name].length}`)[0].click();
+  });
   $(document).on('input', '.form-input-image', function(event){
     if(event.target.value != ""){
+
       var reader = new FileReader();
       reader.onload = function(reader_event){
         addImageForm(reader_event.target.result);
-
-        image_datas.push({"file":event.target.files[0], "id":event.target.id});
+        image_datas[base_area_name].push({"file":event.target.files[0], "id":event.target.id});
       }
       reader.readAsDataURL(event.target.files[0]);
     }
@@ -36,35 +55,31 @@ $(function(){
   });
   function addImageForm(resultURL){
     //カメラ画像非表示。
-    if(image_datas.length > 0){
-      $(`.camera_icon`).css('display', 'none');
+    if(image_datas[base_area_name].length > 0){
+      $(`.camera_icon.${base_area_name}`).css('display', 'none');
 
     }else{
-      $(`.camera_icon`).css('display', 'block');
+      $(`.camera_icon.${base_area_name}`).css('display', 'block');
     }
+    // image_datas_areaname = image_datas_get_by_areaName(base_are);
 
-    $('.form-view-images-range').append(`<div class="form-view-image-item-box" id="form-view-image-item-box-${image_datas.length}">
+    $(`.form-view-images-range.${base_area_name}`).append(`<div class="form-view-image-item-box" id="form-view-image-item-box-${base_id_name}-${image_datas[base_area_name].length}">
       <img src=${resultURL} class="form-view-item-image">
-      <%= image_tag 'delete_icon.png', class: "delete-image-form-button", data: {id: '${image_datas.length}'} , id: 'delete-image-form-button-${image_datas.length}' %></div>`);
-    $(`.input-images-area`).append(`<input id="input-post-image-${image_datas.length + 1}" class="form-input-image" type="file" name="post[image_posts_attributes][${image_datas.length + 1}][picture]">`);
+      <%= image_tag 'delete_icon.png', class: "delete-image-form-button", data: {base_id_name: '${base_id_name}',base_area_name: '${base_area_name}',id: '${image_datas[base_area_name].length}'} , id: '${base_id_name}-delete-image-form-button-${image_datas[base_area_name].length}' %></div>`);
+    $(`.input-images-area.${base_area_name}`).append(`<input id="${base_id_name}-${image_datas[base_area_name].length + 1}" class="form-input-image" type="file" name="${base_table_name}[${base_attributes_name}_attributes][${image_datas[base_area_name].length + 1}][${base_column_name}]">`);
   }
   function deleteImageForm(targetElement){
     var id = targetElement.dataset.id;
+    var _base_id_name = targetElement.dataset.baseIdName;
+    var _base_area_name = targetElement.dataset.baseAreaName;
     //追加していたフォームを削除する。
-    $(`#form-view-image-item-box-${id}`).remove();
+    $(`#form-view-image-item-box-${_base_id_name}-${id}`).remove();
 
-    $(`#input-post-image-${id}`).remove();
+    $(`#${_base_id_name}-${id}`).remove();
     // arrayDelete(`input-post-image-${id - 1}`);
 
-    if(image_datas.length == 0){
-      $(`.camera_icon`).css('display', 'block');
+    if(image_datas[_base_area_name].length == 0){
+      $(`.camera_icon.${_base_area_name}`).css('display', 'block');
     }
   }
-  // function arrayDelete(_id){
-  //   for(let i = 0; i < image_datas.length; i++){
-  //     if(image_datas[i].id == _id){
-  //       image_datas.splice(i, 1);
-  //     }
-  //   }
-  // }
 });

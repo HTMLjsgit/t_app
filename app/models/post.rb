@@ -12,7 +12,9 @@ class Post < ApplicationRecord
    
    
    has_many :image_posts, dependent: :destroy
+   has_many :post_thumbnails, dependent: :destroy
    accepts_nested_attributes_for :image_posts, allow_destroy: true
+   accepts_nested_attributes_for :post_thumbnails, allow_destroy: true
    is_impressionable
 
    mount_uploader :poster, ImageUploader
