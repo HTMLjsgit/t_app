@@ -1,9 +1,16 @@
 <!--<h1>記事の説明</h1>-->
 <h2><%= @post.title %></h2>
-<% if @post.poster?  %>
-  <%= image_tag @post.poster.url, class: "post_poster" %>
-<% end %>
-<!--<div><<%= simple_format @post.content.truncate(50) %></div>-->
+
+  <% if @post.poster?  %>
+    <%= image_tag @post.poster.url, class: "post_poster" %>
+  <% end %>
+  <% if @post.post_thumbnails.exists? %>
+    <% @post.post_thumbnails.each do |post_thumbnail| %>
+      <% if post_thumbnail.picture? %>
+        <%= image_tag post_thumbnail.picture.url %>
+      <% end %>
+    <% end %>
+  <% end %>
 
 <div>
   <%= simple_format @post.description %>
@@ -43,6 +50,7 @@
   <% end %>
 <% end %>
 
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <script>
   var post_payment_open_link = document.getElementById("post-payment-box-open-link");
@@ -56,4 +64,6 @@
     payment_modal.classList.add("open");
     post_payment_box.style.display = "block";
   });
+
+  
 </script>

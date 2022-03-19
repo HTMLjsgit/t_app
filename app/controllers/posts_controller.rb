@@ -14,11 +14,9 @@ class PostsController < ApplicationController
   def show
     # @post = Post.find_by(id: params[:id])　のコードは private以下に記述していてbefore_action で渡しています。
     @user = @post.user
-    @posts_id = params[:posts_id]
-    @comment = Comment.new
+    @comment = @post.comments.build
     @comments = @post.comments.all.order(created_at: :desc)
-    @comments = Comment.where(post_id: @post.id)
-    @comments_count = Comment.where(post_id: @post.id).count
+    @comments_count = @comments.count
   end
 
   def new
@@ -35,21 +33,6 @@ class PostsController < ApplicationController
     @post.commission = commission
 
     @post.save!
-    # if params[:poster]
-    #   @post.poster.attach(params[:poster])
-    # end
-
-    # if params[:item][:images_attributes]
-    #   for i in 0..params[:item][:images_attributes].length - 1
-
-    #     @image = ImagePost.new(number: params[:item][:images_attributes].length,
-    #                       image_url: params[:item][:images_attributes][i][:image_url],
-    #                       picture: params[:item][:images_attributes][i][:image_url].read,
-    #                       post_id:  @post.id
-    #                       )
-    #     @image.save
-    #   end
-    # end
 
     redirect_to(posts_path)
   end
@@ -57,23 +40,21 @@ class PostsController < ApplicationController
   def post_explanation
     @posts = Post.all
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
-    @user = current_user
-    @post = Post.find params[:id]
-    if current_user.present? then
-      if (current_user.id != @post.user_id) then
+    
+    
+    if user_signed_in?
+      if current_user.id != @post.user_id
         impressionist(@post)
       end
     end
-    @purchases = Payment.where(post_id: @post.id).to_a
-    @purchase_num = @purchases.length
+    @purchases = Payment.where(post_id: @post.id)
+    @purchase_num = @purchases.count
   end
 
   def edit
-    # @post = Post.find_by(id: params[:id])　のコードは private以下に記述していてbefore_action で渡しています。
   end
 
   def update
-    # @post = Post.find_by(id: params[:id])　のコードは private以下に記述していてbefore_action で渡しています。
     @post.content = params[:content]
     @post.save
     redirect_to(posts_path)
@@ -81,7 +62,6 @@ class PostsController < ApplicationController
 
 
   def destroy
-    # @post = Post.find_by(id: params[:id])　のコードは private以下に記述していてbefore_action で渡しています。
     @post.destroy
     redirect_to(posts_path)
   end
