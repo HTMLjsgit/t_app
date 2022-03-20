@@ -3,7 +3,7 @@
   <div class="post-explanation-slide-box auto-flex-size">
     <div class="post-slide-images-box">
       <% if @post.poster?  %>
-        <div class="post-slide-image-one-box">
+        <div class="post-slide-image-one-box" data-index=0>
           <%= image_tag @post.poster.url, class: "post_poster post-slide-image" %>
         </div>
       <% end %>
@@ -13,7 +13,7 @@
       <% if @post.post_thumbnails.exists? %>
         <% @post.post_thumbnails.each_with_index do |post_thumbnail, index| %>
           <% if post_thumbnail.picture? %>
-            <div class="post-slide-control-one-image-box" data-index=<%= index %>>
+            <div class="post-slide-control-one-image-box" data-index=<%= index + 1 %>>
               <%= image_tag post_thumbnail.picture.url, class: "post-slide-image" %>
             </div>
           <% end %>
@@ -32,9 +32,12 @@
 <div class="post-explanation image-contents-zoom-area modal-contents" id="image-post-zoom-modal-contents">
   <i class="zoom-hide-button fa fa-times-circle modal-hide-button"></i>
   <div class="post-explanation image-contents-zoom <%= @post.post_thumbnails.count + 1 > 1 ? "slick" : "" %>">
+    <div class="post-explanation image-contents-zoom-box" data-index=1>
+      <%= image_tag @post.poster.url %>
+    </div>
     <% @post.post_thumbnails.each_with_index do |post_thumbnail, index| %>
       <% if post_thumbnail.picture? %>
-        <div class="post-explanation image-contents-zoom-box" data-index="<%= index %>">
+        <div class="post-explanation image-contents-zoom-box" data-index="<%= index + 1 %>">
           <%= image_tag post_thumbnail.picture.url %>
         </div>
       <% end %>
@@ -104,10 +107,7 @@
     payment_modal.classList.add("open");
     post_payment_box.style.display = "block";
   });
-  $('.post-slide-control-one-image-box').click(function(event){
-    $(".image-contents-zoom.slick").slick("slickGoTo", event.target.dataset.index, true);
-    modal_display(false, "image-post-zoom-modal-contents", "image-post-zoom-modal-background");
-  });
+
 
   $(".image-contents-zoom.slick").slick({
     dots: false,
