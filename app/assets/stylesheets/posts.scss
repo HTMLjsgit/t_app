@@ -175,51 +175,98 @@ margin-top: -30px;
 #click-event-poster-field{
   cursor: pointer;
 }
-// .post_explanation_thumbnails{
-//   width: 1100px;
-//   height: 800px;
-// }
-// .post_explanation_picture{
-//   width: 100%;
-//   max-width: 400px;
-// }
+.post-explanation-area-box{
+  display: flex;
+  justify-content: space-between;
+}
+.auto-flex-size{
+  // flex-basis: auto;
+}
 .post-slide-images-box{
   display: flex;
-  max-width: 100%;
+  max-width: 450px;
+  height: 100%;
+}
+.post-slide-image-one-box{
+  background-color: rgb(245, 245, 245);
+  height: 350px !important;
+}
+.post-slide-control-one-image-box{
+  background-color: rgb(245, 245, 245);
+  width: 80px !important;
+  height: 55px !important;
+  float: none !important;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  transition: border 0.5s;
+  outline: none;
+  position: relative;
+  cursor: pointer;
+}
+.post-slide-control-images-box{
+  margin-left: 15px;
 }
 .post-explanation-slide-box{
   display: flex;
   max-width: 100%;
 }
-.post-slide-control-images-box{
-  margin-left: 30px;
+
+
+.slick-list.draggable{
+  height: 100%;
 }
-.post-slide-images-box{
-  max-width: 550px;
+
+.post-slide-control-one-image-box.slick-cloned{
+  display: none !important;
 }
-.post-slide-control-one-image-box{
-  background-color: rgb(245, 245, 245);
-  width: 120px !important;
-  height: 80px !important;
-  float: none !important;
-  margin-bottom: 30px;
-  border: 1px solid transparent;
-  transition: border 0.5s;
-  outline: none;
+.post-slide-control-images-box .slick-track{
+  width: 100% !important;
 }
 .post-slide-control-one-image-box img{
   object-fit: cover;
+
+}
+.post-slide-control-one-image-box:first-child{
+  margin-left: 0;
 }
 .post-slide-control-one-image-box.slick-current{
   border: 1px solid rgb(235, 88, 186);
 
 }
-.post-slide-image-one-box{
-  background-color: rgb(245, 245, 245);
-}
+
 .post-slide-image{
-  width: 80%;
-  height: 80%;
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  padding: 5%;
   object-fit: cover;
+}
+
+@media screen and (max-width: 650px){
+  .post-explanation-slide-box{
+    display: block;
+  }
+  .post-explanation-slide-box .post-slide-control-one-image-box{
+    float: left !important;
+  }
+  .post-slide-control-images-box{
+    margin-left: 0;
+    display: flex;
+  }
+  .post-slide-control-images-box{
+    margin-top: 30px;
+  }
+  .post-slide-control-one-image-box{
+    width: 20% !important;
+    margin-left: 13px;
+  }
+  .post-slide-control-one-image-box:first-child{
+    margin-left: 0;
+  }
+  .post-slide-images-box{
+    max-height: 400px;
+    max-width: 100%;
+  }
+  .post-slide-image-one-box{
+    height: 400px !important;
+  }
 }

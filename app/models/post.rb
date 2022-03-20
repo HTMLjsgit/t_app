@@ -5,7 +5,7 @@ class Post < ApplicationRecord
    validates :description, presence: true
    validates :amount, presence: true
    validate :amount_min_check
-
+   validate :thumbnails_check
    belongs_to :user
    has_many :comments
    has_many :likes
@@ -25,6 +25,12 @@ class Post < ApplicationRecord
    def amount_min_check
       if self.amount < 50
          errors.add(:amount_min, "指定できる最低金額は50円です。")
+      end
+   end
+
+   def thumbnails_check
+      if self.post_thumbnails.length > 4
+         errors.add(:post_thumbnails, "投稿できるサムネイルの数は4つまでです。")
       end
    end
 end

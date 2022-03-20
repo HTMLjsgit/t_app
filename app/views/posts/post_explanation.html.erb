@@ -1,43 +1,50 @@
-<!--<h1>記事の説明</h1>-->
-<h2><%= @post.title %></h2>
-<div class="post-explanation-slide-box">
-  <div class="post-slide-images-box">
-    <% if @post.poster?  %>
-      <div class="post-slide-image-one-box">
-        <%= image_tag @post.poster.url, class: "post_poster post-slide-image" %>
-      </div>
-    <% end %>
-    <% if @post.post_thumbnails.exists? %>
-      <% @post.post_thumbnails.each do |post_thumbnail| %>
-        <% if post_thumbnail.picture? %>
-          <div class="post-slide-image-one-box">
-            <%= image_tag post_thumbnail.picture.url, class: " post-slide-image" %>
-          </div>
+<div class="post-explanation-area-box">
+  <!-- スライドの部分 -->
+  <div class="post-explanation-slide-box auto-flex-size">
+    <div class="post-slide-images-box">
+      <% if @post.poster?  %>
+        <div class="post-slide-image-one-box">
+          <%= image_tag @post.poster.url, class: "post_poster post-slide-image" %>
+        </div>
+      <% end %>
+      <!-- サムネイルのスライド部分 -->
+      <% if @post.post_thumbnails.exists? %>
+        <% @post.post_thumbnails.each do |post_thumbnail| %>
+          <% if post_thumbnail.picture? %>
+            <div class="post-slide-image-one-box">
+              <%= image_tag post_thumbnail.picture.url, class: "post-slide-image" %>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
+    </div>
+    <!-- サムネイルのコントロール部分 -->
+    <div class="post-slide-control-images-box slick_thumb">
+      <% if @post.poster?  %>
+        <div class="post-slide-control-one-image-box" data-index=0>
+          <%= image_tag @post.poster.url, class: "post_poster post-slide-image" %>
+        </div>
+      <% end %>
+      <% if @post.post_thumbnails.exists? %>
+        <% @post.post_thumbnails.each_with_index do |post_thumbnail, index| %>
+          <% if post_thumbnail.picture? %>
+            <div class="post-slide-control-one-image-box" data-index=<%= index + 1 %>>
+              <%= image_tag post_thumbnail.picture.url, class: "post-slide-image" %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
+  <div class="post-explanation-details-box auto-flex-size">
+    <h2><%= @post.title %></h2>
+    <div class="post-explanation-description">
+      <%= simple_format @post.description %>
+    </div>
+  </div>
+</div>
 
-  <div class="post-slide-control-images-box slick_thumb">
-    <% if @post.poster?  %>
-      <div class="post-slide-control-one-image-box">
-        <%= image_tag @post.poster.url, class: "post_poster post-slide-image" %>
-      </div>
-    <% end %>
-    <% if @post.post_thumbnails.exists? %>
-      <% @post.post_thumbnails.each do |post_thumbnail| %>
-        <% if post_thumbnail.picture? %>
-          <div class="post-slide-control-one-image-box">
-            <%= image_tag post_thumbnail.picture.url, class: " post-slide-image" %>
-          </div>
-        <% end %>
-      <% end %>
-    <% end %>
-  </div>
-</div>
-<div>
-  <%= simple_format @post.description %>
-</div>
+
 
 <% if @payment_check %>
   <%= link_to "記事を読む", post_path(@post) %>
@@ -74,7 +81,7 @@
 <% end %>
 <style>
   .container{
-    max-width: 1300px;
+    max-width: 1500px;
     margin: auto;
   }
 </style>
@@ -84,6 +91,7 @@
   var post_payment_open_link = document.getElementById("post-payment-box-open-link");
   var target_form = document.getElementById("post_payment_form");
   var buy_text = document.getElementById("buy-text");
+  var before_slick_element = null;
   post_payment_open_link.addEventListener("click", function(event){
     target_form.action = `/posts/<%= @post.id %>/payments/post_payment`;
 
@@ -92,7 +100,6 @@
     payment_modal.classList.add("open");
     post_payment_box.style.display = "block";
   });
-
   $('.post-slide-images-box').slick({
     arrows: false,
     asNavFor:'.post-slide-control-images-box',
@@ -101,8 +108,16 @@
   $('.post-slide-control-images-box').slick({
     arrows: false,
     asNavFor:'.post-slide-images-box',
-    focusOnSelect: true,
-    slidesToShow: 4,
-    slidesToScroll:1
+    slidesToScroll: 1,
+    focusOnSelect: true
   });
+
+
+  // $('.post-slide-control-images-box').slick({
+  //   arrows: false,
+  //   asNavFor:'.post-slide-images-box',
+  //   focusOnSelect: true,
+  //   // slidesToShow: 4,
+  //   slidesToScroll:1
+  // });
 </script>
