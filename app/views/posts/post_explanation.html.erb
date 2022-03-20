@@ -7,28 +7,13 @@
           <%= image_tag @post.poster.url, class: "post_poster post-slide-image" %>
         </div>
       <% end %>
-      <!-- サムネイルのスライド部分 -->
-      <% if @post.post_thumbnails.exists? %>
-        <% @post.post_thumbnails.each do |post_thumbnail| %>
-          <% if post_thumbnail.picture? %>
-            <div class="post-slide-image-one-box">
-              <%= image_tag post_thumbnail.picture.url, class: "post-slide-image" %>
-            </div>
-          <% end %>
-        <% end %>
-      <% end %>
     </div>
     <!-- サムネイルのコントロール部分 -->
     <div class="post-slide-control-images-box slick_thumb">
-      <% if @post.poster?  %>
-        <div class="post-slide-control-one-image-box" data-index=0>
-          <%= image_tag @post.poster.url, class: "post_poster post-slide-image" %>
-        </div>
-      <% end %>
       <% if @post.post_thumbnails.exists? %>
         <% @post.post_thumbnails.each_with_index do |post_thumbnail, index| %>
           <% if post_thumbnail.picture? %>
-            <div class="post-slide-control-one-image-box" data-index=<%= index + 1 %>>
+            <div class="post-slide-control-one-image-box" data-index=<%= index %>>
               <%= image_tag post_thumbnail.picture.url, class: "post-slide-image" %>
             </div>
           <% end %>
@@ -44,6 +29,21 @@
   </div>
 </div>
 
+<div class="post-explanation image-contents-zoom-area modal-contents" id="image-post-zoom-modal-contents">
+  <i class="zoom-hide-button fa fa-times-circle modal-hide-button"></i>
+  <div class="post-explanation image-contents-zoom <%= @post.post_thumbnails.count + 1 > 1 ? "slick" : "" %>">
+    <% @post.post_thumbnails.each_with_index do |post_thumbnail, index| %>
+      <% if post_thumbnail.picture? %>
+        <div class="post-explanation image-contents-zoom-box" data-index="<%= index %>">
+          <%= image_tag post_thumbnail.picture.url %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<div class="modal-background" id="image-post-zoom-modal-background">
+
+</div>
 
 
 <% if @payment_check %>
@@ -79,6 +79,10 @@
     <%= render partial: "payments/post_payment" %>
   <% end %>
 <% end %>
+
+
+
+
 <style>
   .container{
     max-width: 1500px;
@@ -100,24 +104,15 @@
     payment_modal.classList.add("open");
     post_payment_box.style.display = "block";
   });
-  $('.post-slide-images-box').slick({
-    arrows: false,
-    asNavFor:'.post-slide-control-images-box',
-    slidesToScroll: 1
-  });
-  $('.post-slide-control-images-box').slick({
-    arrows: false,
-    asNavFor:'.post-slide-images-box',
-    slidesToScroll: 1,
-    focusOnSelect: true
+  $('.post-slide-control-one-image-box').click(function(event){
+    $(".image-contents-zoom.slick").slick("slickGoTo", event.target.dataset.index, true);
+    modal_display(false, "image-post-zoom-modal-contents", "image-post-zoom-modal-background");
   });
 
+  $(".image-contents-zoom.slick").slick({
+    dots: false,
+    speed: 300,
+    slidesToShow: 1
+  });
 
-  // $('.post-slide-control-images-box').slick({
-  //   arrows: false,
-  //   asNavFor:'.post-slide-images-box',
-  //   focusOnSelect: true,
-  //   // slidesToShow: 4,
-  //   slidesToScroll:1
-  // });
 </script>

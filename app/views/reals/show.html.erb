@@ -82,12 +82,12 @@
 </div>
 
 
-<div class="image-real-zoom-area modal-contents hide" id="image-real-zoom-modal-contents">
+<div class="image-zoom-area modal-contents hide" id="image-real-zoom-modal-contents">
   <i class="zoom-hide-button fa fa-times-circle modal-hide-button"></i>
-  <div class="image-reals-zoom <%= @real.image_reals.count > 1 ? "slick" : "" %>">
+  <div class="image-contents-zoom <%= @real.image_reals.count > 1 ? "slick" : "" %>">
     <% @real.image_reals.each_with_index do |image, index| %>
       <% if image.picture? %>
-        <div class="image-real-zoom-box" data-index="<%= index %>">
+        <div class="image-contents-zoom-box" data-index="<%= index %>">
           <%= image_tag image.picture.url %>
         </div>
       <% end %>
@@ -109,12 +109,12 @@
     swipe: false,
     arrows: false
   });
-  $('.image-reals-zoom.slick').slick({
+  $('.image-contents-zoom.slick').slick({
     dots: false,
     speed: 300,
     slidesToShow: 1,
     centerPadding: '0px',
-    centerMode: true,
-    adaptiveHeight: true
-  })
+    centerMode: true
+    // adaptiveHeight: true
+  });
 </script>

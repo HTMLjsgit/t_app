@@ -105,29 +105,6 @@
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
 }
-.image-reals-zoom{
-  display: flex;
-  max-height: 100%;
-  max-width: 100%;
-  align-items: center;
-
-}
-.image-real-zoom-area{
-  background: rgba($color: #000000, $alpha: 0);
-  // transform: translate(-50%, -60%);
-  width: 600px;
-  height: 600px;
-}
-.image-real-zoom-box{
-  max-height: 600px;
-  max-width: 600px;
-  overflow: hidden;
-}
-.image-real-zoom-box img{
-  width: 100%;
-  height: 100%; 
-  margin: 0 auto;
-}
 
 .on-ink-only-text p{
   margin: 0;
@@ -150,7 +127,7 @@
   object-fit: cover;
 }
 #image-real-zoom-modal-background{
-  background-color: rgba($color: #4d4d4d, $alpha: 0.9);
+  background-color: rgba(29, 36, 64, 0.86);
 }
 .real-image-index-box.ink{
   background-color: transparent;
