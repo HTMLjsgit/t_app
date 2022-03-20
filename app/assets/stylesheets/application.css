@@ -53,3 +53,10 @@
   object-fit: cover;
   margin: 0 auto;
 }
+.base-pink-button{
+  background-color: #e51273;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  box-shadow: 2px 2px 5px rgb(149, 149, 149);
+}

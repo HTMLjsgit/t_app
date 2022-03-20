@@ -22,14 +22,42 @@
     </div>
   </div>
   <div class="post-explanation-details-box auto-flex-size">
-    <h2><%= @post.title %></h2>
+    <h1 class="post-explanation-title"><%= @post.title %></h1>
+    <div class="post-explanation-show-counts-box">
+      <div class="post-explanation-show-item">
+        <span class="show-explanation-counts-span">購入数</span>
+        <p class="show-explanation-counts-p"><%= @purchase_num.to_s(:delimited) %></p>
+      </div>
+      <% if user_signed_in? %>
+        <% if current_user.id == @post.user_id %>
+          <div class="post-explanation-show-item">
+            <span class="show-explanation-counts-span">閲覧数</span>
+            <p class="show-explanation-counts-p"><%= @post.impressionist_count.to_s(:delimited) %></p>
+          </div>
+        <% end %>
+      <% end %>
+      <div class="post-explanation-show-item">
+        <span class="show-explanation-counts-span">いいね</span>
+        <p class="show-explanation-counts-p">0</p>
+      </div>
+    </div>
     <div class="post-explanation-description">
       <%= simple_format @post.description %>
     </div>
   </div>
+  <div class="post-explanation-buy-with-profile">
+    <div>
+      <% if @payment_check %>
+        <%= button_tag "記事を読む",post_path(@post),class: "base-pink-button post-explanation-event-button" %>
+      <% else %>
+        <%= button_tag "¥#{@post.amount+@post.commission}", id: "post-payment-box-open-link",class: "post-explanation-event-button base-pink-button", data: {post_id: @post.id} %>
+      <% end %>
+    </div>
+    <%= render partial: "users/user_profile", locals: {user: @post.user} %>
+  </div>
 </div>
 
-<div class="post-explanation image-contents-zoom-area modal-contents" id="image-post-zoom-modal-contents">
+<div class="post-explanation image-contents-zoom-area modal-contents hide" id="image-post-zoom-modal-contents">
   <i class="zoom-hide-button fa fa-times-circle modal-hide-button"></i>
   <div class="post-explanation image-contents-zoom <%= @post.post_thumbnails.count + 1 > 1 ? "slick" : "" %>">
     <div class="post-explanation image-contents-zoom-box" data-index=1>
@@ -43,40 +71,29 @@
       <% end %>
     <% end %>
   </div>
-</div>
-<div class="modal-background" id="image-post-zoom-modal-background">
 
 </div>
+<div class="modal-background hide" id="image-post-zoom-modal-background">
+
+</div>
 
 
-<% if @payment_check %>
-  <%= link_to "記事を読む", post_path(@post) %>
-<% else %>
-  <%= button_tag "¥#{@post.amount+@post.commission}", id: "post-payment-box-open-link", data: {post_id: @post.id} %>
-<% end %>
 
-<% if @post.user_id == current_user.id %>
-  <div class="post-menus">
-    <%= link_to(edit_post_path(@post), method: :get) do%>
-      <i class="far fa-edit fa-2x"></i>
-    <% end %>
+<% if user_signed_in? %>
+  <% if @post.user_id == current_user.id %>
+    <div class="post-menus">
+      <%= link_to(edit_post_path(@post), method: :get) do%>
+        <i class="far fa-edit fa-2x"></i>
+      <% end %>
 
-    <%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %>
-    <%= link_to(post_path(@post),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>
-      <i class="fas fa-trash-alt fa-2x"></i>
-    <% end %>
-  </div>
-  <p>
-    購入数：<%= @purchase_num %>
-  </p>
-  
-  <% if user_signed_in? %>
-    <% if current_user.id == @post.user_id %>
-      <p>閲覧数：<%= @post.impressionist_count %></p>
-    <% end %>
+      <%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %>
+      <%= link_to(post_path(@post),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>
+        <i class="fas fa-trash-alt fa-2x"></i>
+      <% end %>
+    </div>
+
   <% end %>
 <% end %>
-
 <% if @posts.exists? %>
   <% if user_signed_in? %>
     <%= render partial: "payments/post_payment" %>
@@ -88,7 +105,7 @@
 
 <style>
   .container{
-    max-width: 1500px;
+    max-width: 1600px;
     margin: auto;
   }
 </style>

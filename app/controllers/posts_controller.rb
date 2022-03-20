@@ -55,8 +55,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.content = params[:content]
-    @post.save
+    @post.update!(post_params)
     redirect_to(posts_path)
   end
 
@@ -93,7 +92,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:content, :amount, :description, :title, :poster, image_posts_attributes: [:picture, :_id, :_destroy], post_thumbnails_attributes: [:picture, :_id, :_destroy]).merge(user_id: current_user.id)
+    params.require(:post).permit(:content, :amount, :description, :title, :poster, image_posts_attributes: [:picture, :id, :_destroy], post_thumbnails_attributes: [:picture, :id, :_destroy]).merge(user_id: current_user.id)
   end
 
   def post_find

@@ -177,7 +177,7 @@ margin-top: -30px;
 }
 .post-explanation-area-box{
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
 }
 .post-slide-images-box{
   display: flex;
@@ -269,18 +269,72 @@ margin-top: -30px;
   top: -35px;
   right: -35px;
 }
-@media screen and (max-width: 900px){
+.post-explanation-show-counts-box{
+  display: flex;
+}
+.show-explanation-counts-span{
+  background-color: rgb(255, 228, 233);
+  font-size: 18px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.post-explanation-show-item{
+  padding-left: 20px;
+  display: flex;
+}
+.post-explanation-show-item:first-child{
+  padding-left: 0;
+}
+.post-explanation-details-box{
+  min-width: 500px;
+  max-width: 500px;
+  margin-left: 50px;
+}
+.post-explanation-event-button{
+  width: 100%;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  color: #fff;
+  
+}
+.post-explanation-buy-with-profile{
+  min-width: 450px;
+  border: 1px solid #eee;
+  padding: 25px;
+  margin-left: 50px;
+}
+.post-explanation-description{
+  padding-top: 15px;
+}
+.post-explanation-title{
+  padding-bottom: 20px;
+}
+.show-explanation-counts-p{
+  font-size: 18px;
+  padding-top: 5px;
+  padding-left: 5px;
+  margin-bottom: 0;
+}
+@media screen and (max-width: 850px){
   .post-explanation.modal-contents{
     width: 500px;
     height: 600px;
   }
-
+  .post-explanation.image-contents-zoom-box img{
+    max-height: 350px;
+  }
 }
 @media screen and (max-width: 650px){
   .post-explanation-slide-box{
     display: block;
   }
-
+  .post-explanation.modal-contents{
+    width: 60% !important;
+    height: 400px !important;
+    transform: translate(-50%, -50%);
+  }
   .post-slide-control-images-box{
     margin-left: 0;
     display: flex;
@@ -303,9 +357,7 @@ margin-top: -30px;
     max-height: 500px;
     max-width: 100%;
   }
-  .post-explanation.image-contents-zoom-box img{
-    max-height: 350px;
-  }
+
 }
 @media screen and (max-width: 480px){
   .post-explanation.image-contents-zoom-area.modal-contents{
@@ -315,5 +367,9 @@ margin-top: -30px;
   .post-explanation .zoom-hide-button{
     top: -45px;
     right: 20px;
+  }
+  .post-explanation.modal-contents{
+    width: 80% !important;
+    height: 400px !important;
   }
 }
