@@ -279,6 +279,7 @@ margin-top: -30px;
   padding-right: 12px;
   padding-top: 5px;
   padding-bottom: 5px;
+  white-space: nowrap;
 }
 .post-explanation-show-item{
   padding-left: 20px;
@@ -288,8 +289,9 @@ margin-top: -30px;
   padding-left: 0;
 }
 .post-explanation-details-box{
-  min-width: 500px;
-  max-width: 500px;
+  min-width: 300px;
+  max-width: 100%;
+  // max-width: 500px;
   margin-left: 50px;
 }
 .post-explanation-event-button{
@@ -300,10 +302,15 @@ margin-top: -30px;
   
 }
 .post-explanation-buy-with-profile{
-  min-width: 450px;
+  min-width: 300px;
+  max-height: 350px;
+  width: 100%;
   border: 1px solid #eee;
   padding: 25px;
   margin-left: 50px;
+}
+.post-explanation-buy-with-profile .user-profile-box{
+  padding-top: 30px;
 }
 .post-explanation-description{
   padding-top: 15px;
@@ -317,6 +324,42 @@ margin-top: -30px;
   padding-left: 5px;
   margin-bottom: 0;
 }
+@media screen and (max-width: 1200px){
+  .post-explanation-slide-box{
+    max-width: 100%;
+  }
+  .post-explanation-area-box{
+    display: block;
+  }
+  .post-slide-images-box{
+    margin: auto;
+  }
+  .post-slide-control-images-box{
+    display: flex;
+    justify-content: center;
+  }
+  .post-explanation-show-counts-box{
+    justify-content: center;
+  }
+  .post-explanation-details-box{
+    margin-left: 0;
+  }
+  .post-explanation-buy-with-profile{
+    margin-left: 0;
+  }
+  .post-explanation-title{
+    text-align: center;
+  }
+  .post-explanation-slide-box{
+    display: block;
+  }
+  .post-slide-control-images-box{
+    margin-top: 30px;
+  }
+}
+@media screen and (max-width: 1000px){
+
+}
 @media screen and (max-width: 850px){
   .post-explanation.modal-contents{
     width: 500px;
@@ -325,11 +368,10 @@ margin-top: -30px;
   .post-explanation.image-contents-zoom-box img{
     max-height: 350px;
   }
+
 }
 @media screen and (max-width: 650px){
-  .post-explanation-slide-box{
-    display: block;
-  }
+
   .post-explanation.modal-contents{
     width: 60% !important;
     height: 400px !important;
@@ -339,9 +381,7 @@ margin-top: -30px;
     margin-left: 0;
     display: flex;
   }
-  .post-slide-control-images-box{
-    margin-top: 30px;
-  }
+
   .post-slide-control-one-image-box{
     width: 20%;
     margin-left: 13px;
