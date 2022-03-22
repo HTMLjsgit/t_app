@@ -1,14 +1,18 @@
 <div class="user-profile-box">
   <div class="user-profile-into-box">
-    <%= link_to user_path(user), class: "underline-none hover" do %>
-      <div class="user-avater-box">
-        <%= user_avater(user) %>
-      </div>  
-    <% end %>
-    <%= link_to user_path(user), class: "underline-none hover user-name-link" do %>
-      <div class="user-name-box">
-        <p class="user-name-text"><%= user.username %></p>
-      </div>
-    <% end %>
+    <object>
+      <%= link_to user_path(user), class: "underline-none hover" do %>
+        <div class="user-avater-box">
+          <%= user_avater(user) %>
+        </div>  
+      <% end %>
+    </object>
+    <object>
+      <%= link_to user_path(user), class: "underline-none hover user-name-link" do %>
+        <div class="user-name-box">
+          <p class="user-name-text"><%= user.username %></p>
+        </div>
+      <% end %>
+    </object>
   </div>
 </div>

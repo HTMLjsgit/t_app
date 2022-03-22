@@ -38,6 +38,7 @@ class PaymentsController < ApplicationController
       amount: @post.amount,
       payment_date: Time.now
     )
+    binding.pry
     redirect_to @post
 
     # stripe関連でエラーが起こった場合
@@ -81,7 +82,7 @@ class PaymentsController < ApplicationController
     # 支払いができている場合 もう一度支払う必要はないので showに飛ばす
     if current_user.payments.find_by(post_id: @post.id, user_id: current_user.id).present?
       # 強制的にトップに戻す。
-      redirect_to @post and return
+      redirect_to post_explanation_post_path(@post) and return
     end
   end
 

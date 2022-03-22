@@ -47,7 +47,9 @@ class PostsController < ApplicationController
         impressionist(@post)
       end
     end
-    @purchases = Payment.where(post_id: @post.id)
+    @purchases = @post.post_payments
+    p "count--------: " + @purchases.count.to_s
+    # binding.pry
     @purchase_num = @purchases.count
   end
 
@@ -69,10 +71,10 @@ class PostsController < ApplicationController
 
   def already_payment_check
     # 支払いができていないのであれば
-    if (current_user.present?)
+    if user_signed_in?
       unless current_user.payments.find_by(post_id: @post.id, user_id: current_user.id).present?
-        # 強制的にトップに戻す。
-        redirect_to root_path and return
+        # 強制的に説明ページに戻す。
+        redirect_to post_explanation_post_path(@post) and return
       end
     end
   end

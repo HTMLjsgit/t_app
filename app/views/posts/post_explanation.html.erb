@@ -24,9 +24,11 @@
   <div class="post-explanation-details-box auto-flex-size">
     <div class="post-explanation-heading-box">
       <h1 class="post-explanation-title"><%= @post.title %></h1>
-      <div class="post-explanation-good-image-box">
-        <%= image_tag "hurt.png", class: "hurt-icon" %>
-      </div>
+      <%= link_to create_like_path(id: @post.id) do %>
+        <div class="post-explanation-good-image-box good-image-box">
+          <%= image_tag "hurt.png", class: "hurt-icon" %>
+        </div>
+      <% end %>
     </div>
     <div class="post-explanation-show-counts-box">
       <div class="post-explanation-show-item">

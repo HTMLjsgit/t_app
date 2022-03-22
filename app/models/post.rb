@@ -14,6 +14,7 @@ class Post < ApplicationRecord
    
    has_many :image_posts, dependent: :destroy
    has_many :post_thumbnails, dependent: :destroy
+   has_many :post_payments, class_name: "Payment", foreign_key: "post_id"
    accepts_nested_attributes_for :image_posts, allow_destroy: true
    accepts_nested_attributes_for :post_thumbnails, allow_destroy: true
    is_impressionable
