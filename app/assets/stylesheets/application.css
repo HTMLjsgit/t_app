@@ -59,4 +59,11 @@
   font-weight: bold;
   border: none;
   box-shadow: 2px 2px 5px rgb(149, 149, 149);
+  transition: 0.3s background-color ease; 
+}
+.base-pink-button:hover{
+  background-color: #bd1061;
+}
+button{
+  cursor: pointer;
 }

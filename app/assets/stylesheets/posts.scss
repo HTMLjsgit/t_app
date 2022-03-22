@@ -226,9 +226,13 @@ margin-top: -30px;
 .post-explanation-slide-box{
   display: flex;
   max-width: 100%;
+  min-width: 505px;
 }
 .post-explanation.image-contents-zoom .slick-track{
   height: 100%;
+}
+.post-explanation.image-contents-zoom{
+  justify-content: center;
 }
 .post-explanation.modal-contents{
   width: 500px;
@@ -289,7 +293,7 @@ margin-top: -30px;
   padding-left: 0;
 }
 .post-explanation-details-box{
-  min-width: 300px;
+  min-width: 610px;
   max-width: 100%;
   // max-width: 500px;
   margin-left: 50px;
@@ -302,9 +306,9 @@ margin-top: -30px;
   
 }
 .post-explanation-buy-with-profile{
-  min-width: 300px;
+  min-width: 350px;
   max-height: 350px;
-  width: 100%;
+  max-width: 100%;
   border: 1px solid #eee;
   padding: 25px;
   margin-left: 50px;
@@ -324,7 +328,30 @@ margin-top: -30px;
   padding-left: 5px;
   margin-bottom: 0;
 }
-@media screen and (max-width: 1200px){
+.post-explanation-good-image-box{
+  border: 1px solid #ddd;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 0 0 0 auto;
+}
+.post-explanation-heading-box .hurt-icon{
+  // width: 30px;
+  // height: 30px;
+  width: 100%;
+  height: 100%;
+}
+.post-explanation-heading-box{
+  display: flex;
+}
+@media screen and (max-width: 1550px){
+  .post-explanation-details-box{
+    min-width: 300px;
+  }
+}
+@media screen and (max-width: 1300px){
   .post-explanation-slide-box{
     max-width: 100%;
   }
@@ -338,17 +365,29 @@ margin-top: -30px;
     display: flex;
     justify-content: center;
   }
+  .post-slide-control-one-image-box{
+    width: 20%;
+    margin-left: 13px;
+    height: 80px;
+  }
   .post-explanation-show-counts-box{
     justify-content: center;
   }
   .post-explanation-details-box{
     margin-left: 0;
   }
+  .post-explanation-heading-box{
+    max-width: 600px;
+    margin: 0 auto;
+  }
   .post-explanation-buy-with-profile{
     margin-left: 0;
+    max-width: 400px;
+    margin: 0 auto;
   }
   .post-explanation-title{
     text-align: center;
+    font-size: 26px;
   }
   .post-explanation-slide-box{
     display: block;
@@ -356,6 +395,11 @@ margin-top: -30px;
   .post-slide-control-images-box{
     margin-top: 30px;
   }
+  .post-explanation-description{
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
 }
 @media screen and (max-width: 1000px){
 
@@ -377,14 +421,22 @@ margin-top: -30px;
     height: 400px !important;
     transform: translate(-50%, -50%);
   }
+  .post-slide-images-box{
+    margin: 0;
+    max-height: 500px;
+    max-width: 100%;
+    width: 100%;
+  }
+  .post-explanation-slide-box{
+    min-width: 100%;
+  }
   .post-slide-control-images-box{
     margin-left: 0;
     display: flex;
   }
 
   .post-slide-control-one-image-box{
-    width: 20%;
-    margin-left: 13px;
+    height: 50px;
   }
   .post-explanation.image-contents-zoom-area.modal-contents{
     width: 450px;
@@ -392,10 +444,6 @@ margin-top: -30px;
   }
   .post-slide-control-one-image-box:first-child{
     margin-left: 0;
-  }
-  .post-slide-images-box{
-    max-height: 500px;
-    max-width: 100%;
   }
 
 }

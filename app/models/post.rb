@@ -4,6 +4,7 @@ class Post < ApplicationRecord
    validates :title, presence: true
    validates :description, presence: true
    validates :amount, presence: true
+   validates :poster, presence: true
    validate :amount_min_check
    validate :thumbnails_check
    belongs_to :user

@@ -22,7 +22,12 @@
     </div>
   </div>
   <div class="post-explanation-details-box auto-flex-size">
-    <h1 class="post-explanation-title"><%= @post.title %></h1>
+    <div class="post-explanation-heading-box">
+      <h1 class="post-explanation-title"><%= @post.title %></h1>
+      <div class="post-explanation-good-image-box">
+        <%= image_tag "hurt.png", class: "hurt-icon" %>
+      </div>
+    </div>
     <div class="post-explanation-show-counts-box">
       <div class="post-explanation-show-item">
         <span class="show-explanation-counts-span">購入数</span>
@@ -48,7 +53,7 @@
   <div class="post-explanation-buy-with-profile">
     <div>
       <% if @payment_check %>
-        <%= button_tag "記事を読む",post_path(@post),class: "base-pink-button post-explanation-event-button" %>
+        <%= button_to "記事を読む",post_path(@post),{method: :get,class: "base-pink-button post-explanation-event-button"} %>
       <% else %>
         <%= button_tag "¥#{@post.amount+@post.commission}", id: "post-payment-box-open-link",class: "post-explanation-event-button base-pink-button", data: {post_id: @post.id} %>
       <% end %>
@@ -61,7 +66,9 @@
   <i class="zoom-hide-button fa fa-times-circle modal-hide-button"></i>
   <div class="post-explanation image-contents-zoom <%= @post.post_thumbnails.count + 1 > 1 ? "slick" : "" %>">
     <div class="post-explanation image-contents-zoom-box" data-index=1>
-      <%= image_tag @post.poster.url %>
+      <% if @post.poster? %>
+        <%= image_tag @post.poster.url %>
+      <% end %>
     </div>
     <% @post.post_thumbnails.each_with_index do |post_thumbnail, index| %>
       <% if post_thumbnail.picture? %>
@@ -116,14 +123,17 @@
   var target_form = document.getElementById("post_payment_form");
   var buy_text = document.getElementById("buy-text");
   var before_slick_element = null;
-  post_payment_open_link.addEventListener("click", function(event){
-    target_form.action = `/posts/<%= @post.id %>/payments/post_payment`;
+  if(post_payment_open_link != null){
+    post_payment_open_link.addEventListener("click", function(event){
+      target_form.action = `/posts/<%= @post.id %>/payments/post_payment`;
 
-    buy_text.textContent = "<%= @post.title.truncate(10) %>(<%= @post.amount + (@post.commission) %>円(手数料込み))を購入する。";
-    event.preventDefault();
-    payment_modal.classList.add("open");
-    post_payment_box.style.display = "block";
-  });
+      buy_text.textContent = "<%= @post.title.truncate(10) %>(<%= @post.amount + (@post.commission) %>円(手数料込み))を購入する。";
+      event.preventDefault();
+      payment_modal.classList.add("open");
+      post_payment_box.style.display = "block";
+    });
+
+  }
 
 
   $(".image-contents-zoom.slick").slick({
