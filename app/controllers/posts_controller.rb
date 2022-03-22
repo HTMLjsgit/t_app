@@ -48,7 +48,6 @@ class PostsController < ApplicationController
       end
     end
     @purchases = @post.post_payments
-    p "count--------: " + @purchases.count.to_s
     # binding.pry
     @purchase_num = @purchases.count
   end

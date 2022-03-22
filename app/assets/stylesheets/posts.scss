@@ -10,14 +10,14 @@
 }
 .posts-index-root-box{
   margin: 0 auto;
-  max-width: 100%;
+  max-width: 1500px;
 }
 .post-index-poster-box{
   width: 100%;
   height: 170px;
   display: flex;
   justify-content: center;
-  background-color: #f9f9f9;
+  background-color: #eee;
   padding-top: 5px;
   padding-bottom: 5px;
   position: relative;
@@ -28,6 +28,7 @@
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 15px;
+  font-weight: bold;
 }
 .post-good-index-box.good-image-box{
   position: absolute;
@@ -67,6 +68,9 @@
 .post-index-counts-contents-box{
   display: flex;
 }
+.post-index-count-text{
+  color: #000;
+}
 .post-index-to-explanation-post-link:hover{
   text-decoration: none; 
 }
@@ -79,9 +83,13 @@
   width: 100%;
   height: 100%; 
 }
+.post-index-item .user-profile-box{
+  padding-left: 15px;
+}
 .post-index-item .user-avater-box{
   width: 30px;
   height: 30px;
+
 }
 .post-index-item .user-name-text{
   padding-top: 0;
@@ -176,6 +184,7 @@
 .post-menus {
   margin: 0 0 0 auto;
   max-width: 200px;
+  padding-top: 20px;
 }
 
 .post-menus a, .post-menus input {
@@ -388,6 +397,7 @@
 .post-explanation-buy-with-profile .user-profile-box{
   padding-top: 30px;
 }
+
 .post-explanation-description{
   padding-top: 15px;
 }
@@ -407,7 +417,6 @@
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  margin: 0 0 0 auto;
 }
 .hurt-icon{
   // width: 30px;
@@ -417,6 +426,7 @@
 }
 .post-explanation-heading-box{
   display: flex;
+  justify-content: space-between;
 }
 @media screen and (max-width: 1550px){
   .post-explanation-details-box{
@@ -493,6 +503,13 @@
     height: 400px !important;
     transform: translate(-50%, -50%);
   }
+  .post-explanation-heading-box{
+    max-width: 500px;
+  }
+  .post-explanation-description{
+    max-width: 500px;
+    margin: 0 auto;
+  }
   .post-slide-images-box{
     margin: 0;
     max-height: 500px;
@@ -523,6 +540,9 @@
   .post-explanation.image-contents-zoom-area.modal-contents{
     width: 400px;
     height: 500px;
+  }
+  .post-explanation-heading-box{
+    max-width: 100%;
   }
   .post-explanation .zoom-hide-button{
     top: -45px;

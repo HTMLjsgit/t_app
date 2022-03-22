@@ -38,7 +38,6 @@ class PaymentsController < ApplicationController
       amount: @post.amount,
       payment_date: Time.now
     )
-    binding.pry
     redirect_to @post
 
     # stripe関連でエラーが起こった場合
