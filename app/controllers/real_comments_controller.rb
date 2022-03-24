@@ -23,11 +23,10 @@ class RealCommentsController < ApplicationController
   def create
     @real = Real.find(params[:real_comment][:real_id])
     @real_comment = @real.real_comments.build(real_comment_params)
-    @real_comment.user_id = current_user.id
 
     respond_to do |format|
       if @real_comment.save
-        format.html { redirect_to real_path(@real), notice: 'Real comment was successfully created.' }
+        format.html { redirect_to real_path(@real)}
         format.json { render :show, status: :created, location: @real_comment }
       else
         format.html { render :new }
@@ -43,7 +42,7 @@ class RealCommentsController < ApplicationController
   def destroy
     @real_comment.destroy
     respond_to do |format|
-      format.html { redirect_to real_comments_url, notice: 'Real comment was successfully destroyed.' }
+      format.html { redirect_to real_comments_url }
       format.json { head :no_content }
     end
   end
@@ -56,6 +55,6 @@ class RealCommentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def real_comment_params
-      params.require(:real_comment).permit(:comment, :user_id, :real_id)
+      params.require(:real_comment).permit(:comment, :real_id).merge(user_id: current_user.id)
     end
 end

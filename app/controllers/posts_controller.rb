@@ -14,16 +14,15 @@ class PostsController < ApplicationController
   def show
     # @post = Post.find_by(id: params[:id])　のコードは private以下に記述していてbefore_action で渡しています。
     @user = @post.user
-    @posts_id = params[:posts_id]
-    @comment = Comment.new
+    @comment = @post.comments.build
     @comments = @post.comments.all.order(created_at: :desc)
-    @comments = Comment.where(post_id: @post.id)
-    @comments_count = Comment.where(post_id: @post.id).count
+    @comments_count = @comments.count
   end
 
   def new
     @post = Post.new
     @image_post = @post.image_posts.build
+    @post_thumbnail = @post.post_thumbnails.build
   end
 
   def create
@@ -34,21 +33,6 @@ class PostsController < ApplicationController
     @post.commission = commission
 
     @post.save!
-    # if params[:poster]
-    #   @post.poster.attach(params[:poster])
-    # end
-
-    # if params[:item][:images_attributes]
-    #   for i in 0..params[:item][:images_attributes].length - 1
-
-    #     @image = ImagePost.new(number: params[:item][:images_attributes].length,
-    #                       image_url: params[:item][:images_attributes][i][:image_url],
-    #                       picture: params[:item][:images_attributes][i][:image_url].read,
-    #                       post_id:  @post.id
-    #                       )
-    #     @image.save
-    #   end
-    # end
 
     redirect_to(posts_path)
   end
@@ -56,31 +40,28 @@ class PostsController < ApplicationController
   def post_explanation
     @posts = Post.all
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
-    @user = current_user
-    @post = Post.find params[:id]
-    if current_user.present? then
-      if (current_user.id != @post.user_id) then
+    
+    
+    if user_signed_in?
+      if current_user.id != @post.user_id
         impressionist(@post)
       end
     end
-    @purchases = Payment.where(post_id: @post.id).to_a
-    @purchase_num = @purchases.length
+    @purchases = @post.post_payments
+    # binding.pry
+    @purchase_num = @purchases.count
   end
 
   def edit
-    # @post = Post.find_by(id: params[:id])　のコードは private以下に記述していてbefore_action で渡しています。
   end
 
   def update
-    # @post = Post.find_by(id: params[:id])　のコードは private以下に記述していてbefore_action で渡しています。
-    @post.content = params[:content]
-    @post.save
+    @post.update!(post_params)
     redirect_to(posts_path)
   end
 
 
   def destroy
-    # @post = Post.find_by(id: params[:id])　のコードは private以下に記述していてbefore_action で渡しています。
     @post.destroy
     redirect_to(posts_path)
   end
@@ -89,10 +70,10 @@ class PostsController < ApplicationController
 
   def already_payment_check
     # 支払いができていないのであれば
-    if (current_user.present?)
+    if user_signed_in?
       unless current_user.payments.find_by(post_id: @post.id, user_id: current_user.id).present?
-        # 強制的にトップに戻す。
-        redirect_to root_path and return
+        # 強制的に説明ページに戻す。
+        redirect_to post_explanation_post_path(@post) and return
       end
     end
   end
@@ -112,7 +93,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:content, :amount, :description, :title, :poster, image_posts_attributes: [:picture, :_id, :_destroy]).merge(user_id: current_user.id)
+    params.require(:post).permit(:content, :amount, :description, :title, :poster, image_posts_attributes: [:picture, :id, :_destroy], post_thumbnails_attributes: [:picture, :id, :_destroy]).merge(user_id: current_user.id)
   end
 
   def post_find

@@ -1,38 +1,57 @@
-<div class="main posts-index">
-  <div class="container">
+<% if @posts.exists? %>
+  <% if user_signed_in? %>
+    <%= render partial: "payments/post_payment" %>
+  <% end %>
+<% end %>
+<div class="posts-index-root-box">
+  <div class="posts-index-item">
     <!-- postsテーブルにレコードがある かつ ログインしている-->
-    <% if @posts.exists? %>
+    <% @posts.each do |post| %>
       <% if user_signed_in? %>
-        <%= render partial: "payments/post_payment" %>
+        <% @post_payment_check = current_user.payments.find_by(post_id: post.id, user_id: current_user.id) %>
       <% end %>
-    <% end %>
-    <div style="width:100%;height:500px;overflow:auto;">
-      <div class="row">
-        <% @posts.each do |post| %>
-          <% if user_signed_in? %>
-            <% @post_payment_check = current_user.payments.find_by(post_id: post.id, user_id: current_user.id) %>
-          <% end %>
-          <div class="posts-index-item">
-
-            <%= render partial: "users/user_profile", locals: {user: post.user} %>
-            <%= link_to(post.title, post_explanation_post_path(id: post.id),class: "post-index-content") %>
-            <% if post.poster? %>
-              <%= image_tag post.poster.url, class: "post_index_poster" %>
-            <% end %>
-            <p>
+      <div class="post-index-out-item">
+        <%= link_to post_explanation_post_path(post), class: "post-index-to-explanation-post-link" do %>
+          <div class="post-index-item">
+            <div class="post-index-poster-box">
+              <div class="post-good-index-box good-image-box">
+                <%= image_tag "hurt.png", class: "hurt-icon" %>
+              </div>
+              <% if post.poster? %>
+                <%= image_tag post.poster.url, class: "post_index_poster" %>
+              <% end %>
+            </div>
+            <p class="hide">
               <i class="far fa-heart like-btn"></i>
-              <%= post.likes.count %>
             </p>
+            <%#= @purchase_num.to_s(:delimited) %>
+            <h2 class="post-index-title"><%= post.title %></h2>
+            <%= render partial: "users/user_profile", locals: {user: post.user} %>
+            <div class="post-index-counts-all-box">
+              <div class="post-index-counts-contents-box">
+                <p class="post-index-count-text">購入数 : <%= post.post_payments.count %></p>
+              </div>
+              <div class="post-index-counts-contents-box">
+                <p class="post-index-count-text">閲覧数 : <%= post.impressionist_count.to_s(:delimited) %></p>
+              </div>
+              <div class="post-index-counts-contents-box">
+                <p class="post-index-count-text">いいね : <%= post.likes.count %></p>
+              </div>
+            </div>
             <!-- 購入していなかったら -->
             <% if user_signed_in? %>
               <% unless @post_payment_check.present? %>
-                <%= button_tag "¥#{post.amount+post.commission}", id: "post-payment-box-open-link-#{post.id}", data: {post_id: post.id} %>
-
+                <object>
+                  <div class="post-index-buy-button-box">
+                    <%= button_tag "¥#{post.amount+post.commission}",type: "button", id: "post-payment-box-open-link-#{post.id}",class: "base-pink-button post-index-payment-button", data: {post_id: post.id} %>
+                  </div>
+                </object>
                 <script>
                   var post_payment_open_link_<%= post.id %> = document.getElementById("post-payment-box-open-link-<%= post.id %>");
                   var target_form = document.getElementById("post_payment_form");
                   var buy_text = document.getElementById("buy-text");
                   post_payment_open_link_<%= post.id %>.addEventListener("click", function(event){
+                    event.preventDefault();
                     console.log(event.target.dataset.postId);
                     target_form.action = `/posts/<%= post.id %>/payments/post_payment`;
                     buy_text.textContent = "<%= post.content.truncate(5) %>(<%= post.amount + (post.commission) %>円(手数料込み))を購入する。";
@@ -42,14 +61,20 @@
                   });
                 </script>
 
+              <% else %>
+                <div class="post-index-buy-button-box">
+                  <%= button_to "記事を読む",post_path(post),{type: "button",method: :get,class: "base-pink-button post-index-payment-button"} %>
+                </div>
               <% end %>
             <% end %>
-
           </div>
         <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>
+
+
 
 <% unless current_admin.present? %>
   <%= link_to new_post_path, {class: "post_pen", method: :get} do %>
@@ -59,3 +84,8 @@
     </span>
   <% end %>
 <% end %>
+<style>
+  .container{
+    max-width: 100%;
+  }
+</style>

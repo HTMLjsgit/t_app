@@ -1,42 +1,106 @@
-<!--<h1>記事の説明</h1>-->
-<h2><%= @post.title %></h2>
-<% if @post.poster?  %>
-  <%= image_tag @post.poster.url, class: "post_poster" %>
-<% end %>
-<!--<div><<%= simple_format @post.content.truncate(50) %></div>-->
-
-<div>
-  <%= simple_format @post.description %>
+<div class="post-explanation-area-box">
+  <!-- スライドの部分 -->
+  <div class="post-explanation-slide-box auto-flex-size">
+    <div class="post-slide-images-box">
+      <% if @post.poster?  %>
+        <div class="post-slide-image-one-box" data-index=0>
+          <%= image_tag @post.poster.url, class: "post_poster post-slide-image" %>
+        </div>
+      <% end %>
+    </div>
+    <!-- サムネイルのコントロール部分 -->
+    <div class="post-slide-control-images-box slick_thumb">
+      <% if @post.post_thumbnails.exists? %>
+        <% @post.post_thumbnails.each_with_index do |post_thumbnail, index| %>
+          <% if post_thumbnail.picture? %>
+            <div class="post-slide-control-one-image-box" data-index=<%= index + 1 %>>
+              <%= image_tag post_thumbnail.picture.url, class: "post-slide-image" %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="post-explanation-details-box auto-flex-size">
+    <div class="post-explanation-heading-box">
+      <h1 class="post-explanation-title"><%= @post.title %></h1>
+      <div class="post-explanation-good-image-box good-image-box">
+        <%= image_tag "hurt.png", class: "hurt-icon" %>
+      </div>
+    </div>
+    <div class="post-explanation-show-counts-box">
+      <div class="post-explanation-show-item">
+        <span class="show-explanation-counts-span">購入数</span>
+        <p class="show-explanation-counts-p"><%= @purchase_num.to_s(:delimited) %></p>
+      </div>
+      <% if user_signed_in? %>
+        <% if current_user.id == @post.user_id %>
+          <div class="post-explanation-show-item">
+            <span class="show-explanation-counts-span">閲覧数</span>
+            <p class="show-explanation-counts-p"><%= @post.impressionist_count.to_s(:delimited) %></p>
+          </div>
+        <% end %>
+      <% end %>
+      <div class="post-explanation-show-item">
+        <span class="show-explanation-counts-span">いいね</span>
+        <p class="show-explanation-counts-p">0</p>
+      </div>
+    </div>
+    <div class="post-explanation-description">
+      <%= simple_format @post.description %>
+    </div>
+  </div>
+  <div class="post-explanation-buy-with-profile">
+    <div>
+      <% if @payment_check %>
+        <%= button_to "記事を読む",post_path(@post),{method: :get,class: "base-pink-button post-explanation-event-button"} %>
+      <% else %>
+        <%= button_tag "¥#{@post.amount+@post.commission}", id: "post-payment-box-open-link",class: "post-explanation-event-button base-pink-button", data: {post_id: @post.id} %>
+      <% end %>
+    </div>
+    <%= render partial: "users/user_profile", locals: {user: @post.user} %>
+  </div>
 </div>
 
-<% if @payment_check %>
-  <%= link_to "記事を読む", post_path(@post) %>
-<% else %>
-  <%= button_tag "¥#{@post.amount+@post.commission}", id: "post-payment-box-open-link", data: {post_id: @post.id} %>
-<% end %>
-
-<% if @post.user_id == current_user.id %>
-  <div class="post-menus">
-    <%= link_to(edit_post_path(@post), method: :get) do%>
-      <i class="far fa-edit fa-2x"></i>
-    <% end %>
-
-    <%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %>
-    <%= link_to(post_path(@post),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>
-      <i class="fas fa-trash-alt fa-2x"></i>
+<div class="post-explanation image-contents-zoom-area modal-contents hide" id="image-post-zoom-modal-contents">
+  <i class="zoom-hide-button fa fa-times-circle modal-hide-button"></i>
+  <div class="post-explanation image-contents-zoom <%= @post.post_thumbnails.count + 1 > 1 ? "slick" : "" %>">
+    <div class="post-explanation image-contents-zoom-box" data-index=1>
+      <% if @post.poster? %>
+        <%= image_tag @post.poster.url %>
+      <% end %>
+    </div>
+    <% @post.post_thumbnails.each_with_index do |post_thumbnail, index| %>
+      <% if post_thumbnail.picture? %>
+        <div class="post-explanation image-contents-zoom-box" data-index="<%= index + 1 %>">
+          <%= image_tag post_thumbnail.picture.url %>
+        </div>
+      <% end %>
     <% end %>
   </div>
-  <p>
-    購入数：<%= @purchase_num %>
-  </p>
-  
-  <% if user_signed_in? %>
-    <% if current_user.id == @post.user_id %>
-      <p>閲覧数：<%= @post.impressionist_count %></p>
-    <% end %>
+
+</div>
+<div class="modal-background hide" id="image-post-zoom-modal-background">
+
+</div>
+
+
+
+<% if user_signed_in? %>
+  <% if @post.user_id == current_user.id %>
+    <div class="post-menus">
+      <%= link_to(edit_post_path(@post), method: :get) do%>
+        <i class="far fa-edit fa-2x"></i>
+      <% end %>
+
+      <%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %>
+      <%= link_to(post_path(@post),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>
+        <i class="fas fa-trash-alt fa-2x"></i>
+      <% end %>
+    </div>
+
   <% end %>
 <% end %>
-
 <% if @posts.exists? %>
   <% if user_signed_in? %>
     <%= render partial: "payments/post_payment" %>
@@ -44,16 +108,38 @@
 <% end %>
 
 
+
+
+<style>
+  .container{
+    max-width: 1600px;
+    margin: auto;
+  }
+</style>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
 <script>
   var post_payment_open_link = document.getElementById("post-payment-box-open-link");
   var target_form = document.getElementById("post_payment_form");
   var buy_text = document.getElementById("buy-text");
-  post_payment_open_link.addEventListener("click", function(event){
-    target_form.action = `/posts/<%= @post.id %>/payments/post_payment`;
+  var before_slick_element = null;
+  if(post_payment_open_link != null){
+    post_payment_open_link.addEventListener("click", function(event){
+      target_form.action = `/posts/<%= @post.id %>/payments/post_payment`;
 
-    buy_text.textContent = "<%= @post.title.truncate(10) %>(<%= @post.amount + (@post.commission) %>円(手数料込み))を購入する。";
-    event.preventDefault();
-    payment_modal.classList.add("open");
-    post_payment_box.style.display = "block";
+      buy_text.textContent = "<%= @post.title.truncate(10) %>(<%= @post.amount + (@post.commission) %>円(手数料込み))を購入する。";
+      event.preventDefault();
+      payment_modal.classList.add("open");
+      post_payment_box.style.display = "block";
+    });
+
+  }
+
+
+  $(".image-contents-zoom.slick").slick({
+    dots: false,
+    speed: 300,
+    slidesToShow: 1
   });
+
 </script>
