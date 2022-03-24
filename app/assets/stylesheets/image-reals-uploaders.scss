@@ -44,6 +44,11 @@
   top: 2px;
   right: 5px;
   cursor: pointer;
-  text-align: center;
   border-radius: 50%;
+}
+.delete-button-reals-image-form::before{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }

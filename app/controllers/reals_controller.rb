@@ -2,11 +2,23 @@ class RealsController < ApplicationController
   impressionist :actions=> [:index]
   before_action :authenticate_user!, only: [:show, :create, :update, :edit, :new, :destroy]
   def index
-    @reals = Real.all.order(created_at: :desc)
+    reals_id = ImageReal.pluck(:real_id)
+    if params[:mode] == "camera"
+      @reals = Real.all.where(id: reals_id).includes(:image_reals).distinct
+      @mode = "camera"
+    elsif params[:mode] == "char"
+      @reals = Real.all.where.not(id: reals_id).includes(:image_reals).distinct
+      @mode = "char"
+    else
+      @reals = Real.all.where(id: reals_id).includes(:image_reals).distinct
+      @mode = "camera"
+    end
   end
 
   def show
     @real = Real.find_by(id: params[:id])
+    @real_like = @real.real_likes.find_by(user_id: current_user.id)
+    
     @user = @real.user
     @real_comments = @real.real_comments.all.order(created_at: :desc)
     @real_comment = RealComment.new

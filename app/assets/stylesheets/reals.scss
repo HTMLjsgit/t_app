@@ -1,21 +1,193 @@
 // Place all the styles related to the reals controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.reals-index-item {
-  padding: 20px 30px;
-  background-color: white;
-  overflow: hidden;
-  box-shadow: 0 2px 6px #c1ced7;
-  word-break: break-all;
-  height: 30%;
+.reals-index{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 700px;
+  margin: 0 auto;
+  justify-content: center;
+}
+.reals-show{
+  border: 1px solid #ddd;
+  max-width: 650px;
+  margin: 0 auto;
+  // padding: 10px; 
+}
+.reals-show .user-profile-box{
+  padding: 20px;
+  padding-left: 30px;
+}
+.reals-comments-box{
+  padding-top: 50px;
+}
+.count-text-contents{
+  padding-left: 5px;
+  padding-top: 3px;
+  margin: 0;
+}
+.user-action-box{
+  display: flex;
+
+}
+.reals-views-count-text{
+  padding-top: 5px;
+}
+.user-real-action{
+  display: flex;
+  font-size: 18px;
+}
+.user-real-action img{
+  width: 30px;
+  height: 30px;
+}
+.real-show-contents{
+  display: flex;
+  max-width: 80%;
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-bottom: 10px; 
+}
+.reals-views-count-text{
+  margin: 0 0 0 auto;
+}
+.slick-dots li.slick-active button::before{
+  color: #0e6a78 !important;
 }
 .real-show-content{
-    margin-top: -30px;
+    margin-top: 30px;
     font-size: 22px;
     margin-left: 90px;
     width: 80%;
     color: #4d4d4d;
     word-break: break-all;
+    min-height: 50px;
+}
+.real-image-item-box{
+  margin-right: 2px;
+  margin-top: 2px;
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+.real-image-item-box.ink{
+  width: 200px;
+  height: 200px;
+}
+.real-index-link:hover{
+  text-decoration: none;
+}
+
+.on-ink-only-text{
+  color: rgb(0, 0, 0); 
+  font-weight: bold;
+  position: absolute;
+
+  font-size: 16px;
+  text-align: center;
+  overflow: hidden;
+  display: -webkit-box;
+  word-break: break-all;
+  width: 110%;
+  height: 110%;
+  position: relative;
+  left: 10px;
+}
+.on-ink-only-text p{
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  max-width: 50%;
+  position: absolute;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+.image-reals-zoom{
+  display: flex;
+  max-height: 100%;
+  max-width: 100%;
+  align-items: center;
+
+}
+.image-real-zoom-area{
+  background: rgba($color: #000000, $alpha: 0);
+  // transform: translate(-50%, -60%);
+  width: 600px;
+  height: 600px;
+}
+.image-real-zoom-box{
+  max-height: 600px;
+  max-width: 600px;
+  overflow: hidden;
+}
+.image-real-zoom-box img{
+  width: 100%;
+  height: 100%; 
+  margin: 0 auto;
+}
+
+.on-ink-only-text p{
+  margin: 0;
+}
+.real-image-index-box{
+  width: 100%;
+  height: 100%;
+  background-color: #eee;
+}
+.real-image-index-box.ink{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.ink-image{
+  position: absolute;
+  top: 0;
+  width: 110%;
+  height: 110%;
+  object-fit: cover;
+}
+#image-real-zoom-modal-background{
+  background-color: rgba($color: #4d4d4d, $alpha: 0.9);
+}
+.real-image-index-box.ink{
+  background-color: transparent;
+  position: relative;
+}
+
+.real-image-index-box.ink:hover{
+  opacity: 0.7;
+}
+.real-change-button-image{
+  width: 40px;
+  height: 40px;
+}
+.real-change-button-image:hover{
+  opacity: 0.8;
+}
+.real-change-buttons-box{
+  display: flex;
+  justify-content: space-around;
+  max-width: 600px;
+  margin: 0 auto;
+  padding-bottom: 10px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #eee;
+}
+.image-slide-real-box img{
+  margin: 0 auto;
+  width: 100%;
+  height: 350px;
+
+  object-fit: cover;
+  cursor: pointer;
+}
+.real-image-index{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.real-show-images{
 }
 .real-image-upload-icon{
   width: 40px;
@@ -83,4 +255,19 @@
 .real-image{
   width: 80px;
   height:90px;
+}
+
+@media screen and (max-width: 700px){
+  .reals-index-item{
+    min-width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .reals-index-item-out-box{
+  }
+}
+@media screen and (max-width: 600px){
+
 }
