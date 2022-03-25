@@ -20,6 +20,7 @@ class RealsController < ApplicationController
     @real_like = @real.real_likes.find_by(user_id: current_user.id)
     
     @user = @real.user
+    
     @real_comments = @real.real_comments.all.order(created_at: :desc)
     @real_comment = RealComment.new
     if current_user.present? then

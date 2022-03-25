@@ -10,10 +10,13 @@
 .comment-index-item {
   padding: 15px 30px;
   background-color: white;
-  overflow: hidden;
-  box-shadow: 0 2px 6px #c1ced7;
+  position: relative;
+  // box-shadow: 0 2px 6px #c1ced7;
+  border-bottom: 1px solid #eee;
   word-break: break-all;
-  padding-bottom: -10px;
+}
+.reals-show .comment-index-item .user-profile-box{
+  padding: 0;
 }
 .comment-index-name {
   color: black;
@@ -24,10 +27,34 @@
 
 }
 .comment-index-content {
-  margin-top: -15px;
-  word-break: break-all;
+  padding-left: 55px;
+}
+.comment-form-submit{
+  border: none;
+  color: rgb(107, 107, 255);
+  font-weight: bold;
+  background-color: transparent;
+  cursor: pointer;
+  height: 25px;
   font-size: 15px;
-  margin-left: 50px;
-  color: black;
-  width: 65%;
+  margin-top: 2px;
+}
+
+.comment-form{
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.comment-field{
+  border: 0;
+  resize: none;
+  min-height: 80px;
+  width: 100%;
+}
+.comment-field:focus{
+  outline: none;
 }

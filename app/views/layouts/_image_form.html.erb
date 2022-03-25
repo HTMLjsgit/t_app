@@ -1,6 +1,6 @@
 <div class="form-view-images">
   <!-- 画像フォームのプレビュー -->
-  <div class="form-view-images-range"></div>
-  <div id="form-view-image-event" class="form-view-image-event-range"></div>
-  <%= image_tag "camera_icon.png", class: "camera_icon" %>
+  <div class="form-view-images-range <%= area_name %>"></div>
+  <div id="form-view-image-event" class="form-view-image-event-range <%= area_name %>" data-base_area_name="<%= area_name %>" data-base_id_name="<%= base_id_name %>" data-base_table_name="<%= base_table_name %>" data-base_column_name="<%= base_column_name %>" data-base_attributes_name="<%= base_attributes_name %>"></div>
+  <%= image_tag "camera_icon.png", class: "camera_icon #{area_name}" %>
 </div>

@@ -13,6 +13,7 @@
           <div class="form-field">
             <%= f.text_area :description, class: "form-control", placeholder: "記事の説明文" %>
           </div>
+
           <div class="form-field poster">
             <label>記事のポスター画像</label>
             <%= f.file_field :poster, class: "form-control-file hide", id: "form-file-poster" %>
@@ -27,18 +28,44 @@
               <% end %>
             </div>    
           </div>
-          
-          <div class="form-field poster">
-            <label>記事の画像集</label>
+
+          <%# <div class="form-field poster"> %>
+            <%# <label>記事のサムネイル</label> %>
             
-            <div class="input-images-area">
-              <%= f.fields_for :image_posts, @image_post do |f_image_post| %>
-                <%= f_image_post.file_field :picture, id: "input-post-image-0",class: "form-input-image" %>
+            <%# <div class="input-images-area"> %>
+              <%#= f.fields_for :post_thumbnails, @post_thumbnail do |f_post_thumbnail| %>
+                <%#= f_post_thumbnail.file_field :picture, id: "input-post-thumbnail-0",class: "form-input-image" %>
+              <%# end %>
+            <%# </div> %>
+
+            <%#= render partial: "layouts/image_form" %>
+          <%# </div> %>
+          <div class="form-field poster">
+            <label>サムネイル画像</label>
+            
+            <div class="input-images-area post_thumbnails">
+              <%= f.fields_for :post_thumbnails, @post_thumbnail do |f_post_thumbnail| %>
+                <%= f_post_thumbnail.file_field :picture, id: "input-post-thumbnail-0",class: "form-input-image" %>
               <% end %>
             </div>
 
-            <%= render partial: "layouts/image_form" %>
+            <%= render partial: "layouts/image_form", locals: {area_name: "post_thumbnails", base_id_name: "input-post-thumbnail", base_table_name: "post",
+                                                               base_column_name: "picture", base_attributes_name: "post_thumbnails"} %>
           </div>
+
+          <div class="form-field poster">
+            <label>記事の画像集</label>
+            
+            <div class="input-images-area image_posts">
+              <%= f.fields_for :image_posts, @image_post do |f_image_post| %>
+                <%= f_image_post.file_field :picture, id: "input-post-image-0",class: "form-input-image"%>
+              <% end %>
+            </div>
+
+            <%= render partial: "layouts/image_form", locals: {area_name: "image_posts", base_id_name: "input-post-image", base_table_name: "post",
+                                                               base_column_name: "picture", base_attributes_name: "image_posts"} %>
+          </div>
+
           <div class="form-field poster">
             <label>値段
               <%= f.text_field :amount, class: "form-control", id: "amount_input",placeholder: "例(1000)"  %>
