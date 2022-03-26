@@ -8,13 +8,13 @@ class Post < ApplicationRecord
    validate :amount_min_check
    validate :thumbnails_check
    belongs_to :user
-   has_many :comments
-   has_many :likes
+   has_many :comments, dependent: :destroy
+   has_many :likes, dependent: :destroy
    
    
    has_many :image_posts, dependent: :destroy
    has_many :post_thumbnails, dependent: :destroy
-   has_many :post_payments, class_name: "Payment", foreign_key: "post_id"
+   has_many :post_payments, class_name: "Payment", foreign_key: "post_id", dependent: :destroy
    accepts_nested_attributes_for :image_posts, allow_destroy: true
    accepts_nested_attributes_for :post_thumbnails, allow_destroy: true
    is_impressionable

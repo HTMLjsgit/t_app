@@ -32,7 +32,7 @@ class PostsController < ApplicationController
     end
     @post.commission = commission
 
-    @post.save!
+    @post.save
 
     redirect_to(posts_path)
   end

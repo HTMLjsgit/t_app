@@ -66,6 +66,12 @@
                   <%= button_to "記事を読む",post_path(post),{type: "button",method: :get,class: "base-pink-button post-index-payment-button"} %>
                 </div>
               <% end %>
+            <% else %>
+                <object>
+                  <div class="post-index-buy-button-box">
+                    <%= button_to "¥#{post.amount+post.commission}", new_user_session_path ,type: "button", id: "post-payment-box-open-link-#{post.id}",class: "base-pink-button post-index-payment-button", data: {post_id: post.id} %>
+                  </div>
+                </object>
             <% end %>
           </div>
         <% end %>
