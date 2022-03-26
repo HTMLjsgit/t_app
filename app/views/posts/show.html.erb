@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 <div class="main posts-show">
   <div class="posts-show-item">
       <% if @user.avater.attached? %>
@@ -22,9 +24,14 @@
             <i class="fa fa-heart like-btn"></i>
           <% end %>
           <%= @post.likes.count %>
+>>>>>>> 32f3fd20e0de9728cdec68728ef06c4f9b6b1c7b
 
-          <% else %>
 
+<<<<<<< HEAD
+<div>
+  <% @images.each do |image| %>
+    <%= image_tag("data:image/png;base64,#{Base64.encode64(image.picture).gsub("\n", "")}", :size => '150x150', class: "image")%>
+=======
           <%= link_to create_like_path(@post), class: "like-btn", method: :POST, remote: true do %>
             <i class="far fa-heart like-btn"></i>
           <% end %>
@@ -55,6 +62,7 @@
     <% if image_post.picture? %>
       <%= image_tag image_post.picture.url,class: "post_explanation_thumbnails" %>
     <% end %>
+>>>>>>> 32f3fd20e0de9728cdec68728ef06c4f9b6b1c7b
   <% end %>
 </div>
 
