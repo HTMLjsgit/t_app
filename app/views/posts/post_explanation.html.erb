@@ -85,21 +85,6 @@
 </div>
 
 
-<<<<<<< HEAD
-    <%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %>
-    <%= link_to(post_path(@post),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>
-      <i class="fas fa-trash-alt fa-2x"></i>
-    <% end %>
-  </div>
-  <p>
-    購入数：<%= @purchase_num %>
-  </p>
-
-  <% if user_signed_in? %>
-    <% if current_user.id == @post.user_id %>
-      <p>閲覧数：<%= @post.impressionist_count %></p>
-    <% end %>
-=======
 
 <% if user_signed_in? %>
   <% if @post.user_id == current_user.id %>
@@ -114,7 +99,6 @@
       <% end %>
     </div>
 
->>>>>>> bebd34e06919bcc4394e03c8bdbc1bc99899e427
   <% end %>
 <% end %>
 <% if @posts.exists? %>
