@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   helper_method :non_count
   helper_method :get_to_user
-
+  before_action :user_find, only: [:update]
   def get_to_user(user_id, room_id)
     create_user_id = nil
     ret = nil
@@ -78,8 +78,16 @@ class UsersController < ApplicationController
         @user_room_rels_count += ChatPost.where.not(:user_id => @user.id).where(:see => 0).where(:room_id => user_room_rel.room_id).count
       end
     end
+    if params[:display_mode] == "post"
+      @user_posts_with_reals = @user.posts
+    elsif params[:display_mode] == "real"
+      @user_posts_with_reals = @user.reals
+    end
   end
-
+  def update
+    @user.update!(user_params)
+    redirect_to user_path(current_user)
+  end
   def show_admin
     @users = User.all
     @room = Room.new
@@ -137,12 +145,12 @@ class UsersController < ApplicationController
     @rooms = Room.where(:id => room_ids)
     @users_admin = User.where(:id => user_ids)
     @indexes = []
-    p @indexes.fill(0, @users_admin.to_a.length) {|i| i}
-    print @users_admin.to_a
-    print @rooms.to_a.length
-    print @users_admin.to_a[0].avater
-    print @indexes
-    print  "yaerafaw"
+    # p @indexes.fill(0, @users_admin.to_a.length) {|i| i}
+    # print @users_admin.to_a
+    # print @rooms.to_a.length
+    # print @users_admin.to_a[0].avater
+    # print @indexes
+    # print  "yaerafaw"
   end
 
   def avater_update
@@ -165,18 +173,25 @@ class UsersController < ApplicationController
     end
     redirect_to "/users/edit"
   end
-
+  
   def stop_isstopped
     @user = User.find(params[:id])
     @user.isstopped = true
     @user.save
     redirect_to "/admins/show_index"
   end
-
+  def user_find
+    @user = User.find params[:id]
+  end
   def update_isstopped
     @user = User.find(params[:id])
     @user.isstopped = false
     @user.save
     redirect_to "/admins/show_index"
+  end
+  private
+
+  def user_params
+    params.require(:user).permit(:background_image, :username)
   end
 end

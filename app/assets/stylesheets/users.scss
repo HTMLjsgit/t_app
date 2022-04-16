@@ -83,6 +83,62 @@
   margin-right: 600px;
 
 }
+.user_count-box{
+  display: flex;
+  
+}
+.user-show-messages-box{
+
+}
+.user-show-message-icon{
+  font-size: 40px;
+  width: 100%;
+  text-align: center;
+}
+.user-background-image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.user-show-backgroundimage-box{
+  height: 300px;
+}
+.user-messages-box{
+  padding-top: 8px;
+}
+.main-user-contents-show{
+  margin: 0 0 0 auto;
+  display: flex;
+  padding-top: 25px;
+  padding-bottom: 0px;
+}
+.user_counts-one-box{
+  min-width: 100px;
+  padding-left: 20px;
+}
+
+.user-contents-box{
+  display: flex;
+}
+.user-contents-box .avater_image{
+  position: relative;
+  top: -30px;
+  left: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+.user-show-username-text{
+  padding-left: 30px;
+}
+.user_counts-text{
+  color: #000;
+  text-align: center;
+  margin: 0;
+}
+.heading-user_counts-text{
+  text-align: center;
+}
 .size-2{
     font-size: 1.3em;
     border-radius: 20px;
