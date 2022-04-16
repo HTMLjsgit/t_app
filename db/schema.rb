@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_21_111322) do
+ActiveRecord::Schema.define(version: 2022_04_15_094638) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -68,8 +68,7 @@ ActiveRecord::Schema.define(version: 2022_02_21_111322) do
 
   create_table "image_posts", force: :cascade do |t|
     t.string "number"
-    t.string "image_url"
-    t.binary "picture"
+    t.string "picture"
     t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -143,6 +142,14 @@ ActiveRecord::Schema.define(version: 2022_02_21_111322) do
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
+  create_table "post_thumbnails", force: :cascade do |t|
+    t.integer "post_id"
+    t.string "picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_thumbnails_on_post_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.text "content"
     t.datetime "created_at", null: false
@@ -152,6 +159,7 @@ ActiveRecord::Schema.define(version: 2022_02_21_111322) do
     t.bigint "commission"
     t.string "title"
     t.text "description"
+    t.string "poster"
   end
 
   create_table "real_comments", force: :cascade do |t|
@@ -230,6 +238,7 @@ ActiveRecord::Schema.define(version: 2022_02_21_111322) do
     t.string "bank_account_number"
     t.string "bank_account_horseman_name_kana"
     t.boolean "isstopped", default: false, null: false
+    t.string "background_image"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

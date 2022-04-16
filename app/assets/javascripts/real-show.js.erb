@@ -1,0 +1,14 @@
+console.log("aaa");
+$(function(){
+  let measure_time = 0;
+  var timeEvent;
+
+
+
+  $(`.image-slide-real-box`).click(function(event){
+      modal_display(false, "image-real-zoom-modal-contents", "image-real-zoom-modal-background");
+      if(event.currentTarget.className.indexOf("slick-two") >= 0){
+        $(".image-contents-zoom").slick("slickGoTo", event.currentTarget.dataset.index, true);
+      }
+  });
+});

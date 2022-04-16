@@ -1,53 +1,73 @@
 
-<% if @user.avater.attached? %>
-  <div class="avater_image">
-    <%= image_tag @user.avater %>
-  </div>
-<% else %>
-<div class="avater_image">
-<%= image_tag "/blank-profile-picture-973460_640.png" %>
-</div>
-<% end %>
-<h2><%= "#{@user.username}" %>
-<% if current_user.present? %>
-  <% if @user.id == current_user.id %>
-  <%= link_to chat_index_path, method: :get do%>
-    <i class="far fa-envelope relative">
-      <% if @user_room_rels_count > 0 %>
-
-        <span class="non_count_total"><%= @user_room_rels_count %></span>
-      <% end %>
-    </i>
-  <% end %>
-
+<%= button_tag "背景画像を設定", id: "background-setting-button" %>
+<div class="user-show-backgroundimage-box">
+  <% if @user.background_image? %>
+    <%= image_tag @user.background_image.url, class: "user-background-image" %>
   <% else %>
-    <% if @create_room %>
-      <%= link_to "/rooms/#{@create_room.room_id}", method: :get do%>
-          <i class="far fa-envelope relative"></i>
-      <% end %>
-    <% else %>
-      <%= link_to "/rooms/#{@user.id}", method: :post do%>
-        <i class="far fa-envelope relative"></i>
-      <% end %>
+    <%= image_tag "", class: "user-background-image" %>
+  <% end %>
+</div>
+<div class="user-contents-box">
+  <% if @user.avater.attached? %>
+    <div class="avater_image">
+      <%= image_tag @user.avater %>
+    </div>
+  <% else %>
+    <div class="avater_image">
+      <%= image_tag "blank-profile-picture-973460_640.png" %>
+    </div>
+  <% end %>
+  <div class="main-user-contents-show">
+    <%= form_with model: @user, local: true, class: "hide", id: "user-show-form" do |f| %>
+      <%= f.file_field :background_image, id: "user-background_image-form" %>
+      <%= f.submit %>
     <% end %>
-  <% end %>
-  </h2>
-  <div class="user_count">
-    <ul>
-    <li>
-      <h1><%= link_to "#{@user.followed.count}", show_follower_path(@user.id) %></h1><%= "フォロワー" %>
-    </li>
-    <li>
-      <h1><%= link_to "#{@user.follower.count}", show_following_path(@user.id) %></h1><%= "フォロー" %>
-    </li>
-    </ul>
+    <div class="user-messages-box">
+      <% if user_signed_in? %>
+        <% if @user.id == current_user.id %>
+          <%= link_to chat_index_path, method: :get do %>
+            <i class="far fa-envelope relative user-show-message-icon">
+              <% if @user_room_rels_count > 0 %>
+                <!-- <span class="non_count_total"><%#= @user_room_rels_count %></span> -->
+              <% end %>
+            </i>
+          <% end %>
+        <% else %>
+          <% if @create_room %>
+            <%= link_to "/rooms/#{@create_room.room_id}", method: :get do%>
+                <i class="far fa-envelope relative user-show-message-icon"></i>
+            <% end %>
+          <% else %>
+            <%= link_to "/rooms/#{@user.id}", method: :post do%>
+              <i class="far fa-envelope relative user-show-message-icon"></i>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <p class="heading-user_counts-tex">メッセージ</p>
+    </div>
+    <div class="user_count-box">
+      <div class="user_counts-one-box">
+        <%= link_to show_following_path(@user.id), class: "underline-none hover" do %>
+          <h1 class="user_counts-text"><%= "#{@user.follower.count}" %></h1>
+        <% end %>
+        <p class="heading-user_counts-text">フォロー</p>
+      </div>
+      <div class="user_counts-one-box">
+        <%= link_to show_follower_path(@user.id), class: "underline-none hover" do %>
+          <h1 class="user_counts-text"><%= "#{@user.followed.count}" %></h1>
+        <% end %>
+        <p class="heading-user_counts-text">フォロワー</p>
+      </div>
+    </div>
   </div>
+</div>
+<h2 class="user-show-username-text"><%= "#{@user.username}" %></h2>
+<% if user_signed_in? %>
   <% if @user.id == current_user.id %>
-      <li class="nav-item ">
-        <%= link_to 'アカウント編集', edit_user_registration_path, {class: "nav-link"} %>
-      </li>
+    <%= link_to 'アカウント編集', edit_user_registration_path, {class: "nav-link"} %>
   <% end %>
-
+  
   <% unless @user == current_user %>
     <% if current_user.following?(@user) %>
       <%= link_to 'フォロー中', unfollow_path(@user.id),:class => "btn btn-primary btn-sm follow_btn size-2", method: :POST, data: { confirm: 'フォローを解除' } %>
@@ -68,9 +88,7 @@
   <%# @nonrooms.each do |room| %>
     <%#<a class="room_tags" href="/rooms/<%= room.id %><%#= room.name %>
   <%# end %>
-
-  <p></p>
-<% elsif current_admin.present? %>
+<% elsif admin_singed_in? %>
   <%= link_to chat_index_path, method: :get do%>
     <i class="far fa-envelope relative">
       <% if @user_room_rels_count > 0 %>
@@ -89,9 +107,9 @@
     </li>
     </ul>
   </div>
-  <li class="nav-item ">
-    <%= link_to 'アカウント編集', edit_user_registration_path, {class: "nav-link"} %>
-  </li>
+  <!-- <li class="nav-item ">
+    <%#= link_to 'アカウント編集', edit_user_registration_path, {class: "nav-link"} %>
+  </li> -->
 
   <% unless @user == current_user or current_admin.present? %>
     <% if current_user.following?(@user) %>
@@ -100,19 +118,13 @@
       <%= link_to 'フォローする', follow_path(@user.id), :class => "btn btn-primary btn-sm follow_btn size-2",method: :POST %>
     <% end %>
   <% end %>
-  <p></p>
-
-  <!--<h3>トークルーム作成</h3>-->
-  <%#= form_with model: @room do |f| %>
-    <%#= f.label "部屋名" %>
-    <%#= f.text_field :name %>
-    <%#= f.submit "部屋を作成" %>
-  <%# end %>
-
-  <!--<h4>未参加トークルーム一覧</h4>-->
-  <%# @nonrooms.each do |room| %>
-    <%#<a class="room_tags" href="/rooms/<%= room.id %><%#= room.name %>
-  <%# end %>
-
-  <p></p>
 <% end %>
+
+<script>
+  $("#user-background_image-form").change(function(event){
+    $("#user-show-form").submit();
+  });
+  $("#background-setting-button").click(function(event){
+    $("#user-background_image-form").click();
+  });
+</script>

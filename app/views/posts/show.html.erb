@@ -1,5 +1,5 @@
 <div class="main posts-show">
-    <div class="posts-show-item">
+  <div class="posts-show-item">
       <% if @user.avater.attached? %>
         <div class="post-user">
           <%= image_tag @user.avater %> <%= link_to(@user.username, user_path(@user),class: "post-index-name") %>
@@ -23,7 +23,6 @@
           <% end %>
           <%= @post.likes.count %>
 
-          <% else %>
 
           <%= link_to create_like_path(@post), class: "like-btn", method: :POST, remote: true do %>
             <i class="far fa-heart like-btn"></i>
@@ -35,24 +34,25 @@
         <%= @post.likes.count %>
   　　　<% end %>
      <% end %>
-  <% if @user == current_user %>
+    <% if @user == current_user %>
       <div class="post-menus">
-        <%= link_to(edit_post_path(@post), method: :get) do%>
-        <i class="far fa-edit fa-2x"></i>
+        <%= link_to(edit_post_path(@post), method: :get) do %>
+          <i class="far fa-edit fa-2x"></i>
         <% end %>
         <%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %>
         <%= link_to(post_path(@post),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>
-        <i class="fas fa-trash-alt fa-2x"></i>
-        <% end %>
+          <i class="fas fa-trash-alt fa-2x"></i>
         <% end %>
       </div>
-    </div>
+    <% end %>
+  </div>
 </div>
 
 <div class="post_explanation_thumbnails">
-  <% if @post.thumbnails.attached? %>
-    <% @post.thumbnails.each do |thumbnail| %>
-        <%= image_tag thumbnail,class: "post_explanation_thumbnails" %>
+
+  <% @post.image_posts.each do |image_post| %>
+    <% if image_post.picture? %>
+      <%= image_tag image_post.picture.url,class: "post_explanation_thumbnails" %>
     <% end %>
   <% end %>
 </div>

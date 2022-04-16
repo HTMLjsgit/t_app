@@ -9,6 +9,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
     <%= javascript_include_tag 'application' %>
     <%= include_gon %>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   </head>
 
@@ -81,63 +84,26 @@
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
+    <div class="container">
+     <%= yield %>
+   </div>
     <footer>
-      <ul>
-        <% if user_signed_in? || current_admin.present? %>
-          <% if current_user.present? %>
-            <li>
-              <%= link_to user_path(current_user), method: :get do  %>
-              <i class="fas fa-home footer_item"></i>
-              <% end %>
-            </li>
-          <% elsif current_admin.present? %>
-             <li>
-              <%= link_to show_index_admin_path, method: :get do  %>
-              <i class="fas fa-home footer_item"></i>
-              <% end %>
-            </li>
-          <% end %>
-          <li><%= link_to posts_path, method: :get do  %>
-            <i class="fas fa-hammer footer_item"></i><i class="fas fa-shopping-cart footer_item"></i>
+      <div class="footer-contents-box">
+        <ul>
+          <% if user_signed_in? || current_admin.present? %>
+            <% if current_user.present? %>
+              <li>
+                <%= link_to user_path(current_user), method: :get do  %>
+                <i class="fas fa-home footer_item"></i>
+                <% end %>
+              </li>
+            <% elsif current_admin.present? %>
+              <li>
+                <%= link_to show_index_admin_path, method: :get do  %>
+                <i class="fas fa-home footer_item"></i>
+                <% end %>
+              </li>
             <% end %>
-          </li>
-
-          <li><%= link_to reals_path, method: :get do  %>
-              <i class="far fa-comments footer_item"></i><i class="fas fa-child footer_item"></i>
-              <% end %>
-
-          </li>
-          <% if current_user.present? %>
-            <li>
-              <%= link_to chat_index_path(current_user), method: :get do %>
-                <i class="far fa-envelope footer_item"></i>
-              <% end %>
-              <% if @user_room_rels_count > 0 %>
-                <i class="far fa-envelope relative">
-                  <span class="non_count_total"><%= @user_room_rels_count %></span>
-                </i>
-              <% end %>
-            </li>
-          <% elsif current_admin.present? %>
-          <li>
-              <%= link_to chat_index_admin_path, method: :get do %>
-                <i class="far fa-envelope footer_item"></i>
-              <% end %>
-              <% if @user_room_rels_count > 0 %>
-                <i class="far fa-envelope relative">
-                  <span class="non_count_total"><%= @user_room_rels_count %></span>
-                </i>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-        <% else %>
-            <li><%= link_to posts_path,method: :get do  %>
-              <i class="fas fa-home footer_item"></i>
-
-            </li>
-
             <li><%= link_to posts_path, method: :get do  %>
               <i class="fas fa-hammer footer_item"></i><i class="fas fa-shopping-cart footer_item"></i>
               <% end %>
@@ -146,13 +112,50 @@
             <li><%= link_to reals_path, method: :get do  %>
                 <i class="far fa-comments footer_item"></i><i class="fas fa-child footer_item"></i>
                 <% end %>
-            </li>
-          <% end %>
-        <% end %>
 
+            </li>
+            <% if current_user.present? %>
+              <li>
+                <%= link_to chat_index_path(current_user), method: :get do %>
+                  <i class="far fa-envelope footer_item"></i>
+                <% end %>
+                <% if @user_room_rels_count > 0 %>
+                  <i class="far fa-envelope relative">
+                    <span class="non_count_total"><%= @user_room_rels_count %></span>
+                  </i>
+                <% end %>
+              </li>
+            <% elsif current_admin.present? %>
+            <li>
+                <%= link_to chat_index_admin_path, method: :get do %>
+                  <i class="far fa-envelope footer_item"></i>
+                <% end %>
+                <% if @user_room_rels_count > 0 %>
+                  <i class="far fa-envelope relative">
+                    <span class="non_count_total"><%= @user_room_rels_count %></span>
+                  </i>
+                <% end %>
+              </li>
+            <% end %>
+          <% else %>
+              <li><%= link_to posts_path,method: :get do  %>
+                <i class="fas fa-home footer_item"></i>
+
+              </li>
+
+              <li><%= link_to posts_path, method: :get do  %>
+                <i class="fas fa-hammer footer_item"></i><i class="fas fa-shopping-cart footer_item"></i>
+                <% end %>
+              </li>
+
+              <li><%= link_to reals_path, method: :get do  %>
+                  <i class="far fa-comments footer_item"></i><i class="fas fa-child footer_item"></i>
+                  <% end %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
     </footer>
-    <div class="container">
-     <%= yield %>
-   </div>
   </body>
 </html>
