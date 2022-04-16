@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   helper_method :non_count
   helper_method :get_to_user
-  before_action :user_find, only: [:update]
+  before_action :user_find, only: [:update, :show]
   def get_to_user(user_id, room_id)
     create_user_id = nil
     ret = nil
@@ -55,8 +55,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     @room = Room.new
+    gon.stripe_public_key = Rails.configuration.stripe[:public_key]
+    reals_id = ImageReal.pluck(:real_id)
+    @reals = Real.all.where(id: reals_id).includes(:image_reals).distinct
+    @reals_not = Real.all.where.not(id: reals_id).includes(:image_reals).distinct
+
+
     if (current_user.present?) then
       @rooms = current_user.rooms
       @nonrooms = Room.where(id: UserRoom.where.not(user_id: current_user.id).pluck(:id))
@@ -78,11 +83,7 @@ class UsersController < ApplicationController
         @user_room_rels_count += ChatPost.where.not(:user_id => @user.id).where(:see => 0).where(:room_id => user_room_rel.room_id).count
       end
     end
-    if params[:display_mode] == "post"
-      @user_posts_with_reals = @user.posts
-    elsif params[:display_mode] == "real"
-      @user_posts_with_reals = @user.reals
-    end
+
   end
   def update
     @user.update!(user_params)
@@ -173,7 +174,7 @@ class UsersController < ApplicationController
     end
     redirect_to "/users/edit"
   end
-  
+
   def stop_isstopped
     @user = User.find(params[:id])
     @user.isstopped = true
@@ -192,6 +193,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:background_image, :username)
+    params.require(:user).permit(:background_image, :username, :avater)
   end
 end

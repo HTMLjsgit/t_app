@@ -1,5 +1,5 @@
 
-<%= button_tag "背景画像を設定", id: "background-setting-button" %>
+
 <div class="user-show-backgroundimage-box">
   <% if @user.background_image? %>
     <%= image_tag @user.background_image.url, class: "user-background-image" %>
@@ -7,6 +7,7 @@
     <%= image_tag "", class: "user-background-image" %>
   <% end %>
 </div>
+<%= render partial: "payments/post_payment" %>
 <div class="user-contents-box">
   <% if @user.avater.attached? %>
     <div class="avater_image">
@@ -43,6 +44,14 @@
             <% end %>
           <% end %>
         <% end %>
+      <% else %>
+        <%= link_to new_user_registration_path, method: :get do %>
+          <i class="far fa-envelope relative user-show-message-icon">
+            <% if @user_room_rels_count > 0 %>
+              <!-- <span class="non_count_total"><%#= @user_room_rels_count %></span> -->
+            <% end %>
+          </i>
+        <% end %>
       <% end %>
       <p class="heading-user_counts-tex">メッセージ</p>
     </div>
@@ -67,7 +76,7 @@
   <% if @user.id == current_user.id %>
     <%= link_to 'アカウント編集', edit_user_registration_path, {class: "nav-link"} %>
   <% end %>
-  
+
   <% unless @user == current_user %>
     <% if current_user.following?(@user) %>
       <%= link_to 'フォロー中', unfollow_path(@user.id),:class => "btn btn-primary btn-sm follow_btn size-2", method: :POST, data: { confirm: 'フォローを解除' } %>
@@ -75,7 +84,6 @@
       <%= link_to 'フォローする', follow_path(@user.id), :class => "btn btn-primary btn-sm follow_btn size-2",method: :POST %>
     <% end %>
   <% end %>
-  <p></p>
 
   <!--<h3>トークルーム作成</h3>-->
   <%#= form_with model: @room do |f| %>
@@ -88,7 +96,7 @@
   <%# @nonrooms.each do |room| %>
     <%#<a class="room_tags" href="/rooms/<%= room.id %><%#= room.name %>
   <%# end %>
-<% elsif admin_singed_in? %>
+<% elsif admin_signed_in? %>
   <%= link_to chat_index_path, method: :get do%>
     <i class="far fa-envelope relative">
       <% if @user_room_rels_count > 0 %>
@@ -107,9 +115,9 @@
     </li>
     </ul>
   </div>
-  <!-- <li class="nav-item ">
-    <%#= link_to 'アカウント編集', edit_user_registration_path, {class: "nav-link"} %>
-  </li> -->
+  <li class="nav-item ">
+    <%= link_to 'アカウント編集', edit_user_registration_path, {class: "nav-link"} %>
+  </li>
 
   <% unless @user == current_user or current_admin.present? %>
     <% if current_user.following?(@user) %>
@@ -119,12 +127,60 @@
     <% end %>
   <% end %>
 <% end %>
+<div class="change-list-buttons-box">
+  <%= button_tag "Postに切り替え", class: "change-list-button", data: {type: "post"} %>
+  <%= button_tag "Realに切り替え", class: "change-list-button", data: {type: "real"} %>
+</div>
+
+<div class="user-show-contents-box">
+  <div class="post user-show-contents-list">
+    <%= render partial: "posts/posts_list", locals: {posts: @user.posts} %>
+  </div>
+  <div class="real user-show-contents-list hide">
+    <%= render partial: "reals/reals_list", locals: {reals: @user.reals, message_custom: true} %>
+    <div class="main real-click-event message user-show hide">
+      <% @reals_not.each do |real_not| %>
+          <div class="real-user-show-message-only-box out">
+            <%= link_to real_path(real_not), class: "real-index-link" do %>
+              <div class="real-user-show-message-only-box into">
+                <%= render partial: "users/user_profile", locals: {user: @user} %>
+                <div class="real-user-show-message-box">
+                  <%= simple_format real_not.content.truncate(30) %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<style>
+  .container{
+    max-width: 1000px;
+  }
+  .real-change-buttons-box{
+    max-width: 100%;
+  }
+</style>
 
 <script>
+  var type = "post";
+  var before_type = "post";
+  let start_once = false;
   $("#user-background_image-form").change(function(event){
     $("#user-show-form").submit();
   });
   $("#background-setting-button").click(function(event){
     $("#user-background_image-form").click();
+  });
+  $(`.change-list-button`).click(function(event){
+    type = event.target.dataset.type;
+    if(type != before_type){
+      $(`.user-show-contents-list.${type}`).removeClass("hide");
+      $(`.user-show-contents-list.${before_type}`).addClass("hide");
+    }
+
+    before_type = event.target.dataset.type;
   });
 </script>

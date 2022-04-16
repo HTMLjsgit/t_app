@@ -1,87 +1,103 @@
 // Place all the styles related to the reals controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.reals-index{
+.reals-index {
   display: flex;
   flex-wrap: wrap;
   max-width: 700px;
   margin: 0 auto;
   justify-content: center;
 }
-.reals-show{
+
+.reals-show {
   border: 1px solid #ddd;
   max-width: 650px;
   margin: 0 auto;
-  // padding: 10px; 
+  // padding: 10px;
 }
-.reals-show .user-profile-box{
+
+.reals-show .user-profile-box {
   padding: 20px;
   padding-left: 30px;
 }
-.reals-comments-box{
+
+.reals-comments-box {
   padding-top: 80px;
 }
-.comments-all-box{
+
+.comments-all-box {
   overflow-y: auto;
   max-height: 400px;
 }
-.count-text-contents{
+
+.count-text-contents {
   padding-left: 5px;
   padding-top: 3px;
   margin: 0;
 }
-.user-action-box{
+
+.user-action-box {
   display: flex;
 
 }
-.reals-views-count-text{
+
+.reals-views-count-text {
   padding-top: 5px;
 }
-.user-real-action{
+
+.user-real-action {
   display: flex;
   font-size: 18px;
 }
-.user-real-action img{
+
+.user-real-action img {
   width: 30px;
   height: 30px;
 }
-.real-show-contents{
+
+.real-show-contents {
   display: flex;
   max-width: 80%;
   margin: 0 auto;
   padding-top: 30px;
 }
-.reals-views-count-text{
+
+.reals-views-count-text {
   margin: 0 0 0 auto;
 }
-.slick-dots li.slick-active button::before{
+
+.slick-dots li.slick-active button::before {
   color: #0e6a78 !important;
 }
-.real-show-content{
-    margin-top: 30px;
-    font-size: 20px;
-    padding-left: 80px;
-    color: #4d4d4d;
-    word-break: break-all;
-    min-height: 100px;
+
+.real-show-content {
+  margin-top: 30px;
+  font-size: 20px;
+  padding-left: 80px;
+  color: #4d4d4d;
+  word-break: break-all;
+  min-height: 100px;
 }
-.real-image-item-box{
+
+.real-image-item-box {
   margin-right: 2px;
   margin-top: 2px;
   position: relative;
   width: 140px;
   height: 140px;
 }
-.real-image-item-box.ink{
+
+.real-image-item-box.ink {
   width: 200px;
   height: 200px;
 }
-.real-index-link:hover{
+
+.real-index-link:hover {
   text-decoration: none;
 }
 
-.on-ink-only-text{
-  color: rgb(0, 0, 0); 
+.on-ink-only-text {
+  color: rgb(0, 0, 0);
   font-weight: bold;
   position: absolute;
 
@@ -95,7 +111,8 @@
   position: relative;
   left: 10px;
 }
-.on-ink-only-text p{
+
+.on-ink-only-text p {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -106,45 +123,54 @@
   -webkit-box-orient: vertical;
 }
 
-.on-ink-only-text p{
+.on-ink-only-text p {
   margin: 0;
 }
-.real-image-index-box{
+
+.real-image-index-box {
   width: 100%;
   height: 100%;
   background-color: #eee;
 }
-.real-image-index-box.ink{
+
+.real-image-index-box.ink {
   width: 100%;
   height: 100%;
   position: absolute;
 }
-.ink-image{
+
+.ink-image {
   position: absolute;
   top: 0;
   width: 110%;
   height: 110%;
   object-fit: cover;
 }
-#image-real-zoom-modal-background{
+
+#image-real-zoom-modal-background {
   background-color: rgba(29, 36, 64, 0.86);
 }
-.real-image-index-box.ink{
+
+.real-image-index-box.ink {
   background-color: transparent;
   position: relative;
 }
 
-.real-image-index-box.ink:hover{
+.real-image-index-box.ink:hover {
   opacity: 0.7;
 }
-.real-change-button-image{
+
+.real-change-button-image {
   width: 40px;
   height: 40px;
+  cursor: pointer;
 }
-.real-change-button-image:hover{
+
+.real-change-button-image:hover {
   opacity: 0.8;
 }
-.real-change-buttons-box{
+
+.real-change-buttons-box {
   display: flex;
   justify-content: space-around;
   max-width: 600px;
@@ -153,7 +179,8 @@
   margin-bottom: 40px;
   border-bottom: 1px solid #eee;
 }
-.image-slide-real-box img{
+
+.image-slide-real-box img {
   margin: 0 auto;
   width: 100%;
   height: 350px;
@@ -161,48 +188,55 @@
   object-fit: cover;
   cursor: pointer;
 }
-.real-image-index{
+
+.real-image-index {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.real-show-images{
-}
-.real-image-upload-icon{
+
+.real-show-images {}
+
+.real-image-upload-icon {
   width: 40px;
   height: 40px;
   cursor: pointer;
   background-image: asset-url("clip-icon.png");
   background-size: cover;
 }
-#submit-real{
+
+#submit-real {
   margin: 0 0 0 auto;
 }
-.submit-form.reals{
+
+.submit-form.reals {
   display: flex;
   margin-top: 10px;
 }
-.real-textarea{
+
+.real-textarea {
   border: none;
   resize: none;
   min-height: 140px;
 
 }
 
-.real-textarea:focus{
+.real-textarea:focus {
   outline: none;
   box-shadow: none;
 }
-.real-index-content{
 
-    font-size: 22px;
-    margin-left: 60px;
-    margin-bottom: 40px;
-    width: 60%;
-    color: gray;
-    word-break: break-all;
+.real-index-content {
+
+  font-size: 22px;
+  margin-left: 60px;
+  margin-bottom: 40px;
+  width: 60%;
+  color: gray;
+  word-break: break-all;
 
 }
+
 .real-index-name {
   color: black;
   font-size: 15px;
@@ -210,6 +244,7 @@
   padding-left: 18px;
   vertical-align: 15px;
 }
+
 .real-users img {
   width: 40px;
   height: 40px;
@@ -217,6 +252,7 @@
   vertical-align: middle;
   object-fit: cover;
 }
+
 .real-user img {
   width: 50px;
   height: 50px;
@@ -224,6 +260,7 @@
   vertical-align: middle;
   object-fit: cover;
 }
+
 .real-show-name {
   color: black;
   font-size: 25px;
@@ -231,23 +268,22 @@
   padding-left: 18px;
   vertical-align: 15px;
 }
-.real-image{
+
+.real-image {
   width: 80px;
-  height:90px;
+  height: 90px;
 }
 
 
-@media screen and (max-width: 700px){
-  .reals-index-item{
+@media screen and (max-width: 700px) {
+  .reals-index-item {
     min-width: 100%;
     max-width: 100%;
     display: flex;
     justify-content: center;
   }
 
-  .reals-index-item-out-box{
-  }
+  .reals-index-item-out-box {}
 }
-@media screen and (max-width: 600px){
 
-}
+@media screen and (max-width: 600px) {}

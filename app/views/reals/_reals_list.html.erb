@@ -1,0 +1,48 @@
+<div class="real-change-buttons-box">
+  <%= image_tag "camera_icon_2.png", class: "real-change-button-image", data: {change: "camera"} %>
+  <%= image_tag "item/message.png", class: "real-change-button-image", data: {change: "message"} %>
+</div>
+
+<script>
+  var change_type = "camera";
+  var before_change_type = "camera";
+  $('.real-change-button-image').click(function(event){
+    change_type = event.target.dataset.change;
+    if(change_type != before_change_type){
+      $(`.real-click-event.${change_type}`).removeClass("hide");
+      $(`.real-click-event.${before_change_type}`).addClass("hide");
+    }
+    before_change_type = event.target.dataset.change;
+  });
+</script>
+
+<div class="main reals-index real-click-event camera">
+  <% reals.each do |real| %>
+    <div class="real-image-item-box">
+      <%= link_to real_path(real), class: "real-index-link" do %>
+        <div class="real-image-index-box">
+          <% if real.image_reals.exists? %>
+            <% if real.image_reals.first.picture? %>
+              <%= image_tag real.image_reals.first.picture.url, class: "real-image-index" %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<% unless defined? message_custom %>
+  <div class="main reals-index real-click-event message hide">
+    <% reals.each do |real| %>
+      <div class="real-image-item-box ink">
+        <%= link_to real_path(real), class: "real-index-link" do %>
+          <% ink_random = rand(1..10) %>
+          <div class="real-image-index-box ink">
+            <%= image_tag "item/ink/ink-#{ink_random}.png", class: "ink-image" %>
+            <div class="on-ink-only-text"><%= simple_format real.content.truncate(30) %></div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
