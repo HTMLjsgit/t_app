@@ -7,73 +7,236 @@
   border-radius: 50%;
   margin: 20px 0 10px;
   object-fit: cover;
-  -webkit-appearance:none;
+  -webkit-appearance: none;
 }
-.users img{
+
+.follow-button {
+  background-color: #e51273;
+  padding: 5px;
+  color: #fff;
+  border-radius: 10px;
+  transition: 0.3s background-color ease;
+}
+
+.follow-button:hover {
+  background-color: #bd1061;
+}
+
+.user-name-and-follow-buttons-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.follow-button-link {
+  text-decoration: none;
+}
+
+.follow-button h3 {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.follow-buttons-contents-box {
+  display: inline-block;
+  margin-right: 30px;
+}
+
+.account-edit-button {
+  width: 500px;
+  border: 1px solid #aaa;
+  padding: 10px;
+  text-align: center;
+  font-size: 20px;
+  color: #000;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.user-show-contents-box {
+  margin-top: 60px;
+}
+
+.user-icon {
+  position: relative;
+}
+
+.change-list-button {
+  border: 0;
+  background-color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.change-list-button:hover {
+  color: #e51273;
+  border-bottom: 2px solid #e51273;
+}
+
+.change-list-button.select {
+  color: #e51273;
+  border-bottom: 2px solid #e51273;
+}
+
+.change-list-button:focus {
+  outline: none;
+}
+
+.change-list-buttons-box {
+  padding-top: 40px;
+  border-bottom: 1px solid #ddd;
+  padding-left: 30px;
+}
+
+.form-field.poster.background-image {
+  width: 100%;
+}
+
+.form-field.poster.background-image .poster-view {
+  width: 100%;
+  height: 300px;
+}
+
+.user-poster-view {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-clip-poster {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.poster-view-image.user {
+  border-radius: 0;
+  width: 100%;
+  height: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.clip-icon.poster.user {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  z-index: 100;
+}
+
+.real-user-show-message-only-box.into {
+  padding: 10px;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+.main.real-click-event.message.user-show {
+  max-width: 650px;
+  margin: 0 auto;
+  border-top: 1px solid #ddd;
+  padding: 0;
+  border-radius: 0;
+}
+
+.real-user-show-message-only-box.into:first-child {
+  // border-top: 1px solid #ddd;
+}
+
+.real-user-show-message-only-box.into:hover {
+  background-color: #eee;
+}
+
+.real-user-show-message-box {
+  padding-left: 55px;
+  color: #000;
+}
+
+.real-user-show-message-only-box.out {}
+
+.real-user-show-message-only-box.out:hover {}
+
+.users img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin: 20px 0 10px;
   object-fit: cover;
 }
-.user_count{
+
+.user_count {
   padding-right: 20%;
 }
-.user-profile-box{
+
+.user-profile-box {
   display: inline-block;
   color: #000;
 }
-.user-name-link{
+
+.user-name-link {
   // margin-left: 5px;
 }
-.user-profile-box a{
+
+.user-profile-box a {
   color: #000;
 }
-.user-profile-into-box{
+
+.user-profile-into-box {
   display: flex;
 }
-.user-name-text{
+
+.user-name-text {
   padding-top: 10px;
   padding-left: 5px;
   font-weight: bold;
 }
-.user-avater-box{
+
+.user-avater-box {
   width: 50px;
   height: 50px;
 }
-.user-avater-icon{
+
+.user-avater-icon {
   width: 100%;
   height: 100%;
   border-radius: 50%;
 }
-.user_count li{
+
+.user_count li {
   float: right;
   list-style-type: none;
   padding-left: 10%;
 }
-.users_right{
+
+.users_right {
   width: 95%;
- padding-left: 25px;
- text-align: left;
- display: table-cell;
- vertical-align: middle;
- word-break: break-all;
+  padding-left: 25px;
+  text-align: left;
+  display: table-cell;
+  vertical-align: middle;
+  word-break: break-all;
 }
-.last-n{
+
+.last-n {
   color: black;
 }
-.last-m{
+
+.last-m {
   color: gray;
 }
-.users-index-item{
+
+.users-index-item {
   padding: 2px 30px;
- background-color: white;
- overflow: hidden;
- box-shadow: 0 2px 6px #c1ced7;
- display: table;
- width: 100%;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+  display: table;
+  width: 100%;
 }
-.users_btn{
+
+.users_btn {
   float: left;
 }
 
@@ -83,14 +246,82 @@
   margin-right: 600px;
 
 }
-.size-2{
-    font-size: 1.3em;
-    border-radius: 20px;
-    margin-right: 600px;
-    margin-top: -70px;
-    width: 20%;
+
+.user_count-box {
+  display: flex;
+
 }
-.follow_line li{
+
+.user-show-messages-box {}
+
+.user-show-message-icon {
+  font-size: 40px;
+  width: 100%;
+  text-align: center;
+}
+
+.user-background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-show-backgroundimage-box {
+  height: 300px;
+}
+
+.user-messages-box {
+  padding-top: 8px;
+}
+
+.main-user-contents-show {
+  margin: 0 0 0 auto;
+  display: flex;
+  padding-top: 25px;
+  padding-bottom: 0px;
+}
+
+.user_counts-one-box {
+  min-width: 100px;
+  padding-left: 20px;
+}
+
+.user-contents-box {
+  display: flex;
+}
+
+.user-contents-box .avater_image {
+  position: relative;
+  top: -30px;
+  left: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.user-show-username-text {
+  padding-left: 30px;
+}
+
+.user_counts-text {
+  color: #000;
+  text-align: center;
+  margin: 0;
+}
+
+.heading-user_counts-text {
+  text-align: center;
+}
+
+.size-2 {
+  font-size: 1.3em;
+  border-radius: 20px;
+  margin-right: 600px;
+  margin-top: -70px;
+  width: 20%;
+}
+
+.follow_line li {
   list-style: none;
   float: right;
   margin-top: -22px;
@@ -99,4 +330,16 @@
   margin-left: -80px;
   padding-right: 230px;
 
+}
+
+@media screen and (max-width: 520px) {
+  .user_counts-one-box {
+    padding: 0;
+    min-width: 80px;
+  }
+
+  .account-edit-button {
+    font-size: 18px;
+    width: 80%;
+  }
 }

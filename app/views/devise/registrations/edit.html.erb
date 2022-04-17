@@ -74,54 +74,51 @@
 
     </div>
 
-    <div class="card-body" style="border-bottom: 1px solid rgba(0,0,0,.125);">
+    <div class="card-body border-bottom">
       <h5>アバター情報の変更</h5>
 
-      <%= form_with model: @user, local: true, url: "/users/avater_update"  do |form| %>
-        <% @user = User.find(current_user.id) %>
+      <%= form_with model: current_user, local: true do |form| %>
 
-        <div class="field row my-5">
-          <div class="col-md-1">
-          </div>
-          <div class="col-md-10">
-
-            <% if @user.avater.attached? %>
-              <div class="avater_image">
-                <%= image_tag @user.avater %>
-              </div>
-            <% end %>
-
-            <!-- <%= form.file_field :avater %> -->
-
-          </div>
-
-          <div id="image-box-1" style="border: 1px solid #DDDDDD; border-radius: 3px; width: 20%; text-align: center; line-height: 108px; align-self: center; position: absolute; left: 40%;">
-              <div class="item-num-0" id="image-box__container1">
-                  <div class="input-area">
-                      <%= form.file_field :real_image, type: 'file', name: "item[images_attributes][][image_url]", value:"", style: "display:none;", id: "img-file-ind", onclick: "this.value=null;"%>
-                      <label for="img-file-ind" style="vertical-align: middle">
-                      <i class="fas fa-camera"></i>
-                    </label>
-                  </div>
+        <div class="field">
+          <div class="form-field poster">
+            <label>ユーザーアイコン</label>
+            <%= form.file_field :avater, class: "form-control-file hide", id: "form-file-poster" %>
+            <div class="poster-view user-icon" id="click-event-poster-field">
+              <% if current_user.avater.attached? %>
+              <!-- ポスター画像があったらサンプル画像 -->
+                <%= image_tag current_user.avater, id: "poster-view-image", class: "block user-poster-view" %>
+                <%= image_tag "clip-icon.png", class: "clip-icon poster user-clip-poster" %>
+              <% else %>
+                <img src="" id="poster-view-image user-poster-view" class="user-poster-view">
+                <%= image_tag "clip-icon.png", class: "clip-icon poster user-clip-poster" %>
+              <% end %>
+            </div>
+            <div class="form-field poster background-image">
+              <label>背景画像の設定</label>
+              <div class="poster-view user-icon click-event-poster-field" data-target_id="background-image-field">
+                <% if current_user.avater.attached? %>
+                <!-- ポスター画像があったらサンプル画像 -->
+                  <%= image_tag current_user.avater, id: "poster-view-image-2", class: "block user-poster-view" %>
+                  <%= image_tag "clip-icon.png",id: "clip-poster-2", class: "clip-icon poster user-clip-poster" %>
+                <% else %>
+                  <img src="" id="poster-view-image poster-view-image-2" class="user-poster-view">
+                  <%= image_tag "clip-icon.png",id: "clip-poster-2", class: "clip-icon poster user-clip-poster" %>
+                <% end %>
+                <%= form.file_field :background_image, class: "form-control-file hide form-file-poster",id: "background-image-field", data: {target_id: "poster-view-image-2", target_clip_id: "clip-poster-2"}%>
               </div>
             </div>
-          </div>
-          <div class="col-md-1">
           </div>
         </div>
         <div class="text-center">
           <%= form.submit "更新する", class: "btn input mb-3", :style => "width: 40%;color: white;" %>
         </div>
-
       <% end %>
-
     </div>
 
     <div class="card-body" style="border-bottom: 1px solid rgba(0,0,0,.125);">
       <h5>口座情報の変更</h5>
 
-      <%= form_with model: @user, local: true, url: "/users/bank_update"  do |f| %>
-        <% @user = User.find(current_user.id) %>
+      <%= form_with model: current_user, local: true, url: "/users/bank_update"  do |f| %>
 
         <div class="form-group field row mt-5">
           <div class="col-md-1">
@@ -205,7 +202,7 @@
 
     <!--<div class="card-footer"></div>-->
   </div>
-
+</div>
 
 
 

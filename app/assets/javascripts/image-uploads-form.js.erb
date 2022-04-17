@@ -14,6 +14,8 @@ $(function(){
   let base_table_name = "post";
   let base_area_name = "";
 
+  let poster_view_target_id = "";
+  let clip_view_target_id = "";
   $('#form-file-poster').change(function(event){
     var reader = new FileReader();
     reader.onload = function(event){
@@ -26,6 +28,22 @@ $(function(){
   $('#click-event-poster-field').click(function(){
     $('#form-file-poster')[0].click();
   });
+  $('.click-event-poster-field').click(function(event){
+    $(`#${event.currentTarget.dataset.target_id}`)[0].click();
+  });
+
+  $('.form-file-poster').change(function(event){
+    var reader = new FileReader();
+    poster_view_target_id = event.target.dataset.targetId;
+    clip_view_target_id = event.target.dataset.targetClipId;
+    reader.onload = function(event){
+      $(`#${clip_view_target_id}`).css('display', 'none');
+      $(`#${poster_view_target_id}`).css('display', 'block');
+      $(`#${poster_view_target_id}`).attr('src', event.target.result);
+    }
+    reader.readAsDataURL(event.target.files[0]);
+  });
+
 
   //  ↡ 複数画像フォームのJavascript
   $(".form-view-image-event-range").click(function(event){

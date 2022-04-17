@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
 
   resources :homes, only: [:show, :index]
-  resources :users, only: [:show, :index, :create]
+  resources :users, only: [:show, :index, :create, :update, :edit]
   resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     member do
       # 記事の説明ページ
