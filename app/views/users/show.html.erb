@@ -71,7 +71,28 @@
     </div>
   </div>
 </div>
-<h2 class="user-show-username-text"><%= "#{@user.username}" %></h2>
+<div class="user-name-and-follow-buttons-box">
+  <h2 class="user-show-username-text"><%= "#{@user.username}" %></h2>
+  <% if user_signed_in? %>
+    <% unless @user == current_user %>
+      <div class="follow-buttons-contents-box">
+        <% if current_user.following?(@user) %>
+          <%= link_to unfollow_path(@user.id),class: "follow-button-link underline-none hover", method: :POST, data: { confirm: 'フォローを解除' } do %>
+            <div class="follow-button">
+              <h3>フォローを解除</h3>
+            </div>
+          <% end %>
+        <% else %>
+          <%= link_to follow_path(@user.id),class: "follow-button-link underline-none hover", method: :POST do %>
+            <div class="follow-button">
+              <h3>フォローする</h3>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
 <% if user_signed_in? %>
   <% if @user.id == current_user.id %>
     <%= link_to edit_user_registration_path, class: "nav-link underline-none hover" do %>
@@ -80,15 +101,6 @@
       </div>
     <% end %>
   <% end %>
-
-  <% unless @user == current_user %>
-    <% if current_user.following?(@user) %>
-      <%= link_to 'フォロー中', unfollow_path(@user.id),:class => "btn btn-primary btn-sm follow_btn size-2", method: :POST, data: { confirm: 'フォローを解除' } %>
-    <% else %>
-      <%= link_to 'フォローする', follow_path(@user.id), :class => "btn btn-primary btn-sm follow_btn size-2",method: :POST %>
-    <% end %>
-  <% end %>
-
   <!--<h3>トークルーム作成</h3>-->
   <%#= form_with model: @room do |f| %>
     <%#= f.label "部屋名" %>

@@ -10,6 +10,37 @@
   -webkit-appearance: none;
 }
 
+.follow-button {
+  background-color: #e51273;
+  padding: 5px;
+  color: #fff;
+  border-radius: 10px;
+  transition: 0.3s background-color ease;
+}
+
+.follow-button:hover {
+  background-color: #bd1061;
+}
+
+.user-name-and-follow-buttons-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.follow-button-link {
+  text-decoration: none;
+}
+
+.follow-button h3 {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.follow-buttons-contents-box {
+  display: inline-block;
+  margin-right: 30px;
+}
+
 .account-edit-button {
   width: 500px;
   border: 1px solid #aaa;
