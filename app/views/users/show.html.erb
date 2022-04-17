@@ -74,7 +74,11 @@
 <h2 class="user-show-username-text"><%= "#{@user.username}" %></h2>
 <% if user_signed_in? %>
   <% if @user.id == current_user.id %>
-    <%= link_to 'アカウント編集', edit_user_registration_path, {class: "nav-link"} %>
+    <%= link_to edit_user_registration_path, class: "nav-link underline-none hover" do %>
+      <div class="account-edit-button">
+        アカウント編集
+      </div>
+    <% end %>
   <% end %>
 
   <% unless @user == current_user %>
@@ -115,9 +119,11 @@
     </li>
     </ul>
   </div>
-  <li class="nav-item ">
-    <%= link_to 'アカウント編集', edit_user_registration_path, {class: "nav-link"} %>
-  </li>
+  <%= link_to edit_user_registration_path, class: "nav-link underline-none hover" do %>
+    <div class="account-edit-button">
+      <h3>アカウント編集</h3>
+    </div>
+  <% end %>
 
   <% unless @user == current_user or current_admin.present? %>
     <% if current_user.following?(@user) %>
@@ -128,8 +134,8 @@
   <% end %>
 <% end %>
 <div class="change-list-buttons-box">
-  <%= button_tag "Postに切り替え", class: "change-list-button", data: {type: "post"} %>
-  <%= button_tag "Realに切り替え", class: "change-list-button", data: {type: "real"} %>
+  <%= button_tag "Postに切り替え", class: "change-list-button post select", data: {type: "post"} %>
+  <%= button_tag "Realに切り替え", class: "change-list-button real", data: {type: "real"} %>
 </div>
 
 <div class="user-show-contents-box">
@@ -158,9 +164,54 @@
 <style>
   .container{
     max-width: 1000px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   .real-change-buttons-box{
     max-width: 100%;
+  }
+  .real-image-item-box{
+    width: 300px;
+    height: 300px;
+    padding: 1px;
+    margin: 0;
+  }
+  .reals-index{
+    max-width: none;
+  }
+  @media screen and (max-width: 850px){
+    .reals-index{
+      justify-content: center;
+    }
+    .real-image-item-box{
+      width: 250px;
+      height: 250px;
+    }
+    .container{
+      padding: 0;
+    }
+  }
+  @media screen and (max-width: 750px){
+
+    .real-image-item-box{
+      width: 200px;
+      height: 200px;
+    }
+  }
+  @media screen and (max-width: 600px){
+
+    .real-image-item-box{
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  @media screen and (max-width: 480px){
+    .real-image-item-box{
+      width: 123px;
+      height: 123px;
+    }
+
   }
 </style>
 
@@ -177,6 +228,8 @@
   $(`.change-list-button`).click(function(event){
     type = event.target.dataset.type;
     if(type != before_type){
+      $(`.change-list-button.${type}`).addClass("select");
+      $(`.change-list-button.${before_type}`).removeClass("select");
       $(`.user-show-contents-list.${type}`).removeClass("hide");
       $(`.user-show-contents-list.${before_type}`).addClass("hide");
     }

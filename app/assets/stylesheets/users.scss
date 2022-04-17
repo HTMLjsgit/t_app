@@ -10,6 +10,17 @@
   -webkit-appearance: none;
 }
 
+.account-edit-button {
+  width: 500px;
+  border: 1px solid #aaa;
+  padding: 10px;
+  text-align: center;
+  font-size: 20px;
+  color: #000;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
 .user-show-contents-box {
   margin-top: 60px;
 }
@@ -18,9 +29,31 @@
   position: relative;
 }
 
+.change-list-button {
+  border: 0;
+  background-color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.change-list-button:hover {
+  color: #e51273;
+  border-bottom: 2px solid #e51273;
+}
+
+.change-list-button.select {
+  color: #e51273;
+  border-bottom: 2px solid #e51273;
+}
+
+.change-list-button:focus {
+  outline: none;
+}
+
 .change-list-buttons-box {
-  padding-bottom: 40px;
+  padding-top: 40px;
   border-bottom: 1px solid #ddd;
+  padding-left: 30px;
 }
 
 .form-field.poster.background-image {
@@ -266,4 +299,16 @@
   margin-left: -80px;
   padding-right: 230px;
 
+}
+
+@media screen and (max-width: 520px) {
+  .user_counts-one-box {
+    padding: 0;
+    min-width: 80px;
+  }
+
+  .account-edit-button {
+    font-size: 18px;
+    width: 80%;
+  }
 }
