@@ -39,11 +39,6 @@
             <li class="nav-item ">
               <%= link_to "ログアウト", destroy_user_session_path, {class: "nav-link", method: "delete"} %>
             </li>
-          <% elsif current_admin.present? %>
-            <li class="nav-item ">
-              <%= link_to "ログアウト", destroy_admin_session_path, {class: "nav-link", method: "delete"} %>
-            </li>
-
           <% else %>
             <li class="nav-item ">
               <%= link_to "新規登録", new_user_registration_path, {class: "nav-link"} %>
@@ -90,16 +85,10 @@
     <footer>
       <div class="footer-contents-box">
         <ul>
-          <% if user_signed_in? || current_admin.present? %>
+          <% if user_signed_in? %>
             <% if current_user.present? %>
               <li>
                 <%= link_to user_path(current_user), method: :get do  %>
-                <i class="fas fa-home footer_item"></i>
-                <% end %>
-              </li>
-            <% elsif current_admin.present? %>
-              <li>
-                <%= link_to show_index_admin_path, method: :get do  %>
                 <i class="fas fa-home footer_item"></i>
                 <% end %>
               </li>
@@ -117,17 +106,6 @@
             <% if current_user.present? %>
               <li>
                 <%= link_to chat_index_path(current_user), method: :get do %>
-                  <i class="far fa-envelope footer_item"></i>
-                <% end %>
-                <% if @user_room_rels_count > 0 %>
-                  <i class="far fa-envelope relative">
-                    <span class="non_count_total"><%= @user_room_rels_count %></span>
-                  </i>
-                <% end %>
-              </li>
-            <% elsif current_admin.present? %>
-            <li>
-                <%= link_to chat_index_admin_path, method: :get do %>
                   <i class="far fa-envelope footer_item"></i>
                 <% end %>
                 <% if @user_room_rels_count > 0 %>

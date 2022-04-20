@@ -88,8 +88,6 @@ class PaymentsController < ApplicationController
   def check_user_auth
     if current_user.present?
       print true
-    elsif current_admin.present?
-      print true
     else
       new_user_session_path
     end

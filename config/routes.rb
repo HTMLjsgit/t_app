@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :admins, controllers: {
-    sessions:      'admins/sessions',
-    passwords:     'admins/passwords',
-    registrations: 'admins/registrations'
-  }
   resources :real_comments
   get 'rooms/show'
   devise_for :users
@@ -49,8 +44,6 @@ Rails.application.routes.draw do
   patch 'users/avater_update' => 'users#avater_update', as: 'avater_update'
   patch 'users/bank_update' => 'users#bank_update', as: 'bank_update'
   post 'rooms/:to_user_id' => 'rooms#create'
-  get 'admins/chat_index' => 'users#chat_index_admin', as: 'chat_index_admin'
-  get 'admins/show_index' => 'users#show_admin', as: 'show_index_admin'
   match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
 
   resources :rooms, only: [:show] # チャットルームの表示

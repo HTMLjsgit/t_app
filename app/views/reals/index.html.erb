@@ -1,9 +1,1 @@
 <%= render partial: "reals/reals_list", locals: {reals: @reals} %>
-<% unless current_admin.present? %>
-  <%= link_to new_real_path, {class: "post_pen", method: :get} do %>
-    <span class="fa-stack post_pen">
-      <i class="fas fa-circle fa-stack-2x"style="color:pink"></i>
-      <i class="fas fa-plus fa-stack-1x"style="color:white"></i>
-    </span>
-  <% end %>
-<% end %>
