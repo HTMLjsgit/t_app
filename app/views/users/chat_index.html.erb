@@ -8,9 +8,9 @@
     <% user = get_to_user(@user.id, room.id) %>
     <% if user %>
       <div class="users-index-item">
-        <% if user.avater.attached? %>
+        <% if user.avater? %>
           <div class="users" style="position: relative;">
-            <%= image_tag user.avater %>
+            <%= image_tag user.avater.url %>
             <% non_count = non_count(@user.id, room.id) %>
             <% if non_count > 0 %>
               <% total_count += non_count %>

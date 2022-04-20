@@ -1,0 +1,14 @@
+<div class="admin-home">
+  <h2>管理者ページ</h2>
+  <%= form_with local: false,url: type_change_admins_path, id: "informations-form" do |f| %>
+    <%= f.select :type, options_for_select([["post", "posts"], ["users", "users"], ["rooms", "rooms"]]), id: "table_informations_select" %>
+  <% end %>
+  <div class="table-informations-render-box">
+    <%= render "posts" %>
+  </div>
+  <script>
+    $("#type").change(function(){
+      $("#informations-form").submit();
+    });
+  </script>
+</div>

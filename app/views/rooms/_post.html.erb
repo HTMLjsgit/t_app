@@ -2,7 +2,7 @@
 
 <% @posts.each do |post| %>
   <% if post.user.id == @this_user.id %>
-    <% if @this_user.avater.attached? %>
+    <% if @this_user.avater? %>
       <div style="text-align: right;margin: 8px;">
         <span class="message my"><%= post.message %></span>
         <p class="chat_time my"><%= post.updated_at.strftime("%Y-%m-%d %H:%M")%></p>
@@ -14,9 +14,9 @@
       </div>
     <% end %>
   <% else %>
-    <% if post.user.avater.attached? %>
+    <% if post.user.avater? %>
       <div style="text-align: left;margin: 8px;">
-        <a href="/users/<%= post.user.id %>"><img class="room_avater_image" src="<%= url_for(post.user.avater) %>"></a>
+        <a href="/users/<%= post.user.id %>"><img class="room_avater_image" src="<%= url_for(post.user.avater.url) %>"></a>
         <span class="message etc"><%= post.message %></span>
         <p class="chat_time"><%= post.updated_at.strftime("%Y-%m-%d %H:%M")%></p>
       </div>

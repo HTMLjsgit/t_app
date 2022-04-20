@@ -1,8 +1,8 @@
 <div class="main posts-show">
   <div class="posts-show-item">
-      <% if @user.avater.attached? %>
+      <% if @user.avater? %>
         <div class="post-user">
-          <%= image_tag @user.avater %> <%= link_to(@user.username, user_path(@user),class: "post-index-name") %>
+          <%= image_tag @user.avater.url %> <%= link_to(@user.username, user_path(@user),class: "post-index-name") %>
         </div>
       <% else %>
         <div class="post-user">

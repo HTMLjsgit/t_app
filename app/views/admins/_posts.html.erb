@@ -1,0 +1,20 @@
+<% posts = Post.all %>
+<% columns = Post.column_names %>
+<table border="1">
+  <tr class="column_set">
+    <% columns.each do |column| %>
+        <th>
+          <%= column %>
+        </th>
+    <% end %>
+  </tr>
+  <% posts.each do |post| %>
+    <tr>
+      <% columns.each do |column| %>
+          <td>
+            <%= post[column] %>
+          </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

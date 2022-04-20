@@ -1,7 +1,32 @@
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :impressions
+      resources :users
+      resources :chat_posts
+      resources :comments
+      resources :image_posts
+      resources :image_reals
+      resources :likes
+      resources :payments
+      resources :posts
+      resources :post_thumbnails
+      resources :reals
+      resources :real_comments
+      resources :real_likes
+      resources :relationships
+      resources :rooms
+      resources :user_rooms
+
+      root to: "impressions#index"
+    end
   resources :real_comments
   get 'rooms/show'
   devise_for :users
+  resources :admins, only: [:index] do
+    collection do
+      post :type_change
+    end
+  end
 
   post 'users/restore/:id' => 'users#update_isstopped', as: 'users_restore'
   post 'users/stop/:id' => 'users#stop_isstopped', as: 'users_stop'

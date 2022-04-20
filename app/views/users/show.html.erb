@@ -9,9 +9,9 @@
 </div>
 <%= render partial: "payments/post_payment" %>
 <div class="user-contents-box">
-  <% if @user.avater.attached? %>
+  <% if @user.avater? %>
     <div class="avater_image">
-      <%= image_tag @user.avater %>
+      <%= image_tag @user.avater.url %>
     </div>
   <% else %>
     <div class="avater_image">
