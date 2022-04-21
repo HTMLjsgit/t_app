@@ -30,7 +30,6 @@ class RealsController < ApplicationController
   def create
 
     @real = Real.new(real_params)
-
     @real.save!
 
     redirect_to(reals_path)

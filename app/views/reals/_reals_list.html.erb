@@ -18,22 +18,22 @@
 
 <div class="main reals-index real-click-event camera">
   <% reals.each do |real| %>
-    <div class="real-image-item-box">
-      <%= link_to real_path(real), class: "real-index-link" do %>
-        <div class="real-image-index-box">
-          <% if real.image_reals.exists? %>
-            <% if real.image_reals.first.picture? %>
+    <% if real.image_reals.exists? %>
+      <% if real.image_reals.first.picture? %>
+        <div class="real-image-item-box">
+          <%= link_to real_path(real), class: "real-index-link" do %>
+            <div class="real-image-index-box">
               <%= image_tag real.image_reals.first.picture.url, class: "real-image-index" %>
-            <% end %>
+            </div>
           <% end %>
-        </div>
+       </div>
       <% end %>
-    </div>
+    <% end %>
   <% end %>
 </div>
-<% unless defined? message_custom %>
+<% unless message_custom %>
   <div class="main reals-index real-click-event message hide">
-    <% reals.each do |real| %>
+    <% reals_not.each do |real| %>
       <div class="real-image-item-box ink">
         <%= link_to real_path(real), class: "real-index-link" do %>
           <% ink_random = rand(1..10) %>

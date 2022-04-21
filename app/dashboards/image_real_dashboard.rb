@@ -14,6 +14,7 @@ class ImageRealDashboard < Administrate::BaseDashboard
     picture: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    user_id: Field::Number,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -37,6 +38,7 @@ class ImageRealDashboard < Administrate::BaseDashboard
     picture
     created_at
     updated_at
+    user_id
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -46,6 +48,7 @@ class ImageRealDashboard < Administrate::BaseDashboard
     real
     number
     picture
+    user_id
   ].freeze
 
   # COLLECTION_FILTERS

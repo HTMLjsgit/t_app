@@ -25,7 +25,7 @@
     <% end %>
     <div class="user-messages-box">
       <% if user_signed_in? %>
-        <% if @user.id == current_user.id %>
+        <% if @user.id == current_user.id || current_user.admin %>
           <%= link_to chat_index_path, method: :get do %>
             <i class="far fa-envelope relative user-show-message-icon">
               <% if @user_room_rels_count > 0 %>

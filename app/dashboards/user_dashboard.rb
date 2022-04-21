@@ -21,7 +21,6 @@ class UserDashboard < Administrate::BaseDashboard
     reals: Field::HasMany,
     likes: Field::HasMany,
     real_likes: Field::HasMany,
-    avater: Field::String,
     id: Field::Number,
     email: Field::String,
     encrypted_password: Field::String,
@@ -53,6 +52,7 @@ class UserDashboard < Administrate::BaseDashboard
     isstopped: Field::Boolean,
     background_image: Field::String,
     admin: Field::Boolean,
+    avater: Field::String,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -83,7 +83,6 @@ class UserDashboard < Administrate::BaseDashboard
     reals
     likes
     real_likes
-    avater
     id
     email
     encrypted_password
@@ -115,6 +114,7 @@ class UserDashboard < Administrate::BaseDashboard
     isstopped
     background_image
     admin
+    avater
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -134,7 +134,6 @@ class UserDashboard < Administrate::BaseDashboard
     reals
     likes
     real_likes
-    avater
     email
     encrypted_password
     reset_password_token
@@ -163,6 +162,7 @@ class UserDashboard < Administrate::BaseDashboard
     isstopped
     background_image
     admin
+    avater
   ].freeze
 
   # COLLECTION_FILTERS

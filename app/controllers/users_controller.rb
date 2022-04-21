@@ -43,11 +43,10 @@ class UsersController < ApplicationController
   def show
     @room = Room.new
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
+
     reals_id = ImageReal.pluck(:real_id)
-    @reals = Real.all.where(id: reals_id).includes(:image_reals).distinct
-    @reals_not = Real.all.where.not(id: reals_id).includes(:image_reals).distinct
-
-
+    @reals = @user.reals.where(id: reals_id).includes(:image_reals).distinct
+    @reals_not = @user.reals.where.not(id: reals_id).includes(:image_reals).distinct
     if user_signed_in?
       @rooms = current_user.rooms
       @nonrooms = Room.where(id: UserRoom.where.not(user_id: current_user.id).pluck(:id))
@@ -92,14 +91,8 @@ class UsersController < ApplicationController
       unless room_ids.include?(room_rel.room_id)
         room_ids.push(room_rel.room_id)
       end
-      # if room_rel.user_id == current_user.id
-      #   ids.push(room_rel.to_user_id)
-      # else
-      #   ids.push(room_rel.user_id)
-      # end
     end
     @rooms = Room.where(:id => room_ids)
-    print @rooms
   end
 
   def avater_update

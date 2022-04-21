@@ -16,13 +16,15 @@
   <% else %>
     <% if post.user.avater? %>
       <div style="text-align: left;margin: 8px;">
-        <a href="/users/<%= post.user.id %>"><img class="room_avater_image" src="<%= url_for(post.user.avater.url) %>"></a>
+        <a href="/users/<%= post.user.id %>">
+          <%= image_tag post.user.avater.url, class: "room_avater_image" %>
+        </a>
         <span class="message etc"><%= post.message %></span>
         <p class="chat_time"><%= post.updated_at.strftime("%Y-%m-%d %H:%M")%></p>
       </div>
     <% else %>
       <div style="text-align: left;margin: 8px;">
-        <a href="/users/<%= post.user.id %>"><%= image_tag "/blank-profile-picture-973460_640.png", class: "room_avater_image" %></a>
+        <a href="/users/<%= post.user.id %>"><%= image_tag "blank-profile-picture-973460_640.png", class: "room_avater_image" %></a>
         <span class="message etc"><%= post.message %></span>
         <p class="chat_time"><%= post.updated_at.strftime("%Y-%m-%d %H:%M")%></p>
       </div>

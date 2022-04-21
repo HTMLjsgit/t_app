@@ -7,16 +7,12 @@ Rails.application.routes.draw do
       resources :image_posts
       resources :image_reals
       resources :likes
-      resources :payments
       resources :posts
-      resources :post_thumbnails
       resources :reals
-      resources :real_comments
-      resources :real_likes
       resources :relationships
       resources :rooms
       resources :user_rooms
-
+      resources :post_thumbnails
       root to: "impressions#index"
     end
   resources :real_comments
