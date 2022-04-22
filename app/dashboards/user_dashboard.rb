@@ -49,10 +49,10 @@ class UserDashboard < Administrate::BaseDashboard
     bank_account_type: Field::String,
     bank_account_number: Field::String,
     bank_account_horseman_name_kana: Field::String,
-    isstopped: Field::Boolean,
-    background_image: Field::String,
+    ban: Field::Boolean,
+    background_image: Field::Image,
     admin: Field::Boolean,
-    avater: Field::String,
+    avater: Field::Image,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -61,19 +61,14 @@ class UserDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    follower
-    followed
-    following_user
-    follower_user
+    username
+    email
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-    follower
-    followed
-    following_user
-    follower_user
+
     user_rooms
     rooms
     payments
@@ -85,6 +80,10 @@ class UserDashboard < Administrate::BaseDashboard
     real_likes
     id
     email
+    follower
+    followed
+    following_user
+    follower_user
     encrypted_password
     reset_password_token
     reset_password_sent_at
@@ -111,7 +110,7 @@ class UserDashboard < Administrate::BaseDashboard
     bank_account_type
     bank_account_number
     bank_account_horseman_name_kana
-    isstopped
+    ban
     background_image
     admin
     avater
@@ -159,7 +158,7 @@ class UserDashboard < Administrate::BaseDashboard
     bank_account_type
     bank_account_number
     bank_account_horseman_name_kana
-    isstopped
+    ban
     background_image
     admin
     avater

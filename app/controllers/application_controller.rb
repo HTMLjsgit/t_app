@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  before_action :check_stopped, only: [:create], if: :devise_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :dm_count
 
@@ -22,15 +21,5 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
   end
 
-
-  def check_stopped
-    if user_signed_in?
-      if params.present?
-        if (User.find_by_email(params["user"]["email"]).isstopped == true) then
-          sign_out_and_redirect(current_user)
-        end
-      end
-    end
-  end
 
 end

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :reals
       resources :relationships
       resources :rooms
+      resources :payments
       resources :user_rooms
       resources :post_thumbnails
       root to: "impressions#index"
@@ -18,15 +19,9 @@ Rails.application.routes.draw do
   resources :real_comments
   get 'rooms/show'
   devise_for :users
-  resources :admins, only: [:index] do
-    collection do
-      post :type_change
-    end
-  end
 
   post 'users/restore/:id' => 'users#update_isstopped', as: 'users_restore'
   post 'users/stop/:id' => 'users#stop_isstopped', as: 'users_stop'
-
 
   resources :homes, only: [:show, :index]
   resources :users, only: [:show, :index, :create, :update, :edit]

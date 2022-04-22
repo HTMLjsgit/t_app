@@ -100,6 +100,12 @@
         アカウント編集
       </div>
     <% end %>
+  <% elsif current_user.admin? %>
+    <%= link_to edit_admin_user_path(@user), class: "nav-link underline-none hover" do %>
+      <div class="account-edit-button">
+        アカウント編集
+      </div>
+    <% end %>
   <% end %>
 <% end %>
 <div class="change-list-buttons-box">
