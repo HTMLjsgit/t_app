@@ -6,9 +6,9 @@
 </div>
 <% @user.follower_user.each do |user| %>
 <div class="users-index-item">
-  <% if user.avater.attached? %>
+  <% if user.avater? %>
     <div class="avater_image">
-      <%= image_tag user.avater %>
+      <%= image_tag user.avater.url %>
     </div>
   <% else %>
   <div class="avater_image">

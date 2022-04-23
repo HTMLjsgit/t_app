@@ -22,14 +22,14 @@ class UsersController < ApplicationController
     end
   end
 
-   def destroy
-    @user_delete = User.find(params[:id])
-    @user_delete.destroy
+  # def destroy
+  #   @user_delete = User.find(params[:id])
+  #   @user_delete.destroy
 
-    if @user_delete.destroy
-        redirect_to '/admins/show_index', notice: "User deleted."
-    end
-  end
+  #   if @user_delete.destroy
+  #       redirect_to '/admins/show_index', notice: "User deleted."
+  #   end
+  # end
 
   def non_count(user_id, room_id)
     ChatPost.where.not(:user_id => user_id).where(:see => 0).where(:room_id => room_id).count
@@ -40,29 +40,14 @@ class UsersController < ApplicationController
     @users = @search.result
   end
 
-  def index_admin
-    @user = User.find(params[:id])
-    @room = Room.new
-    @rooms = current_user.rooms
-    @nonrooms = Room.where(id: UserRoom.where.not(user_id: current_user.id).pluck(:id))
-    ids = [params[:id], current_user.id]
-    @create_room = UserRoom.where(:user_id => ids).where(:to_user_id => ids).first
-    @user_room_rels_count = 0
-    user_room_rels = UserRoom.where(:user_id => current_user.id).or(UserRoom.where(:to_user_id => current_user.id))
-    user_room_rels.find_each do | user_room_rel |
-      @user_room_rels_count += ChatPost.where.not(:user_id => current_user.id).where(:see => 0).where(:room_id => user_room_rel.room_id).count
-    end
-  end
-
   def show
     @room = Room.new
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
+
     reals_id = ImageReal.pluck(:real_id)
-    @reals = Real.all.where(id: reals_id).includes(:image_reals).distinct
-    @reals_not = Real.all.where.not(id: reals_id).includes(:image_reals).distinct
-
-
-    if (current_user.present?) then
+    @reals = @user.reals.where(id: reals_id).includes(:image_reals).distinct
+    @reals_not = @user.reals.where.not(id: reals_id).includes(:image_reals).distinct
+    if user_signed_in?
       @rooms = current_user.rooms
       @nonrooms = Room.where(id: UserRoom.where.not(user_id: current_user.id).pluck(:id))
       ids = [params[:id], current_user.id]
@@ -89,19 +74,6 @@ class UsersController < ApplicationController
     @user.update!(user_params)
     redirect_to user_path(current_user)
   end
-  def show_admin
-    @users = User.all
-    @room = Room.new
-    print @users
-    # @nonrooms = Room.where(id: UserRoom.where.not(user_id: current_user.id).pluck(:id))
-    # ids = [params[:id], current_user.id]
-    # @create_room = UserRoom.where(:user_id => ids).where(:to_user_id => ids).first
-    # @user_room_rels_count = 0
-    # user_room_rels = UserRoom.where(:user_id => current_user.id).or(UserRoom.where(:to_user_id => current_user.id))
-    # user_room_rels.find_each do | user_room_rel |
-    #   @user_room_rels_count += ChatPost.where.not(:user_id => current_user.id).where(:see => 0).where(:room_id => user_room_rel.room_id).count
-    # end
-  end
 
   def show_following
     @user = User.find(params[:id])
@@ -119,39 +91,8 @@ class UsersController < ApplicationController
       unless room_ids.include?(room_rel.room_id)
         room_ids.push(room_rel.room_id)
       end
-      # if room_rel.user_id == current_user.id
-      #   ids.push(room_rel.to_user_id)
-      # else
-      #   ids.push(room_rel.user_id)
-      # end
     end
     @rooms = Room.where(:id => room_ids)
-    print @rooms
-  end
-
-  def chat_index_admin
-    room_ids = []
-    user_ids = []
-    room_rels = UserRoom.all.find_each do | room_rel |
-      unless room_ids.include?(room_rel.room_id)
-        room_ids.push(room_rel.room_id)
-        user_ids.push(room_rel.user_id)
-      end
-      # if room_rel.user_id == current_user.id
-      #   ids.push(room_rel.to_user_id)
-      # else
-      #   ids.push(room_rel.user_id)
-      # end
-    end
-    @rooms = Room.where(:id => room_ids)
-    @users_admin = User.where(:id => user_ids)
-    @indexes = []
-    # p @indexes.fill(0, @users_admin.to_a.length) {|i| i}
-    # print @users_admin.to_a
-    # print @rooms.to_a.length
-    # print @users_admin.to_a[0].avater
-    # print @indexes
-    # print  "yaerafaw"
   end
 
   def avater_update
@@ -175,20 +116,8 @@ class UsersController < ApplicationController
     redirect_to "/users/edit"
   end
 
-  def stop_isstopped
-    @user = User.find(params[:id])
-    @user.isstopped = true
-    @user.save
-    redirect_to "/admins/show_index"
-  end
   def user_find
     @user = User.find params[:id]
-  end
-  def update_isstopped
-    @user = User.find(params[:id])
-    @user.isstopped = false
-    @user.save
-    redirect_to "/admins/show_index"
   end
   private
 

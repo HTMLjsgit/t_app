@@ -14,7 +14,7 @@
   <div class="real-show-contents">
     <div class="user-action-box">
       <div class="user-real-action">
-        <% unless @user == current_user || current_admin.present? %>
+        <% unless @user == current_user %>
           <% if @real_like.present? %>
             <%= link_to destroy_real_like_path(@real), class: "like-btn", method: :delete, remote: true do %>
               <%= image_tag "item/like.png" %>

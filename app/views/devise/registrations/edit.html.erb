@@ -84,24 +84,24 @@
             <label>ユーザーアイコン</label>
             <%= form.file_field :avater, class: "form-control-file hide", id: "form-file-poster" %>
             <div class="poster-view user-icon" id="click-event-poster-field">
-              <% if current_user.avater.attached? %>
+              <% if current_user.avater? %>
               <!-- ポスター画像があったらサンプル画像 -->
-                <%= image_tag current_user.avater, id: "poster-view-image", class: "block user-poster-view" %>
+                <%= image_tag current_user.avater.url, id: "poster-view-image", class: "block user-poster-view" %>
                 <%= image_tag "clip-icon.png", class: "clip-icon poster user-clip-poster" %>
               <% else %>
-                <img src="" id="poster-view-image user-poster-view" class="user-poster-view">
+                <img src="" id="poster-view-image" class="user-poster-view">
                 <%= image_tag "clip-icon.png", class: "clip-icon poster user-clip-poster" %>
               <% end %>
             </div>
             <div class="form-field poster background-image">
               <label>背景画像の設定</label>
               <div class="poster-view user-icon click-event-poster-field" data-target_id="background-image-field">
-                <% if current_user.avater.attached? %>
+                <% if current_user.background_image? %>
                 <!-- ポスター画像があったらサンプル画像 -->
-                  <%= image_tag current_user.avater, id: "poster-view-image-2", class: "block user-poster-view" %>
+                  <%= image_tag current_user.background_image.url, id: "poster-view-image-2", class: "block user-poster-view" %>
                   <%= image_tag "clip-icon.png",id: "clip-poster-2", class: "clip-icon poster user-clip-poster" %>
                 <% else %>
-                  <img src="" id="poster-view-image poster-view-image-2" class="user-poster-view">
+                  <img src="" id="poster-view-image-2" class="user-poster-view">
                   <%= image_tag "clip-icon.png",id: "clip-poster-2", class: "clip-icon poster user-clip-poster" %>
                 <% end %>
                 <%= form.file_field :background_image, class: "form-control-file hide form-file-poster",id: "background-image-field", data: {target_id: "poster-view-image-2", target_clip_id: "clip-poster-2"}%>
