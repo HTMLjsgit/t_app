@@ -3,8 +3,8 @@
   <%= render "post", collection: @posts %>
 </div>
 </div>
-<% if @this_user.avater.attached? %>
-  <input type="text" data-behavior="room_speaker" data-user="<%= @this_user.id %>" data-room="<%= @room.id %>" data-img="<%= url_for(@this_user.avater) %>">
+<% if @this_user.avater? %>
+  <input type="text" data-behavior="room_speaker" data-user="<%= @this_user.id %>" data-room="<%= @room.id %>" data-img="<%= url_for(@this_user.avater.url) %>">
 <% else %>
   <input type="text" data-behavior="room_speaker" data-user="<%= @this_user.id %>" data-room="<%= @room.id %>" data-img="">
 <% end %>

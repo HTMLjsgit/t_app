@@ -18,14 +18,13 @@ class User < ApplicationRecord
  has_many :payments, dependent: :destroy #決済したもの すべて取得
  has_many :posts # チャット投稿保存テーブル
  has_many :posts, dependent: :destroy # 投稿
- has_many :comments　#コメント
- has_many :real_comments　#コメント
+ has_many :comments, dependent: :destroy#コメント
+ has_many :real_comments, dependent: :destroy #コメント
  has_many :reals #リアル
  has_many :likes #いいね
  has_many :real_likes
  mount_uploader :background_image, ImageUploader
-
- has_one_attached :avater
+ mount_uploader :avater, ImageUploader
      # ユーザーをフォローする
     def follow(user_id)
       follower.create(followed_id: user_id)

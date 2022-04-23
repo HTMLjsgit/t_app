@@ -5,14 +5,6 @@
 <% end %>
 <%= render partial: "posts/posts_list", locals: {posts: @posts} %>
 
-<% unless current_admin.present? %>
-  <%= link_to new_post_path, {class: "post_pen", method: :get} do %>
-    <span class="fa-stack post_pen">
-      <i class="fas fa-circle fa-stack-2x"style="color:pink"></i>
-      <i class="fas fa-plus fa-stack-1x"style="color:white"></i>
-    </span>
-  <% end %>
-<% end %>
 <style>
   .container{
     max-width: 100%;

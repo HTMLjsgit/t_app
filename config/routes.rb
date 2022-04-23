@@ -1,16 +1,27 @@
 Rails.application.routes.draw do
-  devise_for :admins, controllers: {
-    sessions:      'admins/sessions',
-    passwords:     'admins/passwords',
-    registrations: 'admins/registrations'
-  }
+  namespace :admin do
+      resources :impressions
+      resources :users
+      resources :chat_posts
+      resources :comments
+      resources :image_posts
+      resources :image_reals
+      resources :likes
+      resources :posts
+      resources :reals
+      resources :relationships
+      resources :rooms
+      resources :payments
+      resources :user_rooms
+      resources :post_thumbnails
+      root to: "impressions#index"
+    end
   resources :real_comments
   get 'rooms/show'
   devise_for :users
 
   post 'users/restore/:id' => 'users#update_isstopped', as: 'users_restore'
   post 'users/stop/:id' => 'users#stop_isstopped', as: 'users_stop'
-
 
   resources :homes, only: [:show, :index]
   resources :users, only: [:show, :index, :create, :update, :edit]
@@ -49,8 +60,6 @@ Rails.application.routes.draw do
   patch 'users/avater_update' => 'users#avater_update', as: 'avater_update'
   patch 'users/bank_update' => 'users#bank_update', as: 'bank_update'
   post 'rooms/:to_user_id' => 'rooms#create'
-  get 'admins/chat_index' => 'users#chat_index_admin', as: 'chat_index_admin'
-  get 'admins/show_index' => 'users#show_admin', as: 'show_index_admin'
   match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
 
   resources :rooms, only: [:show] # チャットルームの表示

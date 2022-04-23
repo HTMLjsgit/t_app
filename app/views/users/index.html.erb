@@ -8,9 +8,9 @@
 <% if request.url.match(/commit/)%>
   <% @users.each do |user| %>
   <div class="users-index-item">
-    <% if user.avater.attached? %>
+    <% if user.avater? %>
       <div class="users">
-        <%= image_tag user.avater %>
+        <%= image_tag user.avater.url %>
       </div>
     <% else %>
     <div class="users">

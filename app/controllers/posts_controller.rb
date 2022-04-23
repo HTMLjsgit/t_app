@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order(created_at: :desc)
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
-    
+
   end
 
   def show
@@ -40,8 +40,8 @@ class PostsController < ApplicationController
   def post_explanation
     @posts = Post.all
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
-    
-    
+
+
     if user_signed_in?
       if current_user.id != @post.user_id
         impressionist(@post)
@@ -85,10 +85,6 @@ class PostsController < ApplicationController
       else
         @payment_check = false
       end
-    end
-
-    if current_admin.present?
-      @payment_check = false
     end
   end
 
