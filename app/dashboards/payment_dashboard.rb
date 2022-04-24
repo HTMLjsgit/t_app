@@ -39,8 +39,8 @@ class PaymentDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     user
     id
+    commision_amount_result
     description
-    currency
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES

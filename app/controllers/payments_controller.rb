@@ -2,7 +2,8 @@ class PaymentsController < ApplicationController
   before_action :check_user_auth, only: [:index, :post_payment]
   before_action :post_find, only: [:post_payment]
   before_action :already_payment_check, only: [:post_payment]
-
+  before_action :payment_setting_get, only: [:post_payment]
+  include CommonPaymentSettings
   def index
     @payments = current_user.payments
   end
@@ -29,7 +30,7 @@ class PaymentsController < ApplicationController
       post_id: @post.id,
       charge_id: charge.id,
       currency: "jpy",
-      stripe_commission: 0.036,
+      stripe_commission: ,
       stripe_amount_after_subtract_commision: @post.amount * 0.036,
       mine_subtract_commision_amount: mine_commision,
       mine_commision: mine_commision, #手数料

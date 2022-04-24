@@ -5,6 +5,8 @@ class PostsController < ApplicationController
   before_action :payment_check_for_view, only: [:post_explanation]
   impressionist :actions=> [:show]
   before_action :authenticate_user!, only: [:show, :create, :update, :edit, :new, :destroy]
+  include CommonPaymentSettings
+  before_action :payment_setting_get, only: [:edit, :new]
   def index
     @posts = Post.all.order(created_at: :desc)
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
