@@ -34,7 +34,8 @@ class PaymentsController < ApplicationController
       amount: @post.amount,
       payment_date: Time.now
     )
-
+    sale = @post.user.sales.create!(payment_id: payment.id, transfer: false)
+    payment.update(sale_id: sale.id)
     redirect_to @post
 
     # stripe関連でエラーが起こった場合
@@ -81,6 +82,7 @@ class PaymentsController < ApplicationController
       redirect_to post_explanation_post_path(@post) and return
     end
   end
+
 
   def check_user_auth
     if current_user.present?

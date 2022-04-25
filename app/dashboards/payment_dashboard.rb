@@ -25,8 +25,7 @@ class PaymentDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime,
     amount: Field::Number,
     commision_result: Field::Number,
-    payment_date: Field::Time,
-    transfer: Field::Boolean
+    payment_date: Field::Time
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -39,7 +38,6 @@ class PaymentDashboard < Administrate::BaseDashboard
     id
     amount
     description
-    transfer
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -62,7 +60,6 @@ class PaymentDashboard < Administrate::BaseDashboard
     created_at
     updated_at
     amount
-    transfer
     payment_date
   ].freeze
 
@@ -82,7 +79,6 @@ class PaymentDashboard < Administrate::BaseDashboard
     receipt_url
     receive_id
     post_id
-    transfer
     amount
     payment_date
   ].freeze

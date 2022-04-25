@@ -36,7 +36,7 @@
             </div>
             <!-- 購入していなかったら -->
             <% if user_signed_in? %>
-              <% unless @post_payment_check.present? %>
+              <% unless @post_payment_check.present? || current_user.id == post.user_id %>
                 <object>
                   <div class="post-index-buy-button-box">
                     <%= button_tag "¥#{amount_with_commision(post.amount)}",type: "button", id: "post-payment-box-open-link-#{post.id}",class: "base-pink-button post-index-payment-button", data: {post_id: post.id} %>
@@ -64,7 +64,7 @@
             <% else %>
                 <object>
                   <div class="post-index-buy-button-box">
-                    <%= button_to "¥#{post.amount+post.commission}", new_user_session_path ,type: "button", id: "post-payment-box-open-link-#{post.id}",class: "base-pink-button post-index-payment-button", data: {post_id: post.id} %>
+                    <%= button_to "¥#{amount_with_commision(post.amount)}", new_user_session_path ,type: "button", id: "post-payment-box-open-link-#{post.id}",class: "base-pink-button post-index-payment-button", data: {post_id: post.id} %>
                   </div>
                 </object>
             <% end %>

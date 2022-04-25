@@ -65,7 +65,7 @@ class PostsController < ApplicationController
   def already_payment_check
     # 支払いができていないのであれば
     if user_signed_in?
-      unless current_user.payments.find_by(post_id: @post.id, user_id: current_user.id).present?
+      unless current_user.payments.find_by(post_id: @post.id, user_id: current_user.id).present? || current_user.id == @post.user.id
         # 強制的に説明ページに戻す。
         redirect_to post_explanation_post_path(@post) and return
       end
