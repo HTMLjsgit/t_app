@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   helper_method :non_count
   helper_method :get_to_user
   before_action :user_find, only: [:update, :show]
+  include CommonPaymentSettings
+  before_action :payment_setting_get, only: [:show]
   def get_to_user(user_id, room_id)
     create_user_id = nil
     ret = nil

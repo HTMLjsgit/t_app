@@ -10,16 +10,15 @@ class PaymentsController < ApplicationController
 
   def post_payment
     sender = nil
-    # if user_signed_in?
-    #   # sender = Stripe::Customer.create({
-    #   #   name: current_user.name,
-    #   #   email: current_user.email,
-    #   #   source: params[:stripeToken]
-    #   # })
-    # end
-    mine_commision = @post.commission
+
+    commision = (@payment_setting.stripe_commission + @payment_setting.consumption_tax) #消費税 + Stripe手数料
+
+    receipt_commision = (@payment_setting.buyer_post_commision - commision) #受取金率
+
+    receipt_commision = BigDecimal((receipt_commision).to_s).ceil(3).to_f
+    commision = BigDecimal((commision + receipt_commision).to_s).to_f.round(2) #手数料15%
     charge = Stripe::Charge.create(
-      amount: @post.amount + mine_commision, #手数料を足してあげる
+      amount: @post.amount + (@post.amount * commision).round, #手数料を足してあげる
       currency: "jpy",
       source: params[:stripeToken],
       description: "#{@post.content.truncate(10)}のご購入"
@@ -30,20 +29,17 @@ class PaymentsController < ApplicationController
       post_id: @post.id,
       charge_id: charge.id,
       currency: "jpy",
-      stripe_commission: ,
-      stripe_amount_after_subtract_commision: @post.amount * 0.036,
-      mine_subtract_commision_amount: mine_commision,
-      mine_commision: mine_commision, #手数料
-      stripe_and_mine_subtract_commision_amount: @post.amount * (0.036 + 0.15), # 記事の値段 × (このサービス上の手数料 + stripeの手数料)
-      commision_amount_result: @post.amount + mine_commision, #手数料と記事の値段を合わせた結果
+      commision_result: commision, #手数料
+      receipt_commision: receipt_commision, #手数料のうち、受け取れる額,
       amount: @post.amount,
       payment_date: Time.now
     )
+
     redirect_to @post
 
     # stripe関連でエラーが起こった場合
     rescue Stripe::CardError => e
-      flash[:payment_error_message] = "#決済(stripe)でエラーが発生しました。#{e.message}"
+      flash.now[:payment_error_message] = "#決済(stripe)でエラーが発生しました。#{e.message}"
       redirect_to @post
     # Invalid parameters were supplied to Stripe's API
     rescue Stripe::InvalidRequestError => e

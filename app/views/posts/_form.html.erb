@@ -97,12 +97,10 @@
     cost = Number(event.target.value)
 
     commision_result_seller = (cost * <%= @payment_setting.seller_post_commision %>);
-    commision_result_buyer = (cost * <%= @payment_setting.stripe_commission %>) + (cost * <%= @payment_setting.buyer_post_commision %>) + (cost * <%= @payment_setting.consumption_tax %>);
-
+    commision_result_buyer = (cost * <%= @payment_setting.buyer_post_commision %>);
 
     commision_text_seller.textContent = "受け取り金: " + Math.round(cost - commision_result_seller) + "(手数料30%)";
-    commision_text_buyer.textContent = "販売価格: " + Math.round(cost + commision_result_buyer) + "(手数料15% + Stripe手数料 + 消費税)";
-
+    commision_text_buyer.textContent = "販売価格: " + Math.round(cost + commision_result_buyer) + "(手数料15%)";
   });
 
 

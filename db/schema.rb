@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_24_032627) do
+ActiveRecord::Schema.define(version: 2022_04_25_110534) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -131,11 +131,10 @@ ActiveRecord::Schema.define(version: 2022_04_24_032627) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "amount"
-    t.bigint "mine_subtract_commision_amount"
-    t.bigint "mine_commision"
-    t.bigint "stripe_and_mine_subtract_commision_amount"
     t.time "payment_date"
-    t.bigint "commision_amount_result"
+    t.float "commision_result"
+    t.float "receipt_commision"
+    t.boolean "transfer", default: false, null: false
     t.index ["post_id"], name: "index_payments_on_post_id"
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
@@ -154,7 +153,6 @@ ActiveRecord::Schema.define(version: 2022_04_24_032627) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.bigint "amount"
-    t.bigint "commission"
     t.string "title"
     t.text "description"
     t.string "poster"
@@ -195,6 +193,14 @@ ActiveRecord::Schema.define(version: 2022_04_24_032627) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sales", force: :cascade do |t|
+    t.integer "payment_id"
+    t.boolean "transfer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["payment_id"], name: "index_sales_on_payment_id"
   end
 
   create_table "user_rooms", force: :cascade do |t|

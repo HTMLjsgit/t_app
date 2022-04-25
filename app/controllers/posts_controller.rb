@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   impressionist :actions=> [:show]
   before_action :authenticate_user!, only: [:show, :create, :update, :edit, :new, :destroy]
   include CommonPaymentSettings
-  before_action :payment_setting_get, only: [:edit, :new]
+  before_action :payment_setting_get, only: [:edit, :new, :index, :post_explanation]
   def index
     @posts = Post.all.order(created_at: :desc)
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
@@ -29,11 +29,6 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    if @post.amount.present?
-      commission = @post.amount * 0.15 #手数料15%
-    end
-    @post.commission = commission
-
     @post.save
 
     redirect_to(posts_path)
@@ -42,15 +37,12 @@ class PostsController < ApplicationController
   def post_explanation
     @posts = Post.all
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
-
-
     if user_signed_in?
       if current_user.id != @post.user_id
         impressionist(@post)
       end
     end
     @purchases = @post.post_payments
-    # binding.pry
     @purchase_num = @purchases.count
   end
 

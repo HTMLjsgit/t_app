@@ -6,3 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 PaymentSetting.create!(buyer_post_commision: 0.15, seller_post_commision: 0.30, stripe_commission: 0.036, consumption_tax: 0.1)
+
+if User.find_by(username: "まどかまじか").blank?
+  User.create!(username: "まどかまじか", password: "aaaaaa", email: "a@a")
+end
+10.times do |i|
+  if User.find_by(username: "testくん_#{i}").blank?
+    User.create!(username: "testくん_#{i}", password: "aaaaaa#{i}", email: "s@s_#{i}")
+  end
+end
