@@ -10,7 +10,6 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order(created_at: :desc)
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
-
   end
 
   def show
@@ -29,6 +28,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    # @post.post_sales.create
     @post.save
 
     redirect_to(posts_path)
@@ -65,7 +65,7 @@ class PostsController < ApplicationController
   def already_payment_check
     # 支払いができていないのであれば
     if user_signed_in?
-      unless current_user.payments.find_by(post_id: @post.id, user_id: current_user.id).present?
+      unless current_user.payments.find_by(post_id: @post.id, user_id: current_user.id).present? || current_user.id == @post.user.id
         # 強制的に説明ページに戻す。
         redirect_to post_explanation_post_path(@post) and return
       end

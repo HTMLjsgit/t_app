@@ -16,13 +16,13 @@ class User < ApplicationRecord
  has_many :rooms, through: :user_rooms # 部屋テーブル
 
  has_many :payments, dependent: :destroy #決済したもの すべて取得
- has_many :posts # チャット投稿保存テーブル
  has_many :posts, dependent: :destroy # 投稿
  has_many :comments, dependent: :destroy#コメント
  has_many :real_comments, dependent: :destroy #コメント
- has_many :reals #リアル
- has_many :likes #いいね
- has_many :real_likes
+ has_many :reals, dependent: :destroy #リアル
+ has_many :likes, dependent: :destroy #いいね
+ has_many :real_likes, dependent: :destroy
+ has_many :sales, dependent: :destroy
  mount_uploader :background_image, ImageUploader
  mount_uploader :avater, ImageUploader
      # ユーザーをフォローする

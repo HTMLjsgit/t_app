@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class PaymentDashboard < Administrate::BaseDashboard
+class SaleDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,24 +8,13 @@ class PaymentDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    payment: Field::HasOne,
     user: Field::BelongsTo,
     id: Field::Number,
-    description: Field::Text,
-    currency: Field::String,
-    customer_id: Field::String,
-    payment_data: Field::Time,
-    receipt_commision: Field::Number,
-    uuid: Field::String,
-    charge_id: Field::String,
-    stripe_commission: Field::Number,
-    receipt_url: Field::String,
-    receive_id: Field::String,
-    post_id: Field::Number,
+    payment_id: Field::Number,
+    transfer: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    amount: Field::Number,
-    commision_result: Field::Number,
-    payment_date: Field::Time
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -34,53 +23,32 @@ class PaymentDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    user
     id
-    amount
-    description
+    user
+    payment
+    transfer
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
+    payment
     user
     id
-    description
-    currency
-    customer_id
-    payment_data
-    uuid
-    charge_id
-    stripe_commission
-    receipt_commision
-    commision_result
-    receipt_url
-    receive_id
-    post_id
+    payment_id
+    transfer
     created_at
     updated_at
-    amount
-    payment_date
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
+    payment
     user
-    description
-    currency
-    customer_id
-    payment_data
-    uuid
-    charge_id
-    stripe_commission
-    commision_result
-    receipt_url
-    receive_id
-    post_id
-    amount
-    payment_date
+    payment_id
+    transfer
   ].freeze
 
   # COLLECTION_FILTERS
@@ -95,10 +63,10 @@ class PaymentDashboard < Administrate::BaseDashboard
   #   }.freeze
   COLLECTION_FILTERS = {}.freeze
 
-  # Overwrite this method to customize how payments are displayed
+  # Overwrite this method to customize how sales are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(payment)
-  #   "Payment ##{payment.id}"
+  # def display_resource(sale)
+  #   "Sale ##{sale.id}"
   # end
 end

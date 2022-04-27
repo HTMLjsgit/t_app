@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
   helper_method :non_count
   helper_method :get_to_user
-  before_action :user_find, only: [:update, :show]
+  before_action :authenticate_user!, only: [:transfers, :avater_update, :bank_update]
+
+  before_action :user_find, only: [:update, :show, :transfers]
   include CommonPaymentSettings
-  before_action :payment_setting_get, only: [:show]
+  before_action :payment_setting_get, only: [:show, :transfers]
+  before_action :user_admin_check, only: [:transfers, :update, :bank_update, :avater_update]
   def get_to_user(user_id, room_id)
     create_user_id = nil
     ret = nil
@@ -45,7 +48,6 @@ class UsersController < ApplicationController
   def show
     @room = Room.new
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
-
     reals_id = ImageReal.pluck(:real_id)
     @reals = @user.reals.where(id: reals_id).includes(:image_reals).distinct
     @reals_not = @user.reals.where.not(id: reals_id).includes(:image_reals).distinct
@@ -70,6 +72,16 @@ class UsersController < ApplicationController
         @user_room_rels_count += ChatPost.where.not(:user_id => @user.id).where(:see => 0).where(:room_id => user_room_rel.room_id).count
       end
     end
+
+  end
+
+  def transfers
+    @transfer_mode = false
+    @transfer_params = params[:transfer]
+    if @transfer_params.present?
+      @transfer_mode = @transfer_params
+    end
+    @sales = @user.sales.where(transfer: @transfer_mode)
 
   end
   def update
@@ -126,4 +138,12 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:background_image, :username, :avater)
   end
+
+  def user_admin_check
+    if current_user.id != @user.id && !current_user.admin
+      redirect_to root_path and return
+    end
+  end
+
+
 end

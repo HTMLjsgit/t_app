@@ -12,6 +12,6 @@ if User.find_by(username: "まどかまじか").blank?
 end
 10.times do |i|
   if User.find_by(username: "testくん_#{i}").blank?
-    User.create!(username: "testくん_#{i}", password: "aaaaaa#{i}", email: "s@s_#{i}")
+    User.create!(username: "testくん_#{i}", password: "aaaaaa", email: "s_#{i}@yahoo.co.jp")
   end
 end

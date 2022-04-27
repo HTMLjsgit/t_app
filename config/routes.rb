@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :payments
       resources :user_rooms
       resources :post_thumbnails
+      resources :sales
       root to: "impressions#index"
     end
   resources :real_comments
@@ -24,7 +25,11 @@ Rails.application.routes.draw do
   post 'users/stop/:id' => 'users#stop_isstopped', as: 'users_stop'
 
   resources :homes, only: [:show, :index]
-  resources :users, only: [:show, :index, :create, :update, :edit]
+  resources :users, only: [:show, :index, :create, :update, :edit] do
+    member do
+      get :transfers
+    end
+  end
   resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     member do
       # 記事の説明ページ

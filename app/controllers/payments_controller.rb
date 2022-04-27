@@ -1,4 +1,5 @@
 class PaymentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :check_user_auth, only: [:index, :post_payment]
   before_action :post_find, only: [:post_payment]
   before_action :already_payment_check, only: [:post_payment]
@@ -34,12 +35,13 @@ class PaymentsController < ApplicationController
       amount: @post.amount,
       payment_date: Time.now
     )
-
+    sale = @post.user.sales.create!(payment_id: payment.id, transfer: false, post_id: @post.id)
+    payment.update(sale_id: sale.id)
     redirect_to @post
 
     # stripe関連でエラーが起こった場合
     rescue Stripe::CardError => e
-      flash.now[:payment_error_message] = "#決済(stripe)でエラーが発生しました。#{e.message}"
+      flash.now[:payment_error_message] = "決済(stripe)でエラーが発生しました。#{e.message}"
       redirect_to @post
     # Invalid parameters were supplied to Stripe's API
     rescue Stripe::InvalidRequestError => e
@@ -81,6 +83,7 @@ class PaymentsController < ApplicationController
       redirect_to post_explanation_post_path(@post) and return
     end
   end
+
 
   def check_user_auth
     if current_user.present?

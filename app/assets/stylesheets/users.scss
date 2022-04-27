@@ -333,6 +333,18 @@
 
 }
 
+.sale-box-user {
+  border-bottom: 1px solid #ddd;
+}
+
+.sales-box-user-index-box {
+  border: 1px solid #ddd;
+}
+
+.transfer-option-box {
+  display: flex;
+}
+
 @media screen and (max-width: 520px) {
   .user_counts-one-box {
     padding: 0;
