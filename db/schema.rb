@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_27_100751) do
+ActiveRecord::Schema.define(version: 2022_04_28_091448) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -202,14 +202,18 @@ ActiveRecord::Schema.define(version: 2022_04_27_100751) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-<<<<<<< HEAD
     t.integer "post_id"
     t.index ["payment_id"], name: "index_sales_on_payment_id"
     t.index ["post_id"], name: "index_sales_on_post_id"
-=======
-    t.index ["payment_id"], name: "index_sales_on_payment_id"
->>>>>>> 487aede5fac64ee196ceac3e18d01d44196d79af
     t.index ["user_id"], name: "index_sales_on_user_id"
+  end
+
+  create_table "transfer_requests", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "transfer_mode", default: false, null: false
+    t.index ["user_id"], name: "index_transfer_requests_on_user_id"
   end
 
   create_table "user_rooms", force: :cascade do |t|

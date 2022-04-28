@@ -25,10 +25,11 @@ Rails.application.routes.draw do
   post 'users/stop/:id' => 'users#stop_isstopped', as: 'users_stop'
 
   resources :homes, only: [:show, :index]
-  resources :users, only: [:show, :index, :create, :update, :edit] do
-    member do
-      get :transfers
-    end
+  resources :transfer_requests, only: [:update]
+  resources :users, only: [:index, :create, :update, :edit] do
+  end
+  resources :users, only: [:show] do
+    resources :sales
   end
   resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     member do

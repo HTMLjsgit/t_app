@@ -23,32 +23,38 @@ class User < ApplicationRecord
  has_many :likes, dependent: :destroy #いいね
  has_many :real_likes, dependent: :destroy
  has_many :sales, dependent: :destroy
+ has_one :transfer_request, dependent: :destroy
+ after_create_commit :on_create
  mount_uploader :background_image, ImageUploader
  mount_uploader :avater, ImageUploader
      # ユーザーをフォローする
-    def follow(user_id)
-      follower.create(followed_id: user_id)
-    end
+  def follow(user_id)
+    follower.create(followed_id: user_id)
+  end
 
-    # ユーザーのフォローを外す
-    def unfollow(user_id)
-      follower.find_by(followed_id: user_id).destroy
-    end
+  # ユーザーのフォローを外す
+  def unfollow(user_id)
+    follower.find_by(followed_id: user_id).destroy
+  end
 
-    # フォローしていればtrueを返す
-    def following?(user)
-      following_user.include?(user)
-    end
+  # フォローしていればtrueを返す
+  def following?(user)
+    following_user.include?(user)
+  end
 
-    def nofollow?(user)
-      following_user.exclude?(user)
-    end
+  def nofollow?(user)
+    following_user.exclude?(user)
+  end
 
-    def liked_by?(post_id)
-      likes.where(post_id: post_id).exists?
-    end
+  def liked_by?(post_id)
+    likes.where(post_id: post_id).exists?
+  end
 
-    def self.find_first_by_auth_conditions(warden_conditions)
-      to_adapter.find_first(warden_conditions)
-    end
+  def self.find_first_by_auth_conditions(warden_conditions)
+    to_adapter.find_first(warden_conditions)
+  end
+
+  def on_create
+    TransferRequest.create!(user_id: self.id, transfer_mode: false)
+  end
 end
