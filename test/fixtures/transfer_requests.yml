@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  sale: one
+  already_transfer: false
+  already_request: false
   user: one
 
 two:
-  sale: two
+  already_transfer: false
+  already_request: false
   user: two

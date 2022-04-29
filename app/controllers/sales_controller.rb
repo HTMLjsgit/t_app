@@ -4,8 +4,6 @@ class SalesController < ApplicationController
   before_action :user_admin_check
   def index
     @sales = @user.sales
-    @no_yet_transfer_sales = @sales.where(transfer: false)
-    @yet_transfer_sales = @sales.where(transfer: true)
     # @sales_total = Sale.total()
   end
 

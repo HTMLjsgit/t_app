@@ -1,16 +1,6 @@
 <div class="sale-all-box-user">
   <div class="sale-result-box">
-    <h2>総売上<%= @sales_total %>円</h2>
-    <h2>振込申請可能額<%= @sales_total %>円</h2>
-    <% if user_signed_in? %>
-      <% if !current_user.transfer_request.transfer_mode %>
-        <%= link_to "振込申請", transfer_request_path(transfer_mode: true, id: @user.id), method: :put %>
-      <% else %>
-        <% if current_user.admin? %>
-          <%= link_to "振込申請をキャンセル", transfer_request_path(transfer_mode: false, id: @user.id), method: :put %>
-        <% end %>
-      <% end %>
-    <% end %>
+
   </div>
   <div class="sale-box">
     <% @sales.each do |sale| %>

@@ -23,7 +23,6 @@ class User < ApplicationRecord
  has_many :likes, dependent: :destroy #いいね
  has_many :real_likes, dependent: :destroy
  has_many :sales, dependent: :destroy
- has_one :transfer_request, dependent: :destroy
  after_create_commit :on_create
  mount_uploader :background_image, ImageUploader
  mount_uploader :avater, ImageUploader
