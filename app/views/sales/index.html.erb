@@ -1,10 +1,20 @@
 <div class="sale-all-box-user">
   <div class="sale-result-box">
-
+    <h2>総売り上げ<%= @user.receipt_total.total %>円</h2>
+    <h4>売上残高<%= @user.transfer_total.total %>円</h4>
+    <% if @user.transfer_total.total > 0 %>
+      <%= link_to "売り上げ残高分を振込申請", user_transfer_requests_path(user_id: @user.id), method: :post %>
+    <% end %>
+  </div>
+  <div class="sale-transfer-box">
+    <h5>振込申請履歴</h5>
+    <% @transfer_requests.each do |transfer_request| %>
+      <p><%= transfer_request.amount %>円  <%= transfer_translate(transfer_request.transfer_completion.already_transfer) %></p>
+    <% end %>
   </div>
   <div class="sale-box">
     <% @sales.each do |sale| %>
-      <%= sale.receipt_with_commision %>円
+      <%= sale.post.title %> <%= sale.result_amount %>円
     <% end %>
   </div>
 </div>

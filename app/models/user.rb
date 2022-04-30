@@ -23,6 +23,9 @@ class User < ApplicationRecord
  has_many :likes, dependent: :destroy #いいね
  has_many :real_likes, dependent: :destroy
  has_many :sales, dependent: :destroy
+ has_one :transfer_total, dependent: :destroy #申請可能金額
+ has_one :receipt_total, dependent: :destroy #総売り上げ
+ has_many :transfer_requests, dependent: :destroy
  after_create_commit :on_create
  mount_uploader :background_image, ImageUploader
  mount_uploader :avater, ImageUploader
@@ -54,6 +57,7 @@ class User < ApplicationRecord
   end
 
   def on_create
-    TransferRequest.create!(user_id: self.id, transfer_mode: false)
+    ReceiptTotal.create!(user_id: self.id)
+    TransferTotal.create!(user_id: self.id)
   end
 end

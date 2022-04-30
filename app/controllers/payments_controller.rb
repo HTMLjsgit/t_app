@@ -14,10 +14,11 @@ class PaymentsController < ApplicationController
 
     commision = (@payment_setting.stripe_commission + @payment_setting.consumption_tax) #消費税 + Stripe手数料
 
-    receipt_commision = (@payment_setting.buyer_post_commision - commision) #受取金率
+    receipt_commision = (@payment_setting.buyer_post_commision - commision) #運営が受け取る額 (値段 - (消費税 + Stripe手数料))
 
     receipt_commision = BigDecimal((receipt_commision).to_s).ceil(3).to_f
-    commision = BigDecimal((commision + receipt_commision).to_s).to_f.round(2) #手数料15%
+
+    commision = BigDecimal((commision + receipt_commision).to_s).to_f.round(2) #二つを足してとりあえずは手数料15%になるはず
     charge = Stripe::Charge.create(
       amount: @post.amount + (@post.amount * commision).round, #手数料を足してあげる
       currency: "jpy",
@@ -31,14 +32,17 @@ class PaymentsController < ApplicationController
         post_id: @post.id,
         charge_id: charge.id,
         currency: "jpy",
-        commision_result: commision, #手数料
-        receipt_commision: receipt_commision, #手数料のうち、受け取れる額,
+        commision_result: commision, #手数料の合計
+        receipt_commision: @payment_setting.seller_post_commision, #売り上げ側の手数料,
         amount: @post.amount,
         payment_date: Time.now
       )
-      sale = @post.user.sales.create!(payment_id: payment.id, transfer: false, post_id: @post.id)
+      sale = @post.user.sales.create!(payment_id: payment.id, transfer: false, post_id: @post.id, result_amount: payment.amount - (payment.amount * payment.receipt_commision).round)
       payment.update!(sale_id: sale.id)
+      @post.user.receipt_total.total_caluation(sale.receipt_with_commision) #売上合計に加算してあげる。
+      @post.user.transfer_total.total_caluation(sale.receipt_with_commision) #振込申請可能金額合計に加算してあげる。
     end
+
     redirect_to @post
 
     # stripe関連でエラーが起こった場合

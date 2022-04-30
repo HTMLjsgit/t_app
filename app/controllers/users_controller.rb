@@ -74,16 +74,6 @@ class UsersController < ApplicationController
     end
 
   end
-
-  def transfers
-    @transfer_mode = false
-    @transfer_params = params[:transfer]
-    if @transfer_params.present?
-      @transfer_mode = @transfer_params
-    end
-    @sales = @user.sales.where(transfer: @transfer_mode)
-
-  end
   def update
     @user.update!(user_params)
     redirect_to user_path(current_user)

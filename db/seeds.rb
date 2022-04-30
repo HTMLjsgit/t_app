@@ -8,7 +8,7 @@
 PaymentSetting.create!(buyer_post_commision: 0.15, seller_post_commision: 0.30, stripe_commission: 0.036, consumption_tax: 0.1)
 
 if User.find_by(username: "まどかまじか").blank?
-  user = User.new(username: "まどかまじか", password: "aaaaaa", email: "a@a")
+  user = User.new(username: "まどかまじか", password: "aaaaaa", email: "a@a", admin: true)
   user.confirm
   user.save!
 end

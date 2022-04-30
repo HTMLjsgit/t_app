@@ -1,0 +1,3 @@
+module TransferRequestsHelper
+
+end

@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :create, :update, :edit]
   resources :users, only: [:show] do
     resources :sales
+    resources :transfer_requests, only: [:create]
   end
   resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     member do

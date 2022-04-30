@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  already_transfer: false
+  user: one
+  transfer_request: one
+
+two:
+  already_transfer: false
+  user: two
+  transfer_request: two

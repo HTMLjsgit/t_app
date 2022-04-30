@@ -4,7 +4,7 @@ class SalesController < ApplicationController
   before_action :user_admin_check
   def index
     @sales = @user.sales
-    # @sales_total = Sale.total()
+    @transfer_requests = @user.transfer_requests.where(already_request: true).order(created_at: :desc)
   end
 
   private
