@@ -1,0 +1,11 @@
+<div class="transfer-requests-index-all-box">
+  <% @transfer_requests.each do |transfer_request| %>
+    <%= link_to admin_transfer_request_path(transfer_request), class: "transfer_request-link" do %>
+      <div class="transfer-requests-content-one-box">
+        <p><%= transfer_request.amount %>円</p>
+        <p><%= transfer_request.user.username %>さんからの振込リクエスト</p>
+        <h2><%= transfer_translate(transfer_request.transfer_completion.already_transfer) %></h2>
+      </div>
+    <% end %>
+  <% end %>
+</div>

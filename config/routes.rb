@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :admin do
       resources :impressions
       resources :users
+      resources :transfer_requests
       resources :chat_posts
       resources :comments
       resources :image_posts
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
       resources :user_rooms
       resources :post_thumbnails
       resources :sales
+      resources :transfer_completions
       root to: "impressions#index"
     end
   resources :real_comments
@@ -23,7 +25,7 @@ Rails.application.routes.draw do
 
   post 'users/restore/:id' => 'users#update_isstopped', as: 'users_restore'
   post 'users/stop/:id' => 'users#stop_isstopped', as: 'users_stop'
-
+  resources :transfer_completions, only: [:update]
   resources :homes, only: [:show, :index]
   resources :users, only: [:index, :create, :update, :edit]
   resources :users, only: [:show] do
