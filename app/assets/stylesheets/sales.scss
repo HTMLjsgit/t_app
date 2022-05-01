@@ -39,8 +39,23 @@
   border-bottom: 1px solid #aaa;
   margin-left: 10px;
   margin-right: 10px;
+  padding-bottom: 20px;
 }
 
+.bank-transfer-register-button {
+  background-color: #e51273;
+  color: #fff;
+  padding: 8px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  box-shadow: 1px 1px 3px rgb(82, 82, 82);
+  transition: 0.3s background-color ease;
+}
+
+.bank-transfer-register-button:hover {
+  background-color: #bd1061;
+}
 
 .sales-box p {
   margin: 0;
@@ -75,4 +90,8 @@
 
 .transfer_request_time_text {
   padding-right: 40px;
+}
+
+.sale-amount-index-text {
+  padding-right: 20px;
 }

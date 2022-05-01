@@ -2,7 +2,7 @@
   <h2 class="request-by-user-text"><%= link_to @user.username, admin_user_path(@user) %>さんからの振込リクエスト</h2>
   <p class="amount-request-text-show"><b><%= @transfer_request.amount %>円</b>の申請</p>
   <p>振込状態: <b><%= transfer_translate(@transfer_request.transfer_completion.already_transfer) %></b></p>
-
+  <p><%= time_translate(@transfer_request.created_at) %> に申請</p>
   <% if !@transfer_request.transfer_completion.already_transfer %>
     <%= link_to "振込済にする", transfer_completion_path(@transfer_request.transfer_completion.id, already_transfer: true), method: :put %>
   <% else %>

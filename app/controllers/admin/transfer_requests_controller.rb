@@ -12,7 +12,7 @@ module Admin
       if params[:already_transfer].present?
         @already_transfer = params[:already_transfer]
       end
-      @transfer_requests = TransferRequest.joins(:transfer_completion).where(transfer_completions: {already_transfer:  @already_transfer})
+      @transfer_requests = TransferRequest.joins(:transfer_completion).where(transfer_completions: {already_transfer:  @already_transfer}).order(created_at: :desc)
 
     end
     def show

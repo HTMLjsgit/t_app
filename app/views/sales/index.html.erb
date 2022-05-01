@@ -1,11 +1,11 @@
 <div class="sale-all-box-user">
-  <div class="sale-result-box">
-    <h4>売上残高<%= @user.transfer_total.total %>円</h4>
-    <% if @user.transfer_total.total > 0 && @user.already_register_bank? %>
-      <%= link_to "売り上げ残高分を振込申請", user_transfer_requests_path(user_id: @user.id), method: :post %>
+  <h3>売上残高<b><%= @user.transfer_total.total %>円</b></h3>
+  <div class="sale-result-balance-box">
+    <% if @user.already_register_bank? %>
+      <%= button_to "売上 残高分を振込申請", user_transfer_requests_path(user_id: @user.id), method: :post, class: "bank-transfer-register-button", disabled: @total_zero %>
     <% elsif !@user.already_register_bank? %>
       <h5>売上金を受け取るには口座情報を登録してください</h4>
-      <%= link_to "口座情報を登録", "/users/edit" %>
+      <%= button_to "口座情報を登録", "/users/edit",method: :get, class: "bank-transfer-register-button" %>
     <% end %>
   </div>
   <h3 class="total-transfers-text">振込申請履歴</h3>

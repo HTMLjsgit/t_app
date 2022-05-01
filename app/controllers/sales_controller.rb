@@ -4,6 +4,7 @@ class SalesController < ApplicationController
   before_action :user_admin_check
   def index
     @sales = @user.sales
+    @total_zero = @user.transfer_total.total <= 0 ? true : false
     @transfer_requests = @user.transfer_requests.where(already_request: true).order(created_at: :desc)
   end
 
