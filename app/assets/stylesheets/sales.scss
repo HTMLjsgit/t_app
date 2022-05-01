@@ -1,3 +1,78 @@
 // Place all the styles related to the sales controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.sale-transfer-box {
+  max-width: 300px;
+}
+
+.total-sales-text {
+  padding-top: 40px;
+}
+
+.total-transfers-text {
+  padding-top: 40px;
+}
+
+.transfers-history-box {
+  border: 1px solid #ddd;
+  padding-bottom: 120px;
+}
+
+.sales-history-box {
+  border: 1px solid #ddd;
+  padding-bottom: 120px;
+}
+
+.sale-content-box {
+  font-size: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  padding-left: 25px;
+  padding-top: 10px;
+  font-size: 22px;
+}
+
+.sale-one-box {
+  border-bottom: 1px solid #aaa;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+.sales-box p {
+  margin: 0;
+}
+
+.transfer-request-box-index-box {
+  font-size: 20px;
+  border-bottom: 1px solid #aaa;
+  padding: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sale-buyer-box {
+  padding-left: 25px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.transfer-request-box-index-box p {
+  margin: 0;
+}
+
+.sales-time-text {
+  font-size: 18px;
+  padding-left: 25px;
+  padding-top: 10px;
+  color: rgb(78, 78, 78);
+}
+
+.transfer_request_time_text {
+  padding-right: 40px;
+}

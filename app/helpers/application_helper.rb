@@ -12,4 +12,7 @@ module ApplicationHelper
     end
   end
 
+  def time_translate(time)
+    return time.strftime("%Y年 %m月%d日")
+  end
 end

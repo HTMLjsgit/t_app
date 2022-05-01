@@ -90,3 +90,15 @@ input[type="button"] {
 button {
   cursor: pointer;
 }
+
+.bold {
+  font-weight: bold;
+}
+
+.black-text {
+  color: #000;
+}
+
+.black-text.hover:hover {
+  color: #000;
+}

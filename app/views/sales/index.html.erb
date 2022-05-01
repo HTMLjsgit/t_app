@@ -1,25 +1,38 @@
 <div class="sale-all-box-user">
   <div class="sale-result-box">
-    <h2>総売り上げ<%= @user.receipt_total.total %>円</h2>
     <h4>売上残高<%= @user.transfer_total.total %>円</h4>
-    <% if @user.transfer_total.total > 0  && @user.already_register_bank? %>
+    <% if @user.transfer_total.total > 0 && @user.already_register_bank? %>
       <%= link_to "売り上げ残高分を振込申請", user_transfer_requests_path(user_id: @user.id), method: :post %>
     <% elsif !@user.already_register_bank? %>
       <h5>売上金を受け取るには口座情報を登録してください</h4>
       <%= link_to "口座情報を登録", "/users/edit" %>
     <% end %>
   </div>
-  <div class="sale-transfer-box">
-    <h5>振込申請履歴</h5>
+  <h3 class="total-transfers-text">振込申請履歴</h3>
+  <div class="transfers-history-box">
     <% @transfer_requests.each do |transfer_request| %>
-      <p><%= transfer_request.amount %>円  <%= transfer_translate(transfer_request.transfer_completion.already_transfer) %></p>
-    <% end %>
-  </div>
-  <div class="sales-box">
-    <% @sales.each do |sale| %>
-      <div class="sale-one-box">
-        <%= sale.post.title %> <%= sale.result_amount %>円
+      <div class="transfer-request-box-index-box">
+        <p class="transfer_request_time_text"><%= time_translate(transfer_request.created_at) %>に申請</p>
+        <p><b><%= transfer_request.amount %>円</b>  <%= transfer_translate(transfer_request.transfer_completion.already_transfer) %></p>
       </div>
     <% end %>
+  </div>
+
+  <h3 class="total-sales-text">売上実績</h3>
+  <div class="sales-history-box">
+    <div class="sales-box">
+      <% @sales.each do |sale| %>
+        <div class="sale-one-box">
+          <p class="sales-time-text"><%= time_translate(sale.created_at) %></p>
+          <div class="sale-content-box">
+            <p><%= link_to sale.post.title, post_path(sale.post), class: "black-text hover" %></p>
+            <p class="sale-amount-index-text"><b><%= sale.result_amount %>円</b></p>
+          </div>
+          <div class="sale-buyer-box">
+            <p class="sale-buyer-text"><b><%= link_to sale.user.username, user_path(sale.user) %></b> が購入</p>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
