@@ -68,7 +68,20 @@ class UserDashboard < Administrate::BaseDashboard
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-
+    id
+    email
+    username
+    icon
+    access_token
+    bank_name
+    bank_branch_name
+    bank_account_type
+    bank_account_number
+    bank_account_horseman_name_kana
+    ban
+    background_image
+    admin
+    avater
     user_rooms
     rooms
     payments
@@ -78,8 +91,7 @@ class UserDashboard < Administrate::BaseDashboard
     reals
     likes
     real_likes
-    id
-    email
+
     follower
     followed
     following_user
@@ -102,18 +114,7 @@ class UserDashboard < Administrate::BaseDashboard
     locked_at
     created_at
     updated_at
-    username
-    icon
-    access_token
-    bank_name
-    bank_branch_name
-    bank_account_type
-    bank_account_number
-    bank_account_horseman_name_kana
-    ban
-    background_image
-    admin
-    avater
+
   ].freeze
 
   # FORM_ATTRIBUTES

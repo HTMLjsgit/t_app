@@ -1,6 +1,6 @@
 class TransferRequestsController < ApplicationController
   before_action :user_find
-  before_action :transfer_request_find
+  # before_action :transfer_request_find
   before_action :user_admin_check
   def create
     if @user.transfer_total.total <= 0

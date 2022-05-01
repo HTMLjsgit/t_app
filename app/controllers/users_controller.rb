@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   helper_method :get_to_user
   before_action :authenticate_user!, only: [:transfers, :avater_update, :bank_update]
 
-  before_action :user_find, only: [:update, :show, :transfers]
+  before_action :user_find, only: [:update, :show, :transfers, :bank_update, :avater_update]
   include CommonPaymentSettings
   before_action :payment_setting_get, only: [:show, :transfers]
   before_action :user_admin_check, only: [:transfers, :update, :bank_update, :avater_update]
@@ -114,7 +114,6 @@ class UsersController < ApplicationController
 
   def bank_update
     if params[:user]
-      @user = User.find(current_user.id)
       @user.update(bank_name: params[:user][:bank_name], bank_branch_name: params[:user][:bank_branch_name], bank_account_type: params[:user][:bank_account_type], bank_account_number: params[:user][:bank_account_number], bank_account_horseman_name_kana: params[:user][:bank_account_horseman_name_kana])
     end
     redirect_to "/users/edit"

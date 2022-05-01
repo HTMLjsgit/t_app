@@ -8,8 +8,12 @@ module Admin
     #   send_foo_updated_email(requested_resource)
     # end
     def index
-      already_request = params[:already_request]
-      @transfer_requests = TransferRequest.all.where(already_request: true).order(created_at: :desc)
+      @already_transfer = false
+      if params[:already_transfer].present?
+        @already_transfer = params[:already_transfer]
+      end
+      @transfer_requests = TransferRequest.joins(:transfer_completion).where(transfer_completions: {already_transfer:  @already_transfer})
+
     end
     def show
       @transfer_request = TransferRequest.find params[:id]

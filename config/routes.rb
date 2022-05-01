@@ -31,6 +31,10 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :sales
     resources :transfer_requests, only: [:create]
+    member do
+      put :bank_update
+      put :avater_update
+    end
   end
   resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     member do
@@ -64,8 +68,6 @@ Rails.application.routes.draw do
   get  'users/:id/show_follower' => 'users#show_follower', as: 'show_follower'
   post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
-  patch 'users/avater_update' => 'users#avater_update', as: 'avater_update'
-  patch 'users/bank_update' => 'users#bank_update', as: 'bank_update'
   post 'rooms/:to_user_id' => 'rooms#create'
   match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
 

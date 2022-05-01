@@ -26,6 +26,7 @@ class User < ApplicationRecord
  has_one :transfer_total, dependent: :destroy #申請可能金額
  has_one :receipt_total, dependent: :destroy #総売り上げ
  has_many :transfer_requests, dependent: :destroy
+ has_many :transfer_completions, dependent: :destroy
  after_create_commit :on_create
  mount_uploader :background_image, ImageUploader
  mount_uploader :avater, ImageUploader

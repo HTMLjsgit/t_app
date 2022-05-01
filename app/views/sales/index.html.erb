@@ -4,6 +4,9 @@
     <h4>売上残高<%= @user.transfer_total.total %>円</h4>
     <% if @user.transfer_total.total > 0  && @user.already_register_bank? %>
       <%= link_to "売り上げ残高分を振込申請", user_transfer_requests_path(user_id: @user.id), method: :post %>
+    <% elsif !@user.already_register_bank? %>
+      <h5>売上金を受け取るには口座情報を登録してください</h4>
+      <%= link_to "口座情報を登録", "/users/edit" %>
     <% end %>
   </div>
   <div class="sale-transfer-box">
@@ -12,9 +15,11 @@
       <p><%= transfer_request.amount %>円  <%= transfer_translate(transfer_request.transfer_completion.already_transfer) %></p>
     <% end %>
   </div>
-  <div class="sale-box">
+  <div class="sales-box">
     <% @sales.each do |sale| %>
-      <%= sale.post.title %> <%= sale.result_amount %>円
+      <div class="sale-one-box">
+        <%= sale.post.title %> <%= sale.result_amount %>円
+      </div>
     <% end %>
   </div>
 </div>

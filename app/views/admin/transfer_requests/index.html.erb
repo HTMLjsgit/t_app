@@ -1,11 +1,39 @@
-<div class="transfer-requests-index-all-box">
+<div class="transfer-requests-index-all-box auto-space">
+  <div class="list-type-change-box">
+    <%= link_to admin_transfer_requests_path(already_transfer: true), class: "link-none" do %>
+      <div class="request-type-change-link-box true">
+          <h5>振込済リスト</h5>
+      </div>
+    <% end %>
+    <%= link_to admin_transfer_requests_path(already_transfer: false), class: "link-none" do %>
+      <div class="request-type-change-link-box false">
+          <h5>未振込リスト</h5>
+      </div>
+    <% end %>
+  </div>
+  <% if !@transfer_requests.exists? %>
+    <h1 class="data-not-found-text">データがありません</h1>
+  <% end %>
   <% @transfer_requests.each do |transfer_request| %>
-    <%= link_to admin_transfer_request_path(transfer_request), class: "transfer_request-link" do %>
+    <%= link_to admin_transfer_request_path(transfer_request), class: "transfer_request-link link-none" do %>
       <div class="transfer-requests-content-one-box">
-        <p><%= transfer_request.amount %>円</p>
+        <p class="transfer_request-amount-text-index"><%= transfer_request.amount %>円</p>
         <p><%= transfer_request.user.username %>さんからの振込リクエスト</p>
-        <h2><%= transfer_translate(transfer_request.transfer_completion.already_transfer) %></h2>
+        <h4><%= transfer_translate(transfer_request.transfer_completion.already_transfer) %></h4>
+        <div class="transfer_request-time-index-box">
+          <%= transfer_request.created_at.strftime("%Y年 %m月%d日") %>
+        </div>
       </div>
     <% end %>
   <% end %>
 </div>
+<style>
+  .request-type-change-link-box.<%= @already_transfer.to_s %>{
+    background-color: #1976d2;
+    color: #fff;
+  }
+  .request-type-change-link-box:hover{
+    background-color: #1976d2;
+    color: #fff;
+  }
+</style>

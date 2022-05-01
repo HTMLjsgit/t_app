@@ -1,6 +1,6 @@
-<div class="transfer-request-show-box">
-  <h2 class=""><%= @transfer_request.user.username %>さんからの振込リクエスト</h2>
-  <p><b><%= @transfer_request.amount %>円</b>の申請</p>
+<div class="transfer-request-show-box auto-space">
+  <h2 class="request-by-user-text"><%= link_to @user.username, admin_user_path(@user) %>さんからの振込リクエスト</h2>
+  <p class="amount-request-text-show"><b><%= @transfer_request.amount %>円</b>の申請</p>
   <p>振込状態: <b><%= transfer_translate(@transfer_request.transfer_completion.already_transfer) %></b></p>
 
   <% if !@transfer_request.transfer_completion.already_transfer %>
@@ -9,10 +9,10 @@
     <%= link_to "未振込にする", transfer_completion_path(@transfer_request.transfer_completion.id, already_transfer: false), method: :put %>
   <% end %>
   <div class="user-bank-information-transfer-admin-box">
-    <h2><%= @transfer_request.user.username %>さんの 銀行口座情報</h2>
+    <h2 class="bank-information-heading-text"><%= @user.username %>さんの 銀行口座情報</h2>
     <p>金融機関名: <%= @user.bank_name %></p>
     <p>支店名: <%= @user.bank_branch_name %></p>
-    <p>口座種別: <%= @user.bank_account_type %></p>
+    <p>口座種別: <%= translate_bank_type(@user.bank_account_type) %></p>
     <p>口座番号: <%= @user.bank_account_number %></p>
     <p>口座名義人名: <%= @user.bank_account_horseman_name_kana %></p>
   </div>
