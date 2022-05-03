@@ -13,7 +13,6 @@ class UserRoomDashboard < Administrate::BaseDashboard
     id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    to_user_id: Field::Number,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -36,7 +35,6 @@ class UserRoomDashboard < Administrate::BaseDashboard
     id
     created_at
     updated_at
-    to_user_id
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -45,7 +43,6 @@ class UserRoomDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     user
     room
-    to_user_id
   ].freeze
 
   # COLLECTION_FILTERS

@@ -12,8 +12,8 @@ class User < ApplicationRecord
  has_many :following_user, through: :follower, source: :followed # 自分がフォローしている人
  has_many :follower_user, through: :followed, source: :follower # 自分をフォローしている人
 
- has_many :user_rooms # 参加部屋情報のリレーションテーブル
- has_many :rooms, through: :user_rooms # 部屋テーブル
+ has_many :user_rooms, dependent: :destroy # 参加部屋情報のリレーションテーブル
+ has_many :rooms, dependent: :destroy
 
  has_many :payments, dependent: :destroy #決済したもの すべて取得
  has_many :posts, dependent: :destroy # 投稿

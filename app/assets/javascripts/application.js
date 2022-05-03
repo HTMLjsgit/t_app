@@ -20,7 +20,6 @@ $(function () {
     modal_display(true, `${event.target.parentElement.id}`, `${id}-background`)
   });
 
-
 });
 function modal_display(hide, target_contents, target_background) {
   if (hide == true) {

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  mount ActionCable.server => '/cable'
   namespace :admin do
       resources :impressions
       resources :users
@@ -21,7 +20,6 @@ Rails.application.routes.draw do
       root to: "impressions#index"
     end
   resources :real_comments
-  get 'rooms/show'
   devise_for :users
 
   post 'users/restore/:id' => 'users#update_isstopped', as: 'users_restore'
@@ -30,6 +28,7 @@ Rails.application.routes.draw do
   resources :homes, only: [:show, :index]
   resources :users, only: [:index, :create, :update, :edit]
   resources :users, only: [:show] do
+    resources :rooms, only: [:index, :create]
     resources :sales
     resources :transfer_requests, only: [:create]
     member do
@@ -64,16 +63,14 @@ Rails.application.routes.draw do
     delete 'real_like/:id' => 'real_likes#destroy', as: 'destroy_real_like'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'posts#index'
-  get  'users/:id/chat_index' => 'users#chat_index', as: 'chat_index'
   get  'users/:id/show_following' => 'users#show_following', as: 'show_following'
   get  'users/:id/show_follower' => 'users#show_follower', as: 'show_follower'
   post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
-  post 'rooms/:to_user_id' => 'rooms#create'
   match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
 
-  resources :rooms, only: [:show] # チャットルームの表示
-      if Rails.env.development?
-      mount LetterOpenerWeb::Engine, at: "/letter_opener"
-    end
+  resources :rooms, only: [:show, :create] # チャットルームの表示
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end

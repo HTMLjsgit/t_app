@@ -249,7 +249,6 @@ ActiveRecord::Schema.define(version: 2022_04_30_032306) do
     t.integer "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "to_user_id"
     t.index ["room_id"], name: "index_user_rooms_on_room_id"
     t.index ["user_id"], name: "index_user_rooms_on_user_id"
   end
