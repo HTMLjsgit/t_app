@@ -5,9 +5,9 @@
     <title>TApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all' %>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
     <%= javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= include_gon %>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
@@ -111,11 +111,6 @@
               <li>
                 <%= link_to chat_index_path(current_user), method: :get do %>
                   <i class="far fa-envelope footer_item"></i>
-                <% end %>
-                <% if @user_room_rels_count > 0 %>
-                  <i class="far fa-envelope relative">
-                    <span class="non_count_total"><%= @user_room_rels_count %></span>
-                  </i>
                 <% end %>
               </li>
             <% end %>

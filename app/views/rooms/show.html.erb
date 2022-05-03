@@ -1,12 +1,8 @@
-<div style="width:100%;height:500px;overflow:auto;">
-<div id="posts">
-  <%= render "post", collection: @posts %>
+<div id="room-show"  data-room_id="<%= @room.id %>" current_user="<%= current_user.id %>">
+  <div id="messages">
+    <% @chat_posts.each do |chat_post| %>
+      <%= render "message", {chat: chat_post, user: chat_post.user} %>
+    <% end %>
+  </div>
+  <input type="text" data-behavior="room_speaker">
 </div>
-</div>
-<% if @this_user.avater? %>
-  <input type="text" data-behavior="room_speaker" data-user="<%= @this_user.id %>" data-room="<%= @room.id %>" data-img="<%= url_for(@this_user.avater.url) %>">
-<% else %>
-  <input type="text" data-behavior="room_speaker" data-user="<%= @this_user.id %>" data-room="<%= @room.id %>" data-img="">
-<% end %>
-
-<input type="hidden" id="my_id" value="<%=@this_user.id %>">

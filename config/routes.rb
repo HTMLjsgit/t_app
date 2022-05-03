@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
   namespace :admin do
       resources :impressions
       resources :users
