@@ -26,7 +26,7 @@
     <div class="user-messages-box">
       <% if user_signed_in? %>
         <% if @user.id == current_user.id %>
-          <%= link_to rooms_path(user_id: @user.id), method: :get do %>
+          <%= link_to user_rooms_path(user_id: @user.id) do %>
             <i class="far fa-envelope relative user-show-message-icon">
             </i>
           <% end %>

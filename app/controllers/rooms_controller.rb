@@ -2,15 +2,14 @@ class RoomsController < ApplicationController
   before_action :authenticate_user!
   before_action :user_find, only: [:index, :create]
   before_action :room_find, only: [:show]
-  before_action :user_rooms_attach, only: [:create]
+  # before_action :user_rooms_attach, only: [:create]
 
   before_action :userrooms_already_added?, only: [:create]
-
   before_action :userrooms_admin_check, only: [:show]
 
   before_action :user_admin_check, only: [:index]
   def index
-    @rooms = @user.rooms
+    @rooms = @user.rooms.includes(:users, :user_rooms)
   end
   def show
     @room = Room.find(params[:id])
@@ -23,7 +22,8 @@ class RoomsController < ApplicationController
       #自分対自分のルームを作ろうとするならばリターンする。
       redirect_to root_path and return
     end
-    @target_user = @user
+
+
     @room = Room.create!(name: "？")
     [current_user.id, @target_user.id].each do |add_user_id|
       @room.user_rooms.create!(user_id: add_user_id)
@@ -42,19 +42,17 @@ class RoomsController < ApplicationController
     end
   end
 
-  def user_rooms_attach
-    @user_rooms = UserRoom.where(user_id: [current_user.id, @user.id], room_id: room.id)
-  end
+  # def user_rooms_attach
+  #   @user_rooms = UserRoom.where(user_id: [current_user.id, @user.id], room_id: room.id)
+  # end
 
   def userrooms_already_added?
     #すでにUserRoomに入っているか？
-    @rooms = Room.all
-    @rooms_already = []
-    @rooms.each do |room|
-      @rooms_already.push()
-    end
-    if !@rooms_already.empty?
-      redirect_to root_path and return
+    user_1_room_ids = current_user.user_rooms.pluck(:room_id)
+    user_2_room_ids = @user.user_rooms.pluck(:room_id)
+    room_check = user_1_room_ids & user_2_room_ids
+    if room_check.size > 0
+      redirect_to room_path(room_check[0])
     end
   end
 

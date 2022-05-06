@@ -1,0 +1,8 @@
+<% @rooms.each do |room| %>
+  <%#= link_to  %>
+    <% room.current_user_other_users(current_user).each do |target_user| %>
+      <%= target_user.username %>
+    <% end %>
+    とのメッセージ
+
+<% end %>

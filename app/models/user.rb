@@ -57,6 +57,8 @@ class User < ApplicationRecord
     to_adapter.find_first(warden_conditions)
   end
 
+
+
   def already_register_bank?
     if self.bank_name.present? && self.bank_branch_name.present? && self.bank_account_type.present? && self.bank_account_number.present? && self.bank_account_horseman_name_kana.present?
       return true
