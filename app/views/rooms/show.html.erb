@@ -1,8 +1,22 @@
-<div id="room-show"  data-room_id="<%= @room.id %>" current_user="<%= current_user.id %>">
-  <div id="messages">
+<div id="room-show"  data-room_id="<%= @room.id %>" data-current_user="<%= current_user.id %>" class="room-show-box">
+  <div id="messages" class="room-messages">
     <% @chat_posts.each do |chat_post| %>
       <%= render "message", {chat: chat_post, user: chat_post.user} %>
     <% end %>
   </div>
-  <input type="text" data-behavior="room_speaker">
+  <div class="room-show-speaker-box">
+    <div class="room-bottom-form-box">
+      <input type="text" data-behavior="room_speaker" class="room-show-speaker-input">
+      <button class="room-form-send-button"><%= image_tag "send.png" %></button>
+
+    </div>
+  </div>
+  <div class="room-show-bottom-box"></div>
 </div>
+<style>
+  .container{
+    padding: 0;
+    margin: 0;
+    max-width: none;
+  }
+</style>

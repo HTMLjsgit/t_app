@@ -14,7 +14,7 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @chat_posts = @room.chat_posts.includes(:user)
-
+    @chat_posts.update_all(see: true)
   end
 
   def create
@@ -22,7 +22,7 @@ class RoomsController < ApplicationController
       #自分対自分のルームを作ろうとするならばリターンする。
       redirect_to root_path and return
     end
-
+    @target_user = @user
 
     @room = Room.create!(name: "？")
     [current_user.id, @target_user.id].each do |add_user_id|

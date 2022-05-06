@@ -1,8 +1,21 @@
-<% @rooms.each do |room| %>
-  <%#= link_to  %>
-    <% room.current_user_other_users(current_user).each do |target_user| %>
-      <%= target_user.username %>
-    <% end %>
-    とのメッセージ
-
-<% end %>
+<div class="rooms-all-box">
+  <% @rooms.each do |room| %>
+    <div class="room-index-out-box">
+      <%= link_to room_path(room), class: "underline-none hover" do %>
+        <div class="room-index-box">
+          <div class="room-target-user-profile-box">
+            <% room.current_user_other_users(current_user).each do |target_user| %>
+              <%= render partial: "users/user_profile", locals: {user: target_user} %>
+            <% end %>
+            <p class="room-with-message-user-text">とのメッセージ</p>
+          </div>
+          <div class="room-last-message-box">
+            <% if room.chat_posts.exists? %>
+              <p class="room_last_message"><%= room.chat_posts.last.message %></p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
