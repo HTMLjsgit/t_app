@@ -31,17 +31,13 @@
         <span class="show-explanation-counts-span">購入数</span>
         <p class="show-explanation-counts-p"><%= @purchase_num.to_s(:delimited) %></p>
       </div>
-      <% if user_signed_in? %>
-        <% if current_user.id == @post.user_id %>
-          <div class="post-explanation-show-item">
-            <span class="show-explanation-counts-span">閲覧数</span>
-            <p class="show-explanation-counts-p"><%= @post.impressionist_count.to_s(:delimited) %></p>
-          </div>
-        <% end %>
-      <% end %>
+      <div class="post-explanation-show-item">
+        <span class="show-explanation-counts-span">閲覧数</span>
+        <p class="show-explanation-counts-p"><%= @post.impressionist_count.to_s(:delimited) %></p>
+      </div>
       <div class="post-explanation-show-item">
         <span class="show-explanation-counts-span">いいね</span>
-        <p class="show-explanation-counts-p">0</p>
+        <p class="show-explanation-counts-p"><%= @post.post_likes.count %></p>
       </div>
     </div>
     <div class="post-explanation-description">
@@ -50,10 +46,14 @@
   </div>
   <div class="post-explanation-buy-with-profile">
     <div>
-      <% if @payment_check || @post.user_id == current_user.id %>
-        <%= button_to "記事を読む",post_path(@post),{method: :get,class: "base-pink-button post-explanation-event-button"} %>
+      <% if user_signed_in? %>
+        <% if @payment_check || @post.user_id == current_user.id %>
+          <%= button_to "記事を読む",post_path(@post),{method: :get,class: "base-pink-button post-explanation-event-button"} %>
+        <% else %>
+          <%= button_tag "¥#{amount_with_commision(@post.amount)}", id: "post-payment-box-open-link",class: "post-explanation-event-button base-pink-button", data: {post_id: @post.id} %>
+        <% end %>
       <% else %>
-        <%= button_tag "¥#{amount_with_commision(@post.amount)}", id: "post-payment-box-open-link",class: "post-explanation-event-button base-pink-button", data: {post_id: @post.id} %>
+        <%= button_to "¥#{amount_with_commision(@post.amount)}", new_user_session_path,method: :get , id: "post-payment-box-open-link",class: "post-explanation-event-button base-pink-button", data: {post_id: @post.id} %>
       <% end %>
     </div>
     <%= render partial: "users/user_profile", locals: {user: @post.user} %>

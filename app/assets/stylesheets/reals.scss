@@ -36,9 +36,17 @@
   margin: 0;
 }
 
+.user-real-action.real_comments {
+  margin-left: 30px;
+}
+
+
 .user-action-box {
   display: flex;
+}
 
+.user-action-box .like-btn {
+  display: flex;
 }
 
 .reals-views-count-text {
@@ -47,7 +55,6 @@
 
 .user-real-action {
   display: flex;
-  font-size: 18px;
 }
 
 .user-real-action img {

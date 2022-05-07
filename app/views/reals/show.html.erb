@@ -15,23 +15,23 @@
     <div class="user-action-box">
       <div class="user-real-action">
         <% unless @user == current_user %>
-          <% if @real_like.present? %>
-            <%= link_to destroy_real_like_path(@real), class: "like-btn", method: :delete, remote: true do %>
+          <% if @real_like_current.present? %>
+            <%= link_to real_real_like_path(real_id: @real, id: @real_like_current), class: "like-btn", method: :delete do %>
               <%= image_tag "item/like.png" %>
-              <p class="real-likes-count-text count-text-contents"><%= @real.real_likes.count %></p>
             <% end %>
+            <p class="real-likes-count-text count-text-contents"><%= @real.real_likes.count %></p>
           <% else %>
-            <%= link_to create_real_like_path(@real), class: "like-btn", method: :post, remote: true do %>
+            <%= link_to real_real_likes_path(@real), class: "like-btn", method: :post do %>
               <%= image_tag "item/like.png" %>
-              <p class="real-likes-count-text count-text-contents"><%= @real.real_likes.count %></p>
             <% end %>
+            <p class="real-likes-count-text count-text-contents"><%= @real.real_likes.count %></p>
           <% end %>
         <% else %>
           <%= image_tag "item/like.png" %>
           <p class="real-likes-count-text count-text-contents"><%= @real.real_likes.count %></p>
       　<% end %>
       </div>
-      <div class="user-real-action">
+      <div class="user-real-action real_comments">
         <%= image_tag "item/message.png" %>
         <p class="real-likes-count-text count-text-contents"><%= @real.real_comments.count %></p>
       </div>
