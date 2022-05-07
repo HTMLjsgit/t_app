@@ -10,9 +10,7 @@
         <%= link_to post_explanation_post_path(post), class: "post-index-to-explanation-post-link" do %>
           <div class="post-index-item">
             <div class="post-index-poster-box">
-              <div class="post-good-index-box good-image-box">
-                <%= image_tag "hurt.png", class: "hurt-icon" %>
-              </div>
+              <%= render partial: "post_likes/post_like", locals: {post: post, post_good_class: "post-good-index-box"} %>
               <% if post.poster? %>
                 <%= image_tag post.poster.url, class: "post_index_poster" %>
               <% end %>
@@ -31,7 +29,7 @@
                 <p class="post-index-count-text">閲覧数 : <%= post.impressionist_count.to_s(:delimited) %></p>
               </div>
               <div class="post-index-counts-contents-box">
-                <p class="post-index-count-text">いいね : <%= post.likes.count %></p>
+                <p class="post-index-count-text">いいね : <%= post.post_likes.count %></p>
               </div>
             </div>
             <!-- 購入していなかったら -->

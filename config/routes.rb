@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resources :comments
       resources :image_posts
       resources :image_reals
-      resources :likes
+      resources :post_likes
       resources :posts
       resources :reals
       resources :relationships
@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       # 記事の説明ページ
       get :post_explanation
     end
+    resources :post_likes, only: [:create, :destroy]
     #--------支払い履歴Routes--------------
 
     #postsの子として追加することで  /posts/:id/payments が実現可能になる。
@@ -56,11 +57,10 @@ Rails.application.routes.draw do
     #---------------------
   end
   resources :comments, only: [:new, :create, :show, :destroy]
-  resources :reals, only: [:new, :create, :index, :show, :edit, :update, :destroy]
-    post 'like/:id' => 'likes#create', as: 'create_like'
-    delete 'like/:id' => 'likes#destroy', as: 'destroy_like'
-    post 'real_like/:id' => 'real_likes#create', as: 'create_real_like'
-    delete 'real_like/:id' => 'real_likes#destroy', as: 'destroy_real_like'
+  resources :reals, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+    resources :real_likes, only: [:create, :destroy]
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'posts#index'
   get  'users/:id/show_following' => 'users#show_following', as: 'show_following'

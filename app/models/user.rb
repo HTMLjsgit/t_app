@@ -20,7 +20,7 @@ class User < ApplicationRecord
  has_many :comments, dependent: :destroy#コメント
  has_many :real_comments, dependent: :destroy #コメント
  has_many :reals, dependent: :destroy #リアル
- has_many :likes, dependent: :destroy #いいね
+ has_many :post_likes, dependent: :destroy #いいね
  has_many :real_likes, dependent: :destroy
  has_many :sales, dependent: :destroy
  has_one :transfer_total, dependent: :destroy #申請可能金額

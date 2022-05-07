@@ -24,9 +24,7 @@
   <div class="post-explanation-details-box auto-flex-size">
     <div class="post-explanation-heading-box">
       <h1 class="post-explanation-title"><%= @post.title %></h1>
-      <div class="post-explanation-good-image-box good-image-box">
-        <%= image_tag "hurt.png", class: "hurt-icon" %>
-      </div>
+      <%= render partial: "post_likes/post_like", locals: {post: @post, post_good_class: "post-explanation-good-image-box"} %>
     </div>
     <div class="post-explanation-show-counts-box">
       <div class="post-explanation-show-item">

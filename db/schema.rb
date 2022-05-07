@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_30_032306) do
+ActiveRecord::Schema.define(version: 2022_05_07_050317) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -99,13 +99,6 @@ ActiveRecord::Schema.define(version: 2022_04_30_032306) do
     t.index ["user_id"], name: "index_impressions_on_user_id"
   end
 
-  create_table "likes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "payment_settings", force: :cascade do |t|
     t.float "seller_post_commision"
     t.float "buyer_post_commision"
@@ -138,6 +131,15 @@ ActiveRecord::Schema.define(version: 2022_04_30_032306) do
     t.index ["post_id"], name: "index_payments_on_post_id"
     t.index ["sale_id"], name: "index_payments_on_sale_id"
     t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
+  create_table "post_likes", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_likes_on_post_id"
+    t.index ["user_id"], name: "index_post_likes_on_user_id"
   end
 
   create_table "post_thumbnails", force: :cascade do |t|

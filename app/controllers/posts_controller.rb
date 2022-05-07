@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   include CommonPaymentSettings
   before_action :payment_setting_get, only: [:edit, :new, :index, :post_explanation]
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.all.order(created_at: :desc).includes(:post_likes)
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
   end
 

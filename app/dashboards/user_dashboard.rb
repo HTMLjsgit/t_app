@@ -19,7 +19,7 @@ class UserDashboard < Administrate::BaseDashboard
     comments: Field::HasMany,
     real_comments: Field::HasMany,
     reals: Field::HasMany,
-    likes: Field::HasMany,
+    post_likes: Field::HasMany,
     real_likes: Field::HasMany,
     id: Field::Number,
     email: Field::String,
@@ -89,7 +89,7 @@ class UserDashboard < Administrate::BaseDashboard
     comments
     real_comments
     reals
-    likes
+    post_likes
     real_likes
 
     follower
@@ -132,7 +132,7 @@ class UserDashboard < Administrate::BaseDashboard
     comments
     real_comments
     reals
-    likes
+    post_likes
     real_likes
     email
     encrypted_password

@@ -14,7 +14,6 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @chat_posts = @room.chat_posts.includes(:user)
-    @chat_posts.update_all(see: true)
   end
 
   def create

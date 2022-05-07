@@ -31,13 +31,22 @@
   border-radius: 15px;
 }
 
+.room-messages {
+  overflow-y: auto;
+  max-height: 400px;
+  min-height: 400px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
 .current-user-front-room .room-chat-message-box {
-  background-color: #e29ca8;
+  background-color: pink;
   color: #fff;
 }
 
-.room-show-box {
-  padding-bottom: 100px;
+#messages {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .room-show-speaker-box {
@@ -53,7 +62,7 @@
 }
 
 .room-bottom-form-box {
-  width: 80%;
+  width: 600px;
   display: flex;
 }
 
@@ -80,7 +89,7 @@
 }
 
 .room-show-speaker-input {
-  width: 95%;
+  width: 100%;
   height: 40px;
   border: none;
   outline: none;
@@ -101,7 +110,7 @@
   word-break: break-all;
 }
 
-.current-user-front-room {}
+.container {}
 
 .room-chat-box {
   padding-bottom: 30px;
@@ -115,9 +124,11 @@
 .chat_time {
   margin: 0;
   display: flex;
+  justify-content: left;
+  color: rgb(99, 99, 99);
 }
 
-.chat_time.current-user-front-room {
+.current-user-front-room .chat_time {
   justify-content: right;
 }
 
@@ -148,4 +159,10 @@
 
 .room_last_message {
   margin: 0;
+}
+
+@media screen and (max-width: 560px) {
+  .room-bottom-form-box {
+    width: 400px;
+  }
 }
