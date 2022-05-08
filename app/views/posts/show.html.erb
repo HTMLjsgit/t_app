@@ -19,16 +19,18 @@
         </div>
       <% end %>
     <% end %>
-    <div class="post-show-image_posts-all-box">
+    <div class="post-show-images-posts-slides-box">
+      <div class="post-show-image_posts-all-box">
 
-      <% @post.image_posts.each do |image_post| %>
-        <% if image_post.picture? %>
-          <div class="post-show-image_post-box">
-            <%= image_tag image_post.picture.url,class: "post-show-image_post" %>
-          </div>
+        <% @post.image_posts.each do |image_post| %>
+          <% if image_post.picture? %>
+            <div class="post-show-image_post-box">
+              <%= image_tag image_post.picture.url,class: "post-show-image_post" %>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
 
+      </div>
     </div>
   </div>
 </div>
@@ -37,8 +39,8 @@
 
 <script>
   $(".post-show-image_posts-all-box").slick({
-    slidesToShow: 2,
-    slidesToScroll: 2,
+    slidesToShow: 1,
+    slidesToScroll: 1,
     dots: true,
     lazyLoad: 'progressive'
   });
