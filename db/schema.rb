@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_22_102925) do
+ActiveRecord::Schema.define(version: 2022_05_07_050317) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -112,9 +112,11 @@ ActiveRecord::Schema.define(version: 2022_04_22_102925) do
     t.index ["user_id"], name: "index_impressions_on_user_id"
   end
 
-  create_table "likes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_id"
+  create_table "payment_settings", force: :cascade do |t|
+    t.float "seller_post_commision"
+    t.float "buyer_post_commision"
+    t.float "stripe_commission"
+    t.float "consumption_tax"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -135,13 +137,22 @@ ActiveRecord::Schema.define(version: 2022_04_22_102925) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "amount"
-    t.bigint "mine_subtract_commision_amount"
-    t.bigint "mine_commision"
-    t.bigint "stripe_and_mine_subtract_commision_amount"
     t.time "payment_date"
-    t.bigint "commision_amount_result"
+    t.float "commision_result"
+    t.float "receipt_commision"
+    t.integer "sale_id"
     t.index ["post_id"], name: "index_payments_on_post_id"
+    t.index ["sale_id"], name: "index_payments_on_sale_id"
     t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
+  create_table "post_likes", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_likes_on_post_id"
+    t.index ["user_id"], name: "index_post_likes_on_user_id"
   end
 
   create_table "post_thumbnails", force: :cascade do |t|
@@ -158,7 +169,6 @@ ActiveRecord::Schema.define(version: 2022_04_22_102925) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.bigint "amount"
-    t.bigint "commission"
     t.string "title"
     t.text "description"
     t.string "poster"
@@ -188,6 +198,14 @@ ActiveRecord::Schema.define(version: 2022_04_22_102925) do
     t.integer "user_id"
   end
 
+  create_table "receipt_totals", force: :cascade do |t|
+    t.bigint "total", default: 0, null: false
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_receipt_totals_on_user_id"
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -201,12 +219,51 @@ ActiveRecord::Schema.define(version: 2022_04_22_102925) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sales", force: :cascade do |t|
+    t.integer "payment_id"
+    t.boolean "transfer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "post_id"
+    t.bigint "result_amount", default: 0, null: false
+    t.index ["payment_id"], name: "index_sales_on_payment_id"
+    t.index ["post_id"], name: "index_sales_on_post_id"
+    t.index ["user_id"], name: "index_sales_on_user_id"
+  end
+
+  create_table "transfer_completions", force: :cascade do |t|
+    t.boolean "already_transfer", default: false, null: false
+    t.integer "user_id"
+    t.integer "transfer_request_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["transfer_request_id"], name: "index_transfer_completions_on_transfer_request_id"
+    t.index ["user_id"], name: "index_transfer_completions_on_user_id"
+  end
+
+  create_table "transfer_requests", force: :cascade do |t|
+    t.boolean "already_request"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "amount", default: 0, null: false
+    t.index ["user_id"], name: "index_transfer_requests_on_user_id"
+  end
+
+  create_table "transfer_totals", force: :cascade do |t|
+    t.bigint "total", default: 0, null: false
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_transfer_totals_on_user_id"
+  end
+
   create_table "user_rooms", force: :cascade do |t|
     t.integer "user_id"
     t.integer "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "to_user_id"
     t.index ["room_id"], name: "index_user_rooms_on_room_id"
     t.index ["user_id"], name: "index_user_rooms_on_user_id"
   end

@@ -1,20 +1,20 @@
 class RoomChannel < ApplicationCable::Channel
-
   def subscribed
-    # 接続された時
-    stream_from 'room_channel'
+    stream_from "room_channel_#{params[:room_id]}"
   end
 
   def unsubscribed
-    # 切断された時
+    # Any cleanup needed when channel is unsubscribed
   end
 
   def speak(data)
-    # 以下を実行すれば、データベースに保存。実行しなければ保存しない
-    post = ChatPost.new(message: data['message'][0], user_id: data['message'][1].to_i, room_id: data['message'][3].to_i)
-    post.save
-
-    ActionCable.server.broadcast 'room_channel', message: data['message'] # フロントへ返却
+    if data["message"] == ""
+      return false
+    end
+    room = Room.find params[:room_id]
+    chat_post = room.chat_posts.create(message: data["message"], user_id: current_user.id)
+    message_render = ApplicationController.render_with_signed_in_user(chat_post.user,partial: "rooms/message", locals: {chat: chat_post, user: chat_post.user})
+    user_profile_render = ApplicationController.render_with_signed_in_user(chat_post.user,partial: "users/user_profile", locals: {user: chat_post.user, username: ""})
+    ActionCable.server.broadcast "room_channel_#{params[:room_id]}", message_render: message_render, user_id: chat_post.user_id, message_id: chat_post.id, user_profile_render: user_profile_render
   end
-
 end

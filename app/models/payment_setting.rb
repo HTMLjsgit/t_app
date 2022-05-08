@@ -1,0 +1,2 @@
+class PaymentSetting < ApplicationRecord
+end

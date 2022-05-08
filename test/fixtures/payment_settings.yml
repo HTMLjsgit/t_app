@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  post_commision: 1.5
+  seller_commision: 1.5
+  buyer_commision: 1.5
+
+two:
+  post_commision: 1.5
+  seller_commision: 1.5
+  buyer_commision: 1.5

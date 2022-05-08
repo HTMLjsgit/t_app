@@ -1,64 +1,36 @@
 <div class="main posts-show">
   <div class="posts-show-item">
-      <% if @user.avater? %>
-        <div class="post-user">
-          <%= image_tag @user.avater.url %> <%= link_to(@user.username, user_path(@user),class: "post-index-name") %>
-        </div>
-      <% else %>
-        <div class="post-user">
-          <%= image_tag "blank-profile-picture-973460_640.png" %> <%= link_to(@user.username, user_path(@user),class: "post-index-name") %>
-        </div>
-      <% end %>
-      <div class="post-show-content">
-        <h2><%= @post.title %></h2>
-        <%= @post.content %>
-      </div>
+    <%#= render partial: "users/user_profile", locals: {user: @user} %>
+    <div class="post-show-images-posts-slides-box">
+      <div class="post-show-image_posts-all-box">
 
-    <% if user_signed_in? %>
-  　　<% unless @user == current_user %>
-        <% if Like.find_by(user_id: current_user.id,post_id: @post.id) %>
-
-          <%= link_to destroy_like_path(@post), class: "like-btn", method: :DELETE, remote: true do %>
-            <i class="fa fa-heart like-btn"></i>
+        <% @post.image_posts.each do |image_post| %>
+          <% if image_post.picture? %>
+            <div class="post-show-image_post-box">
+              <%= image_tag image_post.picture.url,class: "post-show-image_post" %>
+            </div>
           <% end %>
-          <%= @post.likes.count %>
-
-
-          <%= link_to create_like_path(@post), class: "like-btn", method: :POST, remote: true do %>
-            <i class="far fa-heart like-btn"></i>
-          <% end %>
-            <%= @post.likes.count %>
         <% end %>
-      <% else %>
-        <i class="far fa-heart like-btn"></i>
-        <%= @post.likes.count %>
-  　　<% end %>
-    <% end %>
-    <% if user_signed_in? %>
-      <% if @user == current_user || current_user.admin? %>
-        <div class="post-menus">
-          <%= link_to(edit_post_path(@post), method: :get) do %>
-            <i class="far fa-edit fa-2x"></i>
-          <% end %>
-          <%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %>
-          <%= link_to(post_path(@post),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do %>
-            <i class="fas fa-trash-alt fa-2x"></i>
-          <% end %>
-        </div>
-      <% end %>
-    <% end %>
+
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="post_explanation_thumbnails">
-
-  <% @post.image_posts.each do |image_post| %>
-    <% if image_post.picture? %>
-      <%= image_tag image_post.picture.url,class: "post_explanation_thumbnails" %>
-    <% end %>
-  <% end %>
-</div>
-
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<style>
+  .container{
+    max-width: none;
+  }
+</style>
+<script>
+  $(".post-show-image_posts-all-box").slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    dots: true,
+    lazyLoad: 'progressive'
+  });
+</script>
 <!-- コメント機能
 <div class="comment-index my-4">
   <h2>コメント一覧</h2>

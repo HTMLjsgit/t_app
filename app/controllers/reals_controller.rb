@@ -9,7 +9,7 @@ class RealsController < ApplicationController
 
   def show
     @real = Real.find_by(id: params[:id])
-    @real_like = @real.real_likes.find_by(user_id: current_user.id)
+    @real_like_current = RealLike.like_attach(current_user, @real.id)
 
     @user = @real.user
 

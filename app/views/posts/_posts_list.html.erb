@@ -10,9 +10,7 @@
         <%= link_to post_explanation_post_path(post), class: "post-index-to-explanation-post-link" do %>
           <div class="post-index-item">
             <div class="post-index-poster-box">
-              <div class="post-good-index-box good-image-box">
-                <%= image_tag "hurt.png", class: "hurt-icon" %>
-              </div>
+              <%= render partial: "post_likes/post_like", locals: {post: post, post_good_class: "post-good-index-box"} %>
               <% if post.poster? %>
                 <%= image_tag post.poster.url, class: "post_index_poster" %>
               <% end %>
@@ -31,15 +29,15 @@
                 <p class="post-index-count-text">閲覧数 : <%= post.impressionist_count.to_s(:delimited) %></p>
               </div>
               <div class="post-index-counts-contents-box">
-                <p class="post-index-count-text">いいね : <%= post.likes.count %></p>
+                <p class="post-index-count-text">いいね : <%= post.post_likes.count %></p>
               </div>
             </div>
             <!-- 購入していなかったら -->
             <% if user_signed_in? %>
-              <% unless @post_payment_check.present? %>
+              <% unless @post_payment_check.present? || current_user.id == post.user_id %>
                 <object>
                   <div class="post-index-buy-button-box">
-                    <%= button_tag "¥#{post.amount+post.commission}",type: "button", id: "post-payment-box-open-link-#{post.id}",class: "base-pink-button post-index-payment-button", data: {post_id: post.id} %>
+                    <%= button_tag "¥#{amount_with_commision(post.amount)}",type: "button", id: "post-payment-box-open-link-#{post.id}",class: "base-pink-button post-index-payment-button", data: {post_id: post.id} %>
                   </div>
                 </object>
                 <script>
@@ -49,7 +47,7 @@
                   post_payment_open_link_<%= post.id %>.addEventListener("click", function(event){
                     event.preventDefault();
                     target_form.action = `/posts/<%= post.id %>/payments/post_payment`;
-                    buy_text.textContent = "<%= post.content.truncate(5) %>(<%= post.amount + (post.commission) %>円(手数料込み))を購入する。";
+                    buy_text.textContent = "<%= post.content.truncate(5) %>(<%= amount_with_commision(post.amount) %>円(手数料込み))を購入する。";
                     event.preventDefault();
                     payment_modal.classList.add("open");
                     post_payment_box.style.display = "block";
@@ -64,7 +62,7 @@
             <% else %>
                 <object>
                   <div class="post-index-buy-button-box">
-                    <%= button_to "¥#{post.amount+post.commission}", new_user_session_path ,type: "button", id: "post-payment-box-open-link-#{post.id}",class: "base-pink-button post-index-payment-button", data: {post_id: post.id} %>
+                    <%= button_to "¥#{amount_with_commision(post.amount)}", new_user_session_path ,type: "button", id: "post-payment-box-open-link-#{post.id}",class: "base-pink-button post-index-payment-button", data: {post_id: post.id} %>
                   </div>
                 </object>
             <% end %>

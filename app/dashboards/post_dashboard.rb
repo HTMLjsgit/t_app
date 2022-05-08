@@ -10,7 +10,6 @@ class PostDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     user: Field::BelongsTo,
     comments: Field::HasMany,
-    likes: Field::HasMany,
     image_posts: Field::HasMany,
     post_thumbnails: Field::HasMany,
     post_payments: Field::HasMany,
@@ -34,7 +33,6 @@ class PostDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     user
     comments
-    likes
     image_posts
   ].freeze
 
@@ -43,7 +41,7 @@ class PostDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
     user
     comments
-    likes
+    post_likes
     image_posts
     post_thumbnails
     post_payments

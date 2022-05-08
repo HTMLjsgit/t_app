@@ -26,12 +26,12 @@
                 <img src="" id="poster-view-image">
                 <%= image_tag "clip-icon.png", class: "clip-icon poster" %>
               <% end %>
-            </div>    
+            </div>
           </div>
 
           <%# <div class="form-field poster"> %>
             <%# <label>記事のサムネイル</label> %>
-            
+
             <%# <div class="input-images-area"> %>
               <%#= f.fields_for :post_thumbnails, @post_thumbnail do |f_post_thumbnail| %>
                 <%#= f_post_thumbnail.file_field :picture, id: "input-post-thumbnail-0",class: "form-input-image" %>
@@ -42,7 +42,7 @@
           <%# </div> %>
           <div class="form-field poster">
             <label>サムネイル画像</label>
-            
+
             <div class="input-images-area post_thumbnails">
               <%= f.fields_for :post_thumbnails, @post_thumbnail do |f_post_thumbnail| %>
                 <%= f_post_thumbnail.file_field :picture, id: "input-post-thumbnail-0",class: "form-input-image" %>
@@ -55,7 +55,7 @@
 
           <div class="form-field poster">
             <label>記事の画像集</label>
-            
+
             <div class="input-images-area image_posts">
               <%= f.fields_for :image_posts, @image_post do |f_image_post| %>
                 <%= f_image_post.file_field :picture, id: "input-post-image-0",class: "form-input-image"%>
@@ -71,8 +71,8 @@
               <%= f.text_field :amount, class: "form-control", id: "amount_input",placeholder: "例(1000)"  %>
             </label>
           </div>
-          <p id="commision-form-text"></p>
-
+          <p class="commision-form-text" id="seller"></p>
+          <p class="commision-form-text" id="buyer"></p>
 
           <div class="text-right">
             <input class="btn btn-primary input" type="submit" value="投稿">
@@ -86,9 +86,21 @@
 
 <script>
   let amount_input = document.getElementById("amount_input");
-  let commision_text = document.getElementById("commision-form-text");
+  let commision_text_seller = document.getElementById("seller");
+  let commision_text_buyer = document.getElementById("buyer");
+
+  let commision_result_seller = 0;
+  let commision_result_buyer = 0;
+
+  let cost = 0;
   amount_input.addEventListener("input", function(event){
-    commision_text.textContent = Math.round((Number(event.target.value) + (Number(event.target.value) * 0.15))) + "(手数料込み)"
+    cost = Number(event.target.value)
+
+    commision_result_seller = (cost * <%= @payment_setting.seller_post_commision %>);
+    commision_result_buyer = (cost * <%= @payment_setting.buyer_post_commision %>);
+
+    commision_text_seller.textContent = "受け取り金: " + Math.round(cost - commision_result_seller) + "(手数料30%)";
+    commision_text_buyer.textContent = "販売価格: " + Math.round(cost + commision_result_buyer) + "(手数料15%)";
   });
 
 
