@@ -19,6 +19,10 @@ $(function () {
       }
       $("#messages").append(data["message_render"]);
       var user_class = $("#room-show").data("current_user") != data["user_id"] ? "current-user-front-room" : "";
+      if (data["user_id"] != $("#room-show").data("current_user")) {
+        $(`#message-${data["message_id"]} .room-message-user-profile`).html(data["user_profile_render"]);
+      }
+
       $(`#message-${data["message_id"]}`).removeClass(user_class);
       setTimeout(function () {
         animate = $('.room-messages').animate({ scrollTop: $("#messages").height() });

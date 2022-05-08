@@ -24,6 +24,14 @@
   justify-content: right;
 }
 
+.room-chat-message-area-box {
+  display: flex;
+}
+
+.room-message-user-profile {
+  margin-right: 10px;
+}
+
 .room-chat-message-box {
   padding: 10px;
   color: #fff;

@@ -14,6 +14,7 @@ class RoomChannel < ApplicationCable::Channel
     room = Room.find params[:room_id]
     chat_post = room.chat_posts.create(message: data["message"], user_id: current_user.id)
     message_render = ApplicationController.render_with_signed_in_user(chat_post.user,partial: "rooms/message", locals: {chat: chat_post, user: chat_post.user})
-    ActionCable.server.broadcast "room_channel_#{params[:room_id]}", message_render: message_render, user_id: chat_post.user_id, message_id: chat_post.id
+    user_profile_render = ApplicationController.render_with_signed_in_user(chat_post.user,partial: "users/user_profile", locals: {user: chat_post.user, username: ""})
+    ActionCable.server.broadcast "room_channel_#{params[:room_id]}", message_render: message_render, user_id: chat_post.user_id, message_id: chat_post.id, user_profile_render: user_profile_render
   end
 end
