@@ -1,24 +1,6 @@
 <div class="main posts-show">
   <div class="posts-show-item">
-      <%= render partial: "users/user_profile", locals: {user: @user} %>
-      <div class="post-show-content">
-        <h2><%= @post.title %></h2>
-        <%= @post.content %>
-      </div>
-
-    <% if user_signed_in? %>
-      <% if @user == current_user || current_user.admin? %>
-        <div class="post-menus">
-          <%= link_to(edit_post_path(@post), method: :get) do %>
-            <i class="far fa-edit fa-2x"></i>
-          <% end %>
-          <%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %>
-          <%= link_to(post_path(@post),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do %>
-            <i class="fas fa-trash-alt fa-2x"></i>
-          <% end %>
-        </div>
-      <% end %>
-    <% end %>
+    <%#= render partial: "users/user_profile", locals: {user: @user} %>
     <div class="post-show-images-posts-slides-box">
       <div class="post-show-image_posts-all-box">
 
@@ -36,7 +18,11 @@
 </div>
 
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
+<style>
+  .container{
+    max-width: none;
+  }
+</style>
 <script>
   $(".post-show-image_posts-all-box").slick({
     slidesToShow: 1,

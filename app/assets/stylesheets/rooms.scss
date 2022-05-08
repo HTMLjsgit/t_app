@@ -41,10 +41,11 @@
 
 .room-messages {
   overflow-y: auto;
-  max-height: 400px;
-  min-height: 400px;
+  max-height: 600px;
+  min-height: 600px;
   max-width: 700px;
   margin: 0 auto;
+  padding-bottom: 60px;
 }
 
 .current-user-front-room .room-chat-message-box {
@@ -169,8 +170,17 @@
   margin: 0;
 }
 
+@media screen and (max-width: 800px) {
+  .room-messages {
+    max-height: 500px;
+    min-height: 500px;
+  }
+}
+
 @media screen and (max-width: 560px) {
   .room-bottom-form-box {
     width: 400px;
   }
+
+
 }

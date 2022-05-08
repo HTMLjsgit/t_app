@@ -17,7 +17,7 @@
         <% unless @user == current_user %>
           <% if @real_like_current.present? %>
             <%= link_to real_real_like_path(real_id: @real, id: @real_like_current), class: "like-btn", method: :delete do %>
-              <%= image_tag "item/like.png" %>
+              <%= image_tag "item/liked.png" %>
             <% end %>
             <p class="real-likes-count-text count-text-contents"><%= @real.real_likes.count %></p>
           <% else %>
