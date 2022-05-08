@@ -4,3 +4,83 @@
   margin: 0 0 0 auto;
   width: 150px;
 }
+
+.js-table-row {
+  cursor: pointer;
+}
+
+.request-by-user-text {
+  font-size: 25px;
+}
+
+.link-none {
+  text-decoration: none;
+}
+
+.transfer_request-link {
+  color: #000;
+}
+
+.transfer_request-link:hover {
+  color: #000;
+}
+
+.transfer-requests-content-one-box {
+  border: 1px solid #ddd;
+  padding: 30px;
+  box-shadow: 1px 1px 5px rgb(67, 67, 67);
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 40px;
+}
+
+.transfer-requests-content-one-box:hover {
+  opacity: 0.6;
+}
+
+.list-type-change-box {
+  display: flex;
+}
+
+.transfer_request-amount-text-index {
+  font-size: 20px;
+}
+
+.request-type-change-link-box {
+  border: 1px solid #ddd;
+  padding: 20px;
+
+}
+
+.list-type-change-box {
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+.transfer_request-time-index-box {
+  padding-top: 20px;
+}
+
+.amount-request-text-show {
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.user-bank-information-transfer-admin-box {
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-top: 50px;
+}
+
+.transfer-request-show-box {
+  padding: 20px;
+}
+
+.data-not-found-text {
+  font-size: 25px;
+  margin: 40px;
+}
+
+.bank-information-heading-text {
+  margin-bottom: 20px;
+}

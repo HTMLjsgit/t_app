@@ -1,0 +1,18 @@
+<% if user_signed_in? %>
+  <% post_like = PostLike.like_attach(current_user, post.id) %>
+  <object>
+    <% if post_like.present? %>
+      <%= link_to post_post_like_path(post_id: post.id,id: PostLike.like_attach(current_user, post.id)), method: :delete do %>
+        <div class="<%= post_good_class %> good-image-box">
+          <%= image_tag "hurt_liked.png", class: "hurt-icon" %>
+        </div>
+      <% end %>
+    <% else %>
+      <%= link_to post_post_likes_path(post_id: post.id), method: :post do %>
+        <div class="<%= post_good_class %> good-image-box">
+          <%= image_tag "hurt.png", class: "hurt-icon" %>
+        </div>
+      <% end %>
+    <% end %>
+  </object>
+<% end %>

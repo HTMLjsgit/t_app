@@ -14,21 +14,18 @@ class PaymentDashboard < Administrate::BaseDashboard
     currency: Field::String,
     customer_id: Field::String,
     payment_data: Field::Time,
+    receipt_commision: Field::Number,
     uuid: Field::String,
     charge_id: Field::String,
     stripe_commission: Field::Number,
-    stripe_amount_after_subtract_commision: Field::Number,
     receipt_url: Field::String,
     receive_id: Field::String,
     post_id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     amount: Field::Number,
-    mine_subtract_commision_amount: Field::Number,
-    mine_commision: Field::Number,
-    stripe_and_mine_subtract_commision_amount: Field::Number,
-    payment_date: Field::Time,
-    commision_amount_result: Field::Number,
+    commision_result: Field::Number,
+    payment_date: Field::Time
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -39,8 +36,8 @@ class PaymentDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     user
     id
+    amount
     description
-    currency
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -55,18 +52,15 @@ class PaymentDashboard < Administrate::BaseDashboard
     uuid
     charge_id
     stripe_commission
-    stripe_amount_after_subtract_commision
+    receipt_commision
+    commision_result
     receipt_url
     receive_id
     post_id
     created_at
     updated_at
     amount
-    mine_subtract_commision_amount
-    mine_commision
-    stripe_and_mine_subtract_commision_amount
     payment_date
-    commision_amount_result
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -81,16 +75,12 @@ class PaymentDashboard < Administrate::BaseDashboard
     uuid
     charge_id
     stripe_commission
-    stripe_amount_after_subtract_commision
+    commision_result
     receipt_url
     receive_id
     post_id
     amount
-    mine_subtract_commision_amount
-    mine_commision
-    stripe_and_mine_subtract_commision_amount
     payment_date
-    commision_amount_result
   ].freeze
 
   # COLLECTION_FILTERS

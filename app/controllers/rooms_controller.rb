@@ -1,17 +1,32 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :user_find, only: [:index, :create]
+  before_action :room_find, only: [:show]
+  # before_action :user_rooms_attach, only: [:create]
+
+  before_action :userrooms_already_added?, only: [:create]
+  before_action :userrooms_admin_check, only: [:show]
+
+  before_action :user_admin_check, only: [:index]
+  def index
+    @rooms = @user.rooms.includes(:users, :user_rooms)
+  end
   def show
-    if @room = Room.find(params[:id])
-      @posts = @room.chat_posts
-      @room_userid = UserRoom.where(:room_id => params[:id]).to_a
-      ChatPost.where.not(:user_id => @room_userid[0].user_id).where(:room_id => params[:id]).update_all("see = 1")
-      @this_user = User.find(@room_userid[0].user_id)
-    end
+    @room = Room.find(params[:id])
+    @chat_posts = @room.chat_posts.includes(:user)
   end
 
   def create
-    @room = Room.new
-    @room.save
-    current_user.user_rooms.create(room_id: @room.id, to_user_id: params[:to_user_id])
+    if current_user.id == @user.id
+      #自分対自分のルームを作ろうとするならばリターンする。
+      redirect_to root_path and return
+    end
+    @target_user = @user
+
+    @room = Room.create!(name: "？")
+    [current_user.id, @target_user.id].each do |add_user_id|
+      @room.user_rooms.create!(user_id: add_user_id)
+    end
     redirect_to @room
   end
 
@@ -20,4 +35,36 @@ class RoomsController < ApplicationController
     params.require(:room).permit(:name)
   end
 
+  def userrooms_admin_check
+    if !current_user.user_rooms.where(room_id: @room.id).exists? && !current_user.admin?
+      redirect_to root_path and return
+    end
+  end
+
+  # def user_rooms_attach
+  #   @user_rooms = UserRoom.where(user_id: [current_user.id, @user.id], room_id: room.id)
+  # end
+
+  def userrooms_already_added?
+    #すでにUserRoomに入っているか？
+    user_1_room_ids = current_user.user_rooms.pluck(:room_id)
+    user_2_room_ids = @user.user_rooms.pluck(:room_id)
+    room_check = user_1_room_ids & user_2_room_ids
+    if room_check.size > 0
+      redirect_to room_path(room_check[0])
+    end
+  end
+
+  def user_find
+    @user = User.find params[:user_id]
+  end
+
+  def room_find
+    @room = Room.find params[:id]
+  end
+  def user_admin_check
+    if @user.id != current_user.id && !current_user.admin?
+      redirect_to root_path and return
+    end
+  end
 end

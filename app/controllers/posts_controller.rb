@@ -5,10 +5,11 @@ class PostsController < ApplicationController
   before_action :payment_check_for_view, only: [:post_explanation]
   impressionist :actions=> [:show]
   before_action :authenticate_user!, only: [:show, :create, :update, :edit, :new, :destroy]
+  include CommonPaymentSettings
+  before_action :payment_setting_get, only: [:edit, :new, :index, :post_explanation]
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.all.order(created_at: :desc).includes(:post_likes)
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
-
   end
 
   def show
@@ -27,11 +28,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    if @post.amount.present?
-      commission = @post.amount * 0.15 #手数料15%
-    end
-    @post.commission = commission
-
+    # @post.post_sales.create
     @post.save
 
     redirect_to(posts_path)
@@ -40,15 +37,12 @@ class PostsController < ApplicationController
   def post_explanation
     @posts = Post.all
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
-
-
     if user_signed_in?
       if current_user.id != @post.user_id
         impressionist(@post)
       end
     end
     @purchases = @post.post_payments
-    # binding.pry
     @purchase_num = @purchases.count
   end
 
@@ -71,7 +65,7 @@ class PostsController < ApplicationController
   def already_payment_check
     # 支払いができていないのであれば
     if user_signed_in?
-      unless current_user.payments.find_by(post_id: @post.id, user_id: current_user.id).present?
+      unless current_user.payments.find_by(post_id: @post.id, user_id: current_user.id).present? || current_user.id == @post.user.id
         # 強制的に説明ページに戻す。
         redirect_to post_explanation_post_path(@post) and return
       end

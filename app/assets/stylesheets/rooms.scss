@@ -1,3 +1,186 @@
 // Place all the styles related to the rooms controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.room-target-user-profile-box {
+  display: flex;
+}
+
+.room-target-user-profile-box .underline-none.user-name-link:hover {
+  text-decoration: underline;
+
+}
+
+.room-chat-area-box {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.room-chat-area-box.current-user-front-room {
+  justify-content: right;
+}
+
+.room-chat-area-box.current-user-front-room .room-chat-message-area-box {
+  display: flex;
+  justify-content: right;
+}
+
+.room-chat-message-area-box {
+  display: flex;
+}
+
+.room-message-user-profile {
+  margin-right: 10px;
+}
+
+.room-chat-message-box {
+  padding: 10px;
+  color: #fff;
+  display: inline-block;
+  border-radius: 15px;
+}
+
+.room-messages {
+  overflow-y: auto;
+  max-height: 600px;
+  min-height: 600px;
+  max-width: 700px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+}
+
+.current-user-front-room .room-chat-message-box {
+  background-color: pink;
+  color: #fff;
+}
+
+#messages {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.room-show-speaker-box {
+  position: fixed;
+  width: 100%;
+  bottom: 40px;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.room-bottom-form-box {
+  width: 600px;
+  display: flex;
+}
+
+
+
+.room-form-send-button {
+  border: none;
+  background-color: #e51273;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  transition: background-color ease 1s;
+}
+
+.room-form-send-button:hover {
+  background-color: #bd1061;
+}
+
+.room-form-send-button img {
+  width: 80%;
+}
+
+.room-form-send-button:focus {
+  outline: none;
+}
+
+.room-show-speaker-input {
+  width: 100%;
+  height: 40px;
+  border: none;
+  outline: none;
+  border: 1px solid #ddd;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  padding-left: 15px;
+}
+
+.room-show-speaker-input:focus {
+  outline: none;
+}
+
+.room-chat-message-box {
+  background-color: rgb(239, 243, 244);
+  color: #000;
+  max-width: 450px;
+  word-break: break-all;
+}
+
+.container {}
+
+.room-chat-box {
+  padding-bottom: 30px;
+
+}
+
+.room-chat-message-text {
+  margin: 0;
+}
+
+.chat_time {
+  margin: 0;
+  display: flex;
+  justify-content: left;
+  color: rgb(99, 99, 99);
+}
+
+.current-user-front-room .chat_time {
+  justify-content: right;
+}
+
+.room-with-message-user-text {
+  padding-top: 10px;
+  color: #000;
+}
+
+.room-last-message-box {
+  padding-left: 55px;
+  color: #000;
+  padding-bottom: 20px;
+}
+
+.room-index-box {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+
+.room-index-box:hover {
+  opacity: 0.7;
+}
+
+.room-index-out-box {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.room_last_message {
+  margin: 0;
+}
+
+@media screen and (max-width: 800px) {
+  .room-messages {
+    max-height: 500px;
+    min-height: 500px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .room-bottom-form-box {
+    width: 400px;
+  }
+
+
+}

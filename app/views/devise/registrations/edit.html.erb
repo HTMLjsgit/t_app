@@ -118,7 +118,7 @@
     <div class="card-body" style="border-bottom: 1px solid rgba(0,0,0,.125);">
       <h5>口座情報の変更</h5>
 
-      <%= form_with model: current_user, local: true, url: "/users/bank_update"  do |f| %>
+      <%= form_with model: current_user, local: true, url: bank_update_user_path(current_user.id), method: :put  do |f| %>
 
         <div class="form-group field row mt-5">
           <div class="col-md-1">
@@ -195,7 +195,7 @@
 
     </div>
 
-    <div class="card-body" style="border-bottom: 1px solid rgba(0,0,0,.125);">
+    <div class="card-body" style="border-bottom: 1px solid rgba(0,0,0,.125);" id="card-body-bottom-last">
       <h5>アカウントの削除</h5>
       <div class="my-3 text-center"> <%= button_to "アカウント削除", registration_path(resource_name), :class => "btn  input", :style => "width: 40%;color: white;" , data: { confirm: "アカウントを削除してもよろしいですか？" }, method: :delete %></div>
     </div>

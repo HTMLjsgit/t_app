@@ -90,3 +90,19 @@ input[type="button"] {
 button {
   cursor: pointer;
 }
+
+input[type="submit"]:disabled {
+  background-color: #696969;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.black-text {
+  color: #000;
+}
+
+.black-text.hover:hover {
+  color: #000;
+}

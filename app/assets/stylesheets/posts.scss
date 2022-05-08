@@ -2,18 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 /* posts/index ================================ */
-.posts-index-item{
+.posts-index-item {
   display: flex;
   flex-wrap: wrap;
   // gap: 15px 15px;
   // -webkit-gap
   justify-content: center;
 }
-.posts-index-root-box{
+
+.posts-index-root-box {
   margin: 0 auto;
   max-width: 1500px;
 }
-.post-index-poster-box{
+
+.post-index-poster-box {
   width: 100%;
   height: 190px;
   display: flex;
@@ -23,7 +25,8 @@
   padding-bottom: 5px;
   position: relative;
 }
-.post-index-title{
+
+.post-index-title {
   color: #000;
   font-size: 20px;
   padding-top: 5px;
@@ -32,7 +35,8 @@
   font-weight: bold;
   margin: 0;
 }
-.post-good-index-box.good-image-box{
+
+.post-good-index-box.good-image-box {
   position: absolute;
   top: 5px;
   left: 5px;
@@ -41,12 +45,14 @@
   height: 35px;
   padding: 4px;
 }
-.post-index-buy-button-box{
+
+.post-index-buy-button-box {
   max-width: 95%;
   margin: 0 auto;
   // height: 100%;
 }
-.post-index-payment-button{
+
+.post-index-payment-button {
   width: 100%;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -54,7 +60,8 @@
   font-weight: normal;
   border-radius: 6px;
 }
-.post-index-out-item{
+
+.post-index-out-item {
   min-width: 250px;
   max-width: 250px;
   min-height: 420px;
@@ -64,45 +71,56 @@
   border: 1px solid rgb(195, 195, 195);
   border-radius: 5px;
 }
-.post-index-count-text{
+
+.post-index-count-text {
   margin-bottom: 0;
-  padding-bottom: 1px; 
+  padding-bottom: 1px;
 }
-.post-index-counts-contents-box{
+
+.post-index-counts-contents-box {
   display: flex;
 }
-.post-index-count-text{
+
+.post-index-count-text {
   color: #000;
 }
-.post-index-to-explanation-post-link:hover{
-  text-decoration: none; 
+
+.post-index-to-explanation-post-link:hover {
+  text-decoration: none;
 }
-.post-index-counts-all-box{
+
+.post-index-counts-all-box {
   padding-left: 15px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
-.post-index-item{
+
+.post-index-item {
   width: 100%;
-  height: 100%; 
+  height: 100%;
 }
-.post-index-item .user-profile-box{
+
+.post-index-item .user-profile-box {
   padding-left: 15px;
 }
-.post-index-item .user-avater-box{
+
+.post-index-item .user-avater-box {
   width: 30px;
   height: 30px;
 
 }
-.post-index-item .user-name-text{
+
+.post-index-item .user-name-text {
   padding-top: 0;
   margin-bottom: 0;
 }
-.post-good-index-box{
+
+.post-good-index-box {
   width: 40px;
   height: 40px;
 }
-.post_index_poster{
+
+.post_index_poster {
   width: 50%;
   height: 100%;
   // margin: 0 auto;
@@ -136,6 +154,7 @@
   padding-left: 25px;
   text-align: left;
 }
+
 .post-index-name {
   color: black;
   font-size: 10px;
@@ -149,21 +168,74 @@
   display: inline;
 }
 
+.post-show-images-posts-slides-box {
+  width: 100%;
+  background-color: #ddd;
+}
+
+.post-show-image_posts-all-box {
+  display: flex;
+  max-width: 400px;
+  margin: 0 auto;
+  height: 600px;
+  background-color: #ddd;
+}
+
+.post-show-image_post-box {
+  display: flex;
+  justify-content: center;
+  height: 600px !important;
+  background-color: #fff;
+}
+
+.post-show-image_posts-all-box.slick-initialized.slick-slider.slick-dotted {
+  .slick-arrow:before {
+    color: #000 !important;
+    font-size: 40px;
+  }
+
+  .slick-next {
+    right: -40px;
+  }
+
+  .slick-prev {
+    left: -60px;
+  }
+
+  .slick-arrow {
+    z-index: 1000 !important;
+  }
+}
+
+.posts-show-image_posts-all-box .slick-prev:before {
+  color: #000 !important;
+}
+
+
+
+.post-show-image_post {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .posts-show-item {
-  padding: 30px;
   background-color: white;
   box-shadow: 0 2px 6px #c1ced7;
   overflow: hidden;
   word-break: break-all;
 }
 
-.posts-show-item img {
+.posts-show-item .user-name-text {
+  font-size: 17px;
+  margin-left: 10px;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+.posts-show-item .user-avater-icon {
   width: 60px;
   height: 60px;
-  border-radius: 40%;
-  box-shadow: 0 2px 6px #c1ced7;
-  vertical-align: middle;
-  object-fit: cover;
 }
 
 .posts-show-item .post-user-name a {
@@ -176,9 +248,11 @@
   font-size: 24px;
   margin-left: 55px;
 }
-#form-control-file{
+
+#form-control-file {
   display: none;
 }
+
 .post-time {
   color: #8899a6;
   margin-top: 50px;
@@ -191,19 +265,23 @@
   padding-top: 20px;
 }
 
-.post-menus a, .post-menus input {
+.post-menus a,
+.post-menus input {
   color: #8899a6;
   text-decoration: underline;
   font-size: 14px;
 }
-.comment-show{
+
+.comment-show {
   color: gray;
 }
+
 /* posts/new ================================ */
 .posts-new {
   margin-top: 50px;
   margin-bottom: 30px;
 }
+
 .posts-new textarea {
   font-size: 20px;
   padding: 10px;
@@ -216,6 +294,7 @@
   font-size: 24px;
   opacity: 0.5;
 }
+
 .post-user img {
   width: 80px;
   height: 80px;
@@ -223,8 +302,9 @@
   margin-top: -10px;
   margin-left: -10px;
   object-fit: cover;
-  -webkit-appearance:none;
+  -webkit-appearance: none;
 }
+
 .post-users img {
   width: 30px;
   height: 30px;
@@ -232,45 +312,49 @@
   margin-top: -10px;
   margin-left: -20px;
   object-fit: cover;
-  -webkit-appearance:none;
-}
-.post-users p {
-
+  -webkit-appearance: none;
 }
 
-.post-show-content{
-  margin-top: -30px;
+.post-users p {}
+
+.post-show-content {
   font-size: 22px;
-  margin-left: 90px;
-  width: 80%;
+  margin-left: 65px;
   color: #333333;
   word-break: break-all;
 }
-.form-view-image-event-range{
+
+.form-view-image-event-range {
   cursor: pointer;
 }
-.form-view-images:hover{
-  .form-view-images{
+
+.form-view-images:hover {
+  .form-view-images {
     opacity: 0.8;
   }
 }
-.input-images-area{
+
+.input-images-area {
   display: none;
 }
-#click-event-poster-field{
+
+#click-event-poster-field {
   cursor: pointer;
 }
-.post-explanation-area-box{
+
+.post-explanation-area-box {
   display: flex;
   // justify-content: space-between;
 }
-.post-slide-images-box{
+
+.post-slide-images-box {
   display: flex;
   width: 400px;
   height: 350px;
   cursor: pointer;
 }
-.post-slide-image-one-box{
+
+.post-slide-image-one-box {
   background-color: rgb(245, 245, 245);
   width: 100%;
   padding: 5%;
@@ -278,19 +362,21 @@
   display: flex;
   justify-content: center;
 }
-.post-explanation.image-contents-zoom-box{
+
+.post-explanation.image-contents-zoom-box {
   display: flex !important;
   justify-content: center;
   height: 600px;
 }
-.post-explanation.image-contents-zoom-box img{
+
+.post-explanation.image-contents-zoom-box img {
   width: auto;
-  
+
 }
 
 
 
-.post-slide-control-one-image-box{
+.post-slide-control-one-image-box {
   background-color: rgb(245, 245, 245);
   width: 90px;
   height: 60px;
@@ -301,69 +387,82 @@
   position: relative;
   cursor: pointer;
 }
-.post-slide-control-one-image-box:active{
+
+.post-slide-control-one-image-box:active {
   border: 1px solid rgb(251, 51, 174);
 }
-.post-slide-control-images-box{
+
+.post-slide-control-images-box {
   margin-left: 15px;
-  padding-bottom: 30px; 
+  padding-bottom: 30px;
 }
-.post-explanation-slide-box{
+
+.post-explanation-slide-box {
   display: flex;
   max-width: 100%;
   min-width: 505px;
 }
-.post-explanation.image-contents-zoom .slick-track{
+
+.post-explanation.image-contents-zoom .slick-track {
   height: 100%;
 }
-.post-explanation.image-contents-zoom{
+
+.post-explanation.image-contents-zoom {
   justify-content: center;
 }
-.post-explanation.modal-contents{
+
+.post-explanation.modal-contents {
   width: 500px;
   height: 600px;
 }
 
 
-.slick-list.draggable{
+.slick-list.draggable {
   height: 100%;
 }
 
 
-.post-slide-control-one-image-box img{
+.post-slide-control-one-image-box img {
   object-fit: cover;
 
 }
-.post-slide-control-one-image-box:first-child{
+
+.post-slide-control-one-image-box:first-child {
   margin-left: 0;
 }
-.post-slide-control-one-image-box:last-child{
+
+.post-slide-control-one-image-box:last-child {
   margin-bottom: 0;
 }
-.post-slide-control-one-image-box.slick-current{
+
+.post-slide-control-one-image-box.slick-current {
   border: 1px solid rgb(235, 88, 186);
 
 }
 
-.post-slide-image{
+.post-slide-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.post-slide-image.post_poster{
+
+.post-slide-image.post_poster {
   max-width: 100%;
   width: 50%;
   height: 100%;
   object-fit: cover;
 }
-.post-explanation .zoom-hide-button{
+
+.post-explanation .zoom-hide-button {
   top: -35px;
   right: -35px;
 }
-.post-explanation-show-counts-box{
+
+.post-explanation-show-counts-box {
   display: flex;
 }
-.show-explanation-counts-span{
+
+.show-explanation-counts-span {
   background-color: rgb(255, 228, 233);
   font-size: 18px;
   padding-left: 12px;
@@ -372,27 +471,32 @@
   padding-bottom: 5px;
   white-space: nowrap;
 }
-.post-explanation-show-item{
+
+.post-explanation-show-item {
   padding-left: 20px;
   display: flex;
 }
-.post-explanation-show-item:first-child{
+
+.post-explanation-show-item:first-child {
   padding-left: 0;
 }
-.post-explanation-details-box{
+
+.post-explanation-details-box {
   min-width: 610px;
   max-width: 100%;
   // max-width: 500px;
   margin-left: 50px;
 }
-.post-explanation-event-button{
+
+.post-explanation-event-button {
   width: 100%;
   padding-bottom: 10px;
   padding-top: 10px;
   color: #fff;
-  
+
 }
-.post-explanation-buy-with-profile{
+
+.post-explanation-buy-with-profile {
   min-width: 350px;
   max-height: 350px;
   max-width: 100%;
@@ -400,23 +504,27 @@
   padding: 25px;
   margin-left: 50px;
 }
-.post-explanation-buy-with-profile .user-profile-box{
+
+.post-explanation-buy-with-profile .user-profile-box {
   padding-top: 30px;
 }
 
-.post-explanation-description{
+.post-explanation-description {
   padding-top: 15px;
 }
-.post-explanation-title{
+
+.post-explanation-title {
   padding-bottom: 20px;
 }
-.show-explanation-counts-p{
+
+.show-explanation-counts-p {
   font-size: 18px;
   padding-top: 5px;
   padding-left: 5px;
   margin-bottom: 0;
 }
-.good-image-box{
+
+.good-image-box {
   border: 1px solid #ddd;
   display: inline-block;
   padding: 10px;
@@ -424,137 +532,191 @@
   width: 50px;
   height: 50px;
 }
-.hurt-icon{
+
+.hurt-icon {
   // width: 30px;
   // height: 30px;
   width: 100%;
   height: 100%;
 }
-.post-explanation-heading-box{
+
+.post-explanation-heading-box {
   display: flex;
   justify-content: space-between;
 }
-@media screen and (max-width: 1550px){
-  .post-explanation-details-box{
+
+@media screen and (max-width: 1550px) {
+  .post-explanation-details-box {
     min-width: 300px;
   }
 }
-@media screen and (max-width: 1300px){
-  .post-explanation-slide-box{
+
+@media screen and (max-width: 1300px) {
+  .post-explanation-slide-box {
     max-width: 100%;
   }
-  .post-explanation-area-box{
+
+  .post-explanation-area-box {
     display: block;
   }
-  .post-slide-images-box{
+
+  .post-slide-images-box {
     margin: auto;
   }
-  .post-slide-control-images-box{
+
+  .post-slide-control-images-box {
     display: flex;
     justify-content: center;
   }
-  .post-slide-control-one-image-box{
+
+  .post-slide-control-one-image-box {
     width: 20%;
     margin-left: 13px;
     height: 80px;
   }
-  .post-explanation-show-counts-box{
+
+  .post-explanation-show-counts-box {
     justify-content: center;
   }
-  .post-explanation-details-box{
+
+  .post-explanation-details-box {
     margin-left: 0;
   }
-  .post-explanation-heading-box{
+
+  .post-explanation-heading-box {
     max-width: 600px;
     margin: 0 auto;
   }
-  .post-explanation-buy-with-profile{
+
+  .post-explanation-buy-with-profile {
     margin-left: 0;
     max-width: 400px;
     margin: 0 auto;
   }
-  .post-explanation-title{
+
+  .post-explanation-title {
     text-align: center;
     font-size: 26px;
   }
-  .post-explanation-slide-box{
+
+  .post-explanation-slide-box {
     display: block;
   }
-  .post-slide-control-images-box{
+
+  .post-slide-control-images-box {
     margin-top: 30px;
   }
-  .post-explanation-description{
+
+  .post-explanation-description {
     max-width: 600px;
     margin: 0 auto;
   }
 
 }
-@media screen and (max-width: 1000px){
 
-}
-@media screen and (max-width: 850px){
-  .post-explanation.modal-contents{
+@media screen and (max-width: 1000px) {}
+
+@media screen and (max-width: 850px) {
+  .post-explanation.modal-contents {
     width: 500px;
     height: 600px;
   }
-  .post-explanation.image-contents-zoom-box img{
+
+  .post-explanation.image-contents-zoom-box img {
     max-height: 350px;
   }
 
 }
-@media screen and (max-width: 650px){
 
-  .post-explanation.modal-contents{
+@media screen and (max-width: 800px) {}
+
+@media screen and (max-width: 650px) {
+
+  .post-explanation.modal-contents {
     width: 60% !important;
     height: 400px !important;
     transform: translate(-50%, -50%);
   }
-  .post-explanation-heading-box{
+
+
+  .post-show-image_posts-all-box.slick-initialized.slick-slider.slick-dotted {
+    .slick-next {
+      right: 0px;
+    }
+
+    .slick-prev {
+      left: 0px;
+    }
+  }
+
+
+
+
+  .post-explanation-heading-box {
     max-width: 500px;
   }
-  .post-explanation-description{
+
+  .post-explanation-description {
     max-width: 500px;
     margin: 0 auto;
   }
-  .post-slide-images-box{
+
+  .post-slide-images-box {
     margin: 0;
     max-height: 500px;
     max-width: 100%;
     width: 100%;
   }
-  .post-explanation-slide-box{
+
+  .post-explanation-slide-box {
     min-width: 100%;
   }
-  .post-slide-control-images-box{
+
+  .post-slide-control-images-box {
     margin-left: 0;
     display: flex;
   }
 
-  .post-slide-control-one-image-box{
+  .post-slide-control-one-image-box {
     height: 50px;
   }
-  .post-explanation.image-contents-zoom-area.modal-contents{
+
+  .post-explanation.image-contents-zoom-area.modal-contents {
     width: 450px;
     height: 550px;
   }
-  .post-slide-control-one-image-box:first-child{
+
+  .post-slide-control-one-image-box:first-child {
     margin-left: 0;
   }
 
 }
-@media screen and (max-width: 480px){
-  .post-explanation.image-contents-zoom-area.modal-contents{
+
+@media screen and (max-width: 480px) {
+  .post-explanation.image-contents-zoom-area.modal-contents {
     width: 400px;
     height: 500px;
   }
-  .post-explanation-heading-box{
+
+  .post-show-image_posts-all-box {
+    max-width: 300px;
+    height: 500px;
+  }
+
+  .post-show-image_post-box {
+    height: 500px !important;
+  }
+
+  .post-explanation-heading-box {
     max-width: 100%;
   }
-  .post-explanation .zoom-hide-button{
+
+  .post-explanation .zoom-hide-button {
     top: -45px;
     right: 20px;
   }
-  .post-explanation.modal-contents{
+
+  .post-explanation.modal-contents {
     width: 80% !important;
     height: 400px !important;
   }

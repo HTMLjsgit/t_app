@@ -12,23 +12,20 @@
 //
 //= require rails-ujs
 //= require activestorage
-// require turbolinks
 //= require_tree .
 //= require jquery
-//= require jquery_ujs
-$(function(){
-  $(".modal-hide-button").click(function(event){
+$(function () {
+  $(".modal-hide-button").click(function (event) {
     var id = event.target.parentElement.id.replace("-contents", "");
-    modal_display(true,`${event.target.parentElement.id}`,`${id}-background`)
+    modal_display(true, `${event.target.parentElement.id}`, `${id}-background`)
   });
 
-
 });
-function modal_display(hide, target_contents, target_background){
-  if(hide == true){
+function modal_display(hide, target_contents, target_background) {
+  if (hide == true) {
     $(`.modal-contents#${target_contents}`).addClass("hide");
     $(`.modal-background#${target_background}`).addClass("hide");
-  }else{
+  } else {
     $(`.modal-contents#${target_contents}`).removeClass("hide");
     $(`.modal-background#${target_background}`).removeClass("hide");
   }

@@ -25,31 +25,20 @@
     <% end %>
     <div class="user-messages-box">
       <% if user_signed_in? %>
-        <% if @user.id == current_user.id || current_user.admin %>
-          <%= link_to chat_index_path, method: :get do %>
+        <% if @user.id == current_user.id || current_user.admin? %>
+          <%= link_to user_rooms_path(user_id: @user.id) do %>
             <i class="far fa-envelope relative user-show-message-icon">
-              <% if @user_room_rels_count > 0 %>
-                <!-- <span class="non_count_total"><%#= @user_room_rels_count %></span> -->
-              <% end %>
             </i>
           <% end %>
         <% else %>
-          <% if @create_room %>
-            <%= link_to "/rooms/#{@create_room.room_id}", method: :get do%>
-                <i class="far fa-envelope relative user-show-message-icon"></i>
-            <% end %>
-          <% else %>
-            <%= link_to "/rooms/#{@user.id}", method: :post do%>
-              <i class="far fa-envelope relative user-show-message-icon"></i>
-            <% end %>
+          <%= link_to rooms_path(user_id: @user.id), method: :post do %>
+            <i class="far fa-envelope relative user-show-message-icon">
+            </i>
           <% end %>
         <% end %>
       <% else %>
         <%= link_to new_user_registration_path, method: :get do %>
           <i class="far fa-envelope relative user-show-message-icon">
-            <% if @user_room_rels_count > 0 %>
-              <!-- <span class="non_count_total"><%#= @user_room_rels_count %></span> -->
-            <% end %>
           </i>
         <% end %>
       <% end %>

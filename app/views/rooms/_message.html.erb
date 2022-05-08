@@ -1,0 +1,16 @@
+<% user_class = current_user.id == chat.user.id ? "current-user-front-room" : "" %>
+<div class="room-chat-area-box <%= user_class %>" id="message-<%= chat.id %>">
+  <div style="room-chat-box">
+    <div class="room-chat-message-area-box">
+      <div class="room-message-user-profile">
+        <% if current_user.id != chat.user.id %>
+          <%= render partial: "users/user_profile", locals: {username: "", user: chat.user} %>
+        <% end %>
+      </div>
+      <div class="room-chat-message-box">
+        <p class="room-chat-message-text"><%= chat.message %></p>
+      </div>
+    </div>
+    <p class="chat_time"><%= chat.updated_at.strftime("%Y-%m-%d %H:%M")%></p>
+  </div>
+</div>
