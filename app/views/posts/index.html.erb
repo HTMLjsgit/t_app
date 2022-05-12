@@ -4,7 +4,11 @@
   <% end %>
 <% end %>
 <%= render partial: "posts/posts_list", locals: {posts: @posts} %>
-
+<div class="new-link-box">
+  <%= link_to new_post_path, class: "underline-none hover" do %>
+    <i class="fa-solid fa-plus plus-new-icon"></i>
+  <% end %>
+</div>
 <style>
   .container{
     max-width: 100%;
