@@ -18,11 +18,15 @@ $(function () {
         animate.stop();
       }
       $("#messages").append(data["message_render"]);
-      var user_class = $("#room-show").data("current_user") != data["user_id"] ? "current-user-front-room" : "";
-      if (data["user_id"] != $("#room-show").data("current_user")) {
+      var current_user_id = $("#room-show").data("current_user");
+      var user_class = current_user_id != data["user_id"] ? "current-user-front-room" : "";
+      if (data["user_id"] != current_user_id) {
+        //プロフィールを読み込み
         $(`#message-${data["message_id"]} .room-message-user-profile`).html(data["user_profile_render"]);
-      }
 
+        //既読をサーバーに送信
+        App.chat_post_read.read(current_user_id, data["message_id"]);
+      }
       $(`#message-${data["message_id"]}`).removeClass(user_class);
       setTimeout(function () {
         animate = $('.room-messages').animate({ scrollTop: $("#messages").height() });

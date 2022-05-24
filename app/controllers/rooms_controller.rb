@@ -11,9 +11,20 @@ class RoomsController < ApplicationController
   def index
     @rooms = @user.rooms.includes(:users, :user_rooms)
   end
+
   def show
     @room = Room.find(params[:id])
-    @chat_posts = @room.chat_posts.includes(:user)
+    @chat_posts = @room.chat_posts.includes(:user, :chat_post_reads)
+    #自分以外のメッセージすべてを既読済みにする
+    no_mine_chat_posts = @room.chat_posts.where.not(user_id: current_user.id).includes(:chat_post_reads)
+    if no_mine_chat_posts.exists?
+      no_mine_chat_posts.each do |no_mine_chat_post|
+        if !no_mine_chat_post.chat_post_reads.exists?
+          no_mine_chat_post.chat_post_reads.create!(read: true, user_id: current_user.id, room_id: @room.id)
+        end
+      end
+    end
+
   end
 
   def create
