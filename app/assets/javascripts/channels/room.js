@@ -23,7 +23,6 @@ $(function () {
       if (data["user_id"] != current_user_id) {
         //プロフィールを読み込み
         $(`#message-${data["message_id"]} .room-message-user-profile`).html(data["user_profile_render"]);
-
         //既読をサーバーに送信
         App.chat_post_read.read(current_user_id, data["message_id"]);
       }
@@ -35,6 +34,9 @@ $(function () {
 
     speak: function (message) {
       return this.perform('speak', { message: message });
+    },
+    image_upload: function (base64, filename) {
+      return this.perform('image_upload', { base64: base64, filename: filename });
     }
   });
 
@@ -46,6 +48,15 @@ $(function () {
   $(".room-form-send-button").click(function () {
     let target = document.querySelector("[data-behavior='room_speaker']");
     SpeakEvent(target);
+  });
+  $("#room-image-post-input").change(function (event) {
+    let file = event.target.files[0]
+    let file_reader = new FileReader();
+    file_reader.onload = function (event) {
+      let base_64 = event.target.result;
+      App.room.image_upload(base_64, file.name);
+    }
+    file_reader.readAsDataURL(file);
   });
   function SpeakEvent(_target) {
 

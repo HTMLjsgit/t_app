@@ -7,8 +7,24 @@
           <%= render partial: "users/user_profile", locals: {username: "", user: chat.user} %>
         <% end %>
       </div>
-      <div class="room-chat-message-box">
-        <p class="room-chat-message-text"><%= chat.message %></p>
+      <% if chat.message.present? %>
+        <div class="room-chat-message-box">
+          <p class="room-chat-message-text"><%= chat.message %></p>
+        </div>
+      <% end %>
+      <div class="room-chat-message-images-box">
+        <% if chat.chat_post_images.exists? %>
+          <% chat.chat_post_images.each do |chat_post_image| %>
+            <div class="room-chat-message-image-one-box" id="chat_post_image-<%= chat.id %>" data-chat_id="<%= chat.id %>">
+              <%= image_tag chat_post_image.picture, class: "chat_post_image_picture" %>
+            </div>
+            <div class="message-image-expain-box-modal hide" id="chat_post_image-expain-<%= chat.id %>">
+              <div class="message-image-one-expain-box">
+                <%= image_tag chat_post_image.picture, class: "chat_post_image_picture" %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
     <div class="time-with-already-read-box">

@@ -7,6 +7,7 @@
     </div>
   </div>
   <div class="room-show-speaker-box">
+    <input type="file" id="room-image-post-input" class="room-image-post-input">
     <div class="room-bottom-form-box">
       <input type="text" data-behavior="room_speaker" class="room-show-speaker-input" placeholder="メッセージを入力">
       <button class="room-form-send-button"><%= image_tag "send.png" %></button>
@@ -22,5 +23,8 @@
 </style>
 <script>
   animate = $('.room-messages').scrollTop($("#messages").height());
+  $(".room-chat-message-image-one-box").click(function(event){
+    var chat_id = event.target.dataset.chatId;
 
+  });
 </script>
