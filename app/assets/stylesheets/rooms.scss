@@ -37,11 +37,37 @@
   margin-right: 10px;
 }
 
+.room-chat-already-text-box {
+  font-size: 12px;
+  color: rgb(110, 110, 110);
+  line-height: 20px;
+  padding-right: 5px;
+}
+
+.room-chat-already-box i {
+  font-size: 15px;
+  line-height: 20px;
+  margin-right: 2px;
+  color: rgb(110, 110, 110);
+}
+
+.room-chat-already-box {
+  display: flex;
+}
+
+.time-with-already-read-box {
+  display: flex;
+}
+
 .room-chat-message-box {
   padding: 10px;
   color: #fff;
   display: inline-block;
   border-radius: 15px;
+  background-color: rgb(239, 243, 244);
+  color: #000;
+  max-width: 450px;
+  word-break: break-all;
 }
 
 .room-messages {
@@ -117,12 +143,7 @@
   outline: none;
 }
 
-.room-chat-message-box {
-  background-color: rgb(239, 243, 244);
-  color: #000;
-  max-width: 450px;
-  word-break: break-all;
-}
+.room-chat-message-box {}
 
 .container {}
 
@@ -140,6 +161,7 @@
   display: flex;
   justify-content: left;
   color: rgb(99, 99, 99);
+  font-size: 13px;
 }
 
 .current-user-front-room .chat_time {

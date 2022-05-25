@@ -7,17 +7,24 @@
           <%= render partial: "users/user_profile", locals: {username: "", user: chat.user} %>
         <% end %>
       </div>
-      <div class="room-chat-already-text-box">
-        <% if chat.chat_post_reads.exists? %>
-          <% if chat.user_id == current_user.id %>
-            既読
-          <% end %>
-        <% end %>
-      </div>
       <div class="room-chat-message-box">
         <p class="room-chat-message-text"><%= chat.message %></p>
       </div>
     </div>
-    <p class="chat_time"><%= chat.updated_at.strftime("%Y-%m-%d %H:%M")%></p>
+    <div class="time-with-already-read-box">
+      <div class="room-chat-already-check-box">
+        <% if chat.chat_post_reads.exists? %>
+          <% if chat.user_id == current_user.id %>
+            <div class="room-chat-already-box">
+              <i class="fa-solid fa-check"></i>
+              <div class="room-chat-already-text-box">
+                既読
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <p class="chat_time"><%= chat.updated_at.strftime("%Y-%m-%d %H:%M")%></p>
+    </div>
   </div>
 </div>
