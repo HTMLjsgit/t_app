@@ -1,4 +1,13 @@
 <div id="room-show"  data-room_id="<%= @room.id %>" data-current_user="<%= current_user.id %>" class="room-show-box">
+  <div class="modal-background hide" id="message-expain-modal-background">
+
+  </div>
+  <div class="message-expain-image-box hide">
+    <div class="message-expain-contents">
+      <%= image_tag "delete_icon.png", id: "close-message-expain-button", class: "close-message-expain-modal" %>
+      <%= image_tag "", class: "image-expain" %>
+    </div>
+  </div>
   <div class="room-messages">
     <div id="messages">
       <% @chat_posts.each do |chat_post| %>
@@ -7,7 +16,8 @@
     </div>
   </div>
   <div class="room-show-speaker-box">
-    <input type="file" id="room-image-post-input" class="room-image-post-input">
+    <%= image_tag "clip-icon.png", width: 30, height: 30, class: "clip-button", id: "clip-button" %>
+    <input type="file" id="room-image-post-input" class="room-image-post-input hide">
     <div class="room-bottom-form-box">
       <input type="text" data-behavior="room_speaker" class="room-show-speaker-input" placeholder="メッセージを入力">
       <button class="room-form-send-button"><%= image_tag "send.png" %></button>
@@ -23,8 +33,19 @@
 </style>
 <script>
   animate = $('.room-messages').scrollTop($("#messages").height());
-  $(".room-chat-message-image-one-box").click(function(event){
-    var chat_id = event.target.dataset.chatId;
-
+  $("#close-message-expain-button").click(function(event){
+    $(".image-expain").attr('src', "");
+    $(".message-expain-image-box").addClass("hide");
+    $("#message-expain-modal-background").addClass("hide");
+  });
+  $("#clip-button").click(function(){
+    $("#room-image-post-input").click();
+  });
+  $(document).on('click','.room-chat-message-image-one-box', function(event){
+    var chat_id = event.currentTarget.dataset.chat_id;
+    var target_src = $(`#chat_post_image-picture-${chat_id}`).attr('src');
+    $(".image-expain").attr('src', target_src);
+    $(".message-expain-image-box").removeClass("hide");
+    $("#message-expain-modal-background").removeClass("hide");
   });
 </script>
