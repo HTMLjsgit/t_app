@@ -4,7 +4,10 @@
   </div>
   <div class="message-expain-image-box hide">
     <div class="message-expain-contents">
-      <%= image_tag "delete_icon.png", id: "close-message-expain-button", class: "close-message-expain-modal" %>
+      <div class="close-message-expain-modal-box">
+        <i class="fa-solid fa-circle-xmark close-message-expain-modal" id="close-message-expain-button"></i>
+        <div class="close-message-expain-background"></div>
+      </div>
       <%= image_tag "", class: "image-expain" %>
     </div>
   </div>
