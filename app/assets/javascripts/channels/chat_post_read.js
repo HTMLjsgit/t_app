@@ -20,7 +20,6 @@ $(function () {
         $(`.room-chat-area-box#message-${chat_post_id} .time-with-already-read-box .room-chat-already-check-box`).html(`<div class="room-chat-already-box"><i class="fa-solid fa-check"></i><div class="room-chat-already-text-box">既読</div></div`);
       }
 
-
     },
 
     read: function (user_id, chat_post_id) {

@@ -9,15 +9,14 @@ class RoomsController < ApplicationController
 
   before_action :user_admin_check, only: [:index]
   def index
-    @rooms = @user.rooms.includes(:users, :user_rooms)
+    @rooms = @user.rooms.includes(:users, :user_rooms, :chat_posts)
   end
 
   def show
     @room = Room.find(params[:id])
-    @chat_posts = @room.chat_posts.includes(:user, :chat_post_reads)
+    @chat_posts = @room.chat_posts.includes(:user, :chat_post_reads, :chat_post_images)
     #自分以外のメッセージすべてを既読済みにする
     no_mine_chat_posts = @room.chat_posts.where.not(user_id: current_user.id).includes(:chat_post_reads)
-    # chat_post_reads = ChatPostRead.where(chat_post_id: no_mine_chat_posts.ids)
     chat_post_reads = ChatPostRead.where(chat_post_id: no_mine_chat_posts.ids)
     target_chat_posts = no_mine_chat_posts.where.not(id: chat_post_reads.pluck(:chat_post_id))
     target_chat_posts.each do |target_chat_post|
