@@ -10,11 +10,10 @@ class ChatPostReadChannel < ApplicationCable::Channel
   def read(data)
     @chat_post = ChatPost.find data["chat_post_id"]
 
-    if @chat_post.chat_post_reads.exists?
+    if @chat_post.chat_post_read == true
       return false
     end
     @room = Room.find params[:room_id]
-
-    @room.chat_post_reads.create(user_id: data["user_id"], chat_post_id: data["chat_post_id"], read: true)
+    @chat_post.chat_post_read.update(user_id: data["user_id"], chat_post_id: data["chat_post_id"], read: true)
   end
 end

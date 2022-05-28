@@ -15,6 +15,24 @@
   margin: 0 auto;
 }
 
+.chat_post_reads_false_count_box {
+  border-radius: 50%;
+  background-color: pink;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 25px;
+  color: #fff;
+  position: absolute;
+  top: 60px;
+  right: 0;
+}
+
+.message-with-already-read-count-box {
+  display: flex;
+  justify-content: space-between;
+}
+
 .time_ago_room_last {
   margin: 0 0 0 auto;
   color: #000;
@@ -274,6 +292,7 @@
 .room-index-box {
   border-bottom: 1px solid #ddd;
   padding: 10px;
+  position: relative;
 }
 
 .room-index-box:hover {

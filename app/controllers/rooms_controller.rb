@@ -14,13 +14,12 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-    @chat_posts = @room.chat_posts.includes(:user, :chat_post_reads, :chat_post_images)
+    @chat_posts = @room.chat_posts.includes(:user, :chat_post_read, :chat_post_images)
     #自分以外のメッセージすべてを既読済みにする
-    no_mine_chat_posts = @room.chat_posts.where.not(user_id: current_user.id).includes(:chat_post_reads)
-    chat_post_reads = ChatPostRead.where(chat_post_id: no_mine_chat_posts.ids)
-    target_chat_posts = no_mine_chat_posts.where.not(id: chat_post_reads.pluck(:chat_post_id))
-    target_chat_posts.each do |target_chat_post|
-      target_chat_post.chat_post_reads.create!(read: true, user_id: current_user.id, room_id: @room.id)
+    no_mine_chat_posts = @room.chat_posts.where.not(user_id: current_user.id).includes(:chat_post_read)
+
+    no_mine_chat_posts.joins(:chat_post_read).where(chat_post_reads: {read: false}).each do |target_chat_post|
+      target_chat_post.chat_post_read.update!(read: true, user_id: current_user.id, room_id: @room.id)
     end
 
     # no_mine_chat_posts.joins(:chat_post_reads).where(chat_post_reads: {})

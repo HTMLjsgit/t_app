@@ -16,7 +16,7 @@ $(function () {
       var current_user_id = $("#room-show").data("current_user");
 
       var chat_post_id = data["chat_post_id"];
-      if (current_user_id != data["chat_user_id"]) {
+      if (current_user_id != data["chat_user_id"] && data["read_count_mode"] == false) {
         $(`.room-chat-area-box#message-${chat_post_id} .time-with-already-read-box .room-chat-already-check-box`).html(`<div class="room-chat-already-box"><i class="fa-solid fa-check"></i><div class="room-chat-already-text-box">既読</div></div`);
       }
 

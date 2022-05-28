@@ -24,14 +24,16 @@
     </div>
     <div class="time-with-already-read-box">
       <div class="room-chat-already-check-box">
-        <% if chat.chat_post_reads.exists? %>
+        <% if chat.chat_post_read.present? %>
           <% if chat.user_id == current_user.id %>
-            <div class="room-chat-already-box">
-              <i class="fa-solid fa-check"></i>
-              <div class="room-chat-already-text-box">
-                既読
+            <% if chat.chat_post_read.read == true %>
+              <div class="room-chat-already-box">
+                <i class="fa-solid fa-check"></i>
+                <div class="room-chat-already-text-box">
+                  既読
+                </div>
               </div>
-            </div>
+            <% end %>
           <% end %>
         <% end %>
       </div>
