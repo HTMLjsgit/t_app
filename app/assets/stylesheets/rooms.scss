@@ -5,14 +5,20 @@
   display: flex;
 }
 
+.room-target-user-profile-box .user-name-box .user-name-text {
+  margin: 0;
+  font-size: 15px;
+}
+
 .room-target-user-profile-box .underline-none.user-name-link:hover {
   text-decoration: underline;
 
 }
 
 .rooms-all-box {
-  max-width: 600px;
+  max-width: 500px;
   margin: 0 auto;
+  border-top: 1px solid #ddd;
 }
 
 .chat_post_reads_false_count_box {
@@ -25,7 +31,7 @@
   color: #fff;
   position: absolute;
   top: 60px;
-  right: 0;
+  right: 30px;
 }
 
 .message-with-already-read-count-box {
@@ -35,8 +41,9 @@
 
 .time_ago_room_last {
   margin: 0 0 0 auto;
-  color: #000;
-  font-size: 15px;
+  color: rgb(94, 94, 94);
+  font-size: 13px;
+  padding-top: 10px;
 }
 
 .room-show-box {
@@ -284,24 +291,46 @@
 }
 
 .room-last-message-box {
-  padding-left: 55px;
+  padding-left: 5px;
   color: #000;
-  padding-bottom: 20px;
+  // padding-bottom: 20px;
+  padding-left: 55px;
+  font-size: 13px;
+  color: rgb(136, 136, 136);
+}
+
+.user-introduction-edit {
+  width: 100%;
+  min-width: 100%;
+  min-height: 150px;
+}
+
+.user-introduction-edit-box {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.user-introduction-box {
+  padding-left: 35px;
+  font-size: 18px;
 }
 
 .room-index-box {
-  border-bottom: 1px solid #ddd;
-  padding: 10px;
   position: relative;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  padding: 15px 35px;
+  // min-height: 120px;
+  // max-height: 120px;
 }
 
 .room-index-box:hover {
   opacity: 0.7;
 }
 
-.room-index-out-box {
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+.room-index-out-box:hover {
+  background-color: rgb(245, 245, 245);
 }
 
 .room_last_message {

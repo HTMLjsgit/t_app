@@ -82,6 +82,9 @@
     <% end %>
   <% end %>
 </div>
+<div class="user-introduction-box">
+  <%= raw Rinku.auto_link(simple_format(h(@user.introduction), class: "user-introduction"), :all,'target="_blank"') %>
+</div>
 <% if user_signed_in? %>
   <% if @user.id == current_user.id %>
     <%= link_to edit_user_registration_path, class: "nav-link underline-none hover" do %>

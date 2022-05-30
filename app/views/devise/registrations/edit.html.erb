@@ -78,7 +78,6 @@
       <h5>アバター情報の変更</h5>
 
       <%= form_with model: current_user, local: true do |form| %>
-
         <div class="field">
           <div class="form-field poster">
             <label>ユーザーアイコン</label>
@@ -107,6 +106,14 @@
                 <%= form.file_field :background_image, class: "form-control-file hide form-file-poster",id: "background-image-field", data: {target_id: "poster-view-image-2", target_clip_id: "clip-poster-2"}%>
               </div>
             </div>
+          </div>
+          <div class="field">
+            <%= form.label "ユーザ名" %>
+            <%= form.text_field :username %>
+          </div>
+          <div class="field user-introduction-edit-box">
+            <%= form.label "ユーザープロフィール" %>
+            <%= form.text_area :introduction, class: "user-introduction-edit" %>
           </div>
         </div>
         <div class="text-center">

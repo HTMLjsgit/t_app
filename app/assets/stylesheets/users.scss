@@ -191,6 +191,9 @@
   padding-top: 10px;
   padding-left: 5px;
   font-weight: bold;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .user-avater-box {
