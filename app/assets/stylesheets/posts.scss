@@ -51,6 +51,10 @@
   padding-left: 15px;
   font-weight: bold;
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
 }
 
 .post-good-index-box.good-image-box {

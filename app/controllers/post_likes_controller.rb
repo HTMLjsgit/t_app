@@ -8,7 +8,7 @@ class PostLikesController < ApplicationController
     if current_user.id == @post.user_id
       redirect_to root_path and return
     end
-    @post.post_likes.create(user_id: current_user.id)
+    @post.post_likes.create!(user_id: current_user.id)
     redirect_back(fallback_location: root_path)
   end
   def destroy

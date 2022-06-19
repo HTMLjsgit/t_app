@@ -5,9 +5,131 @@
   display: flex;
 }
 
+.room-target-user-profile-box .user-name-box .user-name-text {
+  margin: 0;
+  font-size: 15px;
+}
+
 .room-target-user-profile-box .underline-none.user-name-link:hover {
   text-decoration: underline;
 
+}
+
+.rooms-all-box {
+  max-width: 500px;
+  margin: 0 auto;
+  border-top: 1px solid #ddd;
+}
+
+.chat_post_reads_false_count_box {
+  border-radius: 50%;
+  background-color: pink;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 25px;
+  color: #fff;
+  position: absolute;
+  top: 60px;
+  right: 30px;
+}
+
+.message-with-already-read-count-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.time_ago_room_last {
+  margin: 0 0 0 auto;
+  color: rgb(94, 94, 94);
+  font-size: 13px;
+  padding-top: 10px;
+}
+
+.room-show-box {
+  position: relative;
+}
+
+.close-message-expain-modal-box {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  border: 1px;
+}
+
+.close-message-expain-modal-box .close-message-expain-modal {
+  font-size: 30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  z-index: 10;
+}
+
+.message-expain-image-box {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000000000;
+}
+
+.image-expain {
+  max-height: 650px;
+}
+
+
+.message-expain-contents {
+  position: absolute;
+  max-width: 500px;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.clip-button {
+  cursor: pointer;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+.clip-button:hover {
+  opacity: 0.6;
+}
+
+.close-message-expain-background {
+  background-color: #fff;
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+}
+
+.message-expain-image-box img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.room-chat-already-text {
+  font-size: 15px;
+  color: rgb(124, 124, 124);
+}
+
+.chat_post_image_picture {
+  width: 100%;
+  height: 100%;
+}
+
+.room-chat-message-image-one-box {
+  max-width: 300px;
+  cursor: pointer;
 }
 
 .room-chat-area-box {
@@ -32,11 +154,37 @@
   margin-right: 10px;
 }
 
+.room-chat-already-text-box {
+  font-size: 12px;
+  color: rgb(110, 110, 110);
+  line-height: 20px;
+  padding-right: 5px;
+}
+
+.room-chat-already-box i {
+  font-size: 15px;
+  line-height: 20px;
+  margin-right: 2px;
+  color: rgb(110, 110, 110);
+}
+
+.room-chat-already-box {
+  display: flex;
+}
+
+.time-with-already-read-box {
+  display: flex;
+}
+
 .room-chat-message-box {
   padding: 10px;
   color: #fff;
   display: inline-block;
   border-radius: 15px;
+  background-color: rgb(239, 243, 244);
+  color: #000;
+  max-width: 450px;
+  word-break: break-all;
 }
 
 .room-messages {
@@ -112,12 +260,7 @@
   outline: none;
 }
 
-.room-chat-message-box {
-  background-color: rgb(239, 243, 244);
-  color: #000;
-  max-width: 450px;
-  word-break: break-all;
-}
+.room-chat-message-box {}
 
 .container {}
 
@@ -135,6 +278,7 @@
   display: flex;
   justify-content: left;
   color: rgb(99, 99, 99);
+  font-size: 13px;
 }
 
 .current-user-front-room .chat_time {
@@ -147,23 +291,46 @@
 }
 
 .room-last-message-box {
-  padding-left: 55px;
+  padding-left: 5px;
   color: #000;
-  padding-bottom: 20px;
+  // padding-bottom: 20px;
+  padding-left: 55px;
+  font-size: 13px;
+  color: rgb(136, 136, 136);
+}
+
+.user-introduction-edit {
+  width: 100%;
+  min-width: 100%;
+  min-height: 150px;
+}
+
+.user-introduction-edit-box {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.user-introduction-box {
+  padding-left: 35px;
+  font-size: 18px;
 }
 
 .room-index-box {
+  position: relative;
+  border-left: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  padding: 10px;
+  border-right: 1px solid #ddd;
+  padding: 15px 35px;
+  // min-height: 120px;
+  // max-height: 120px;
 }
 
 .room-index-box:hover {
   opacity: 0.7;
 }
 
-.room-index-out-box {
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+.room-index-out-box:hover {
+  background-color: rgb(245, 245, 245);
 }
 
 .room_last_message {

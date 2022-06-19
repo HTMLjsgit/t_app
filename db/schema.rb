@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_07_050317) do
+ActiveRecord::Schema.define(version: 2022_05_28_053925) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +31,26 @@ ActiveRecord::Schema.define(version: 2022_05_07_050317) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "chat_post_images", force: :cascade do |t|
+    t.string "picture"
+    t.integer "chat_post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_post_id"], name: "index_chat_post_images_on_chat_post_id"
+  end
+
+  create_table "chat_post_reads", force: :cascade do |t|
+    t.integer "chat_post_id"
+    t.boolean "read", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "room_id"
+    t.index ["chat_post_id"], name: "index_chat_post_reads_on_chat_post_id"
+    t.index ["room_id"], name: "index_chat_post_reads_on_room_id"
+    t.index ["user_id"], name: "index_chat_post_reads_on_user_id"
   end
 
   create_table "chat_posts", force: :cascade do |t|
@@ -287,6 +307,7 @@ ActiveRecord::Schema.define(version: 2022_05_07_050317) do
     t.boolean "admin", default: false, null: false
     t.string "avater"
     t.boolean "ban", default: false, null: false
+    t.text "introduction"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

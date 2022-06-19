@@ -1,21 +1,47 @@
-<div class="rooms-all-box">
-  <% @rooms.each do |room| %>
-    <div class="room-index-out-box">
-      <%= link_to room_path(room), class: "underline-none hover" do %>
-        <div class="room-index-box">
-          <div class="room-target-user-profile-box">
-            <% room.current_user_other_users(current_user).each do |target_user| %>
-              <%= render partial: "users/user_profile", locals: {user: target_user} %>
-            <% end %>
-            <p class="room-with-message-user-text">とのメッセージ</p>
-          </div>
-          <div class="room-last-message-box">
+<% if @rooms.exists? %>
+  <div class="rooms-all-box">
+    <% @rooms.each do |room| %>
+      <div class="room-index-out-box">
+        <%= link_to room_path(room), class: "underline-none hover" do %>
+          <div class="room-index-box">
+            <% last_chat_post = nil %>
             <% if room.chat_posts.exists? %>
-              <p class="room_last_message"><%= room.chat_posts.last.message %></p>
+              <% last_chat_post = room.chat_posts.last %>
             <% end %>
+            <div class="room-target-user-profile-box">
+              <% room.current_user_other_users(@user).each do |target_user| %>
+                <%= render partial: "users/user_profile", locals: {user: target_user} %>
+              <% end %>
+              <% if last_chat_post.present? %>
+                <p class="time_ago_room_last"><%= time_ago_in_words(last_chat_post.created_at) %>前</p>
+              <% end %>
+            </div>
+            <div class="room-last-message-box">
+              <% if last_chat_post.present? %>
+                <% if last_chat_post.message.present? && !last_chat_post.chat_post_images.exists? %>
+                  <p class="room_last_message"><%= last_chat_post.message.truncate(50) %></p>
+                <% elsif last_chat_post.message.blank? && last_chat_post.chat_post_images.exists? %>
+                  <% if last_chat_post.user.id == current_user.id %>
+                    <p class="room_last_message">画像を送信</p>
+                  <% else %>
+                    <p class="room_last_message"><%= last_chat_post.user.username %>が画像を送信</p>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+            <% no_read_user_chat_posts = room.chat_posts.joins(:chat_post_read).where.not(user_id: current_user.id).where(chat_post_reads: {read: false}) %>
+            <div class="chat_post_rooms_reads_box">
+              <% if no_read_user_chat_posts.exists? %>
+                <div class="chat_post_reads_false_count_box">
+                    <%= no_read_user_chat_posts.count %>
+                </div>
+              <% end %>
+            </div>
           </div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <h2>ルームは存在しません。</h2>
+<% end %>

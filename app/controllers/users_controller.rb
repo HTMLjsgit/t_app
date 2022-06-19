@@ -68,7 +68,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:background_image, :username, :avater)
+    params.require(:user).permit(:background_image, :username, :avater, :introduction)
   end
 
   def user_admin_check

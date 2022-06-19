@@ -1,12 +1,14 @@
 <div class="user-profile-box">
   <div class="user-profile-into-box">
-    <object>
-      <%= link_to user_path(user), class: "underline-none hover" do %>
-        <div class="user-avater-box">
-          <%= user_avater(user) %>
-        </div>
-      <% end %>
-    </object>
+    <% if !defined?(avater) %>
+      <object>
+        <%= link_to user_path(user), class: "underline-none hover" do %>
+          <div class="user-avater-box">
+            <%= user_avater(user) %>
+          </div>
+        <% end %>
+      </object>
+    <% end %>
     <% if !defined?(username) %>
       <object>
         <%= link_to user_path(user), class: "underline-none hover user-name-link" do %>
