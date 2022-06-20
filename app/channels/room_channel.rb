@@ -8,7 +8,7 @@ class RoomChannel < ApplicationCable::Channel
   end
 
   def speak(data)
-    if data["message"] == ""
+    if data["message"] == "" || current_user.admin?
       return false
     end
     room = Room.find params[:room_id]

@@ -21,7 +21,9 @@ class RoomsController < ApplicationController
     no_mine_chat_posts.joins(:chat_post_read).where(chat_post_reads: {read: false}).each do |target_chat_post|
       target_chat_post.chat_post_read.update!(read: true, user_id: current_user.id, room_id: @room.id)
     end
-
+    if @chat_posts.exists?
+      @first_chat_post_user = @chat_posts.first.user
+    end
     # no_mine_chat_posts.joins(:chat_post_reads).where(chat_post_reads: {})
   end
 

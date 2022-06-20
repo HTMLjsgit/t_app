@@ -1,4 +1,8 @@
-<% user_class = current_user.id == chat.user.id ? "current-user-front-room" : "" %>
+<% if !current_user.admin? %>
+  <% user_class = current_user.id == chat.user.id ? "current-user-front-room" : "" %>
+<% else %>
+  <% user_class = @first_chat_post_user.id == chat.user.id ? "current-user-front-room" : "" %>
+<% end %>
 <div class="room-chat-area-box <%= user_class %>" id="message-<%= chat.id %>">
   <div style="room-chat-box">
     <div class="room-chat-message-area-box">
