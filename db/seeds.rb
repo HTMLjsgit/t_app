@@ -8,9 +8,9 @@
 PaymentSetting.create!(buyer_post_commision: 0.15, seller_post_commision: 0.30, stripe_commission: 0.036, consumption_tax: 0.1)
 
 if User.find_by(username: "まどかまじか").blank?
-  user = User.new(username: "まどかまじか", password: "aaaaaa", email: "a@a", admin: true)
-  user.confirm
-  user.save!
+  first_user = User.new(username: "まどかまじか", password: "aaaaaa", email: "a@a", admin: true)
+  first_user.confirm
+  first_user.save!
 end
 10.times do |i|
   if User.find_by(username: "testくん_#{i}").blank?
@@ -19,3 +19,9 @@ end
     user.save!
   end
 end
+
+user_1 = User.find_by(username: "testくん_1")
+user_2 = User.find_by(username: "testくん_2")
+room = Room.create(name: "aa")
+UserRoom.create(user_id: user_1.id, room_id: room.id)
+UserRoom.create(user_id: user_2.id, room_id: room.id)
