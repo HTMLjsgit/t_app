@@ -138,12 +138,12 @@
 }
 
 .room-chat-area-box.current-user-front-room {
-  justify-content: right;
+  justify-content: flex-end;
 }
 
 .room-chat-area-box.current-user-front-room .room-chat-message-area-box {
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
 }
 
 .room-chat-message-area-box {
