@@ -21,7 +21,7 @@ end
 end
 
 user_1 = User.find_by(username: "testくん_1")
-user_2 = User.find_by(username: "testくん_2")
+w = User.find_by(username: "testくん_2")
 room = Room.create(name: "aa")
 UserRoom.create(user_id: user_1.id, room_id: room.id)
 UserRoom.create(user_id: user_2.id, room_id: room.id)
