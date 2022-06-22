@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order(created_at: :desc).includes(:post_likes)
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
+    sign_in User.find_by(username: "testくん_1")
   end
 
   def show

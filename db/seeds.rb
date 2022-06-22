@@ -20,8 +20,19 @@ end
   end
 end
 
-user_1 = User.find_by(username: "testくん_1")
-w = User.find_by(username: "testくん_2")
-room = Room.create(name: "aa")
-UserRoom.create(user_id: user_1.id, room_id: room.id)
-UserRoom.create(user_id: user_2.id, room_id: room.id)
+user_1 = User.find_by(username: "testくん_1").id
+user_2 = User.find_by(username: "testくん_2").id
+room = Room.create!(name: "aa")
+UserRoom.create!(user_id: user_1, room_id: room.id)
+UserRoom.create!(user_id: user_2, room_id: room.id)
+room.chat_posts.create!(user_id: user_1, message: "メッセージのテスト一個目だ test_1の投稿だ")
+room.chat_posts.create!(user_id: user_2, message: "メッセージのテスト２個目だ test_2の投稿だ")
+room.chat_posts.create!(user_id: user_1, message: "メッセージのテスト3個目だ test_1")
+room.chat_posts.create!(user_id: user_2, message: "メッセージのテスと4個目だ test_2")
+room.chat_posts.create!(user_id: user_1, message: "メッセージのテスト5個目だ test_1")
+room.chat_posts.create!(user_id: user_1, message: "メッセージのテスト6個目だ test_1")
+room.chat_posts.create!(user_id: user_1, message: "メッセージのテスト7個目だ test_1")
+room.chat_posts.create!(user_id: user_2, message: "メッセージのテスと8個目だ test_2")
+room.chat_posts.create!(user_id: user_2, message: "メッセージのテスと9個目だ test_2")
+room.chat_posts.create!(user_id: user_2, message: "メッセージのテスと10個目だ test_2")
+room.chat_posts.create!(user_id: user_1, message: "メッセージのテスト11個目だ test_1")

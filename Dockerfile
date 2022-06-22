@@ -4,5 +4,5 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
   && apt-get update -qq \
   && apt-get install -y nodejs yarn git vim
 WORKDIR /t_app
-COPY ./src /t_app
+COPY . /t_app
 RUN bundle install
