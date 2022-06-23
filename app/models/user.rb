@@ -14,7 +14,8 @@ class User < ApplicationRecord
 
  has_many :user_rooms, dependent: :destroy # 参加部屋情報のリレーションテーブル
  has_many :rooms,through: :user_rooms, dependent: :destroy
-
+ has_many :chat_post_reads, dependent: :destroy
+ has_many :chat_posts, dependent: :destroy
  has_many :payments, dependent: :destroy #決済したもの すべて取得
  has_many :posts, dependent: :destroy # 投稿
  has_many :comments, dependent: :destroy#コメント

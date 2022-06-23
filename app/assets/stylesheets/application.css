@@ -106,3 +106,103 @@ input[type="submit"]:disabled {
 .black-text.hover:hover {
   color: #000;
 }
+
+.message-footer-box {
+  position: relative;
+}
+
+.chat_post_reads_false_count_box.top {
+  top: 0;
+  right: -15px;
+  font-size: 15px;
+  width: 20px;
+  height: 20px;
+  line-height: normal;
+}
+
+.follow_btn {
+  padding: .1rem .1rem;
+  font-size: 10px;
+  background-color: #ff80bf;
+  border-color: #ff80bf;
+}
+
+.show_name {
+  font-size: 20px;
+}
+
+.user_edit {
+  width: 25%;
+  height: 35px;
+}
+
+.actions {
+  margin-top: 10px;
+}
+
+.follow_users_btn {
+  padding: .1rem .1rem;
+  font-size: 10px;
+  margin-right: 800px;
+}
+
+header {
+  background-color: pink;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+}
+
+footer {
+  width: 100%;
+  height: 80px;
+  position: relative;
+}
+
+.footer-contents-box {
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 0;
+  width: 100%;
+
+  height: 60px;
+  background: gray;
+  color: white;
+  z-index: 10000;
+}
+
+.footer-contents-box ul {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+}
+
+
+.logo {
+  margin-left: 20px;
+}
+
+.input {
+  background-color: #ff80bf;
+  border: #ff80bf;
+  margin-left: 5px;
+
+}
+
+nav {
+  background-color: pink;
+}
+
+@media screen and (max-width:792px) {
+  #navbarSupportedContent {
+    background-color: rgb(255, 231, 235);
+  }
+}
+
+@media screen and (min-width:793px) {
+  #navbarSupportedContent {
+    background-color: pink;
+  }
+}

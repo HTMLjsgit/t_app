@@ -12,6 +12,6 @@ class ChatPost < ApplicationRecord
   end
 
   def after_create
-    ChatPostRead.create!(room_id: self.room_id, chat_post_id: self.id, read: false)
+    ChatPostRead.create!(room_id: self.room_id, chat_post_id: self.id, read: false, user_id: self.user_id)
   end
 end
