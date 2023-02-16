@@ -1,0 +1,44 @@
+
+<div class="post-tags-all-form">
+    <%= f.fields_for :post_tags, @post_tag  do |f_post_tag| %>
+      <% if !@post.post_tags.exists? %>
+        <div id="post-tag-form-0" class="post-tag-form" data-mode="post" index=>
+          <%= f_post_tag.text_field :tag, class: "post-form-tags", id: "tag_text_field_0" %>
+          <%= button_tag "削除", type: "button", class: "post-tag-delete-button", data: {id:"0"}  %>
+        </div>
+      <% else %>
+        <div id="post-tag-form-<%= f_post_tag.index %>" class="post-tag-form" data-mode="edit" data-index="<%= f_post_tag.index %>">
+          <%= f_post_tag.text_field :tag, class: "post-form-tags", id: "tag_text_field_#{f_post_tag.index}" %>
+          <%= button_tag "削除", type: "button", class: "post-tag-delete-button", data: {id: f_post_tag.object.id, index: f_post_tag.index}  %>
+        </div>
+      <% end %>
+    <% end %>
+</div>
+
+  <%= button_tag "タグ追加", type: "button", class: "post-tags-add-button"  %>
+
+<script>
+  let current_id = 0;
+  <% if @post.post_tags.exists? %>
+    current_id = <%= @post.post_tags.count %>
+  <% end %>
+  $(document).on('click', '.post-tag-delete-button', function(event) {
+    let id = event.currentTarget.dataset.id;
+    let index = event.currentTarget.dataset.index;
+    if($(`#post-tag-form-${index}`).data("mode") == "edit"){
+      index = $(`#post-tag-form-${index}`).data("index");
+      $(".post-tags-all-form").append(`<input type="hidden" value="${id}" name="post[post_tags_attributes][${index}][_destroy]">`);
+      $(`#post-tag-form-${index}`).remove();
+    }else{
+      $(`#post-tag-form-${id}`).remove();
+    }
+  });
+  $(".post-tags-add-button").click(function(event){
+    current_id += 1;
+    $(".post-tags-all-form").append(`<div id="post-tag-form-${current_id}" class="post-tag-form" data-mode="post" >
+      <%= text_field_tag :tag, nil, class: "post-form-tags", id: "tag_text_field_${current_id}", name: "post[post_tags_attributes][${current_id}][tag]" %>
+      <%= button_tag "削除", type: "button", class: "post-tag-delete-button", data: {id:"${current_id}"}  %>
+    </div>`);
+  });
+
+</script>

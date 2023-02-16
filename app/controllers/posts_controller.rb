@@ -10,6 +10,15 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order(created_at: :desc).includes(:post_likes)
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
+    if params[:q].present?
+      target_posts = @posts.joins(:post_tags)
+      posts_ids = []
+      keywords = params[:q].split(/[[:blank:]]+/)
+      keywords.each do |keyword|
+        posts_ids += target_posts.where("post_tags.tag LIKE ?", "%#{keyword}%").pluck(:id)
+      end
+      @posts = Post.where(id: posts_ids)
+    end
   end
 
   def show
@@ -24,11 +33,13 @@ class PostsController < ApplicationController
     @post = Post.new
     @image_post = @post.image_posts.build
     @post_thumbnail = @post.post_thumbnails.build
+    @post_tag = @post.post_tags.build
+
   end
 
   def create
     @post = Post.new(post_params)
-    # @post.post_sales.create
+    post_tags = @post.post_tags
     @post.save
 
     redirect_to(posts_path)
@@ -83,7 +94,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:content, :amount, :description, :title, :poster, image_posts_attributes: [:picture, :id, :_destroy], post_thumbnails_attributes: [:picture, :id, :_destroy]).merge(user_id: current_user.id)
+    params.require(:post).permit(:content, :amount, :description, :title, :poster, image_posts_attributes: [:picture, :id, :_destroy], post_thumbnails_attributes: [:picture, :id, :_destroy], post_tags_attributes: [:tag, :id, :_destroy]).merge(user_id: current_user.id)
   end
 
   def post_find

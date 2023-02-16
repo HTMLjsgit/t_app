@@ -1,0 +1,5 @@
+<%= form_with url: search_searches_path, local: true do |f| %>
+  <%= f.text_field :search_value, value: "" %>
+  <%= f.hidden_field :search_type, value: "posts" %>
+  <%= f.submit "送信" %>
+<% end %>
