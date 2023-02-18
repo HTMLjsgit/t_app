@@ -70,11 +70,11 @@ gem 'simple_form'
 gem "administrate", '~> 0.17.0'
 gem "administrate-field-image"
 gem 'rinku', '~> 2.0', '>= 2.0.6'
+gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
 #---------------新たに追加させていただいたもの-swappp0630---------------------
 gem 'jquery-rails'
 gem 'letter_opener'
 gem "carrierwave"
 gem 'mini_magick'
-
 #---------------新たに追加させていただいたもの-swappp06302---------------------
 gem 'impressionist', '~>1.6.1'

@@ -6,5 +6,4 @@ module UsersHelper
       return image_tag "blank-profile-picture-973460_640.png", class: "user-avater-icon"
    end
   end
-
 end

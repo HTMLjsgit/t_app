@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   resources :homes, only: [:show, :index]
   resources :searches, only: [:index] do
     collection do
-      post :search
+      get :autocomplete_search
     end
   end
   resources :users, only: [:index, :create, :update, :edit]

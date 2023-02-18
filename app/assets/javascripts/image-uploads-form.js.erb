@@ -52,7 +52,7 @@ $(function(){
     base_table_name = event.target.dataset.base_table_name;
     base_attributes_name = event.target.dataset.base_attributes_name;
     base_area_name = event.target.dataset.base_area_name;
-    $(`#${base_id_name}-${image_datas[base_area_name].length}`)[0].click();
+    $(`#${base_id_name}-${image_datas[base_area_name].length}`).click();
   });
   $(document).on('input', '.form-input-image', function(event){
     if(event.target.value != ""){

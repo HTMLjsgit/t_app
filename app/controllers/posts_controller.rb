@@ -10,15 +10,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order(created_at: :desc).includes(:post_likes)
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
-    if params[:q].present?
-      target_posts = @posts.joins(:post_tags)
-      posts_ids = []
-      keywords = params[:q].split(/[[:blank:]]+/)
-      keywords.each do |keyword|
-        posts_ids += target_posts.where("post_tags.tag LIKE ?", "%#{keyword}%").pluck(:id)
-      end
-      @posts = Post.where(id: posts_ids)
-    end
+
   end
 
   def show
