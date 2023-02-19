@@ -32,9 +32,9 @@
                 <p class="post-index-count-text">いいね : <%= post.post_likes.count %></p>
               </div>
             </div>
-            <!-- 購入していなかったら -->
+            <!-- 購入していなかったら (管理者と投稿者はスルー) -->
             <% if user_signed_in? %>
-              <% unless @post_payment_check.present? || current_user.id == post.user_id %>
+              <% unless @post_payment_check.present? || current_user.id == post.user_id || current_user.admin %>
                 <object>
                   <div class="post-index-buy-button-box">
                     <%= button_tag "¥#{amount_with_commision(post.amount)}",type: "button", id: "post-payment-box-open-link-#{post.id}",class: "base-pink-button post-index-payment-button", data: {post_id: post.id} %>

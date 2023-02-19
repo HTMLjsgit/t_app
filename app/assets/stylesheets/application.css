@@ -13,11 +13,15 @@
  *= require_tree .
  *= require_self
  *= require font-awesome
+ *= require jquery-ui/autocomplete
+ *= require jquery-ui/theme
+ *= require jquery-ui/menu
 */
 
 .hide {
   display: none;
 }
+
 
 .border-bottom {
   border-bottom: 1px solid #ddd;

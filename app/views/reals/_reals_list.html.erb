@@ -1,12 +1,12 @@
 <div class="real-change-buttons-box">
-  <%= image_tag "camera_icon_2.png", class: "real-change-button-image", data: {change: "camera"} %>
-  <%= image_tag "item/message.png", class: "real-change-button-image", data: {change: "message"} %>
+  <i class="real-change-button-fontawesome fa-solid fa-camera" data-change="camera"></i>
+  <i class="fa-regular fa-message real-change-button-fontawesome" data-change="message"></i>
 </div>
 
 <script>
   var change_type = "camera";
   var before_change_type = "camera";
-  $('.real-change-button-image').click(function(event){
+  $('.real-change-button-fontawesome').click(function(event){
     change_type = event.target.dataset.change;
     if(change_type != before_change_type){
       $(`.real-click-event.${change_type}`).removeClass("hide");

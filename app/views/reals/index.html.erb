@@ -1,3 +1,17 @@
+<% if user_signed_in? %>
+  <div class="contents-lists-button-change-boxes">
+      <%= link_to reals_path(type: "others") do  %>
+        <div class="contents-lists-change-button" data-type="others">
+          <h3>最新</h3>
+        </div>
+      <% end %>
+      <%= link_to reals_path(type: "follows") do  %>
+        <div class="contents-lists-change-button" data-type="follows">
+          <h3>フォロー中</h3>
+        </div>
+      <% end %>
+  </div>
+<% end %>
 <%= render partial: "reals/reals_list", locals: {reals: @reals,reals_not: @reals_not, message_custom: false} %>
 <div class="new-link-box">
   <%= link_to new_real_path, class: "underline-none hover" do %>

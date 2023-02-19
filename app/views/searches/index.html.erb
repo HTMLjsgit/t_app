@@ -1,0 +1,8 @@
+<%= render "search_form" %>
+<% if params[:search_type].present? %>
+  <% if params[:search_type] == "posts" %>
+    <%= render partial: "posts/posts_list", locals: {posts: @posts} %>
+  <% elsif params[:search_type] == "users" %>
+    <%= render partial: "users/users_list", locals: {users: @users} %>
+  <% end %>
+<% end %>

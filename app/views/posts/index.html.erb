@@ -1,3 +1,18 @@
+<% if user_signed_in? %>
+  <div class="contents-lists-button-change-boxes">
+      <%= link_to posts_path(type: "others") do  %>
+        <div class="contents-lists-change-button" data-type="others">
+          <h3>最新</h3>
+        </div>
+      <% end %>
+      <%= link_to posts_path(type: "follows") do  %>
+        <div class="contents-lists-change-button" data-type="follows">
+          <h3>フォロー中</h3>
+        </div>
+      <% end %>
+  </div>
+<% end %>
+
 <% if @posts.exists? %>
   <% if user_signed_in? %>
     <%= render partial: "payments/post_payment" %>
@@ -9,6 +24,9 @@
     <i class="fa-solid fa-plus plus-new-icon"></i>
   <% end %>
 </div>
+<script>
+  $("[data-type='<%= @type %>']").addClass("selected");
+</script>
 <style>
   .container{
     max-width: 100%;

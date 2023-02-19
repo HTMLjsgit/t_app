@@ -1,0 +1,54 @@
+<%= form_with url: searches_path,id: "search_form",method: :get, local: true do |f| %>
+  <%= f.text_field :search_value, value: params[:search_value], id: "search_value_text_field", required: true %>
+  <%= f.hidden_field :search_type, value: (params[:search_value].present? ? params[:search_type] : "posts") %>
+  <%= f.submit "送信", id: "search_submit" %>
+<% end %>
+<% if params[:search_value].present? %>
+  <%= link_to "記事", searches_path(search_value: params[:search_value], search_type: "posts") %>
+  <%= link_to "ユーザー", searches_path(search_value: params[:search_value], search_type: "users") %>
+<% end %>
+<style>
+  .ui-state-focus {
+    background: none !important;
+    background-color: blue !important;
+    color: #fff !important;
+  }
+
+</style>
+
+<script>
+  var records_data = [];
+  $("#search_value_text_field").autocomplete({
+    source: function(request, response){
+      if(request.term != undefined && request.term != null)
+        $.ajax({
+          url: `/searches/autocomplete_search?search_value=${request.term}`,
+          type: "GET",
+          success: function(data){
+            response(data);
+          }
+        })
+    },
+
+    autoFocus: true,
+    delay: 300,
+    select: function(e, ui){
+      setTimeout(() => {
+        if(ui.item.type == "post"){
+          window.location.href = `/posts/${ui.item.id}/post_explanation`
+        }else if(ui.item.type == "user"){
+          window.location.href = `/users/${ui.item.id}`
+        }
+      }, 10);
+    },
+  }).data("ui-autocomplete")._renderItem = function(ui, item){
+    var src_case = item["avater"] ? item.avater : "/assets/blank-profile-picture-973460_640.png"
+    if(item["type"] == "user"){
+      return $(`<li><div class='autocomplete-user-profile'><img src="${src_case}" class="ui-complete-img">${item.username}</div></li>`).appendTo(ui);
+    }else if(item["type"] == "post"){
+      return $(`<li>${item.title}</li>`).appendTo(ui);
+    }
+    return null;
+  };;
+
+</script>

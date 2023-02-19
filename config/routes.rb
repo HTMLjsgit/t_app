@@ -26,6 +26,11 @@ Rails.application.routes.draw do
   post 'users/stop/:id' => 'users#stop_isstopped', as: 'users_stop'
   resources :transfer_completions, only: [:update]
   resources :homes, only: [:show, :index]
+  resources :searches, only: [:index] do
+    collection do
+      get :autocomplete_search
+    end
+  end
   resources :users, only: [:index, :create, :update, :edit]
   resources :users, only: [:show] do
     resources :rooms, only: [:index, :create]

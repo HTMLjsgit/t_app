@@ -14,6 +14,7 @@
 //= require activestorage
 //= require_tree .
 //= require jquery
+//= require jquery-ui/autocomplete
 $(function () {
   $(".modal-hide-button").click(function (event) {
     var id = event.target.parentElement.id.replace("-contents", "");

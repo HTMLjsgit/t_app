@@ -31,7 +31,7 @@
         <ul class="navbar-nav ml-auto p-3 h6" style="text-align: left;">
           <% if user_signed_in? %>
             <li class="nav-item active">
-              <%= link_to users_path, {class: "nav-link", method: :get} do  %>
+              <%= link_to searches_path, {class: "nav-link", method: :get} do  %>
                   <i class="fas fa-search header_item"></i>
               <% end %>
             </li>
