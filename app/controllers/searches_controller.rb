@@ -14,7 +14,7 @@ class SearchesController < ApplicationController
         keywords.each do |keyword|
           posts_ids += target_posts.where("post_tags.tag LIKE ?", "%#{keyword}%").pluck(:id)
         end
-        @posts = Post.where(id: posts_ids)
+        @posts = Post.where(id: posts_ids).includes(:post_likes)
       elsif search_type == "users"
         users_ids = []
         keywords = search_value.split(/[[:blank:]]+/)
@@ -31,8 +31,8 @@ class SearchesController < ApplicationController
     p "--------------------------------"
     search_value = params[:search_value]
     if search_value.present?
-      @posts = Post.joins(:post_tags).where("post_tags.tag LIKE ?", "#{search_value}%")
-      @users = User.where("username LIKE ?", "#{search_value}%")
+      @posts = Post.joins(:post_tags).where("post_tags.tag LIKE ?", "%#{search_value}%").includes(:post_likes)
+      @users = User.where("username LIKE ?", "%#{search_value}%")
       posts = @posts.map{ |p| p.attributes }
       users = @users.map{ |p| p.attributes }
 

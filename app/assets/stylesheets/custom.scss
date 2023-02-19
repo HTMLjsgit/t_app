@@ -20,7 +20,6 @@
 .message {
   margin: 10px;
   color: #5f5f5f;
-  padding: 6px 20px 6px 20px;
   border-radius: 8px;
 }
 
@@ -39,11 +38,12 @@
   height: 40px;
   margin-bottom: 3.5px;
 }
-.chat_time{
+
+.chat_time {
   font-size: 10px;
 }
 
-.chat_time.my{
+.chat_time.my {
   padding-top: 6px;
   padding-right: 2px;
 }
@@ -84,9 +84,11 @@
   width: 100%;
   left: 0;
   top: 0;
-  text-align:center;
+  text-align: center;
   margin: auto;
 }
+
+
 
 .navbar-toggler {
   z-index: 100000;
@@ -96,34 +98,41 @@
   .navbar-nav {
     z-index: 100000;
   }
+
   .navbar-brand-center {
-      margin-left: 0 !important;
-      top: 2px;
+    margin-left: 0 !important;
+    top: 2px;
   }
+
   .footer_item {
     color: white;
     font-size: 2.5em;
     padding-top: 10px;
     margin-left: 2%;
   }
+
   .header_item {
     font-size: 1.7em;
   }
+
   .post_pen {
     color: white;
     font-size: 1.5em;
     margin-left: 23%;
 
   }
-  .circle{
+
+  .circle {
     color: pink;
     font-size: 3.0em;
   }
-  .like-btn{
+
+  .like-btn {
     color: tomato;
     font-size: 1.3em;
   }
-  .comment-f{
+
+  .comment-f {
     width: 40%;
   }
 }

@@ -13,6 +13,38 @@
   border-radius: 50%;
 }
 
+.contents-lists-button-change-boxes {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.contents-lists-button-change-boxes a {
+  color: #000;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+
+
+.contents-lists-button-change-boxes a:hover {
+  text-decoration: none;
+
+  .contents-lists-change-button {
+    border-bottom: 5px solid #e51273;
+  }
+}
+
+.contents-lists-change-button.selected {
+  border-bottom: 5px solid #e51273;
+}
+
+.contents-lists-change-button {
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom: 5px solid #fff;
+}
+
 .post-tag-form {
   display: flex;
 }
