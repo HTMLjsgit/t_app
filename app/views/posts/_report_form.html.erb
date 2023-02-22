@@ -1,0 +1,7 @@
+<h6 class="report-message"><%= flash[:successed_message] %></h6>
+<div class="post-report-form">
+  <%= form_with local: false, url:  post_post_reports_path(post_id: @post.id) do %>
+    <%= text_field_tag "body",nil %>
+    <%= submit_tag "送信" %>
+  <% end %>
+</div>

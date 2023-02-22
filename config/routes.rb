@@ -45,7 +45,7 @@ Rails.application.routes.draw do
       # 記事の説明ページ
       get :post_explanation
     end
-    resources :reports, only: [:create]
+    resources :post_reports, only: [:create]
     resources :post_likes, only: [:create, :destroy]
     #--------支払い履歴Routes--------------
 

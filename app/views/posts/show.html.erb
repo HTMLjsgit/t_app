@@ -1,4 +1,15 @@
 <div class="main posts-show">
+  <!-- 報告機能部分  -->
+  <i class="fa-sharp fa-solid fa-circle-exclamation report-show-button"></i>
+  <div class="modal-contents hide" id="report-modal-contents">
+    <i class="zoom-hide-button fa fa-times-circle modal-hide-button"></i>
+    <div class="report-form">
+      <%= render "report_form" %>
+    </div>
+  </div>
+  <div class="modal-background hide" id="report-modal-background">
+
+  </div>
   <div class="posts-show-item">
     <%#= render partial: "users/user_profile", locals: {user: @user} %>
     <div class="post-show-images-posts-slides-box">
@@ -29,41 +40,10 @@
     dots: true,
     lazyLoad: 'progressive'
   });
+  $(".report-show-button").click(function(event){
+    $("#report-modal-contents").removeClass("hide");
+    $("#report-modal-background").removeClass("hide");
+    modal_opended = true;
+  });
+
 </script>
-<!-- コメント機能
-<div class="comment-index my-4">
-  <h2>コメント一覧</h2>
-</div>
-
-<% @comments.each do |comment| %>
-  <div class="comment-index-item">
-    <% if comment.user.avater.attached? %>
-      <div class="post-users">
-        <%= image_tag comment.user.avater,class: "users" %> <%= link_to(comment.user.username, user_path(comment.user),class: "comment-index-name") %>
-      </div>
-    <% else %>
-      <div class="post-users">
-        <%= image_tag "/blank-profile-picture-973460_640.png",class: "users" %> <%= link_to(comment.user.username, user_path(comment.user),class: "comment-index-name") %>
-    <% end %>
-    <p>
-      <%= comment.content %>
-    </p>
-  </div>
-  </div>
-<% end %>
-
-
-  <div class="main posts-new">
-  <div class="container">
-    <%= form_for (@comment) do |f| %>
-      <div class="form">
-        <div class="form-body">
-          <%= f.text_field :content,class: "form-control" %>
-          <%= f.hidden_field :post_id, value: @post.id %>
-          <%= f.submit 'コメントする', class: "btn btn-primary input" %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
--->

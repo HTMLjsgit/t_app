@@ -163,12 +163,13 @@ ActiveRecord::Schema.define(version: 2023_02_22_004241) do
   end
 
   create_table "post_reports", force: :cascade do |t|
-    t.integer "report_id"
+    t.text "body"
     t.integer "post_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_post_reports_on_post_id"
-    t.index ["report_id"], name: "index_post_reports_on_report_id"
+    t.index ["user_id"], name: "index_post_reports_on_user_id"
   end
 
   create_table "post_tags", force: :cascade do |t|
@@ -238,12 +239,6 @@ ActiveRecord::Schema.define(version: 2023_02_22_004241) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "reports", force: :cascade do |t|
-    t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "rooms", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -288,15 +283,6 @@ ActiveRecord::Schema.define(version: 2023_02_22_004241) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_transfer_totals_on_user_id"
-  end
-
-  create_table "user_reports", force: :cascade do |t|
-    t.integer "report_id"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["report_id"], name: "index_user_reports_on_report_id"
-    t.index ["user_id"], name: "index_user_reports_on_user_id"
   end
 
   create_table "user_rooms", force: :cascade do |t|

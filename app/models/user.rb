@@ -12,8 +12,7 @@ class User < ApplicationRecord
  has_many :following_user, through: :follower, source: :followed # 自分がフォローしている人
  has_many :follower_user, through: :followed, source: :follower # 自分をフォローしている人
 
- has_many :user_reports, dependent: :destroy
- has_many :reports, through: :user_reports, dependent: :destroy
+ has_many :post_reports, dependent: :destroy
 
  has_many :user_rooms, dependent: :destroy # 参加部屋情報のリレーションテーブル
  has_many :rooms,through: :user_rooms, dependent: :destroy
@@ -55,14 +54,6 @@ class User < ApplicationRecord
 
   def liked_by?(post_id)
     likes.where(post_id: post_id).exists?
-  end
-
-  def report(post_id, _text)
-    #通報機能
-    report = Report.create(body: _text)
-    UserReport.create(user_id: self.id, report_id: report.id)
-    PostReport.create(post_id: post_id, report_id: report.id)
-
   end
 
   def self.find_first_by_auth_conditions(warden_conditions)
