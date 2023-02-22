@@ -22,6 +22,14 @@
   display: none;
 }
 
+.report-show-button {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.report-show-button:hover {
+  opacity: 0.8;
+}
 
 .border-bottom {
   border-bottom: 1px solid #ddd;

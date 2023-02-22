@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_16_155249) do
+ActiveRecord::Schema.define(version: 2023_02_22_004241) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -162,6 +162,15 @@ ActiveRecord::Schema.define(version: 2023_02_16_155249) do
     t.index ["user_id"], name: "index_post_likes_on_user_id"
   end
 
+  create_table "post_reports", force: :cascade do |t|
+    t.integer "report_id"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_reports_on_post_id"
+    t.index ["report_id"], name: "index_post_reports_on_report_id"
+  end
+
   create_table "post_tags", force: :cascade do |t|
     t.string "tag"
     t.integer "post_id"
@@ -229,6 +238,12 @@ ActiveRecord::Schema.define(version: 2023_02_16_155249) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reports", force: :cascade do |t|
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -273,6 +288,15 @@ ActiveRecord::Schema.define(version: 2023_02_16_155249) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_transfer_totals_on_user_id"
+  end
+
+  create_table "user_reports", force: :cascade do |t|
+    t.integer "report_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["report_id"], name: "index_user_reports_on_report_id"
+    t.index ["user_id"], name: "index_user_reports_on_user_id"
   end
 
   create_table "user_rooms", force: :cascade do |t|

@@ -21,7 +21,6 @@ Rails.application.routes.draw do
     end
   resources :real_comments
   devise_for :users
-
   post 'users/restore/:id' => 'users#update_isstopped', as: 'users_restore'
   post 'users/stop/:id' => 'users#stop_isstopped', as: 'users_stop'
   resources :transfer_completions, only: [:update]
@@ -46,6 +45,7 @@ Rails.application.routes.draw do
       # 記事の説明ページ
       get :post_explanation
     end
+    resources :reports, only: [:create]
     resources :post_likes, only: [:create, :destroy]
     #--------支払い履歴Routes--------------
 
