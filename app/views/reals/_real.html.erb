@@ -1,0 +1,140 @@
+<% if real_link.present?%>
+  <%= link_to real_link, class: "real-link" do %>
+    <div class="user-profile-real-box">
+      <%= render partial: "users/user_profile", locals: {user: real.user} %>
+    </div>
+  <% end %>
+<% else %>
+  <div class="user-profile-real-box">
+    <%= render partial: "users/user_profile", locals: {user: real.user} %>
+    <i class="fa-sharp fa-solid fa-circle-exclamation report-show-button"></i>
+  </div>
+<% end %>
+<% if real.image_reals.exists? %>
+  <object>
+    <div class="real-images" id="real-images-<%= real.id %>">
+      <% real.image_reals.each_with_index do |image, index| %>
+        <% if image.picture? %>
+          <div class="image-slide-real-box <%= real.image_reals.count > 1 ? "slick-two" : "" %>" data-index="<%= index %>">
+            <%= image_tag image.picture.url %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </object>
+<% end %>
+<% if real_link.present? %>
+  <%= link_to real_link, class: "real-link" do %>
+    <object>
+      <div class="real-content-box">
+        <%= simple_format real.content %>
+      </div>
+      <% if current_user.present? %>
+        <% if current_user.id == real.user_id %>
+          <p class="reals-views-count-text">閲覧数：<%= real.impressionist_count %></p>
+        <% end %>
+      <% end %>
+      <div class="real-contents">
+        <div class="user-action-box">
+          <object>
+            <div class="user-real-action">
+                <% unless real.user == current_user %>
+                  <% if real_like_current.present? %>
+                      <%= link_to real_real_like_path(real_id: real, id: real_like_current), class: "like-btn", method: :delete do %>
+                        <%= image_tag "item/liked.png" %>
+                      <% end %>
+                    <p class="real-likes-count-text count-text-contents"><%= real.real_likes.count %></p>
+                  <% else %>
+                    <%= link_to real_real_likes_path(real), class: "like-btn", method: :post do %>
+                      <%= image_tag "item/like.png" %>
+                    <% end %>
+                    <p class="real-likes-count-text count-text-contents"><%= real.real_likes.count %></p>
+                  <% end %>
+                <% else %>
+                  <%= image_tag "item/like.png" %>
+                  <p class="real-likes-count-text count-text-contents"><%= real.real_likes.count %></p>
+              　<% end %>
+            </div>
+          </object>
+          <div class="user-real-action real_comments">
+            <%= image_tag "item/message.png" %>
+            <p class="real-likes-count-text count-text-contents"><%= real.real_comments.count %></p>
+          </div>
+        </div>
+        <div class="real-menus">
+          <%= link_to(edit_real_path(real), method: :get) do %>
+            <i class="far fa-edit fa-2x"></i>
+          <% end %>
+          <%= real.updated_at.strftime("%Y-%m-%d %H:%M") %>
+            <%= link_to(real_path(real),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do %>
+          <i class="fas fa-trash-alt fa-2x"></i>
+          <% end %>
+        </div>
+      </div>
+    </object>
+  <% end %>
+<% else %>
+  <object>
+    <div class="real-content-box">
+      <%= simple_format real.content %>
+    </div>
+    <% if current_user.present? %>
+      <% if current_user.id == real.user_id %>
+        <p class="reals-views-count-text">閲覧数：<%= real.impressionist_count %></p>
+      <% end %>
+    <% end %>
+    <div class="real-contents">
+      <div class="user-action-box">
+        <object>
+          <div class="user-real-action">
+              <% unless real.user == current_user %>
+                <% if real_like_current.present? %>
+                    <%= link_to real_real_like_path(real_id: real, id: real_like_current), class: "like-btn", method: :delete do %>
+                      <%= image_tag "item/liked.png" %>
+                    <% end %>
+                  <p class="real-likes-count-text count-text-contents"><%= real.real_likes.count %></p>
+                <% else %>
+                  <%= link_to real_real_likes_path(real), class: "like-btn", method: :post do %>
+                    <%= image_tag "item/like.png" %>
+                  <% end %>
+                  <p class="real-likes-count-text count-text-contents"><%= real.real_likes.count %></p>
+                <% end %>
+              <% else %>
+                <%= image_tag "item/like.png" %>
+                <p class="real-likes-count-text count-text-contents"><%= real.real_likes.count %></p>
+            　<% end %>
+          </div>
+        </object>
+        <div class="user-real-action real_comments">
+          <%= image_tag "item/message.png" %>
+          <p class="real-likes-count-text count-text-contents"><%= real.real_comments.count %></p>
+        </div>
+      </div>
+      <div class="real-menus">
+        <%= link_to(edit_real_path(real), method: :get) do %>
+          <i class="far fa-edit fa-2x"></i>
+        <% end %>
+        <%= real.updated_at.strftime("%Y-%m-%d %H:%M") %>
+          <%= link_to(real_path(real),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do %>
+        <i class="fas fa-trash-alt fa-2x"></i>
+        <% end %>
+      </div>
+    </div>
+  </object>
+<% end %>
+<script>
+  $(`#real-images-<%= real.id %>`).slick({
+    dots: true,
+    speed: 300,
+    slidesToShow: 1,
+    centerPadding: '0px',
+    centerMode: true,
+    swipe: false,
+    arrows: false
+  });
+  $(".report-show-button").click(function(event){
+    $("#report-modal-contents").removeClass("hide");
+    $("#report-modal-background").removeClass("hide");
+    modal_opended = true;
+  });
+</script>
