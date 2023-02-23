@@ -1,0 +1,15 @@
+<h3><%= @post.user.username %>さんを通報</h3>
+<h6 class="report-message"><%= @already_message %></h6>
+<div class="post-report-form report-form">
+  <%= form_with local: false, url:  post_post_reports_path(post_id: @post.id), id: "post_report_form" do %>
+    <%= text_field_tag "body",nil %>
+    <%= submit_tag "送信" %>
+  <% end %>
+</div>
+<script>
+  $("#post_report_form").submit(function(event){
+    setTimeout(() => {
+      $(".report-message").text("");
+    }, 10000);
+  });
+</script>

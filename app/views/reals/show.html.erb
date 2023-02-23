@@ -1,5 +1,15 @@
 <div class="main reals-show">
   <%= render partial: "users/user_profile", locals: {user: @user} %>
+  <i class="fa-sharp fa-solid fa-circle-exclamation report-show-button"></i>
+  <div class="modal-contents hide" id="report-modal-contents">
+    <i class="zoom-hide-button fa fa-times-circle modal-hide-button"></i>
+    <div class="report-form">
+      <%= render "report_form" %>
+    </div>
+  </div>
+  <div class="modal-background hide" id="report-modal-background">
+
+  </div>
   <% if @real.image_reals.exists? %>
     <div class="real-show-images" id="real-show-images">
       <% @real.image_reals.each_with_index do |image, index| %>
@@ -55,7 +65,6 @@
     <i class="fas fa-trash-alt fa-2x"></i>
     <% end %>
   </div>
-
   <div class="reals-comments-box comments-box">
 
     <div class="main comments-new">
@@ -117,4 +126,10 @@
     centerMode: true
     // adaptiveHeight: true
   });
+  $(".report-show-button").click(function(event){
+    $("#report-modal-contents").removeClass("hide");
+    $("#report-modal-background").removeClass("hide");
+    modal_opended = true;
+  });
+
 </script>

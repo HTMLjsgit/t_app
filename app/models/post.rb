@@ -11,6 +11,7 @@ class Post < ApplicationRecord
    has_many :comments, dependent: :destroy
    has_many :post_likes, dependent: :destroy
    has_many :sales
+   has_many :post_reports, dependent: :destroy
    has_many :image_posts, dependent: :destroy
    has_many :post_thumbnails, dependent: :destroy
    has_many :post_tags, dependent: :destroy

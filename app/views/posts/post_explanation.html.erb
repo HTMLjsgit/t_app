@@ -8,6 +8,8 @@
         </div>
       <% end %>
     </div>
+
+
     <!-- サムネイルのコントロール部分 -->
     <div class="post-slide-control-images-box slick_thumb">
       <% if @post.post_thumbnails.exists? %>
@@ -128,6 +130,7 @@
   var target_form = document.getElementById("post_payment_form");
   var buy_text = document.getElementById("buy-text");
   var before_slick_element = null;
+  var modal_opended = false;
   if(post_payment_open_link != null){
     post_payment_open_link.addEventListener("click", function(event){
       target_form.action = `/posts/<%= @post.id %>/payments/post_payment`;
