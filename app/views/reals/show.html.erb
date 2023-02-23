@@ -1,6 +1,6 @@
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <div class="main reals-show">
-  <%= render partial: "users/user_profile", locals: {user: @user} %>
-  <i class="fa-sharp fa-solid fa-circle-exclamation report-show-button"></i>
+  <%= render "real", {real: @real, real_like_current: @real_like_current, real_link: ""} %>
   <div class="modal-contents hide" id="report-modal-contents">
     <i class="zoom-hide-button fa fa-times-circle modal-hide-button"></i>
     <div class="report-form">
@@ -9,61 +9,6 @@
   </div>
   <div class="modal-background hide" id="report-modal-background">
 
-  </div>
-  <% if @real.image_reals.exists? %>
-    <div class="real-show-images" id="real-show-images">
-      <% @real.image_reals.each_with_index do |image, index| %>
-        <% if image.picture? %>
-          <div class="image-slide-real-box <%= @real.image_reals.count > 1 ? "slick-two" : "" %>" data-index="<%= index %>">
-            <%= image_tag image.picture.url %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  <% end %>
-  <div class="real-show-contents">
-    <div class="user-action-box">
-      <div class="user-real-action">
-        <% unless @user == current_user %>
-          <% if @real_like_current.present? %>
-            <%= link_to real_real_like_path(real_id: @real, id: @real_like_current), class: "like-btn", method: :delete do %>
-              <%= image_tag "item/liked.png" %>
-            <% end %>
-            <p class="real-likes-count-text count-text-contents"><%= @real.real_likes.count %></p>
-          <% else %>
-            <%= link_to real_real_likes_path(@real), class: "like-btn", method: :post do %>
-              <%= image_tag "item/like.png" %>
-            <% end %>
-            <p class="real-likes-count-text count-text-contents"><%= @real.real_likes.count %></p>
-          <% end %>
-        <% else %>
-          <%= image_tag "item/like.png" %>
-          <p class="real-likes-count-text count-text-contents"><%= @real.real_likes.count %></p>
-      　<% end %>
-      </div>
-      <div class="user-real-action real_comments">
-        <%= image_tag "item/message.png" %>
-        <p class="real-likes-count-text count-text-contents"><%= @real.real_comments.count %></p>
-      </div>
-    </div>
-    <% if current_user.present? %>
-      <% if current_user.id == @real.user_id %>
-        <p class="reals-views-count-text">閲覧数：<%= @real.impressionist_count %></p>
-      <% end %>
-    <% end %>
-
-  </div>
-  <div class="real-show-content">
-    <%= simple_format @real.content %>
-  </div>
-  <div class="post-menus">
-    <%= link_to(edit_real_path(@real), method: :get) do%>
-      <i class="far fa-edit fa-2x"></i>
-    <% end %>
-    <%= @real.updated_at.strftime("%Y-%m-%d %H:%M") %>
-      <%= link_to(real_path(@real),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do%>
-    <i class="fas fa-trash-alt fa-2x"></i>
-    <% end %>
   </div>
   <div class="reals-comments-box comments-box">
 
@@ -107,17 +52,7 @@
 
 </div>
 
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
-  $(`#real-show-images`).slick({
-    dots: true,
-    speed: 300,
-    slidesToShow: 1,
-    centerPadding: '0px',
-    centerMode: true,
-    swipe: false,
-    arrows: false
-  });
   $('.image-contents-zoom.slick').slick({
     dots: false,
     speed: 300,
@@ -125,11 +60,6 @@
     centerPadding: '0px',
     centerMode: true
     // adaptiveHeight: true
-  });
-  $(".report-show-button").click(function(event){
-    $("#report-modal-contents").removeClass("hide");
-    $("#report-modal-background").removeClass("hide");
-    modal_opended = true;
   });
 
 </script>

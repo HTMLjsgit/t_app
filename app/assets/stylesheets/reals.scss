@@ -2,9 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .reals-index {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 700px;
+  max-width: 650px;
   margin: 0 auto;
   justify-content: center;
 }
@@ -13,11 +11,18 @@
   border: 1px solid #ddd;
   max-width: 650px;
   margin: 0 auto;
+  position: relative;
   // padding: 10px;
 }
 
-.reals-show .user-profile-box {
-  padding: 20px;
+.report-show-button {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}
+
+.user-profile-real-box .user-profile-box {
+  padding: 10px;
   padding-left: 30px;
 }
 
@@ -62,22 +67,24 @@
   height: 30px;
 }
 
-.real-show-contents {
+.real-contents {
   display: flex;
   max-width: 80%;
   margin: 0 auto;
   padding-top: 30px;
+  justify-content: space-between;
 }
 
 .reals-views-count-text {
   margin: 0 0 0 auto;
+  max-width: 100px;
 }
 
 .slick-dots li.slick-active button::before {
   color: #0e6a78 !important;
 }
 
-.real-show-content {
+.real-content-box {
   margin-top: 30px;
   font-size: 20px;
   padding-left: 80px;
@@ -86,18 +93,8 @@
   min-height: 100px;
 }
 
-.real-image-item-box {
-  margin-right: 2px;
-  margin-top: 2px;
-  position: relative;
-  width: 140px;
-  height: 140px;
-}
+.real-image-item-box {}
 
-.real-image-item-box.ink {
-  width: 200px;
-  height: 200px;
-}
 
 .real-index-link:hover {
   text-decoration: none;
@@ -134,16 +131,10 @@
   margin: 0;
 }
 
-.real-image-index-box {
-  width: 100%;
-  height: 100%;
+.real-image-box {
+  max-width: 350px;
+  max-height: 250px;
   background-color: #eee;
-}
-
-.real-image-index-box.ink {
-  width: 100%;
-  height: 100%;
-  position: absolute;
 }
 
 .ink-image {
@@ -158,14 +149,8 @@
   background-color: rgba(29, 36, 64, 0.86);
 }
 
-.real-image-index-box.ink {
-  background-color: transparent;
-  position: relative;
-}
 
-.real-image-index-box.ink:hover {
-  opacity: 0.7;
-}
+
 
 .real-change-button-fontawesome {
   font-weight: 300;
@@ -187,6 +172,32 @@
   border-bottom: 1px solid #eee;
 }
 
+.real-link {
+  color: #000;
+}
+
+.real-menus {
+  display: flex;
+  color: #000;
+}
+
+.real-menus a,
+input {
+  color: #8899a6;
+}
+
+.real-index-box {
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.real-link:hover {
+  color: #000;
+  text-decoration: none;
+}
+
+
 .image-slide-real-box img {
   margin: 0 auto;
   width: 100%;
@@ -202,7 +213,10 @@
   object-fit: cover;
 }
 
-.real-show-images {}
+.reals-index-out-box {
+  display: flex;
+  justify-content: center;
+}
 
 .real-image-upload-icon {
   width: 40px;
@@ -281,16 +295,23 @@
   height: 90px;
 }
 
+.real-images {}
 
 @media screen and (max-width: 700px) {
   .reals-index-item {
     min-width: 100%;
     max-width: 100%;
-    display: flex;
-    justify-content: center;
   }
 
-  .reals-index-item-out-box {}
+  .real-image-box {
+    max-width: 100%;
+    max-height: 150px;
+    background-color: #eee;
+  }
+
+  .reals-index {
+    max-width: 100%;
+  }
 }
 
 @media screen and (max-width: 600px) {}
