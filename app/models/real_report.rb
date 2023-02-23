@@ -1,5 +1,5 @@
-class PostReport < ApplicationRecord
-  belongs_to :post
+class RealReport < ApplicationRecord
+  belongs_to :real
   belongs_to :user
   validates :body, presence: true
 end

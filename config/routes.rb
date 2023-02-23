@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   namespace :admin do
-      resources :impressions
       resources :users
       resources :transfer_requests
+      resources :post_reports
+      resources :real_reports
       resources :chat_posts
       resources :comments
       resources :image_posts
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
       resources :post_thumbnails
       resources :sales
       resources :transfer_completions
+      resources :impressions
       root to: "impressions#index"
     end
   resources :real_comments
@@ -64,6 +66,7 @@ Rails.application.routes.draw do
   resources :comments, only: [:new, :create, :show, :destroy]
   resources :reals, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resources :real_likes, only: [:create, :destroy]
+    resources :real_reports, only: [:create]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

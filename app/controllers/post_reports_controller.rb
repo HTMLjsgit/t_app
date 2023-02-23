@@ -3,8 +3,12 @@ class PostReportsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     body = params[:body]
-    current_user.post_reports.create(post_id: @post.id, body: body)
-    flash[:successed_message] = "管理者に報告されました。"
+    post_report = current_user.post_reports.new(post_id: @post.id, body: body)
+    if post_report.save
+      @already_message = "管理者に送信されました。"
+    else
+
+    end
     render "post_report.js.erb"
   end
 end

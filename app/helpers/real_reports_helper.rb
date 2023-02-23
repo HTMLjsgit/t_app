@@ -1,0 +1,2 @@
+module RealReportsHelper
+end

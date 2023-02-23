@@ -13,7 +13,7 @@ class User < ApplicationRecord
  has_many :follower_user, through: :followed, source: :follower # 自分をフォローしている人
 
  has_many :post_reports, dependent: :destroy
-
+ has_many :real_reports, dependent: :destroy
  has_many :user_rooms, dependent: :destroy # 参加部屋情報のリレーションテーブル
  has_many :rooms,through: :user_rooms, dependent: :destroy
  has_many :chat_post_reads, dependent: :destroy
