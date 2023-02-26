@@ -141,9 +141,6 @@
   border-radius: 0;
 }
 
-.real-user-show-message-only-box.into:first-child {
-  // border-top: 1px solid #ddd;
-}
 
 .real-user-show-message-only-box.into:hover {
   background-color: #eee;
@@ -154,9 +151,10 @@
   color: #000;
 }
 
-.real-user-show-message-only-box.out {}
+.user-show-contents-list {
+  visibility: visible !important;
+}
 
-.real-user-show-message-only-box.out:hover {}
 
 .users img {
   width: 40px;

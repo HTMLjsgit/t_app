@@ -123,18 +123,23 @@
   </object>
 <% end %>
 <script>
-  $(`#real-images-<%= real.id %>`).slick({
-    dots: true,
-    speed: 300,
-    slidesToShow: 1,
-    centerPadding: '0px',
-    centerMode: true,
-    swipe: false,
-    arrows: false
+  $(function(){
+    <% if real.image_reals.exists? %>
+      $(`#real-images-<%= real.id %>`).slick({
+        dots: true,
+        speed: 300,
+        slidesToShow: 1,
+        centerPadding: '0px',
+        centerMode: true,
+        swipe: false,
+        arrows: false
+      });
+    <% end %>
+    $(".report-show-button").click(function(event){
+      $("#report-modal-contents").removeClass("hide");
+      $("#report-modal-background").removeClass("hide");
+      modal_opended = true;
+    });
   });
-  $(".report-show-button").click(function(event){
-    $("#report-modal-contents").removeClass("hide");
-    $("#report-modal-background").removeClass("hide");
-    modal_opended = true;
-  });
+
 </script>

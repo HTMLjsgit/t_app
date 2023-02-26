@@ -23,9 +23,7 @@ class UsersController < ApplicationController
   def show
     @room = Room.new
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
-    reals_id = ImageReal.pluck(:real_id)
-    @reals = @user.reals.where(id: reals_id).includes(:image_reals).distinct
-    @reals_not = @user.reals.where.not(id: reals_id).includes(:image_reals).distinct
+    @reals = @user.reals.includes(:image_reals).distinct
   end
   def update
     @user.update!(user_params)

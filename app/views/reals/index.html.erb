@@ -12,7 +12,6 @@
       <% end %>
   </div>
 <% end %>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <%= render partial: "reals/reals_list", locals: {reals: @reals,reals_not: @reals_not, message_custom: false} %>
 <div class="new-link-box">
   <%= link_to new_real_path, class: "underline-none hover" do %>

@@ -104,27 +104,12 @@
   <%= button_tag "Postに切り替え", class: "change-list-button post select", data: {type: "post"} %>
   <%= button_tag "Realに切り替え", class: "change-list-button real", data: {type: "real"} %>
 </div>
-
 <div class="user-show-contents-box">
   <div class="post user-show-contents-list">
     <%= render partial: "posts/posts_list", locals: {posts: @user.posts} %>
   </div>
-  <div class="real user-show-contents-list hide">
+  <div class="real user-show-contents-list">
     <%= render partial: "reals/reals_list", locals: {reals: @user.reals, message_custom: true} %>
-    <div class="main real-click-event message user-show hide">
-      <% @reals_not.each do |real_not| %>
-          <div class="real-user-show-message-only-box out">
-            <%= link_to real_path(real_not), class: "real-index-link" do %>
-              <div class="real-user-show-message-only-box into">
-                <%= render partial: "users/user_profile", locals: {user: @user} %>
-                <div class="real-user-show-message-box">
-                  <%= simple_format real_not.content.truncate(30) %>
-                </div>
-              </div>
-            <% end %>
-          </div>
-      <% end %>
-    </div>
   </div>
 </div>
 
@@ -143,8 +128,8 @@
     padding: 1px;
     margin: 0;
   }
-  .reals-index{
-    max-width: none;
+  .reals-index-out-box{
+    display: block;
   }
   @media screen and (max-width: 850px){
     .reals-index{
@@ -186,6 +171,10 @@
   var type = "post";
   var before_type = "post";
   let start_once = false;
+    $(".user-show-contents-list.real").css("visibility", "hidden");
+  setTimeout(() => {
+    $(".user-show-contents-list.real").addClass("hide");
+  }, 400);
   $("#user-background_image-form").change(function(event){
     $("#user-show-form").submit();
   });
