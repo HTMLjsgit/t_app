@@ -2,7 +2,6 @@ class RealsController < ApplicationController
   impressionist :actions=> [:index]
   before_action :authenticate_user!, only: [:show, :create, :update, :edit, :new, :destroy]
   def index
-    reals_id = ImageReal.pluck(:real_id)
     @type = "others"
     if user_signed_in?
       if params[:type].present?
@@ -11,16 +10,13 @@ class RealsController < ApplicationController
     end
 
     if @type == "others"
-      @reals = Real.all.where(id: reals_id).includes(:image_reals).distinct
-      @reals_not = Real.all.where.not(id: reals_id).includes(:image_reals).distinct
+      @reals = Real.all.includes(:image_reals).distinct
     elsif @type == "follows"
       following_users = current_user.following_user
       user_ids = following_users.ids
-      @reals = Real.all.where(id: reals_id, user_id: user_ids).includes(:image_reals).distinct
-      @reals_not = Real.all.where.not(id: reals_id).where(user_id: user_ids).includes(:image_reals).distinct
+      @reals = Real.all.where(user_id: user_ids).includes(:image_reals).distinct
     else
-      @reals = Real.all.where(id: reals_id).includes(:image_reals).distinct
-      @reals_not = Real.all.where.not(id: reals_id).includes(:image_reals).distinct
+      @reals = Real.all.includes(:image_reals).distinct
     end
 
   end
