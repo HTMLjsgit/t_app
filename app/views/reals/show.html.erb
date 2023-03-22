@@ -11,16 +11,16 @@
 
   </div>
   <div class="reals-comments-box comments-box">
-
-    <div class="main comments-new">
-      <%= form_for (@real_comment) do |f| %>
-        <div class="comment-form">
-          <%= f.text_area :comment,placeholder: "コメントを追加",class: "comment-field" %>
-          <%= f.hidden_field :real_id, value: @real.id %>
-          <%= f.submit 'コメントする', class: "comment-form-submit" %>
-        </div>
-      <% end %>
-    </div>
+    <% if user_signed_in? %>
+      <div class="main comments-new">
+        <%= form_with model: @real_comment,local: true, url: real_real_comments_path(real_id: @real.id) do |f| %>
+          <div class="comment-form">
+            <%= f.text_area :comment,placeholder: "コメントを追加",class: "comment-field" %>
+            <%= f.submit 'コメントする', class: "comment-form-submit" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
     <div class="comments-all-box">
       <% @real_comments.each do |comment| %>
         <div class="comment-index-item">
