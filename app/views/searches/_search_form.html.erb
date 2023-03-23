@@ -38,6 +38,8 @@
           window.location.href = `/posts/${ui.item.id}/post_explanation`
         }else if(ui.item.type == "user"){
           window.location.href = `/users/${ui.item.id}`
+        }else if(ui.item.type == "real"){
+          window.location.href = `/reals/${ui.item.id}`
         }
       }, 10);
     },
@@ -47,6 +49,8 @@
       return $(`<li><div class='autocomplete-user-profile'><img src="${src_case}" class="ui-complete-img">${item.username}</div></li>`).appendTo(ui);
     }else if(item["type"] == "post"){
       return $(`<li>${item.title}</li>`).appendTo(ui);
+    }else if(item["type"] == "real"){
+      return $(`<li>${item.content}</li>`).appendTo(ui);
     }
     return null;
   };;

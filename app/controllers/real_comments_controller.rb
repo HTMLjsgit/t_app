@@ -1,6 +1,7 @@
 class RealCommentsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy, :update]
-  before_action :set_real_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_real_comment, only: [:show, :update, :destroy]
+  before_action :admin_user_check, only: [:update, :destroy]
   def create
     @real = Real.find(params[:real_id])
     @real_comment = @real.real_comments.new(real_comment_params)
@@ -19,6 +20,11 @@ class RealCommentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_real_comment
       @real_comment = RealComment.find(params[:id])
+    end
+    def admin_user_check
+      if current_user.id != @real_comment.user_id && !current_user.admin
+        redirect_to root_path and return
+      end
     end
 
     # Only allow a list of trusted parameters through.

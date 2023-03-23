@@ -1,0 +1,41 @@
+<div class="real-tags-all-form">
+    <%= f.fields_for :real_tags, @real_tag do |f_real_tag| %>
+      <% if !@real.real_tags.exists? %>
+        <div id="real-tag-form-0" class="real-tag-form" data-mode="post" index=>
+          <%= f_real_tag.text_field :tag, class: "real-form-tags", id: "tag_text_field_0" %>
+          <%= button_tag "削除", type: "button", class: "real-tag-delete-button", data: {id:"0"}  %>
+        </div>
+      <% else %>
+        <div id="real-tag-form-<%= f_real_tag.index %>" class="real-tag-form" data-mode="edit" data-index="<%= f_real_tag.index %>">
+          <%= f_real_tag.text_field :tag, class: "real-form-tags", id: "tag_text_field_#{f_real_tag.index}" %>
+          <%= button_tag "削除", type: "button", class: "real-tag-delete-button", data: {id: f_real_tag.object.id, index: f_real_tag.index}  %>
+        </div>
+      <% end %>
+    <% end %>
+</div>
+<%= button_tag "タグ追加", type: "button", class: "real-tags-add-button"  %>
+<script>
+  let current_id = 0;
+  <% if @real.real_tags.exists? %>
+    current_id = <%= @real.real_tags.count %>
+  <% end %>
+  $(document).on('click', '.real-tag-delete-button', function(event) {
+    let id = event.currentTarget.dataset.id;
+    let index = event.currentTarget.dataset.index;
+    if($(`#real-tag-form-${index}`).data("mode") == "edit"){
+      index = $(`#real-tag-form-${index}`).data("index");
+      $(".real-tags-all-form").append(`<input type="hidden" value="${id}" name="real[real_tags_attributes][${index}][_destroy]">`);
+      $(`#real-tag-form-${index}`).remove();
+    }else{
+      $(`#real-tag-form-${id}`).remove();
+    }
+  });
+  $(".real-tags-add-button").click(function(event){
+    current_id += 1;
+    $(".real-tags-all-form").append(`<div id="real-tag-form-${current_id}" class="real-tag-form" data-mode="real" >
+      <%= text_field_tag :tag, nil, class: "real-form-tags", id: "tag_text_field_${current_id}", name: "real[real_tags_attributes][${current_id}][tag]" %>
+      <%= button_tag "削除", type: "button", class: "real-tag-delete-button", data: {id:"${current_id}"}  %>
+    </div>`);
+  });
+
+</script>

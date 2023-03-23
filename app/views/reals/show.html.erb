@@ -10,6 +10,11 @@
   <div class="modal-background hide" id="report-modal-background">
 
   </div>
+  <div class="real-tags-box">
+    <% @real.real_tags.each do |real_tag| %>
+      #<%= real_tag.tag %>
+    <% end %>
+  </div>
   <div class="reals-comments-box comments-box">
     <% if user_signed_in? %>
       <div class="main comments-new">
@@ -26,8 +31,19 @@
         <div class="comment-index-item">
 
           <%= render partial: "users/user_profile", locals: {user: comment.user} %>
-          <div class="comment-index-content">
-            <%= simple_format comment.comment %>
+          <div class="comment-and-delete-button-box">
+            <div class="comment-index-content">
+              <%= simple_format comment.comment %>
+            </div>
+            <div class="comment-delete-button-box">
+              <% if user_signed_in? %>
+                <% if current_user.id == comment.user_id %>
+                  <%= link_to real_real_comment_path(real_id: @real.id,id: comment), method: :delete do %>
+                    <button class="comment-delete-button">削除</button>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
           </div>
         </div>
       <% end %>

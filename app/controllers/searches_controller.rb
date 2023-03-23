@@ -19,25 +19,34 @@ class SearchesController < ApplicationController
         users_ids = []
         keywords = search_value.split(/[[:blank:]]+/)
         keywords.each do |keyword|
-          p keyword
           users_ids += User.where("username LIKE ?", "%#{keyword}%").pluck(:id)
-          p users_ids
         end
         @users = User.where(id: users_ids)
+      elsif search_type == "reals"
+        target_reals = Real.joins(:real_tags)
+        reals_ids = []
+        keywords = params[:search_value].split(/[[:blank:]]+/)
+        keywords.each do |keyword|
+          reals_ids += target_reals.where("real_tags.tag LIKE ?", "%#{keyword}%").pluck(:id)
+        end
+        @reals = Real.where(id: reals_ids).includes(:real_likes)
       end
     end
   end
   def autocomplete_search
-    p "--------------------------------"
     search_value = params[:search_value]
     if search_value.present?
       @posts = Post.joins(:post_tags).where("post_tags.tag LIKE ?", "%#{search_value}%").includes(:post_likes)
       @users = User.where("username LIKE ?", "%#{search_value}%")
+      @reals = Real.joins(:real_tags).where("real_tags.tag LIKE ?", "%#{search_value}%").includes(:real_likes)
       posts = @posts.map{ |p| p.attributes }
       users = @users.map{ |p| p.attributes }
-
+      reals = @reals.map { |p| p.attributes }
       posts.each_with_index do |post, index|
         posts[index].store("type", "post")
+      end
+      reals.each_with_index do |real, index|
+        reals[index].store("type", "real")
       end
       @users.each_with_index do |user, index|
         users[index].store("type", "user")
@@ -45,8 +54,8 @@ class SearchesController < ApplicationController
           users[index]["avater"] = user.avater.url
         end
       end
-      if posts.present? || users.present?
-        render json: posts + users
+      if posts.present? || users.present? || reals.present?
+        render json: posts.uniq + users.uniq + reals.uniq
       else
         render json: []
       end

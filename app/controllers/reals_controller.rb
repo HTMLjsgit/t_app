@@ -42,6 +42,7 @@ class RealsController < ApplicationController
 
   def new
     @real = Real.new
+    @real_tag = @real.real_tags.build
     @images_real = @real.image_reals.build()
   end
 
@@ -49,7 +50,7 @@ class RealsController < ApplicationController
 
     @real = Real.new(real_params)
     @real.save!
-
+    redirect_to real_path(@real)
   end
 
   def edit
@@ -68,7 +69,7 @@ class RealsController < ApplicationController
 
   private
   def real_params
-    params.require(:real).permit(:content, image_reals_attributes: [:id, :_destroy, :picture]).merge(user_id: current_user.id)
+    params.require(:real).permit(:content, image_reals_attributes: [:id, :_destroy, :picture], real_tags_attributes: [:id,:_destroy, :tag]).merge(user_id: current_user.id)
   end
   def real_get
     @real = Real.find params[:id]
