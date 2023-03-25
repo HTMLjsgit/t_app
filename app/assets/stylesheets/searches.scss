@@ -1,3 +1,18 @@
 // Place all the styles related to the searches controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.image-only-real-box {
+  display: flex;
+}
+
+.image-only-real-box img {
+  margin-left: 5px;
+  object-fit: cover;
+  width: 90px;
+  height: 80px;
+}
+
+.ui-autocomplete .ui-menu-item {
+  word-break: break-all;
+  max-width: 253px;
+}

@@ -49,6 +49,7 @@ class RealsController < ApplicationController
   def create
 
     @real = Real.new(real_params)
+    @real.real_images_params = real_params[:image_reals_attributes]
     @real.save!
     redirect_to real_path(@real)
   end

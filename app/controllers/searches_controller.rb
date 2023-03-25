@@ -42,11 +42,16 @@ class SearchesController < ApplicationController
       posts = @posts.map{ |p| p.attributes }
       users = @users.map{ |p| p.attributes }
       reals = @reals.map { |p| p.attributes }
+
       posts.each_with_index do |post, index|
         posts[index].store("type", "post")
       end
       reals.each_with_index do |real, index|
         reals[index].store("type", "real")
+        image_real = ImageReal.find_by(real_id: real["id"])
+        if image_real.present?
+          reals[index].store("image_real_url", image_real.picture.url)
+        end
       end
       @users.each_with_index do |user, index|
         users[index].store("type", "user")

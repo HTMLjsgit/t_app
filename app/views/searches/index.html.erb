@@ -4,5 +4,7 @@
     <%= render partial: "posts/posts_list", locals: {posts: @posts} %>
   <% elsif params[:search_type] == "users" %>
     <%= render partial: "users/users_list", locals: {users: @users} %>
+  <% elsif params[:search_type] == "reals" %>
+    <%= render partial: "reals/reals_list", locals: {reals: @reals} %>
   <% end %>
 <% end %>
