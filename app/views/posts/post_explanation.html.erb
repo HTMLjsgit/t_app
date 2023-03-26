@@ -31,7 +31,7 @@
     <div class="post-explanation-show-counts-box">
       <div class="post-explanation-show-item">
         <span class="show-explanation-counts-span">購入数</span>
-        <p class="show-explanation-counts-p"><%= @purchase_num.to_s(:delimited) %></p>
+        <p class="show-explanation-counts-p"><%= @post.payments_count.to_s(:delimited) %></p>
       </div>
       <div class="post-explanation-show-item">
         <span class="show-explanation-counts-span">閲覧数</span>

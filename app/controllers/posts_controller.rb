@@ -20,6 +20,8 @@ class PostsController < ApplicationController
     elsif @type == "follows"
       user_ids = current_user.following_user.ids
       @posts = Post.where(user_id: user_ids).order(created_at: :desc).includes(:post_likes)
+    elsif @type == "buy"
+      @posts = Post.all.order(payments_count: :desc).includes(:post_likes)
     else
       @posts = Post.all.order(created_at: :desc).includes(:post_likes)
     end
@@ -57,8 +59,7 @@ class PostsController < ApplicationController
         impressionist(@post)
       end
     end
-    @purchases = @post.post_payments
-    @purchase_num = @purchases.count
+
   end
 
   def edit

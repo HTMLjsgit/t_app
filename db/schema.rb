@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_23_153221) do
+ActiveRecord::Schema.define(version: 2023_03_26_143125) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -198,6 +198,7 @@ ActiveRecord::Schema.define(version: 2023_03_23_153221) do
     t.string "title"
     t.text "description"
     t.string "poster"
+    t.integer "payments_count", default: 0, null: false
   end
 
   create_table "real_comments", force: :cascade do |t|
@@ -240,6 +241,7 @@ ActiveRecord::Schema.define(version: 2023_03_23_153221) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.integer "impressions_count", default: 0, null: false
   end
 
   create_table "receipt_totals", force: :cascade do |t|

@@ -10,7 +10,7 @@ class Post < ApplicationRecord
    belongs_to :user
    has_many :comments, dependent: :destroy
    has_many :post_likes, dependent: :destroy
-   has_many :sales
+   has_many :sales, dependent: :destroy
    has_many :post_reports, dependent: :destroy
    has_many :image_posts, dependent: :destroy
    has_many :post_thumbnails, dependent: :destroy

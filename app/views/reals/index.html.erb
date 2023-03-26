@@ -5,6 +5,11 @@
           <h3>最新</h3>
         </div>
       <% end %>
+      <%= link_to reals_path(type: "browse") do  %>
+        <div class="contents-lists-change-button" data-type="browse">
+          <h3>閲覧順</h3>
+        </div>
+      <% end %>
       <%= link_to reals_path(type: "follows") do  %>
         <div class="contents-lists-change-button" data-type="follows">
           <h3>フォロー中</h3>

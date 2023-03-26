@@ -10,7 +10,7 @@ class Real < ApplicationRecord
   has_many :real_tags, dependent: :destroy
   accepts_nested_attributes_for :image_reals, allow_destroy: true
   accepts_nested_attributes_for :real_tags, allow_destroy: true
-  is_impressionable
+  is_impressionable counter_cache: true
   attr_accessor :real_images_params
   def user
      return User.find_by(id: self.user_id)
