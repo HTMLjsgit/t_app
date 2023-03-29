@@ -38,8 +38,8 @@
             <div class="comment-delete-button-box">
               <% if user_signed_in? %>
                 <% if current_user.id == comment.user_id %>
-                  <%= link_to real_real_comment_path(real_id: @real.id,id: comment), method: :delete do %>
-                    <button class="comment-delete-button">削除</button>
+                  <%= link_to real_real_comment_path(real_id: @real.id,id: comment), data: {confirm: "本当に削除していいですか"},method: :delete do %>
+                    <button class="comment-delete-button delete-button">削除</button>
                   <% end %>
                 <% end %>
               <% end %>

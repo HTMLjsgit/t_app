@@ -23,6 +23,17 @@
   opacity: 1;
 }
 
+.delete-button {
+  background-color: rgb(211, 0, 0);
+  color: #fff;
+  border-radius: 5px;
+
+}
+
+.delete-button:hover {
+  background-color: rgb(168, 0, 0);
+}
+
 .report-show-button {
   font-size: 30px;
   cursor: pointer;
