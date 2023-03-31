@@ -1,4 +1,3 @@
 <% users.each do |user| %>
-  <%= render partial: "users/user_profile", locals: {user: user} %>
-
+  <%= render partial: "users/user_profile", locals: {user: user, introduction: introduction_mode} %>
 <% end %>

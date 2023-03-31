@@ -19,4 +19,9 @@
       </object>
     <% end %>
   </div>
+  <% if defined?(introduction) %>
+    <div class="user-profile-description-box">
+      <%= simple_format user.introduction %>
+    </div>
+  <% end %>
 </div>

@@ -16,7 +16,7 @@ class RealsController < ApplicationController
       user_ids = following_users.ids
       @reals = Real.all.where(user_id: user_ids).includes(:image_reals, :user, :real_likes).distinct
     elsif @type == "browse"
-      @reals = Real.all.includes(:image_reals, :user, :real_likes).order().distinct
+      @reals = Real.all.includes(:image_reals, :user, :real_likes).order(impressions_count: :desc).distinct
     else
       @reals = Real.all.includes(:image_reals, :user, :real_likes).order(created_at: :desc).distinct
     end
