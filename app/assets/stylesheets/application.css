@@ -23,6 +23,14 @@
   opacity: 1;
 }
 
+.slick-next::before {
+  position: absolute !important;
+}
+
+.slick-prev::before {
+  position: absolute !important;
+}
+
 .delete-button {
   background-color: rgb(211, 0, 0);
   color: #fff;
