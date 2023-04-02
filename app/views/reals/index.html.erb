@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <div class="contents-lists-button-change-boxes">
-    <% type = params[:type] %>
+    <% type = params[:type].present? ? params[:type] : "others"  %>
     <% type_class = type == "others" ? "selected" : "" %>
       <%= link_to reals_path(type: "others") do  %>
         <div class="contents-lists-change-button <%= type_class %>" data-type="others">
