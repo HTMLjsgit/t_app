@@ -78,3 +78,4 @@ gem "carrierwave"
 gem 'mini_magick'
 #---------------新たに追加させていただいたもの-swappp06302---------------------
 gem 'impressionist', '~>1.6.1'
+gem 'counter_culture'

@@ -23,7 +23,7 @@
             <%= render partial: "users/user_profile", locals: {user: post.user} %>
             <div class="post-index-counts-all-box">
               <div class="post-index-counts-contents-box">
-                <p class="post-index-count-text">購入数 : <%= post.post_payments.count %></p>
+                <p class="post-index-count-text">購入数 : <%= post.payments_count %></p>
               </div>
               <div class="post-index-counts-contents-box">
                 <p class="post-index-count-text">閲覧数 : <%= post.impressionist_count.to_s(:delimited) %></p>

@@ -1,11 +1,33 @@
-<%= form_with url: searches_path,id: "search_form",method: :get, local: true do |f| %>
-  <%= f.text_field :search_value, value: params[:search_value], id: "search_value_text_field", required: true %>
-  <%= f.hidden_field :search_type, value: (params[:search_value].present? ? params[:search_type] : "posts") %>
-  <%= f.submit "送信", id: "search_submit" %>
-<% end %>
-<% if params[:search_value].present? %>
-  <%= link_to "記事", searches_path(search_value: params[:search_value], search_type: "posts") %>
-  <%= link_to "ユーザー", searches_path(search_value: params[:search_value], search_type: "users") %>
+<div class="search-form-box">
+  <%= form_with url: searches_path,id: "search_form",method: :get, local: true do |f| %>
+    <%= f.text_field :search_value, value: params[:search_value], id: "search_value_text_field", required: true %>
+    <%= f.hidden_field :search_type, value: (params[:search_value].present? ? params[:search_type] : "posts") %>
+    <%= f.submit "検索", id: "search_submit" %>
+  <% end %>
+</div>
+<% search_value = params[:search_value] %>
+<% if search_value.present? %>
+  <% search_type = params[:search_type] %>
+  <div class="search-type-link-box">
+    <% conditions_class = search_type == "posts" ? "selected" : "" %>
+    <div class="search-type-link-one-box <%= conditions_class %>">
+      <%= link_to searches_path(search_value: search_value, search_type: "posts") do  %>
+        <h2>記事</h2>
+      <% end %>
+    </div>
+    <% conditions_class = search_type == "users" ? "selected" : "" %>
+    <div class="search-type-link-one-box <%= conditions_class %>">
+      <%= link_to searches_path(search_value: search_value, search_type: "users") do  %>
+        <h2>ユーザー</h2>
+      <% end %>
+    </div>
+    <% conditions_class = search_type == "reals" ? "selected" : "" %>
+    <div class="search-type-link-one-box <%= conditions_class %>">
+      <%= link_to searches_path(search_value: search_value, search_type: "reals") do %>
+        <h2>つぶやき</h2>
+      <% end %>
+    </div>
+  </div>
 <% end %>
 <style>
   .ui-state-focus {
@@ -38,6 +60,8 @@
           window.location.href = `/posts/${ui.item.id}/post_explanation`
         }else if(ui.item.type == "user"){
           window.location.href = `/users/${ui.item.id}`
+        }else if(ui.item.type == "real"){
+          window.location.href = `/reals/${ui.item.id}`
         }
       }, 10);
     },
@@ -47,6 +71,12 @@
       return $(`<li><div class='autocomplete-user-profile'><img src="${src_case}" class="ui-complete-img">${item.username}</div></li>`).appendTo(ui);
     }else if(item["type"] == "post"){
       return $(`<li>${item.title}</li>`).appendTo(ui);
+    }else if(item["type"] == "real"){
+      if("image_real_url" in item){
+        return $(`<li><div class='image-only-real-box'>つぶやき画像: <img src='${item.image_real_url}'></div></li>`).appendTo(ui);
+      }else{
+        return $(`<li>${item.content}</li>`).appendTo(ui);
+      }
     }
     return null;
   };;

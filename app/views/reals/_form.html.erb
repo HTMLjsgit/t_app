@@ -8,6 +8,7 @@
         <div class="form-body">
 
           <%= f.text_area :content, class: 'form-control real-textarea', placeholder: "メッセージを入力" %>
+          <%= render "tag_form", {f: f} %>
           <div class="image-view-form reals"></div>
           <div class="submit-form reals">
             <div class="form-contents reals">

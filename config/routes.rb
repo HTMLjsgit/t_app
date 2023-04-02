@@ -21,7 +21,6 @@ Rails.application.routes.draw do
       resources :impressions
       root to: "impressions#index"
     end
-  resources :real_comments
   devise_for :users
   post 'users/restore/:id' => 'users#update_isstopped', as: 'users_restore'
   post 'users/stop/:id' => 'users#stop_isstopped', as: 'users_stop'
@@ -67,6 +66,7 @@ Rails.application.routes.draw do
   resources :reals, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resources :real_likes, only: [:create, :destroy]
     resources :real_reports, only: [:create]
+    resources :real_comments, only: [:create, :destroy, :update]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
