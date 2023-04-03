@@ -29,8 +29,7 @@
     <div class="comments-all-box">
       <% @real_comments.each do |comment| %>
         <div class="comment-index-item">
-
-          <%= render partial: "users/user_profile", locals: {user: comment.user} %>
+        <%= render "reals/real_user_profile", {user: comment.user, data_created_at: comment.created_at} %>
           <div class="comment-and-delete-button-box">
             <div class="comment-index-content">
               <%= simple_format comment.comment %>

@@ -1,12 +1,14 @@
 // Place all the styles related to the comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.comment-show h2{
+.comment-show h2 {
   border-bottom: 1px solid gray;
 }
-.comment-show{
+
+.comment-show {
   font-size: 1.7rem;
 }
+
 .comment-index-item {
   padding: 15px 30px;
   background-color: white;
@@ -15,9 +17,11 @@
   border-bottom: 1px solid #eee;
   word-break: break-all;
 }
-.reals-show .comment-index-item .user-profile-box{
+
+.reals-show .comment-index-item .user-profile-box {
   padding: 0;
 }
+
 .comment-index-name {
   color: black;
   font-size: 15px;
@@ -26,10 +30,12 @@
   vertical-align: 15px;
 
 }
+
 .comment-index-content {
   padding-left: 55px;
 }
-.comment-form-submit{
+
+.comment-form-submit {
   border: none;
   color: rgb(107, 107, 255);
   font-weight: bold;
@@ -40,7 +46,7 @@
   margin-top: 2px;
 }
 
-.comment-form{
+.comment-form {
   display: flex;
   justify-content: space-between;
   border-top: 1px solid #ddd;
@@ -49,12 +55,13 @@
   padding-right: 30px;
 }
 
-.comment-field{
+.comment-field {
   border: 0;
   resize: none;
   min-height: 80px;
   width: 100%;
 }
-.comment-field:focus{
+
+.comment-field:focus {
   outline: none;
 }

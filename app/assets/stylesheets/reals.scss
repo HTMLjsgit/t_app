@@ -75,6 +75,17 @@
   justify-content: space-between;
 }
 
+.real-profile {
+  display: flex;
+}
+
+.data-created-at-text {
+  padding-top: 10px;
+  padding-left: 10px;
+  font-size: 15px;
+  color: #4a4a4a;
+}
+
 .reals-views-count-text {
   margin: 0 0 0 auto;
   max-width: 100px;
