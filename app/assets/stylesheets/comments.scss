@@ -36,14 +36,16 @@
 }
 
 .comment-form-submit {
+  border-radius: 5px;
   border: none;
-  color: rgb(107, 107, 255);
   font-weight: bold;
   background-color: transparent;
   cursor: pointer;
-  height: 25px;
-  font-size: 15px;
-  margin-top: 2px;
+  height: 30px;
+  margin-top: 15px;
+  margin-left: 5px;
+  padding: 5px;
+  font-size: 13px;
 }
 
 .comment-form {
