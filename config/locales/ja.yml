@@ -204,4 +204,5 @@ ja:
       default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
+      created_at: "%Y年%m月%d日"
     pm: 午後

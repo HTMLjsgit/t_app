@@ -1,0 +1,30 @@
+<div class="user-profile-box">
+  <div class="real-profile">
+    <div class="user-profile-into-box">
+      <% if !defined?(avater) %>
+        <object>
+          <%= link_to user_path(user), class: "underline-none hover" do %>
+            <div class="user-avater-box">
+              <%= user_avater(user) %>
+            </div>
+          <% end %>
+        </object>
+      <% end %>
+      <% if !defined?(username) %>
+        <object>
+          <%= link_to user_path(user), class: "underline-none hover user-name-link" do %>
+            <div class="user-name-box">
+              <p class="user-name-text"><%= user.username %></p>
+            </div>
+          <% end %>
+        </object>
+      <% end %>
+    </div>
+    <% if defined?(introduction) %>
+      <div class="user-profile-description-box">
+        <%= simple_format user.introduction %>
+      </div>
+    <% end %>
+    <p class="data-created-at-text"><%= l data_created_at, format: :created_at %></p>
+  </div>
+</div>
