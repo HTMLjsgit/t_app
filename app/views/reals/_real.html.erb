@@ -111,12 +111,20 @@
         </div>
       </div>
       <div class="real-menus">
-        <%= link_to(edit_real_path(real), method: :get) do %>
-          <i class="far fa-edit fa-2x"></i>
-        <% end %>
-        <%= real.updated_at.strftime("%Y-%m-%d %H:%M") %>
-          <%= link_to(real_path(real),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do %>
-        <i class="fas fa-trash-alt fa-2x"></i>
+        <% if user_signed_in? %>
+          <% if current_user.id == real.user_id %>
+            <%= link_to(edit_real_path(real), method: :get) do %>
+              <i class="far fa-edit fa-2x"></i>
+            <% end %>
+            <%= real.updated_at.strftime("%Y-%m-%d %H:%M") %>
+            <%= link_to(real_path(real),data: { confirm: "この投稿を削除してもよろしいですか？" }, method: :delete) do %>
+              <i class="fas fa-trash-alt fa-2x"></i>
+            <% end %>
+          <% else %>
+            <%= real.updated_at.strftime("%Y-%m-%d %H:%M") %>
+          <% end %>
+        <% else %>
+          <%= real.updated_at.strftime("%Y-%m-%d %H:%M") %>
         <% end %>
       </div>
     </div>
