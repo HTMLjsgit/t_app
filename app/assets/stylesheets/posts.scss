@@ -3,14 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 /* posts/index ================================ */
 .plus-new-icon {
-  font-size: 55px;
+  font-size: 50px;
   // width: 55px;
   // height: 55px;
   text-align: center;
   background-color: pink;
   color: #fff;
-  padding: 5px 10px;
   border-radius: 50%;
+  position: fixed;
+  bottom: 80px;
+  right: 9%;
+  padding: 5px 10px;
 }
 
 .contents-lists-button-change-boxes {
@@ -704,6 +707,7 @@
   }
 
 
+
   .post-show-image_posts-all-box.slick-initialized.slick-slider.slick-dotted {
     .slick-next {
       right: 0px;
@@ -761,6 +765,15 @@
   .post-explanation.image-contents-zoom-area.modal-contents {
     width: 400px;
     height: 500px;
+  }
+
+  .contents-lists-change-button h3 {
+    font-size: 19px;
+  }
+
+  .plus-new-icon {
+    font-size: 35px;
+    padding: 10px 12px;
   }
 
   .post-show-image_posts-all-box {
