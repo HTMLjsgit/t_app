@@ -56,7 +56,7 @@ class PostsController < ApplicationController
     gon.stripe_public_key = Rails.configuration.stripe[:public_key]
     if user_signed_in?
       if current_user.id != @post.user_id
-        impressionist(@post)
+        impressionist(@post, nil, unique: [:impressionable_id, :ip_address])
       end
     end
 

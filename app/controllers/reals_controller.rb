@@ -69,7 +69,9 @@ class RealsController < ApplicationController
     @real = Real.find params[:id]
   end
   def impression_pv
-    impressionist(@real, nil, unique: [:impressionable_id, :ip_address])
+    if @real.user_id != current_user.id
+      impressionist(@real, nil, unique: [:impressionable_id, :ip_address])
+    end
   end
   def admin_and_user_check
     if current_user.id != @real.user_id && !current_user.admin
